@@ -26,15 +26,14 @@ const uploadImage = async (req, res) => {
     })
 }
 
-const info = async (req, res) => {
-    
+const keepAlive = async (req, res) => {
     res.json({
         success: true,
-        message: "Upload success"
+        message: "Web Service active"
     })
 }
 
 module.exports = {
     uploadImage,
-    info
+    keepAlive
 }
