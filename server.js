@@ -28,7 +28,7 @@ app.use('/uploads', express.static("uploads"))
 // Allow access
 app.use(cors({
     origin: (origin, callback) => {
-        console.log(origin)
+        console.log(`+ Request origin: ${origin}`)
         callback(null, true)
     },
     optionsSuccessStatus: 200
