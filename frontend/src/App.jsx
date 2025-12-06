@@ -1,35 +1,89 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import axios from 'axios'
 import './App.css'
+import { api } from '../config/backend'
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [count, setCount] = useState(0)
+	const [file, setFile] = useState(null)
+	const [preview, setPreview] = useState(null)
+	const [status, setStatus] = useState("idle")
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	const convertToBase64 = (file) => {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
+			reader.readAsDataURL(file); // This generates the 'data:image/...' string your backend needs
+			reader.onload = () => resolve(reader.result);
+			reader.onerror = (error) => reject(error);
+		});
+	};
+
+	const handleFileChange = (e) => {
+		const selectedFile = e.target.files[0];
+		if (selectedFile) {
+			setFile(selectedFile);
+			setPreview(URL.createObjectURL(selectedFile)); // Create local preview
+			setStatus("idle");
+		}
+	};
+
+	const handleUpload = async () => {
+		if (!file) return
+		setStatus("uploading")
+
+		// Convert to Base64 first
+		const base64String = await convertToBase64(file)
+
+		// Send JSON payload
+		try {
+			// Keep your existing logic to strip the extension
+			const response = await axios.post(`${api}/Image/upload`, {
+				filename: file.name.split('.').slice(0, -1).join('.'),
+				image: base64String
+			})
+
+			// If code reaches here, the status was 2xx (Success)
+			setStatus("success")
+		} catch (error) {
+			// Axios throws an error for 4xx/5xx responses
+			setStatus("error")
+			console.error("Server error:", error)
+		}
+	}
+
+	return (
+		<div className="_2mld">
+			<div className='bigot-who'>
+				<div>
+					<p>Please select a file</p>
+					<input
+						type="file"
+						accept="image/*"
+						onChange={handleFileChange}
+						style={{ marginBottom: '10px' }}
+					/>
+
+					{preview && (
+						<div style={{ marginBottom: '10px' }}>
+							<img src={preview} alt="Preview" style={{ width: '100%', maxHeight: '200px', objectFit: 'contain' }} />
+						</div>
+					)}
+
+					<button
+						onClick={handleUpload}
+						disabled={!file || status === "uploading"}
+						style={{ padding: '8px 16px', cursor: 'pointer' }}
+					>
+						{status === "uploading" ? "Uploading..." : "Upload to Server"}
+					</button>
+
+					{status === "success" && <p style={{ color: 'green' }}>✅ File uploaded successfully!</p>}
+					{status === "error" && <p style={{ color: 'red' }}>❌ Upload failed.</p>}
+				</div>
+			</div>
+			<div className='easer-fork'>Right</div>
+		</div>
+	)
 }
 
 export default App
