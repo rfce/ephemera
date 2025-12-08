@@ -4,10 +4,11 @@ import './App.css'
 import { api } from '../config/backend'
 
 function App() {
-	const [count, setCount] = useState(0)
 	const [file, setFile] = useState(null)
 	const [preview, setPreview] = useState(null)
 	const [status, setStatus] = useState("idle")
+	const [seen, setSeen] = useState(false)
+	const [hidden, setHidden] = useState(true)
 
 	const convertToBase64 = (file) => {
 		return new Promise((resolve, reject) => {
@@ -81,7 +82,27 @@ function App() {
 					{status === "error" && <p style={{ color: 'red' }}>❌ Upload failed.</p>}
 				</div>
 			</div>
-			<div className='easer-fork'>Right</div>
+			<div className='easer-fork'>
+				<div style={{ display: "flex", justifyContent: "flex-end", padding: "5px 30px" }}>
+					<p style={{ cursor: "pointer", color: "purple", textDecoration: "underline", margin: "0px" }}>History</p>
+				</div>
+				<div className='nugget-bay'>
+					<div className='squired-quad'>
+						{hidden ? (
+							<div className='hidden'>
+								<img onClick={() => setHidden(false)} src={hidden ? "/eye-slash.svg" : "/eye.svg"} alt="Eye Icon" />
+							</div>
+						) : <div className='thesis-bios'>
+
+						</div>}
+					</div>
+					<div className='inured-wow' style={{ backgroundColor: seen ? "rgb(84, 144, 94)" : "rgb(255, 90, 90)" }}>{seen ? "seen" : "unseen"}</div>
+				</div>
+
+				<div>
+
+				</div>
+			</div>
 		</div>
 	)
 }

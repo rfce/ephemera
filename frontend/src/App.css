@@ -12,3 +12,47 @@
 ._2mld .easer-fork {
   flex: 2;
 }
+
+._2mld .easer-fork .nugget-bay {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(236, 236, 236),;
+  height: 400px; 
+  margin: 5px 30px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  overflow: hidden;
+}
+
+._2mld .squired-quad {
+  flex: 1;
+}
+
+._2mld .inured-wow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  color: whitesmoke;
+}
+
+._2mld .squired-quad .hidden {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 370px;
+  background-color: rgb(233, 233, 233);
+}
+
+._2mld .squired-quad .hidden img {
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  opacity: 0.6;
+}
+
+._2mld .thesis-bios {
+  height: 370px;
+  overflow: auto;
+}
+
