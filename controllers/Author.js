@@ -1,5 +1,6 @@
 const { fileDownloader } = require("../middleware/Helper")
 const Image = require("../models/Image")
+const Message = require("../models/Message")
 
 const uploadImage = async (req, res) => {
     const { image } = req.body
@@ -20,8 +21,45 @@ const uploadImage = async (req, res) => {
         })
     }
 
-    await Image.create({ blob: image })
-    
+    const created = await Image.create({ blob: image })
+
+    const id = created._id
+
+    const message = await Message.findOne({ active: true })
+
+    // No active message box, create one
+    if (message === null) {
+        await Message.create({ image: [id], active: true })
+
+        return res.json({
+            success: true,
+            message: "Upload success",
+            file
+        })
+    }
+
+    const count = message.image.length
+
+    // Just update the message box with image
+    if (count < 7) {
+        await Message.findOneAndUpdate({ active: true }, {
+            $push: { image: id }
+        })
+
+        return res.json({
+            success: true,
+            message: "Upload success",
+            file
+        })
+    }
+
+    // Message full with seven images, create a new active message
+    await Message.findOneAndUpdate({ active: true }, {
+            active: false
+    })
+
+    await Message.create({ image: [id], active: true })
+
     res.json({
         success: true,
         message: "Upload success",
@@ -40,7 +78,7 @@ const fetchImage = async (req, res) => {
     console.log(`+++ Ping received from: ${ip}\n+++ Client device: ${ua}`)
 
     const image = await Image.findOne({})
-    
+
     // We must strip this prefix to get the raw data
     const matches = image.blob.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/)
 
@@ -53,7 +91,7 @@ const fetchImage = async (req, res) => {
 
     // Convert the cleaned Base64 string into a binary Buffer
     const imgBuffer = Buffer.from(rawBase64, 'base64')
-    
+
     // Tell the browser this is an image, not text
     res.writeHead(200, {
         'Content-Type': imageType,
@@ -74,9 +112,12 @@ const keepAlive = async (req, res) => {
 
     console.log(`+ Ping received from: ${ip}\n+ Client device: ${ua}`)
 
+    // Keep mongodb in sync so it doesn't get inactive
+    const image = await Image.findOne({})
+
     res.json({
         success: true,
-        message: "Web Service active"
+        message: "Web Service and database active"
     })
 }
 
