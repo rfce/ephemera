@@ -93,7 +93,7 @@ function App() {
 								<img onClick={() => setHidden(false)} src={hidden ? "/eye-slash.svg" : "/eye.svg"} alt="Eye Icon" />
 							</div>
 						) : <div className='thesis-bios'>
-
+							{[...Array(7)].map((_, index) => <img src={`${api}/Image/${index + 1}`} alt='' />)}
 						</div>}
 					</div>
 					<div className='inured-wow' style={{ backgroundColor: seen ? "rgb(84, 144, 94)" : "rgb(255, 90, 90)" }}>{seen ? "seen" : "unseen"}</div>

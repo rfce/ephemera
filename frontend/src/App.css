@@ -54,5 +54,12 @@
 ._2mld .thesis-bios {
   height: 370px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+._2mld .thesis-bios img {
+  height: 40px;
+  width: 300px;
 }
 

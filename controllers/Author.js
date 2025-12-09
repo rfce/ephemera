@@ -55,7 +55,7 @@ const uploadImage = async (req, res) => {
 
     // Message full with seven images, create a new active message
     await Message.findOneAndUpdate({ active: true }, {
-            active: false
+        active: false
     })
 
     await Message.create({ image: [id], active: true })
@@ -68,6 +68,8 @@ const uploadImage = async (req, res) => {
 }
 
 const fetchImage = async (req, res) => {
+    const id = req.params.id
+
     const ua = req.get('User-Agent')
 
     // Get the IP Address
@@ -76,8 +78,19 @@ const fetchImage = async (req, res) => {
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip
 
     console.log(`+++ Ping received from: ${ip}\n+++ Client device: ${ua}`)
+    
+    const image = await Image.findOne({}).skip(id - 1)
 
-    const image = await Image.findOne({})
+    if (image === null) {
+        const emptyBuffer = Buffer.alloc(0)
+
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': emptyBuffer.length
+        })
+
+        return res.end(emptyBuffer)
+    }
 
     // We must strip this prefix to get the raw data
     const matches = image.blob.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/)
