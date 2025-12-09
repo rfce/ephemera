@@ -1,1 +1,1 @@
-export const api = "http://localhost:5010/api"
+export const api = "https://ephemera-wglj.onrender.com/api"
