@@ -112,12 +112,15 @@ const fetchImage = async (req, res) => {
                 unix: {
                     ip,
                     ua,
-                    timestamp: new Date()
+                    timestamp: new Date().toLocaleString("en-IN", {
+                        timeZone: "Asia/Kolkata"
+                    })
                 }
-            }
+            },
+            seen: true
         }
 
-        await Message.findOneAndUpdate({ image: image._id }, { update })
+        await Message.findOneAndUpdate({ active: true }, update)
     }
 
     // We must strip this prefix to get the raw data
@@ -143,6 +146,19 @@ const fetchImage = async (req, res) => {
     res.end(imgBuffer)
 }
 
+const activeMessage = async (req, res) => {
+    const message = await Message.findOne({ active: true })
+
+    if (message && message.unix) {
+        message.unix = message.unix.reverse()
+    }
+
+    res.json({
+        success: true,
+        message
+    })
+}
+
 const keepAlive = async (req, res) => {
     const ua = req.get('User-Agent')
 
@@ -165,5 +181,6 @@ const keepAlive = async (req, res) => {
 module.exports = {
     uploadImage,
     keepAlive,
-    fetchImage
+    fetchImage,
+    activeMessage
 }

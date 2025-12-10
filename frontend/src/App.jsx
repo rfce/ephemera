@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 import { api } from '../config/backend'
@@ -9,6 +9,7 @@ function App() {
 	const [status, setStatus] = useState("idle")
 	const [seen, setSeen] = useState(false)
 	const [hidden, setHidden] = useState(true)
+	const [message, setMessage] = useState({})
 
 	const convertToBase64 = (file) => {
 		return new Promise((resolve, reject) => {
@@ -52,6 +53,16 @@ function App() {
 		}
 	}
 
+	const fetchMessage = async () => {
+		const { data, status } = await axios.get(`${api}/Message/active`)
+
+		setMessage(data.message)
+	}
+
+	useEffect(() => {
+		fetchMessage()
+	}, [])
+
 	return (
 		<div className="_2mld">
 			<div className='bigot-who'>
@@ -81,6 +92,33 @@ function App() {
 					{status === "success" && <p style={{ color: 'green' }}>✅ File uploaded successfully!</p>}
 					{status === "error" && <p style={{ color: 'red' }}>❌ Upload failed.</p>}
 				</div>
+				<div className='erases-lube'>
+					<div>
+						{message.unix && message.unix.map((stamps) => {
+							const date = new Date(stamps.timestamp)
+
+							const formatted =
+								date.toLocaleDateString('en-GB', {
+									day: '2-digit',
+									month: 'short',
+									year: 'numeric'
+								}) +
+								', ' +
+								date.toLocaleTimeString('en-US', {
+									hour: '2-digit',
+									minute: '2-digit'
+								})
+
+							return (
+								<div style={{ paddingBottom: "10px" }}>
+									<div style={{ color: "green", fontWeight: "500" }}>{formatted}</div>
+									<div>{stamps.ip}</div>
+									<div style={{ fontSize: "14px", color: "grey" }}>{stamps.ua}</div>
+								</div>
+							)
+						})}
+					</div>
+				</div>
 			</div>
 			<div className='easer-fork'>
 				<div style={{ display: "flex", justifyContent: "flex-end", padding: "5px 30px" }}>
@@ -98,11 +136,7 @@ function App() {
 						</div>}
 						<div className='landline-held' onClick={() => setHidden((prev) => !prev)}></div>
 					</div>
-					<div className='inured-wow' style={{ backgroundColor: seen ? "rgb(84, 144, 94)" : "rgb(255, 90, 90)" }}>{seen ? "seen" : "unseen"}</div>
-				</div>
-
-				<div>
-
+					<div className='inured-wow' style={{ backgroundColor: message.seen ? "rgb(84, 144, 94)" : "rgb(255, 90, 90)" }}>{message.seen ? "seen" : "unseen"}</div>
 				</div>
 			</div>
 		</div>
