@@ -77,9 +77,22 @@ const fetchImage = async (req, res) => {
     // req.ip often returns the internal load balancer IP, not the real user.
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip
 
-    console.log(`+++ Ping received from: ${ip}\n+++ Client device: ${ua}`)
-    
-    const image = await Image.findOne({}).skip(id - 1)
+    if (ua.includes("Windows NT 10.0; Win64; x64") === false && ua.includes("Chrome/142.0.0.0") === false) {
+        console.log(`+++ Ping received from: ${ip}\n+++ Client device: ${ua}`)
+    }
+
+    let skip = id
+    let hasdash = false
+
+    // Just the first image would've "-note"
+    if (id.includes("-")) {
+        const [zero, one] = id.split("-")
+
+        skip = zero
+        hasdash = true
+    }
+
+    const image = await Image.findOne({}).skip(skip - 1)
 
     if (image === null) {
         const emptyBuffer = Buffer.alloc(0)
@@ -90,6 +103,21 @@ const fetchImage = async (req, res) => {
         })
 
         return res.end(emptyBuffer)
+    }
+
+    // Save the timestamp to message
+    if (hasdash) {
+        const update = {
+            $push: {
+                unix: {
+                    ip,
+                    ua,
+                    timestamp: new Date()
+                }
+            }
+        }
+
+        await Message.findOneAndUpdate({ image: image._id }, { update })
     }
 
     // We must strip this prefix to get the raw data

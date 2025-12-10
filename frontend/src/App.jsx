@@ -90,11 +90,13 @@ function App() {
 					<div className='squired-quad'>
 						{hidden ? (
 							<div className='hidden'>
-								<img onClick={() => setHidden(false)} src={hidden ? "/eye-slash.svg" : "/eye.svg"} alt="Eye Icon" />
+								<div style={{ width: "50px", height: "50px" }}></div>
 							</div>
 						) : <div className='thesis-bios'>
-							{[...Array(7)].map((_, index) => <img src={`${api}/Image/${index + 1}`} alt='' />)}
+							<img src={`${api}/Image/${index + 1}-note`} alt='' />
+							{[...Array(6)].map((_, index) => <img src={`${api}/Image/${index + 2}`} alt='' />)}
 						</div>}
+						<div className='landline-held' onClick={() => setHidden((prev) => !prev)}></div>
 					</div>
 					<div className='inured-wow' style={{ backgroundColor: seen ? "rgb(84, 144, 94)" : "rgb(255, 90, 90)" }}>{seen ? "seen" : "unseen"}</div>
 				</div>
