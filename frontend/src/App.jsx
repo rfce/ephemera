@@ -93,7 +93,7 @@ function App() {
 								<div style={{ width: "50px", height: "50px" }}></div>
 							</div>
 						) : <div className='thesis-bios'>
-							<img src={`${api}/Image/${index + 1}-note`} alt='' />
+							<img src={`${api}/Image/1-note`} alt='' />
 							{[...Array(6)].map((_, index) => <img src={`${api}/Image/${index + 2}`} alt='' />)}
 						</div>}
 						<div className='landline-held' onClick={() => setHidden((prev) => !prev)}></div>
