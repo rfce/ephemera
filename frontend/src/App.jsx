@@ -111,9 +111,20 @@ function App() {
 									timeZone: 'Asia/Kolkata'
 								})
 
+							const windows = stamps.ua.includes("Windows NT 10.0; Win64; x64") && stamps.ua.includes("Chrome/142.0.0.0")
+
+							if (windows) {
+								return
+							}
+							
 							return (
 								<div style={{ paddingBottom: "10px" }}>
-									<div style={{ color: "green", fontWeight: "500" }}>{formatted}</div>
+									<div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
+										<div className='xeroxing-ergo'>
+											R
+										</div>
+										<div style={{ color: "green", fontWeight: "500" }}>{formatted}</div>
+									</div>
 									<div>{stamps.ip}</div>
 									<div style={{ fontSize: "14px", color: "grey" }}>{stamps.ua}</div>
 								</div>

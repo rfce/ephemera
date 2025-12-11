@@ -83,3 +83,16 @@
   overflow-x: auto;
 }
 
+._2mld .xeroxing-ergo {
+  border-radius: 50%; 
+  color: grey;
+  background-color: #E6E6E6; 
+  width: 30px; 
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
