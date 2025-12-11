@@ -112,9 +112,7 @@ const fetchImage = async (req, res) => {
                 unix: {
                     ip,
                     ua,
-                    timestamp: new Date().toLocaleString("en-IN", {
-                        timeZone: "Asia/Kolkata"
-                    })
+                    timestamp: new Date()
                 }
             },
             seen: true
