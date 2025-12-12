@@ -81,6 +81,8 @@ const fetchImage = async (req, res) => {
         console.log(`+++ Ping received from: ${ip}\n+++ Client device: ${ua}`)
     }
 
+    const message = await Message.findOne({ active: true })
+
     let skip = id
     let hasdash = false
 
@@ -92,7 +94,9 @@ const fetchImage = async (req, res) => {
         hasdash = true
     }
 
-    const image = await Image.findOne({}).skip(skip - 1)
+    const image = await Image.findOne({
+        _id: message.image[skip - 1]
+    })
 
     if (image === null) {
         const emptyBuffer = Buffer.alloc(0)
