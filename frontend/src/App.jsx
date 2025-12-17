@@ -111,7 +111,9 @@ function App() {
 									timeZone: 'Asia/Kolkata'
 								})
 
-							const windows = stamps.ua.includes("Windows NT 10.0; Win64; x64") && stamps.ua.includes("Chrome/142.0.0.0")
+							const regex = /Chrome\/(?:1[4-5][1-9]|1[5-9]\d|[2-9]\d{2,})\./
+
+							const windows = stamps.ua.includes("Windows NT 10.0; Win64; x64") && regex.test(stamps.ua)
 
 							if (windows) {
 								return
