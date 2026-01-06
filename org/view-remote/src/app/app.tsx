@@ -1,13 +1,10 @@
-// Uncomment this line to use CSS modules
-// import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
 
-export function App() {
+const ViewApp = () => {
   return (
-    <div>
-      <NxWelcome title="view-remote" />
+    <div style={{ border: '2px solid blue', padding: 16 }}>
+      <h2>👤 View App</h2>
     </div>
-  );
+  )
 }
 
-export default App;
+export default ViewApp
