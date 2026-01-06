@@ -1,0 +1,9 @@
+{
+  "name": "create-pixels-remote",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "create-pixels-remote/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project create-pixels-remote --web",
+  "targets": {}
+}
