@@ -5,5 +5,17 @@
   "projectType": "application",
   "tags": [],
   "// targets": "to see all targets run: nx show project shell --web",
-  "targets": {}
+  "targets": {
+    "serve-prod": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": true,
+        "commands": [
+          "serve dist/pixels-remote -l 4201 --cors",
+          "serve dist/create-pixels-remote -l 4202 --cors",
+          "serve dist/shell -l 4200 --cors"
+        ]
+      }
+    }
+  }
 }

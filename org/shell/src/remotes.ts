@@ -2,7 +2,7 @@ export const production = import.meta.env.PROD;
 
 const loadPixels = async () => {
   if (production) {
-    return import(/* @vite-ignore */ 'pixels-remote/PixelsApp');
+    return import(/* @vite-ignore */ 'pixels/PixelsApp');
   }
 
   return import('@pixels');
@@ -10,26 +10,26 @@ const loadPixels = async () => {
 
 const loadCreatePixels = async () => {
   if (production) {
-    return import(/* @vite-ignore */ 'create-pixels-remote/CreatePixelsApp');
+    return import(/* @vite-ignore */ 'create-pixels/CreatePixelsApp');
   }
 
-  return import('@profile');
+  return import('@create-pixels');
 };
 
 const loadUpload = async () => {
   if (production) {
-    return import(/* @vite-ignore */ 'profile/ProfileApp');
+    return import(/* @vite-ignore */ 'upload/UploadApp');
   }
 
-  return import('@profile');
+  return import('@upload');
 };
 
 const loadView = async () => {
   if (production) {
-    return import(/* @vite-ignore */ 'profile/ProfileApp');
+    return import(/* @vite-ignore */ 'view/ViewApp');
   }
 
-  return import('@profile');
+  return import('@view');
 };
 
 export { loadPixels, loadCreatePixels, loadUpload, loadView };
