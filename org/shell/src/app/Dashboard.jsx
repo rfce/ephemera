@@ -1,3 +1,4 @@
+import "./css/Dashboard.css"
 import { lazy, Suspense } from 'react'
 import { loadPixels, loadCreatePixels } from '../remotes'
 

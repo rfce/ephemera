@@ -2,7 +2,11 @@
   "name": "@org/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "pnpm nx run shell:serve-dev",
+    "build": "pnpm nx run shell:build-prod",
+    "prod": "pnpm nx run shell:serve-prod"
+  },
   "private": true,
   "devDependencies": {
     "@nx/js": "22.3.3",

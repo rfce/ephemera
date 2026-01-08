@@ -1,0 +1,25 @@
+._0giz {
+    flex: 1;
+    font-family: "Roboto", sans-serif;
+}
+
+._0giz .trebly-oat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(190, 57, 133);
+    padding: 5px 0px 5px 10px;
+}
+
+._0giz .trebly-oat .tabarded-tux {
+    font-size: 12px;
+    font-weight: 400;
+    padding-top: 2px;
+}
+
+._0giz .steep-hiss {
+    width: 60px;
+    height: 60px;
+}

@@ -6,6 +6,32 @@
   "tags": [],
   "// targets": "to see all targets run: nx show project shell --web",
   "targets": {
+    "serve-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": true,
+        "commands": [
+          "nx serve pixels-remote --port=4201 --strictPort",
+          "nx serve create-pixels-remote --port=4202 --strictPort",
+          "nx serve upload-remote --port=4203 --strictPort",
+          "nx serve view-remote --port=4204 --strictPort",
+          "nx serve shell --port=4200 --strictPort"
+        ]
+      }
+    },
+    "build-prod": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": [
+          "nx build pixels-remote",
+          "nx build create-pixels-remote",
+          "nx build upload-remote",
+          "nx build view-remote",
+          "nx build shell"
+        ]
+      }
+    },
     "serve-prod": {
       "executor": "nx:run-commands",
       "options": {
@@ -13,6 +39,8 @@
         "commands": [
           "serve dist/pixels-remote -l 4201 --cors",
           "serve dist/create-pixels-remote -l 4202 --cors",
+          "serve dist/upload-remote -l 4203 --cors",
+          "serve dist/view-remote -l 4204 --cors",
           "serve dist/shell -l 4200 --cors"
         ]
       }
