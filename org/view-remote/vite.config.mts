@@ -35,7 +35,7 @@ export default defineConfig(({ mode }) => ({
         exposes: {
           './ViewApp': './src/app/index.ts',
         },
-        shared: ['react', 'react-dom'],
+        shared: ['react', 'react-dom', 'jotai'],
       }),
   ].filter(Boolean),
   build: {

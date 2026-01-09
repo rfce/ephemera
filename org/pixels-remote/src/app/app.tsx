@@ -1,8 +1,14 @@
 import "./css/App.css"
 import Logo from "../assets/Logo.jpg"
 import { RightArrow } from "../assets/Icons.jsx"
+import { useAtom } from 'jotai';
+import { userAtom } from 'shell/state';
 
 const PixelsApp = () => {
+ const [user] = useAtom(userAtom);
+
+ console.log({ user })
+
   return (
     <div className="_0giz">
       <div className="trebly-oat">

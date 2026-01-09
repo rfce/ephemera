@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import federation from '@originjs/vite-plugin-federation';
+import path from 'node:path';
 
 export default defineConfig(({ mode }) => ({
   root: import.meta.dirname,
@@ -25,19 +26,30 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [
-    react(), 
-    nxViteTsPaths(), 
+    react(),
+    nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
     mode === 'production' &&
-      federation({
-        name: 'create-pixels',
-        filename: 'remoteEntry.js',
-        exposes: {
-          './CreatePixelsApp': './src/app/index.ts',
-        },
-        shared: ['react', 'react-dom'],
-      }),
+    federation({
+      name: 'create-pixels',
+      filename: 'remoteEntry.js',
+      remotes: {
+        shell: 'http://localhost:4200/assets/remoteEntry.js'
+      },
+      exposes: {
+        './CreatePixelsApp': './src/app/index.ts',
+      },
+      shared: ['react', 'react-dom', 'jotai'],
+    }),
   ].filter(Boolean),
+  resolve: {
+    alias: {
+      'shell/state': path.resolve(
+        __dirname,
+        '../shell/src/atoms/index.js'
+      )
+    }
+  },
   build: {
     outDir: '../dist/create-pixels-remote',
     emptyOutDir: true,

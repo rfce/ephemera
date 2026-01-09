@@ -35,7 +35,10 @@ export default defineConfig(({ mode }) => ({
         "upload": 'http://localhost:4203/assets/remoteEntry.js',
         "view": 'http://localhost:4204/assets/remoteEntry.js',
       },
-      shared: ['react', 'react-dom'],
+      exposes: {
+        './state': './src/atoms/index.js'
+      },
+      shared: ['react', 'react-dom', 'jotai'],
     }),
   ].filter(Boolean),
   resolve: {
