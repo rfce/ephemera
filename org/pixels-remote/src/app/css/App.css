@@ -1,6 +1,6 @@
 ._0giz {
     flex: 1;
-    font-family: "Roboto", sans-serif;
+    min-height: 100vh;
 }
 
 ._0giz .trebly-oat {
@@ -20,6 +20,14 @@
 }
 
 ._0giz .steep-hiss {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
+}
+
+._0giz .inert-zoo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 20px;
+    color: rgb(54, 54, 54);
 }
