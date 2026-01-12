@@ -3,11 +3,11 @@ import Login from "./Login.jsx"
 import Register from "./Register.jsx"
 import Dashboard from './Dashboard.jsx';
 import { Provider } from 'jotai';
-import { shellStore } from '../atoms/nucleus.js';
+import { sharedStore } from '@org/shared-state'
 
 export function App() {
   return (
-    <Provider store={shellStore}>
+    <Provider store={sharedStore}>
     <div>
       <Routes>
         <Route path="/" element={<Login />} />

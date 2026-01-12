@@ -33,23 +33,12 @@ export default defineConfig(({ mode }) => ({
     federation({
       name: 'create-pixels',
       filename: 'remoteEntry.js',
-      remotes: {
-        shell: 'http://localhost:4200/assets/remoteEntry.js'
-      },
       exposes: {
         './CreatePixelsApp': './src/app/index.ts',
       },
       shared: ['react', 'react-dom', 'jotai'],
     }),
   ].filter(Boolean),
-  resolve: {
-    alias: {
-      'shell/state': path.resolve(
-        __dirname,
-        '../shell/src/atoms/index.js'
-      )
-    }
-  },
   build: {
     outDir: '../dist/create-pixels-remote',
     emptyOutDir: true,

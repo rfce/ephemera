@@ -35,31 +35,9 @@ export default defineConfig(({ mode }) => ({
         "upload": 'http://localhost:4203/assets/remoteEntry.js',
         "view": 'http://localhost:4204/assets/remoteEntry.js',
       },
-      exposes: {
-        './state': './src/atoms/index.js'
-      },
       shared: ['react', 'react-dom', 'jotai'],
     }),
   ].filter(Boolean),
-  resolve: {
-    alias: {
-      // 1. Your Standard Aliases (Always active)
-      '@pixels': pixelsPath,
-      '@create-pixels': createPixelsPath,
-      '@upload': uploadPath,
-      '@view': viewPath,
-
-      // 2. Ghost Aliases (Development Only)
-      // These map the "Federation Import Strings" directly to the "Local Paths".
-      // This satisfies the Vite scanner so it doesn't crash when it sees import('pixels/PixelsApp').
-      ...(mode === 'production' ? {} : {
-        'pixels/PixelsApp': pixelsPath,
-        'create-pixels/CreatePixelsApp': createPixelsPath,
-        'upload/UploadApp': uploadPath,
-        'view/ViewApp': viewPath,
-      }),
-    },
-  },
   build: {
     outDir: '../dist/shell',
     emptyOutDir: true,

@@ -2,7 +2,7 @@ import "./css/App.css"
 import Logo from "../assets/Logo.jpg"
 import { RightArrow } from "../assets/Icons.jsx"
 import { useAtom } from 'jotai';
-import { userAtom } from 'shell/state';
+import { userAtom } from '@org/shared-state';
 
 const PixelsApp = () => {
  const [user] = useAtom(userAtom);

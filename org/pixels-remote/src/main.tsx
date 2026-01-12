@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
 import { Provider } from 'jotai';
-import { shellStore } from 'shell/state';
+import { sharedStore } from '@org/shared-state'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <Provider store={shellStore}>
+    <Provider store={sharedStore}>
       <App />
     </Provider>
   </StrictMode>,

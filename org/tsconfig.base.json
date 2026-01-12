@@ -15,7 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "shell/state": ["shell/src/atoms/index.js"]
+      "shell/state": ["shell/src/atoms/index.js"],
+      "pixels/PixelsApp": ["pixels-remote/src/app/index.ts"],
+      "create-pixels/CreatePixelsApp": [
+        "create-pixels-remote/src/app/index.ts"
+      ],
+      "upload/UploadApp": ["upload-remote/src/app/index.ts"],
+      "view/ViewApp": ["view-remote/src/app/index.ts"],
+      "@org/shared-state": ["shared/state/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

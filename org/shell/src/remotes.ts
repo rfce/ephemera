@@ -1,35 +1,19 @@
 export const production = import.meta.env.PROD;
 
 const loadPixels = async () => {
-  if (production) {
-    return import(/* @vite-ignore */ 'pixels/PixelsApp');
-  }
-
-  return import('@pixels');
+  return import(/* @vite-ignore */ 'pixels/PixelsApp');
 };
 
 const loadCreatePixels = async () => {
-  if (production) {
-    return import(/* @vite-ignore */ 'create-pixels/CreatePixelsApp');
-  }
-
-  return import('@create-pixels');
+  return import(/* @vite-ignore */ 'create-pixels/CreatePixelsApp');
 };
 
 const loadUpload = async () => {
-  if (production) {
-    return import(/* @vite-ignore */ 'upload/UploadApp');
-  }
-
-  return import('@upload');
+  return import(/* @vite-ignore */ 'upload/UploadApp');
 };
 
 const loadView = async () => {
-  if (production) {
-    return import(/* @vite-ignore */ 'view/ViewApp');
-  }
-
-  return import('@view');
+  return import(/* @vite-ignore */ 'view/ViewApp');
 };
 
 export { loadPixels, loadCreatePixels, loadUpload, loadView };
