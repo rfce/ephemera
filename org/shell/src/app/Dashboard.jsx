@@ -1,9 +1,8 @@
 import "./css/Dashboard.css"
-import { lazy, Suspense } from 'react'
-import { loadPixels, loadCreatePixels } from '../remotes'
+import React, { Suspense } from 'react'
 
-const PixelsApp = lazy(loadPixels)
-const CreatePixelsApp = lazy(loadCreatePixels)
+const PixelsApp = React.lazy(() => import('pixels/PixelsApp'))
+const CreatePixelsApp = React.lazy(() => import('create-pixels/CreatePixelsApp'))
 
 const Dashboard = () => {
     return (
