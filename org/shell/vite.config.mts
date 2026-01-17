@@ -6,11 +6,6 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import path from 'node:path';
 import federation from '@originjs/vite-plugin-federation';
 
-const pixelsPath = path.resolve(__dirname, '../pixels-remote/src/app');
-const createPixelsPath = path.resolve(__dirname, '../create-pixels-remote/src/app');
-const uploadPath = path.resolve(__dirname, '../upload-remote/src/app');
-const viewPath = path.resolve(__dirname, '../view-remote/src/app');
-
 export default defineConfig(({ mode }) => ({
   root: import.meta.dirname,
   cacheDir: '../node_modules/.vite/shell',

@@ -41,7 +41,7 @@
           "serve dist/create-pixels-remote -l 4202 --cors",
           "serve dist/upload-remote -l 4203 --cors",
           "serve dist/view-remote -l 4204 --cors",
-          "serve dist/shell -l 4200 --cors"
+          "serve dist/shell -l 4200 --cors --single"
         ]
       }
     }
