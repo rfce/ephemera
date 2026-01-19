@@ -11,6 +11,7 @@ const Register = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
 
     const navigate = useNavigate()
 
@@ -58,7 +59,19 @@ const Register = () => {
                     <div>Username</div>
                     <input value={username} onChange={e => setUsername(e.target.value)} />
                     <div>Password</div>
-                    <input value={password} onChange={e => setPassword(e.target.value)} />
+                    <div className="password-wrapper">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <span
+                            className="password-toggle"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? "Hide" : "Show"}
+                        </span>
+                    </div>
                     <br />
                     {error && <div style={{ color: "red" }}>{error}</div>}
                     <button onClick={() => register()}>Proceed</button>

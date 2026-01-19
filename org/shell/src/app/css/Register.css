@@ -170,6 +170,36 @@
     animation: move-3 12s infinite alternate ease-in-out;
 }
 
+/* Container to hold both input and the toggle button */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Make sure the input has enough padding on the right so text doesn't go under the button */
+.password-wrapper input {
+    padding-right: 60px !important; 
+}
+
+/* Position the toggle button absolutely */
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    color: #667eea; /* Matches your brand color */
+    text-transform: uppercase;
+    user-select: none; /* Prevents text highlighting on click */
+    transition: color 0.2s;
+}
+
+.password-toggle:hover {
+    color: #764ba2;
+}
+
 /* 5. Keyframes for the "Blur in / Blur out" and movement */
 @keyframes move-1 {
     0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
