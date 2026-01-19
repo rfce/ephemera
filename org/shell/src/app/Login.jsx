@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import "./css/Register.css"
 import api from "../config/backend";
 import axios from "axios";
+import { useAtom } from 'jotai'
+import { tokenAtom } from '@org/shared-state'
 
 const Logo = new URL('../assets/Logo.jpg', import.meta.url).href;
 
@@ -12,6 +14,8 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+
+    const [token, setToken] = useAtom(tokenAtom)
 
     const navigate = useNavigate()
 
@@ -25,6 +29,9 @@ const Login = () => {
 
             return
         }
+
+        localStorage.setItem("token", data.token)
+        setToken(data.token)
 
         navigate("/dashboard")
     }

@@ -1,22 +1,28 @@
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom'
 import Login from "./Login.jsx"
 import Register from "./Register.jsx"
-import Dashboard from './Dashboard.jsx';
-import { Provider } from 'jotai';
+import Dashboard from './Dashboard.jsx'
+import { Provider } from 'jotai'
 import { sharedStore } from '@org/shared-state'
+import ProtectedRoute from './ProtectedRoute.jsx'
+import PublicRoute from './PublicRoute.jsx'
 
 export function App() {
   return (
     <Provider store={sharedStore}>
-    <div>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/sign-up" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </div>
+      <div>
+        <Routes>
+          <Route element={<PublicRoute />}>
+            <Route path="/" element={<Login />} />
+            <Route path="/sign-up" element={<Register />} />
+          </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+        </Routes>
+      </div>
     </Provider>
-  );
+  )
 }
 
-export default App;
+export default App
