@@ -1,6 +1,9 @@
 const { fileDownloader } = require("../middleware/Helper")
 const Image = require("../models/Image")
 const Message = require("../models/Message")
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const Author = require('../models/Author')
 
 const uploadImage = async (req, res) => {
     const { image } = req.body
@@ -180,9 +183,147 @@ const keepAlive = async (req, res) => {
     })
 }
 
+const loginUser = async (req, res) => {
+    const { username, password } = req.body
+
+    if (typeof username !== 'string' || username.trim() === '') {
+        return res.json({
+            success: false,
+            message: "Username is required"
+        })
+    }
+
+    const user = await Author.findOne({ username })
+
+    if (user === null) {
+        return res.json({
+            success: false,
+            message: "The username you entered doesn't belong to an account. Please check your username and try again. "
+        })
+    }
+
+    const hashed = user.password
+
+    const match = await bcrypt.compare(password, hashed)
+
+    // Incorrect password
+    if (match === false) {
+        return res.json({
+            success: false,
+            message: "Sorry, your password was incorrect. Please double-check your password."
+        })
+    }
+
+    const token = jwt.sign({ username }, process.env.JWT_ACCESS_TOKEN)
+    
+    res.json({
+        success: true,
+        message: "Logged in as " + username,
+        token
+    })
+}
+
+const registerUser = async (req, res) => {
+    const { fname, username, password } = req.body
+
+    if (typeof fname !== 'string' || fname.trim() === '') {
+        return res.json({
+            success: false,
+            message: "Name is required"
+        })
+    }
+    
+    // Validate username format
+    if (username) {
+        if (username.length < 4 || username.length > 20) {
+            return res.json({
+                success: false,
+                message: "Username must be 4-20 characters long"
+            })
+        }
+
+        if (username.startsWith("-") || username.endsWith("-")) {
+            return res.json({
+                success: false,
+                message: "Username can't start or end with hyphen"
+            })
+        }
+
+        const match = username.match(/[~`\\!@#$%^'&*\(\)_+=\|{}\[\]":;<>,\.\?]/g)
+
+        if (match !== null) {
+            return res.json({
+                success: false,
+                message: "Username can contain alphabets, numbers and hyphen"
+            })
+        }
+    } else {
+        return res.json({
+            success: false,
+            message: "Username is required"
+        })
+    }
+
+    // Validate password
+    // Password must include capital, small alphabets, numbers and a symbol
+    if (password) {
+        //  Password should have atleast eight characters
+        if (password.length < 8) {
+            return res.json({
+                success: false,
+                message: "Password should have atleast eight characters"
+            })
+        }
+
+        const small = password.match(/[a-z]+/g)
+        const capital = password.match(/[A-Z]+/g)
+        const number = password.match(/[0-9]+/g)
+        const symbol = password.match(/[-+~`@#$%^&*()_={}\[\]\/:;"'<>,?\.]+/g)
+        
+        if (small === null || capital === null || symbol === null || number === null) {
+            return res.json({
+                success: false,
+                message: "Password must include capital, small alphabets, numbers and a symbol"
+            })
+        }
+    } else {
+        return res.json({
+            success: false,
+            message: "Password is required"
+        })
+    }
+
+    const hashed = await bcrypt.hash(password, 10)
+
+    // Check for duplicate username
+    const duplicate = await Author.findOne({ username })
+
+    if (duplicate) {
+        return res.json({
+            success: false,
+            message: "This username isn't available. Please try another."
+        })
+    }
+
+    // Save new user to database
+    await Author.create({
+        fname, username, password: hashed
+    })
+
+    const token = jwt.sign({ username }, process.env.JWT_ACCESS_TOKEN)
+
+    res.json({
+        success: true,
+        message: "User registered successfully",
+        token
+    })
+}
+
 module.exports = {
     uploadImage,
     keepAlive,
     fetchImage,
-    activeMessage
+    activeMessage,
+    loginUser,
+    registerUser
 }
