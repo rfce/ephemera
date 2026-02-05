@@ -18,7 +18,10 @@
       "shell/state": ["shell/src/atoms/index.js"],
       "pixels/PixelsApp": ["pixels-remote/src/app/index.ts"],
       "create-pixels/CreatePixelsApp": [
-        "create-pixels-remote/src/app/index.ts"
+        "create-pixels-remote/src/app/CreatePixelsApp.tsx"
+      ],
+      "create-pixels/Header": [
+        "create-pixels-remote/src/app/Header.tsx"
       ],
       "upload/UploadApp": ["upload-remote/src/app/index.ts"],
       "view/ViewApp": ["view-remote/src/app/index.ts"],

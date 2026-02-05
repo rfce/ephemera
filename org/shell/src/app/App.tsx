@@ -6,6 +6,7 @@ import { Provider } from 'jotai'
 import { sharedStore } from '@org/shared-state'
 import ProtectedRoute from './ProtectedRoute.jsx'
 import PublicRoute from './PublicRoute.jsx'
+import Pixels from './Pixels.jsx'
 
 export function App() {
   return (
@@ -18,6 +19,7 @@ export function App() {
           </Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/o/*" element={<Pixels />} />
           </Route>
         </Routes>
       </div>

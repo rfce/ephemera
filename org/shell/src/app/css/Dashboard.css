@@ -1,3 +1,12 @@
 ._8bxc {
     display: flex;
 }
+
+._2tow {
+    display: flex;
+    flex-direction: column;
+}
+
+._2tow ._8rid {
+    min-height: unset;
+}

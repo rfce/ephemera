@@ -38,6 +38,7 @@
     "jotai": "^2.16.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-form-stepper": "^2.0.3",
     "react-router-dom": "6.29.0"
   }
 }

@@ -34,7 +34,8 @@ export default defineConfig(({ mode }) => ({
       name: 'create-pixels',
       filename: 'remoteEntry.js',
       exposes: {
-        './CreatePixelsApp': './src/app/index.ts',
+        './CreatePixelsApp': './src/app/CreatePixelsApp.tsx',
+        './Header': './src/app/Header.tsx',
       },
       shared: ['react', 'react-dom', 'jotai'],
     }),

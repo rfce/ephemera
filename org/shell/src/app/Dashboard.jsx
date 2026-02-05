@@ -8,10 +8,10 @@ const Dashboard = () => {
     return (
         <div className="_8bxc">
             <Suspense fallback={<div>Loading…</div>}>
-                <PixelsApp />
+                <CreatePixelsApp />
             </Suspense>
             <Suspense fallback={<div>Loading…</div>}>
-                <CreatePixelsApp />
+                <PixelsApp />
             </Suspense>
         </div>
     )
