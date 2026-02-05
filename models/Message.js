@@ -1,27 +1,34 @@
 const mongoose = require("mongoose")
 const { Schema } = mongoose
 
+// eas => e-mail alias :: random nickname assigned to each message
 const messageSchema = Schema(
     {
-        image: {
-            type: [Schema.ObjectId],
+        author: {
+            type: Schema.ObjectId,
+            ref: "Author",
             required: true
         },
-        seen: {
-            type: Boolean,
-            default: false
-        },
-        unix: {
+        image: {
             type: [{
-                ip: String,
-                ua: String,
-                timestamp: Date
+                type: Schema.ObjectId,
+                ref: "Image"
             }],
-            required: false
+            default: []
         },
-        active: {
-            type: Boolean,
-            default: false
+        recipient: {
+            type: Schema.ObjectId,
+            ref: "Recipient",
+            required: true
+        },
+        eas: {
+            type: String,
+            required: true
+        },
+        tid: {
+            type: Schema.ObjectId,
+            ref: "Track",
+            required: true
         }
     },
     {

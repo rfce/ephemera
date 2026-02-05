@@ -214,7 +214,11 @@ const loginUser = async (req, res) => {
         })
     }
 
-    const token = jwt.sign({ username }, process.env.JWT_ACCESS_TOKEN)
+    const token = jwt.sign({
+        _id: user._id,
+        username: user.username,
+        fname: user.fname
+    }, process.env.JWT_ACCESS_TOKEN)
     
     res.json({
         success: true,
