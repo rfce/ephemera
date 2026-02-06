@@ -1,0 +1,48 @@
+._7iic .pater-hear {
+    display: flex;
+    gap: 40px;
+    padding: 50px 100px;
+}
+
+._7iic .swiveled-cry {
+    padding: 0px 100px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+._7iic .tapered-earn {
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgb(98, 197, 98);
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    cursor: pointer;
+}
+
+._7iic .tapered-earn:hover {
+    box-shadow: none;
+}
+
+._7iic .tapered-earn:not(.cuter-item) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+._7iic .cuter-item  {
+    background-color: rgb(229, 250, 229);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+._7iic .haptic-pipe {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(98, 197, 98);
+}

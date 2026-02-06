@@ -19,7 +19,7 @@ export function App() {
           </Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/o/*" element={<Pixels />} />
+            <Route path="/dashboard/create-pixels" element={<Pixels />} />
           </Route>
         </Routes>
       </div>

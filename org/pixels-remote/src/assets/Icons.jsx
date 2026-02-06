@@ -15,6 +15,20 @@ const RightArrow = (props) => (
   </svg>
 )
 
+const PlusIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={800}
+    height={800}
+    fill="#030708"
+    viewBox="0 0 16 16"
+    {...props}
+  >
+    <path d="M10 1H6v5H1v4h5v5h4v-5h5V6h-5V1Z" />
+  </svg>
+)
+
 export {
-    RightArrow
+    RightArrow,
+    PlusIcon
 }
