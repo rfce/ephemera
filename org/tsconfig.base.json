@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "shell/state": ["shell/src/atoms/index.js"],
-      "pixels/PixelsApp": ["pixels-remote/src/app/index.ts"],
+      "pixels/PixelsApp": ["pixels-remote/src/app/AddRecipient.tsx"],
+      "pixels/AliasPick": ["pixels-remote/src/app/AliasPick.tsx"],
       "create-pixels/CreatePixelsApp": [
         "create-pixels-remote/src/app/CreatePixelsApp.tsx"
       ],

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "../config/backend"
 
 const AliasPick = () => {
-  const [recipient, setRecipient] = useState("")
+  const [aliases, setAliases] = useState([])
 
   const [step, setStep] = useAtom(stepsAtom);
 
@@ -16,7 +16,9 @@ const AliasPick = () => {
 
   return (
     <div className="_7iic">
-        <div>Track Pixels</div>
+        <div className="pater-hear">
+            <div>Create</div>
+        </div>
     </div>
   )
 }

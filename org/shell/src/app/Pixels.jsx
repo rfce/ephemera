@@ -2,7 +2,7 @@ import "./css/Dashboard.css"
 import React, { Suspense } from 'react'
 
 const Header = React.lazy(() => import('create-pixels/Header'))
-const PixelsApp = React.lazy(() => import('pixels/PixelsApp'))
+const AliasPick = React.lazy(() => import('pixels/AliasPick'))
 
 const Dashboard = () => {
     return (
@@ -11,7 +11,7 @@ const Dashboard = () => {
                 <Header />
             </Suspense>
             <Suspense fallback={<div>Loading…</div>}>
-                <PixelsApp />
+                <AliasPick />
             </Suspense>
         </div>
     )

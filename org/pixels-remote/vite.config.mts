@@ -34,7 +34,8 @@ export default defineConfig(({ mode }) => ({
       name: 'pixels',
       filename: 'remoteEntry.js',
       exposes: {
-        './PixelsApp': './src/app/index.ts',
+        './PixelsApp': './src/app/AddRecipient.tsx',
+        './AliasPick': './src/app/AliasPick.tsx',
       },
       shared: ['react', 'react-dom', 'jotai'],
     }),
