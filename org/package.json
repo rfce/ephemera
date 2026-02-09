@@ -35,10 +35,13 @@
     "vitest": "^4.0.0"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.2.1",
+    "@emoji-mart/react": "^1.1.1",
     "jotai": "^2.16.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-form-stepper": "^2.0.3",
-    "react-router-dom": "6.29.0"
+    "react-router-dom": "6.29.0",
+    "react-spinners": "^0.17.0",
+    "twemoji-parser": "^14.0.0"
   }
 }

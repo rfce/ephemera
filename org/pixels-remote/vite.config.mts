@@ -36,6 +36,7 @@ export default defineConfig(({ mode }) => ({
       exposes: {
         './PixelsApp': './src/app/AddRecipient.tsx',
         './AliasPick': './src/app/AliasPick.tsx',
+        './CreateMessage': './src/app/CreateMessage.tsx',
       },
       shared: ['react', 'react-dom', 'jotai'],
     }),

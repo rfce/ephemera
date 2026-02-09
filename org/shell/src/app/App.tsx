@@ -7,6 +7,7 @@ import { sharedStore } from '@org/shared-state'
 import ProtectedRoute from './ProtectedRoute.jsx'
 import PublicRoute from './PublicRoute.jsx'
 import Pixels from './Pixels.jsx'
+import NewMessage from './NewMessage.jsx'
 
 export function App() {
   return (
@@ -20,6 +21,7 @@ export function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/create-pixels" element={<Pixels />} />
+            <Route path="/dashboard/message/:eas" element={<NewMessage />} />
           </Route>
         </Routes>
       </div>

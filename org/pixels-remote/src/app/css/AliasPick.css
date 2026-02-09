@@ -9,14 +9,14 @@
     font-size: 24px;
     font-weight: 600;
     margin-top: 30px;
+    color: rgb(54, 54, 54);
 }
 
 ._7iic .tapered-earn {
     width: 200px;
     height: 200px;
-    border: 1px solid rgb(98, 197, 98);
+    border: 1px solid rgb(119, 204, 235);
     border-radius: 10px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     cursor: pointer;
 }
 
@@ -30,10 +30,26 @@
     align-items: center;
     padding: 10px;
     box-sizing: border-box;
+    height: 120px;
+    border-width: 0px;
+}
+
+._7iic .switched-vee {
+    color: white;
+    background-color: rgb(84, 183, 219);
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+._7iic .flamen-vow {
+    margin-top: 20px;
 }
 
 ._7iic .cuter-item  {
-    background-color: rgb(229, 250, 229);
+    background-color: rgb(240, 251, 255);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,5 +60,5 @@
 ._7iic .haptic-pipe {
     font-size: 20px;
     font-weight: 600;
-    color: rgb(98, 197, 98);
+    color: rgba(37, 150, 190);
 }

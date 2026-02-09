@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import { stepsAtom } from '@org/shared-state';
 import { useEffect, useState } from "react";
 import axios from "../config/backend"
+import { useNavigate } from "react-router-dom";
 
 const AddRecipient = () => {
   const [recipient, setRecipient] = useState("")
@@ -13,6 +14,8 @@ const AddRecipient = () => {
   const [step, setStep] = useAtom(stepsAtom);
 
   console.log({ step, setStep })
+
+  const navigate = useNavigate()
 
   const fetchRecipients = async () => {
     const { data, status } = await axios.post("/Message/fetch-recipient", { recipient })
@@ -30,6 +33,8 @@ const AddRecipient = () => {
 
       return
     }
+
+    navigate("/dashboard/create-pixels", { state: { eas: data.eas, recipient } })
   }
 
   useEffect(() => {

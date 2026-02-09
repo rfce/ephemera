@@ -1,0 +1,212 @@
+._6pzh .pater-hear {
+    display: flex;
+    gap: 40px;
+    padding: 30px 100px;
+}
+
+._6pzh .swiveled-cry {
+    padding: 0px 100px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 40px;
+    color: rgb(54, 54, 54);
+}
+
+._6pzh .swiveled-cry.sifters-from {
+    margin-bottom: 30px;
+}
+
+._6pzh .swoop-bit {
+    position: relative;
+    width: 400px;
+}
+
+._6pzh .swoop-bit textarea {
+    width: 400px;
+    height: 150px;
+    resize: none;
+    font-size: 18px;
+    border: 1px solid rgb(119, 204, 235);
+    border-radius: 10px;
+    padding: 20px;
+    font-family: "Roboto", sans-serif;
+}
+
+._6pzh .swoop-bit button {
+    background-color: transparent;
+    padding: 6px;
+    font-size: 24px;
+    border: none;
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    cursor: pointer;
+}
+
+._6pzh .swoop-bit .jocund-zone {
+    width: 40px;
+    height: 40px;
+    fill: rgb(37, 150, 190);
+}
+
+._6pzh .tapered-earn {
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgb(119, 204, 235);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+._6pzh .tapered-earn:hover {
+    box-shadow: none;
+}
+
+._6pzh .tapered-earn:not(.cuter-item) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 120px;
+    border-width: 0px;
+}
+
+._6pzh .switched-vee {
+    color: white;
+    background-color: rgb(84, 183, 219);
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+._6pzh .flamen-vow {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 100px;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(37, 150, 190);
+    cursor: pointer;
+}
+
+._6pzh .flamen-vow .shuns-ropy {
+    transform: rotate(180deg);
+    width: 25px;
+    height: 25px;
+}
+
+._6pzh .gaped-hex {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0px 100px;
+    background-color: rgb(236, 250, 255);
+    border: 1px solid rgb(164, 231, 255);
+    width: fit-content;
+    padding: 20px 100px 20px 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    color: rgb(37, 150, 190);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+._6pzh .gaped-hex .openings-luge {
+    font-size: 14px;
+}
+
+._6pzh .cuter-item {
+    background-color: rgb(240, 251, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+._6pzh .haptic-pipe {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgba(37, 150, 190);
+}
+
+._6pzh .vouchees-awes {
+    position: relative;
+    margin-left: 100px;
+    width: 400px;
+    height: 150px;
+    border: 1px solid rgb(119, 204, 235);
+    background-color: rgb(245, 253, 255);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+._6pzh .vouchees-awes button {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    border: 1px solid rgb(119, 204, 235);
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(37, 150, 190);
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+._6pzh .vouchees-awes button svg {
+    fill: rgba(37, 150, 190);
+}
+
+._6pzh .before-fat {
+    font-size: 18px;
+    padding-left: 100px;
+    margin-bottom: 40px;
+    transform: translate(0px, -10px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+._6pzh .before-fat img {
+    width: 25px;
+    height: 25px;
+}
+
+._6pzh .gonapod-box {
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    color: rgb(63, 63, 63);
+    gap: 18px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+._6pzh .gonapod-box > div {
+    transform: translate(0px, 5px);
+}
+
+._6pzh .gonapod-box .shoed-mud.emoji {
+    transform: translate(-9px, 2px);
+}
+
+._6pzh .cordobas-ouzo {
+    display: flex;
+}
+
+._6pzh .shyer-fell.disabled {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
