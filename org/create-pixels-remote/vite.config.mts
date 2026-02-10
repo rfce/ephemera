@@ -36,8 +36,9 @@ export default defineConfig(({ mode }) => ({
       exposes: {
         './CreatePixelsApp': './src/app/CreatePixelsApp.tsx',
         './Header': './src/app/Header.tsx',
+        './Recommended': './src/app/Recommended.tsx',
       },
-      shared: ['react', 'react-dom', 'jotai'],
+      shared: ['react', 'react-dom', 'react-router-dom', 'jotai', 'react-spinners', '@emoji-mart/react', '@emoji-mart/data', 'twemoji-parser'],
     }),
   ].filter(Boolean),
   build: {

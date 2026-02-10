@@ -13,6 +13,7 @@
 }
 
 ._6pzh .swiveled-cry.sifters-from {
+    padding: 0px 50px;
     margin-bottom: 30px;
 }
 
@@ -136,7 +137,7 @@
 
 ._6pzh .vouchees-awes {
     position: relative;
-    margin-left: 100px;
+    margin-left: 50px;
     width: 400px;
     height: 150px;
     border: 1px solid rgb(119, 204, 235);
@@ -192,6 +193,7 @@
     gap: 18px;
     font-size: 16px;
     font-weight: 500;
+    cursor: default;
 }
 
 ._6pzh .gonapod-box > div {

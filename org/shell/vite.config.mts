@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => ({
         "upload": 'http://localhost:4203/assets/remoteEntry.js',
         "view": 'http://localhost:4204/assets/remoteEntry.js',
       },
-      shared: ['react', 'react-dom', 'jotai'],
+      shared: ['react', 'react-dom', 'react-router-dom', 'jotai', 'react-spinners', '@emoji-mart/react', '@emoji-mart/data', 'twemoji-parser'],
     }),
   ].filter(Boolean),
   build: {

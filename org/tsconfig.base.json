@@ -25,6 +25,9 @@
       "create-pixels/Header": [
         "create-pixels-remote/src/app/Header.tsx"
       ],
+      "create-pixels/Recommended": [
+        "create-pixels-remote/src/app/Recommended.tsx"
+      ],
       "upload/UploadApp": ["upload-remote/src/app/index.ts"],
       "view/ViewApp": ["view-remote/src/app/index.ts"],
       "@org/shared-state": ["shared/state/src/index.ts"]

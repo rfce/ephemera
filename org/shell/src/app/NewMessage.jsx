@@ -3,6 +3,7 @@ import React, { Suspense } from 'react'
 
 const Header = React.lazy(() => import('create-pixels/Header'))
 const CreateMessage = React.lazy(() => import('pixels/CreateMessage'))
+const Recommended = React.lazy(() => import('create-pixels/Recommended'))
 
 const NewMessage = () => {
     return (
@@ -10,9 +11,19 @@ const NewMessage = () => {
             <Suspense fallback={<div>Loading…</div>}>
                 <Header />
             </Suspense>
-            <Suspense fallback={<div>Loading…</div>}>
-                <CreateMessage />
-            </Suspense>
+            <div className="groaning-zing">
+                <div>
+                    <Suspense fallback={<div>Loading…</div>}>
+                        <CreateMessage />
+                    </Suspense>
+                </div>
+                <div>
+                    <Suspense fallback={<div>Loading…</div>}>
+                        <Recommended />
+                    </Suspense>
+                </div>
+            </div>
+
         </div>
     )
 }

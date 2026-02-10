@@ -233,24 +233,21 @@ const CreateMessage = () => {
           </div>}
         </div>
         <div>
-          {text && (
-            <>
-              <div className="sifters-from swiveled-cry">Preview</div>
-              <div className="vouchees-awes">
-                <div
-                  ref={contentRef}
-                  dangerouslySetInnerHTML={{
-                    __html: textToTwemojiHtml(text, tid),
-                  }}
-                />
-
-                <button className={hasEmoji ? "shyer-fell" : "shyer-fell disabled"} disabled={!hasEmoji} onClick={handleCopy}>
-                  {copied ? <TickIcon width={21} height={21} /> : <CopyIcon width={21} height={21} />}
-                  <div>{copied ? "copied" : "copy"}</div>
-                </button>
-              </div>
-            </>
-          )}
+          <>
+            <div className="sifters-from swiveled-cry">Preview</div>
+            <div className="vouchees-awes">
+              <div
+                ref={contentRef}
+                dangerouslySetInnerHTML={{
+                  __html: textToTwemojiHtml(text, tid),
+                }}
+              />
+              <button className={hasEmoji ? "shyer-fell" : "shyer-fell disabled"} disabled={!hasEmoji} onClick={handleCopy}>
+                {copied ? <TickIcon width={21} height={21} /> : <CopyIcon width={21} height={21} />}
+                <div>{copied ? "copied" : "copy"}</div>
+              </button>
+            </div>
+          </>
         </div>
       </div>
     </div>

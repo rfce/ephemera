@@ -13,9 +13,9 @@ const AddRecipient = () => {
 
   const [step, setStep] = useAtom(stepsAtom);
 
-  console.log({ step, setStep })
-
   const navigate = useNavigate()
+
+  console.log({ step })
 
   const fetchRecipients = async () => {
     const { data, status } = await axios.post("/Message/fetch-recipient", { recipient })
