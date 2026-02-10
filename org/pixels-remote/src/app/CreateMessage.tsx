@@ -1,7 +1,7 @@
 import "./css/CreateMessage.css"
 import { RightArrow } from "../assets/Icons.jsx"
 import { useAtom } from 'jotai';
-import { stepsAtom } from '@org/shared-state';
+import { composeAtom } from '@org/shared-state';
 import { useEffect, useRef, useState } from "react";
 import axios from "../config/backend"
 import { StickerIcon, CopyIcon, TickIcon } from "../assets/Icons.jsx"
@@ -76,14 +76,13 @@ function hasNativeEmoji(text) {
 
 
 const CreateMessage = () => {
-  const [text, setText] = useState("")
   const [open, setOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const [hasEmoji, setHasEmoji] = useState(false)
   const [hasCopied, setHasCopied] = useState(false)
   const [hasPasted, setHasPasted] = useState(false)
 
-  const [step, setStep] = useAtom(stepsAtom)
+  const [text, setText] = useAtom(composeAtom)
 
   const { eas } = useParams()
 
