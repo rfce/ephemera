@@ -9,10 +9,15 @@ router.get("/keep-alive", Author.keepAlive)
 router.post("/Auth/sign-in", Author.loginUser)
 router.post("/Auth/register", Author.registerUser)
 router.post("/Image/upload", Author.uploadImage)
-router.get("/Image/:id", Author.fetchImage)
 router.get("/Message/active", Author.activeMessage)
+
+router.get("/Image/:id", Author.fetchImage)
+router.post("/Image/toggle-copy", Authentication, Author.togglePaste)
+router.post("/Image/enable-tracking", Authentication, Author.enableTracking)
+router.post("/Image/has-paste", Authentication, Author.socketPaste)
 
 router.post("/Message/create-recipient", Authentication, Message.createRecipient)
 router.post("/Message/fetch-recipient", Authentication, Message.fetchRecipients)
+router.post("/Message/fetch-messages", Authentication, Message.fetchMessages)
 
 module.exports = router

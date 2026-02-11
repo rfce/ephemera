@@ -15,8 +15,6 @@ const createRecipient = async (req, res) => {
 
     const author = req.user
 
-    console.log({ author })
-
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
     const isvalid = pattern.test(recipient)
@@ -51,7 +49,8 @@ const createRecipient = async (req, res) => {
     res.json({
         success: true,
         message: "Added recepient",
-        eas
+        eas,
+        tid: track._id
     })
 }
 
@@ -81,8 +80,38 @@ const fetchRecipients = async (req, res) => {
     })
 }
 
+const fetchMessages = async (req, res) => {
+    const { recipient } = req.body
+
+    if (typeof recipient !== 'string' || recipient.trim() === '') {
+        return res.json({
+            success: false,
+            message: "Recipient is required"
+        })
+    }
+
+    const author = req.user
+
+    const __recipient = await Recipient.findOne({ author: author._id, address: recipient })
+
+    if (__recipient === null) {
+        return res.json({
+            success: false,
+            message: "Recipient doesn't exist"
+        })
+    }
+
+    const messages = await Message.find({ author: author._id, recipient: __recipient._id })
+
+    res.json({
+        success: true,
+        message: "List of messages",
+        messages
+    })
+}
 
 module.exports = {
     createRecipient,
-    fetchRecipients
+    fetchRecipients,
+    fetchMessages
 }

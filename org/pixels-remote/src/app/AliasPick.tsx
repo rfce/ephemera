@@ -31,8 +31,10 @@ const AliasPick = () => {
         </div>
       </div>
       <div className="swiveled-cry">Create</div>
-      <div onClick={() => navigate(`/dashboard/message/${state.eas}`)} className="pater-hear">
-
+      <div 
+        onClick={() => navigate(`/dashboard/message/${state.eas}`, { state: { tid: state.tid } })} 
+        className="pater-hear"
+      >
         <div className="cuter-item tapered-earn">
           <div><PlusIcon width={50} height={50} fill="rgba(37, 150, 190)" /></div>
           <div className="haptic-pipe">New Mail</div>

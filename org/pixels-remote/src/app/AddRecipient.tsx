@@ -34,7 +34,7 @@ const AddRecipient = () => {
       return
     }
 
-    navigate("/dashboard/create-pixels", { state: { eas: data.eas, recipient } })
+    navigate("/dashboard/create-pixels", { state: { eas: data.eas, tid: data.tid, recipient } })
   }
 
   useEffect(() => {

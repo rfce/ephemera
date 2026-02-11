@@ -52,7 +52,7 @@ function textToTwemojiHtml(
 
     // emoji image
     html += `<img
-      src="https://ephemera-wglj.onrender.com/uploads/twemoji/${unified}.png"
+      src="https://ephemera-wglj.onrender.com/api/Image/${unified}.png"
       alt="${emoji.text}"
       width="25"
       height="25"
@@ -86,7 +86,11 @@ const CreateMessage = () => {
 
   const { eas } = useParams()
 
+  const { state } = useLocation()
+
   const navigate = useNavigate()
+
+  const tid = state.tid
 
   const textareaRef = useRef()
 
@@ -110,29 +114,26 @@ const CreateMessage = () => {
   const contentRef = useRef(null)
 
   const handleCopy = async () => {
-    if (!contentRef.current) return
+    if (!contentRef.current) return;
 
-    // Clone HTML so we don't mutate the UI
-    const temp = document.createElement("div")
-    temp.innerHTML = contentRef.current.innerHTML
+    // 1. Use DOMParser instead of creating a div element
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(contentRef.current.innerHTML, "text/html");
 
-    // Find the first emoji image
-    const firstImg = temp.querySelector("img")
+    // 2. Modify the image in the virtual document
+    const firstImg = doc.querySelector("img");
 
     if (firstImg) {
-      const src = firstImg.getAttribute("src")
-
-      // Avoid double-appending
+      const src = firstImg.getAttribute("src");
       if (src && !src.includes("tid=")) {
-        firstImg.setAttribute(
-          "src",
-          `${src}?tid=${tid}`
-        )
+        // Use a custom attribute or modify the src string directly
+        firstImg.setAttribute("src", `${src}?tid=${tid}`);
       }
     }
 
-    const html = temp.innerHTML
-    const text = temp.innerText
+    // 3. Extract the modified HTML and plain text
+    const html = doc.body.innerHTML;
+    const text = doc.body.textContent || "";
 
     try {
       await navigator.clipboard.write([
@@ -140,11 +141,24 @@ const CreateMessage = () => {
           "text/html": new Blob([html], { type: "text/html" }),
           "text/plain": new Blob([text], { type: "text/plain" }),
         }),
-      ])
-
-      setCopied(true)
+      ]);
+      setCopied(true);
     } catch (err) {
-      console.error("Copy failed", err)
+      console.error("Copy failed", err);
+    }
+  };
+
+  const togglePaste = async (paste) => {
+    const { data, status } = await axios.post("/Image/toggle-copy", { tid: String(tid), paste })
+  }
+
+  const hasPaste = async () => {
+    const { data, status } = await axios.post("/Image/has-paste", { tid: String(tid) })
+
+    console.log({ data })
+
+    if (data.success && data.paste) {
+      setHasPasted(true)
     }
   }
 
@@ -176,8 +190,24 @@ const CreateMessage = () => {
     setHasEmoji(false)
   }, [text])
 
-  const tid = 12345
+  useEffect(() => {
+    if (hasCopied === false) {
+      togglePaste(false)
 
+      return
+    }
+
+    if (hasPasted) {
+      return
+    }
+
+    // Copied is true, check if user pastes into client
+    const interval = setInterval(() => {
+      hasPaste()
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [hasCopied, hasPasted])
 
   return (
     <div className="_6pzh">

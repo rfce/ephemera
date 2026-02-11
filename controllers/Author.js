@@ -4,6 +4,12 @@ const Message = require("../models/Message")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Author = require('../models/Author')
+const path = require("path")
+const fs = require('fs')
+const Track = require("../models/Track")
+const { isValidObjectId } = require("mongoose")
+
+const BASE_DIR = path.join(process.cwd(), "uploads", "twemoji")
 
 const uploadImage = async (req, res) => {
     const { image } = req.body
@@ -70,85 +76,170 @@ const uploadImage = async (req, res) => {
     })
 }
 
+const togglePaste = async (req, res) => {
+    const { tid, paste } = req.body
+
+    const author = req.user
+
+    if (isValidObjectId(tid) === false) {
+        return res.json({
+            success: false,
+            message: "Invalid track id"
+        })
+    }
+
+    const valid = await Message.findOne({ author: author._id, tid })
+
+    if (valid === null) {
+        return res.json({
+            success: false,
+            message: "Invalid track id"
+        })
+    }
+
+    await Track.findOneAndUpdate({ _id: tid }, { paste })
+
+    res.json({
+        success: true,
+        message: "Toggle paste success"
+    })
+}
+
+const enableTracking = async (req, res) => {
+    const { tid } = req.body
+
+    const author = req.user
+
+    if (isValidObjectId(tid) === false) {
+        return res.json({
+            success: false,
+            message: "Invalid track id"
+        })
+    }
+
+    const valid = await Message.findOne({ author: author._id, tid })
+
+    if (valid === null) {
+        return res.json({
+            success: false,
+            message: "Invalid track id"
+        })
+    }
+
+    const updated = await Track.findOneAndUpdate({ _id: tid, paste: true }, { fire: true })
+
+    if (updated === null) {
+        return res.json({
+            success: false,
+            message: "You didn't paste into an e-mail client"
+        })
+    }
+
+    res.json({
+        success: true,
+        message: "Tracking has been enabled"
+    })
+}
+
+const socketPaste = async (req, res) => {
+    const { tid } = req.body
+
+    const author = req.user
+
+    if (isValidObjectId(tid) === false) {
+        return res.json({
+            success: false,
+            message: "Invalid track id"
+        })
+    }
+
+    // Check if author sent his track id i.e. not tampered
+    const valid = await Message.findOne({ author: author._id, tid })
+
+    if (valid === null) {
+        return res.json({
+            success: false,
+            message: "Invalid track id"
+        })
+    }
+
+    const track = await Track.findOne({ _id: tid })
+
+    res.json({
+        success: true,
+        message: "Tracking status",
+        paste: track.paste
+    })
+}
+
 const fetchImage = async (req, res) => {
-    const id = req.params.id
+    const { id } = req.params
+    const { tid } = req.query
 
     const ua = req.get('User-Agent')
 
-    // Get the IP Address
-    // We check 'x-forwarded-for' first because if you are on a cloud host, 
-    // req.ip often returns the internal load balancer IP, not the real user.
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip
 
-    if (ua.includes("Windows NT 10.0; Win64; x64") === false && ua.includes("Chrome/142.0.0.0") === false) {
-        console.log(`+++ Ping received from: ${ip}\n+++ Client device: ${ua}`)
+    // Strips path parts
+    const filename = path.basename(id)
+
+    // Invalid path not a png
+    if (!/^[a-zA-Z0-9._-]+\.png$/.test(filename)) {
+        return res.json({
+            success: false,
+            message: "Invalid mime type"
+        })
     }
 
-    const message = await Message.findOne({ active: true })
+    const image = path.resolve(BASE_DIR, filename)
 
-    let skip = id
-    let hasdash = false
-
-    // Just the first image would've "-note"
-    if (id.includes("-")) {
-        const [zero, one] = id.split("-")
-
-        skip = zero
-        hasdash = true
+    if (!fs.existsSync(image)) {
+        return res.json({
+            success: false,
+            message: "Emoji doesn't exist"
+        })
     }
 
-    const image = await Image.findOne({
-        _id: message.image[skip - 1]
-    })
+    if (tid === undefined) {
+        return res.sendFile(image)
+    }
 
-    if (image === null) {
-        const emptyBuffer = Buffer.alloc(0)
+    const track = await Track.findOne({ _id: tid })
 
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': emptyBuffer.length
+    if (track === null) {
+        return res.json({
+            success: false,
+            message: "Tracker not found"
+        })
+    }
+
+    // Check if user pasted into client
+    if (track.paste === false && track.fire === false) {
+        await Track.findOneAndUpdate({ _id: tid, paste: false }, {
+            paste: true
         })
 
-        return res.end(emptyBuffer)
+        return res.json({
+            success: true,
+            message: "Paste success"
+        })
     }
 
     // Save the timestamp to message
-    if (hasdash) {
-        const update = {
-            $push: {
-                unix: {
-                    ip,
-                    ua,
-                    timestamp: new Date()
-                }
-            },
-            seen: true
-        }
-
-        await Message.findOneAndUpdate({ active: true }, update)
+    const update = {
+        $push: {
+            unix: {
+                ip,
+                ua,
+                timestamp: new Date()
+            }
+        },
+        seen: true
     }
 
-    // We must strip this prefix to get the raw data
-    const matches = image.blob.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/)
+    await Track.findOneAndUpdate({ _id: tid, fire: true }, update)
 
-    if (!matches || matches.length !== 3) {
-        return res.status(500).send('Invalid Base64 string')
-    }
-
-    const imageType = matches[1] // e.g., "image/png"
-    const rawBase64 = matches[2] // The actual data characters
-
-    // Convert the cleaned Base64 string into a binary Buffer
-    const imgBuffer = Buffer.from(rawBase64, 'base64')
-
-    // Tell the browser this is an image, not text
-    res.writeHead(200, {
-        'Content-Type': imageType,
-        'Content-Length': imgBuffer.length
-    })
-
-    // Send the binary data
-    res.end(imgBuffer)
+    res.sendFile(image)
 }
 
 const activeMessage = async (req, res) => {
@@ -219,7 +310,7 @@ const loginUser = async (req, res) => {
         username: user.username,
         fname: user.fname
     }, process.env.JWT_ACCESS_TOKEN)
-    
+
     res.json({
         success: true,
         message: "Logged in as " + username,
@@ -236,7 +327,7 @@ const registerUser = async (req, res) => {
             message: "Name is required"
         })
     }
-    
+
     // Validate username format
     if (username) {
         if (username.length < 4 || username.length > 20) {
@@ -283,7 +374,7 @@ const registerUser = async (req, res) => {
         const capital = password.match(/[A-Z]+/g)
         const number = password.match(/[0-9]+/g)
         const symbol = password.match(/[-+~`@#$%^&*()_={}\[\]\/:;"'<>,?\.]+/g)
-        
+
         if (small === null || capital === null || symbol === null || number === null) {
             return res.json({
                 success: false,
@@ -329,5 +420,8 @@ module.exports = {
     fetchImage,
     activeMessage,
     loginUser,
-    registerUser
+    registerUser,
+    togglePaste,
+    enableTracking,
+    socketPaste
 }
