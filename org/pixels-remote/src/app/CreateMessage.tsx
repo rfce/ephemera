@@ -1,15 +1,16 @@
 import "./css/CreateMessage.css"
-import { RightArrow } from "../assets/Icons.jsx"
 import { useAtom } from 'jotai';
 import { composeAtom } from '@org/shared-state';
 import { useEffect, useRef, useState } from "react";
 import axios from "../config/backend"
-import { StickerIcon, CopyIcon, TickIcon } from "../assets/Icons.jsx"
+import { StickerIcon, CopyIcon, TickIcon, ChevronLeft, RightArrow } from "../assets/Icons.jsx"
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data"
 import { parse } from "twemoji-parser";
 import { PuffLoader } from "react-spinners";
+
+const SentEmail = new URL('../assets/Email sent.webm', import.meta.url).href;
 
 function escapeHtml(str: string) {
   return str
@@ -81,6 +82,7 @@ const CreateMessage = () => {
   const [hasEmoji, setHasEmoji] = useState(false)
   const [hasCopied, setHasCopied] = useState(false)
   const [hasPasted, setHasPasted] = useState(false)
+  const [popup, setPopup] = useState(false)
 
   const [text, setText] = useAtom(composeAtom)
 
@@ -126,8 +128,10 @@ const CreateMessage = () => {
     if (firstImg) {
       const src = firstImg.getAttribute("src");
       if (src && !src.includes("tid=")) {
+        const unique = crypto.randomUUID()
+
         // Use a custom attribute or modify the src string directly
-        firstImg.setAttribute("src", `${src}?tid=${tid}`);
+        firstImg.setAttribute("src", `${src}?tid=${tid}&r=${unique}`);
       }
     }
 
@@ -159,6 +163,14 @@ const CreateMessage = () => {
 
     if (data.success && data.paste) {
       setHasPasted(true)
+    }
+  }
+
+  const enableTracking = async () => {
+    const { data, status } = await axios.post("/Image/enable-tracking", { tid: String(tid), text })
+
+    if (data.success) {
+      navigate("/dashboard/track-boat/" + eas, { state: { tid } })
     }
   }
 
@@ -194,6 +206,8 @@ const CreateMessage = () => {
     if (hasCopied === false) {
       togglePaste(false)
 
+      setHasPasted(false)
+
       return
     }
 
@@ -204,13 +218,39 @@ const CreateMessage = () => {
     // Copied is true, check if user pastes into client
     const interval = setInterval(() => {
       hasPaste()
-    }, 4000)
+    }, 3000)
 
     return () => clearInterval(interval)
   }, [hasCopied, hasPasted])
 
   return (
     <div className="_6pzh">
+      {popup && (
+        <div className="tsarist-haws">
+          <div className="finder-gasp">
+            <video
+              src={SentEmail}
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ width: "100px" }}
+            />
+            <h2>Did you send this e-mail?</h2>
+            <p>Please confirm that you have pasted the message into Gmail or Outlook and sent the email to enable tracking.</p>
+            <div className="beefy-hear">
+              <div onClick={() => setPopup(false)} className="crays-cad">
+                <ChevronLeft className="scouted-foe" />
+                go back
+              </div>
+              <button className="curlew-goer" onClick={() => enableTracking()}>
+                Yes, I've sent it
+                <RightArrow className="nursing-nag" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div onClick={() => navigate(-1)} className="flamen-vow">
         <RightArrow className="shuns-ropy" fill="rgb(84, 183, 219)" />
         <div>New E-mail</div>
@@ -278,6 +318,12 @@ const CreateMessage = () => {
             </div>
           </>
         </div>
+      </div>
+      <div className="cardia-ess">
+        <button onClick={() => setPopup(true)} disabled={!hasPasted}>
+          Next Step
+          <RightArrow className="elegits-yip" />
+        </button>
       </div>
     </div>
   )

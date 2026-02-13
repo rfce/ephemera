@@ -19,6 +19,7 @@
       "pixels/PixelsApp": ["pixels-remote/src/app/AddRecipient.tsx"],
       "pixels/AliasPick": ["pixels-remote/src/app/AliasPick.tsx"],
       "pixels/CreateMessage": ["pixels-remote/src/app/CreateMessage.tsx"],
+      "pixels/TrackMessage": ["pixels-remote/src/app/TrackMessage.tsx"],
       "create-pixels/CreatePixelsApp": [
         "create-pixels-remote/src/app/CreatePixelsApp.tsx"
       ],

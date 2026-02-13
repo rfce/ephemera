@@ -9,13 +9,7 @@ const messageSchema = Schema(
             ref: "Author",
             required: true
         },
-        image: {
-            type: [{
-                type: Schema.ObjectId,
-                ref: "Image"
-            }],
-            default: []
-        },
+        text: String,
         recipient: {
             type: Schema.ObjectId,
             ref: "Recipient",

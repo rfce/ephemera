@@ -37,6 +37,7 @@ export default defineConfig(({ mode }) => ({
         './PixelsApp': './src/app/AddRecipient.tsx',
         './AliasPick': './src/app/AliasPick.tsx',
         './CreateMessage': './src/app/CreateMessage.tsx',
+        './TrackMessage': './src/app/TrackMessage.tsx',
       },
       shared: ['react', 'react-dom', 'react-router-dom', 'jotai', 'react-spinners', '@emoji-mart/react', '@emoji-mart/data', 'twemoji-parser'],
     }),

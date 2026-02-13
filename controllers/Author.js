@@ -106,9 +106,16 @@ const togglePaste = async (req, res) => {
 }
 
 const enableTracking = async (req, res) => {
-    const { tid } = req.body
+    const { tid, text } = req.body
 
     const author = req.user
+
+    if (typeof text !== 'string' || text.trim() === '') {
+        return res.json({
+            success: false,
+            message: "Text sent is required"
+        })
+    }
 
     if (isValidObjectId(tid) === false) {
         return res.json({
@@ -117,12 +124,12 @@ const enableTracking = async (req, res) => {
         })
     }
 
-    const valid = await Message.findOne({ author: author._id, tid })
+    const valid = await Message.findOneAndUpdate({ author: author._id, tid }, { text })
 
     if (valid === null) {
         return res.json({
             success: false,
-            message: "Invalid track id"
+            message: "Not a valid track id"
         })
     }
 
@@ -138,6 +145,44 @@ const enableTracking = async (req, res) => {
     res.json({
         success: true,
         message: "Tracking has been enabled"
+    })
+}
+
+const messageStatus = async (req, res) => {
+    const { tid } = req.body
+
+    const author = req.user
+
+    if (isValidObjectId(String(tid)) === false) {
+        return res.json({
+            success: false,
+            message: "Invalid track id"
+        })
+    }
+
+    const message = await Message.findOne({ author: author._id, tid })
+
+    if (message === null) {
+        return res.json({
+            success: false,
+            message: "Not a valid track id"
+        })
+    }
+
+    const track = await Track.findOne({ _id: tid })
+
+    if (track.fire === false) {
+        return res.json({
+            success: false,
+            message: "Tracking not started"
+        })
+    }
+
+    res.json({
+        success: true,
+        message: "Trackig status",
+        track,
+        message
     })
 }
 
@@ -219,10 +264,7 @@ const fetchImage = async (req, res) => {
             paste: true
         })
 
-        return res.json({
-            success: true,
-            message: "Paste success"
-        })
+        return res.sendFile(image)
     }
 
     // Save the timestamp to message
@@ -423,5 +465,6 @@ module.exports = {
     registerUser,
     togglePaste,
     enableTracking,
-    socketPaste
+    socketPaste,
+    messageStatus
 }

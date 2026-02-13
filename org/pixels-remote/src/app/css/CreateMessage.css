@@ -208,7 +208,189 @@
     display: flex;
 }
 
+._6pzh .cordobas-ouzo > div:first-of-type {
+    height: 418px;
+}
+
 ._6pzh .shyer-fell.disabled {
     filter: grayscale(100%);
     cursor: not-allowed;
+}
+
+._6pzh .cardia-ess {
+    margin-left: 100px;
+    margin-top: 60px;
+    display: flex;
+}
+
+._6pzh .cardia-ess button {
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Roboto", sans-serif;
+    color: white;
+    background-color: rgba(37, 150, 190);
+    cursor: pointer;
+}
+
+._6pzh .cardia-ess button:disabled {
+    background-color: rgb(168, 168, 168);
+    opacity: 0.5;
+    cursor: default;
+}
+
+._6pzh .elegits-yip {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+._6pzh .tsarist-haws {
+    position: fixed;
+    z-index: 2;
+    inset: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(96, 96, 96, 0.266);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+._6pzh .tsarist-haws .finder-gasp {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    width: 500px;
+}
+
+._6pzh .tsarist-haws .finder-gasp > img {
+    width: 250px;
+    height: 250px;
+}
+
+._6pzh .tsarist-haws .finder-gasp h2 {
+    color: rgb(83, 83, 83);
+}
+
+._6pzh .beefy-hear {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+}
+
+._6pzh .beefy-hear .crays-cad {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: rgb(163, 163, 163);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+._6pzh .beefy-hear .scouted-foe {
+    width: 18px;
+    height: 18px;
+    fill: rgb(163, 163, 163);
+}
+
+._6pzh .tsarist-haws button {
+    background-color: rgb(167, 167, 167);
+    border: none;
+    color: white;
+    background-color: rgb(208, 123, 110);
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 53px;
+    cursor: pointer;
+}
+
+._6pzh .nursing-nag {
+    width: 25px;
+    height: 25px;
+    fill: white;
+}
+
+._6pzh .tsarist-haws button:hover {
+    opacity: 0.9;
+}
+
+._6pzh .tsarist-haws .curlew-goer {
+    color: white;
+    background-color: rgb(110, 208, 110);
+}
+
+._6pzh .tsarist-haws p {
+    color: grey;
+    line-height: 28px;
+    text-align: center;
+}
+
+._3ono .flamen-vow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: rgba(37, 150, 190);
+    width: 100vw;
+    margin-top: 0px;
+    box-sizing: border-box;
+    height: 65px;
+}
+
+._3ono .flamen-vow svg {
+    fill: white;
+}
+
+._3ono .relate-glen {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+._3ono .eugenics-demy {
+    width: 80vw;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+._3ono .cordobas-ouzo {
+    margin-left: 100px;
+}
+
+._3ono .vouchees-awes {
+    margin-left: 0px;
+}
+
+._3ono .swiveled-cry.sifters-from {
+    padding: 0px;
+}
+
+._3ono .cordobas-ouzo > div:first-of-type {
+    height: unset;
 }

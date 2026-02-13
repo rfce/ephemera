@@ -8,6 +8,7 @@ import ProtectedRoute from './ProtectedRoute.jsx'
 import PublicRoute from './PublicRoute.jsx'
 import Pixels from './Pixels.jsx'
 import NewMessage from './NewMessage.jsx'
+import Track from './Track.jsx'
 
 export function App() {
   return (
@@ -22,6 +23,7 @@ export function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/create-pixels" element={<Pixels />} />
             <Route path="/dashboard/message/:eas" element={<NewMessage />} />
+            <Route path="/dashboard/track-boat/:eas" element={<Track />} />
           </Route>
         </Routes>
       </div>

@@ -15,6 +15,7 @@ router.get("/Image/:id", Author.fetchImage)
 router.post("/Image/toggle-copy", Authentication, Author.togglePaste)
 router.post("/Image/enable-tracking", Authentication, Author.enableTracking)
 router.post("/Image/has-paste", Authentication, Author.socketPaste)
+router.post("/Image/track-boat", Authentication, Author.messageStatus)
 
 router.post("/Message/create-recipient", Authentication, Message.createRecipient)
 router.post("/Message/fetch-recipient", Authentication, Message.fetchRecipients)
