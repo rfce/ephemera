@@ -83,6 +83,7 @@ const CreateMessage = () => {
   const [hasCopied, setHasCopied] = useState(false)
   const [hasPasted, setHasPasted] = useState(false)
   const [popup, setPopup] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const [text, setText] = useAtom(composeAtom)
 
@@ -93,6 +94,8 @@ const CreateMessage = () => {
   const navigate = useNavigate()
 
   const tid = state.tid
+
+  const recipient = localStorage.getItem("recipient")
 
   const textareaRef = useRef()
 
@@ -174,6 +177,19 @@ const CreateMessage = () => {
     }
   }
 
+  const discardMessage = async () => {
+    setLoading(true)
+
+    const { data, status } = await axios.post("/Message/save-message", { eas, tid: String(tid), text })
+
+    setLoading(false)
+
+    if (data.success) {
+      setText("")
+      navigate(`/dashboard/create-pixels`, { state: { eas, tid } })
+    }
+  }
+
   useEffect(() => {
     let timeout = undefined
 
@@ -223,6 +239,13 @@ const CreateMessage = () => {
     return () => clearInterval(interval)
   }, [hasCopied, hasPasted])
 
+  useEffect(() => {
+    const tex = localStorage.getItem("text")
+
+    tex && setText(tex)
+  }, [])
+
+  
   return (
     <div className="_6pzh">
       {popup && (
@@ -251,7 +274,12 @@ const CreateMessage = () => {
           </div>
         </div>
       )}
-      <div onClick={() => navigate(-1)} className="flamen-vow">
+      {loading && (
+        <div className="tsarist-haws">
+            <PuffLoader color="white" />
+        </div>
+      )}
+      <div onClick={() => discardMessage()} className="flamen-vow">
         <RightArrow className="shuns-ropy" fill="rgb(84, 183, 219)" />
         <div>New E-mail</div>
       </div>

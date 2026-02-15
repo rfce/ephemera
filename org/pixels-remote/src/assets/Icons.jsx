@@ -107,6 +107,40 @@ const CloseIcon = (props) => (
   </svg>
 )
 
+const ReadReciept = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={100}
+    height={100}
+    className="icon flat-line"
+    data-name="Flat Line"
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <path
+      d="m13.22 16.5 7.78-9"
+      style={{
+        fill: "none",
+        stroke: props.fill ? props.fill : "#000",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        strokeWidth: 2,
+      }}
+    />
+    <path
+      d="m3 11.88 4 4.62 7.78-9"
+      data-name="primary"
+      style={{
+        fill: "none",
+        stroke: props.fill ? props.fill : "#000",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        strokeWidth: 2,
+      }}
+    />
+  </svg>
+)
+
 export {
   RightArrow,
   PlusIcon,
@@ -115,5 +149,6 @@ export {
   StickerIcon,
   CopyIcon,
   TickIcon,
-  CloseIcon
+  CloseIcon,
+  ReadReciept
 }

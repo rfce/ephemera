@@ -381,10 +381,29 @@
 
 ._3ono .cordobas-ouzo {
     margin-left: 100px;
+    position: relative;
+}
+
+._3ono .scenter-sic {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+._3ono .cordobas-ouzo svg {
+    width: 30px;
+    height: 30px;
 }
 
 ._3ono .vouchees-awes {
     margin-left: 0px;
+    border: none;
+    background-color: white;
+    padding: 0px;
 }
 
 ._3ono .swiveled-cry.sifters-from {
@@ -394,3 +413,4 @@
 ._3ono .cordobas-ouzo > div:first-of-type {
     height: unset;
 }
+

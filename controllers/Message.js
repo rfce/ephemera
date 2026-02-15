@@ -1,3 +1,4 @@
+const { isValidObjectId } = require("mongoose")
 const { fives, threeies, escapeRegex } = require("../middleware/Helper")
 const Message = require("../models/Message")
 const Recipient = require("../models/Recipient")
@@ -26,14 +27,43 @@ const createRecipient = async (req, res) => {
         })
     }
 
-    const __recipient = await Recipient.findOneAndUpdate(
+    // Add unique recepients
+    const created = await Recipient.findOneAndUpdate(
         { author: author._id, address: recipient.trim() },
         { $setOnInsert: { author: author._id, address: recipient.trim() } },
         {
             new: true,
             upsert: true
         }
-    )
+    ).select("-author")
+
+    res.json({
+        success: true,
+        message: "Added recepient",
+        recipient: created
+    })
+}
+
+const createMessage = async (req, res) => {
+    const { recipient } = req.body
+
+    if (typeof recipient !== 'string' || recipient.trim() === '') {
+        return res.json({
+            success: false,
+            message: "Recipient address is required"
+        })
+    }
+
+    const author = req.user
+
+    const r = await Recipient.findOne({ author: author._id, address: recipient.trim() })
+
+    if (r === null) {
+        return res.json({
+            success: false,
+            message: "Recipient not exist"
+        })
+    }
 
     const track = await Track.create({ seen: false })
 
@@ -41,7 +71,7 @@ const createRecipient = async (req, res) => {
 
     await Message.create({
         author: author._id,
-        recipient: __recipient._id,
+        recipient: r._id,
         eas,
         tid: track._id
     })
@@ -51,6 +81,51 @@ const createRecipient = async (req, res) => {
         message: "Added recepient",
         eas,
         tid: track._id
+    })
+}
+
+const discardMessage = async (req, res) => {
+    const { eas, tid, text } = req.body
+
+    if (typeof eas !== 'string' || eas.trim() === '') {
+        return res.json({
+            success: false,
+            message: "E-mail nickname is required"
+        })
+    }
+
+    if (typeof tid !== 'string' || tid.trim() === '' || isValidObjectId(tid) === false) {
+        return res.json({
+            success: false,
+            message: "Tracking id is required"
+        })
+    }
+
+    const author = req.user
+
+    // Save as draft
+    if (text) {
+        await Message.findOneAndUpdate({ author: author._id, eas, tid }, {
+            text
+        })
+
+        return res.json({
+            success: true,
+            message: "Saved in drafts"
+        })
+    }
+
+    await Track.deleteOne({ author: author._id, _id: tid })
+    
+    await Message.deleteOne({
+        author: author._id,
+        eas,
+        tid
+    })
+
+    res.json({
+        success: true,
+        message: "Discarded message"
     })
 }
 
@@ -101,17 +176,22 @@ const fetchMessages = async (req, res) => {
         })
     }
 
-    const messages = await Message.find({ author: author._id, recipient: __recipient._id })
+    const messages = await Message.find({ author: author._id, recipient: __recipient._id }).sort("-createdAt")
+
+    const count = await Message.countDocuments({ author: author._id, recipient: __recipient._id })
 
     res.json({
         success: true,
         message: "List of messages",
-        messages
+        messages,
+        count
     })
 }
 
 module.exports = {
     createRecipient,
     fetchRecipients,
-    fetchMessages
+    fetchMessages,
+    createMessage,
+    discardMessage
 }

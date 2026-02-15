@@ -271,12 +271,19 @@ const fetchImage = async (req, res) => {
     const update = {
         $push: {
             unix: {
-                ip,
-                ua,
-                timestamp: new Date()
-            }
+                $each: [
+                    {
+                        ip,
+                        ua,
+                        timestamp: new Date(),
+                    },
+                ],
+                $position: 0, // insert at beginning (newest first)
+            },
         },
-        seen: true
+        $set: {
+            seen: true,
+        }
     }
 
     await Track.findOneAndUpdate({ _id: tid, fire: true }, update)

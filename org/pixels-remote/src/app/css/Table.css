@@ -33,6 +33,7 @@
   border-bottom: 1px solid rgba(37, 150, 190, 0.08);
   color: #333;
   vertical-align: top;
+  line-height: 30px;
 }
 
 .track-table tbody tr {
@@ -61,3 +62,39 @@
   color: rgba(37, 150, 190, 0.8);
   font-weight: 500;
 }
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(37, 150, 190, 0.1);
+}
+
+.pagination button {
+  background: rgba(37, 150, 190, 0.1);
+  color: rgba(37, 150, 190, 1);
+  border: 1px solid rgba(37, 150, 190, 0.3);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: rgba(37, 150, 190, 0.18);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(37, 150, 190, 0.9);
+}
+

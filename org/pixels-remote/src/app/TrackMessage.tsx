@@ -3,10 +3,11 @@ import { useAtom } from 'jotai';
 import { composeAtom } from '@org/shared-state';
 import { useEffect, useRef, useState } from "react";
 import axios from "../config/backend"
-import { MailIcon, RightArrow } from "../assets/Icons.jsx"
+import { MailIcon, RightArrow, ReadReciept } from "../assets/Icons.jsx"
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { parse } from "twemoji-parser";
 import Table from "./Table"
+import { format } from "timeago.js";
 
 function escapeHtml(str: string) {
   return str
@@ -71,9 +72,31 @@ function hasNativeEmoji(text) {
   return /\p{Extended_Pictographic}/u.test(text);
 }
 
+const renderLastSeen = (track = []) => {
+  if (!track.length) {
+    return "🕒 Waiting for open";
+  }
+
+  // if (track.length > 1) {
+  //   return "🔁 Opened multiple times";
+  // }
+
+  const latest = new Date(track[0].timestamp);
+  const diffMs = Date.now() - latest.getTime();
+
+  // consider "just now" within 30 seconds
+  if (diffMs < 30 * 1000) {
+    return "👀 Opened just now";
+  }
+
+  return `⏱ Opened ${format(latest)}`;
+};
+
+
 
 const TrackMessage = () => {
   const [track, setTrack] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const [text, setText] = useAtom(composeAtom)
 
@@ -92,15 +115,26 @@ const TrackMessage = () => {
   const fetchTracking = async () => {
     const { data, status } = await axios.post("/Image/track-boat", { tid: String(tid) })
 
+    setLoading(false)
+
     if (data.success) {
       setText(data.message.text)
       setTrack(data.track.unix)
+    }
+    else {
+      navigate(`/dashboard/message/${eas}`, { state: { tid } })
     }
   }
 
   useEffect(() => {
     fetchTracking()
   }, [])
+
+  if (loading) {
+    return (
+      <div>Loading...</div>
+    )
+  }
 
   return (
     <div className="_3ono _6pzh">
@@ -111,16 +145,19 @@ const TrackMessage = () => {
         </div>
          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <MailIcon width={23} height={23} fill="white" />
-          <div>Recepient • {recipient}</div>
+          <div>Recepient • {recipient} • {eas}</div>
         </div>
       </div>
-      <div className="gaped-hex">
-        <div>Nickname</div>
-        <div className="openings-luge">{eas}</div>
+      <div className="eugenics-demy">
+        <Table rows={track} />
       </div>
       <div className="cordobas-ouzo">
+        <div className="scenter-sic">
+          <ReadReciept fill={track.length ? "rgb(96, 230, 89)" : "#c4c4c4"} />
+          {track.length ? <div>Seen</div> : <div>Not seen</div>}
+          <div style={{ marginLeft: "20px", transform: "translate(0px, 3px)" }}>{renderLastSeen(track)}</div>
+        </div>
         <div>
-          <>
             <div className="sifters-from swiveled-cry">Preview</div>
             <div className="vouchees-awes">
               <div
@@ -130,13 +167,8 @@ const TrackMessage = () => {
                 }}
               />
             </div>
-          </>
         </div>
       </div>
-      <div className="eugenics-demy">
-        <Table rows={track} />
-      </div>
-      
     </div>
   )
 }

@@ -20,5 +20,7 @@ router.post("/Image/track-boat", Authentication, Author.messageStatus)
 router.post("/Message/create-recipient", Authentication, Message.createRecipient)
 router.post("/Message/fetch-recipient", Authentication, Message.fetchRecipients)
 router.post("/Message/fetch-messages", Authentication, Message.fetchMessages)
+router.post("/Message/create-message", Authentication, Message.createMessage)
+router.post("/Message/save-message", Authentication, Message.discardMessage)
 
 module.exports = router
