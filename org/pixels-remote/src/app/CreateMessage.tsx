@@ -84,6 +84,7 @@ const CreateMessage = () => {
   const [hasPasted, setHasPasted] = useState(false)
   const [popup, setPopup] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [sending, setSending] = useState(false);
 
   const [text, setText] = useAtom(composeAtom)
 
@@ -169,6 +170,16 @@ const CreateMessage = () => {
     }
   }
 
+  const handleConfirmSend = () => {
+    if (sending) return
+
+    setSending(true)
+
+    setTimeout(() => {
+      enableTracking()
+    }, 5000)
+  }
+
   const enableTracking = async () => {
     const { data, status } = await axios.post("/Image/enable-tracking", { tid: String(tid), text })
 
@@ -245,7 +256,7 @@ const CreateMessage = () => {
     tex && setText(tex)
   }, [])
 
-  
+
   return (
     <div className="_6pzh">
       {popup && (
@@ -266,8 +277,12 @@ const CreateMessage = () => {
                 <ChevronLeft className="scouted-foe" />
                 go back
               </div>
-              <button className="curlew-goer" onClick={() => enableTracking()}>
-                Yes, I've sent it
+              <button
+                className={`curlew-goer ${sending ? "loading" : ""}`}
+                onClick={handleConfirmSend}
+                disabled={sending}
+              >
+                {sending ? "Enabling tracking..." : "Yes, I've sent it"}
                 <RightArrow className="nursing-nag" />
               </button>
             </div>
@@ -276,7 +291,7 @@ const CreateMessage = () => {
       )}
       {loading && (
         <div className="tsarist-haws">
-            <PuffLoader color="white" />
+          <PuffLoader color="white" />
         </div>
       )}
       <div onClick={() => discardMessage()} className="flamen-vow">

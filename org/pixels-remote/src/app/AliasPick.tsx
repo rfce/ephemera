@@ -20,6 +20,7 @@ const AliasPick = () => {
   const [messages, setMessages] = useState([])
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
+  const [direction, setDirection] = useState("right")
 
   const totalPages = Math.ceil(messages.length / ITEMS_PER_PAGE)
 
@@ -28,10 +29,18 @@ const AliasPick = () => {
     return messages.slice(start, start + ITEMS_PER_PAGE)
   }, [messages, page])
 
-  const goPrev = () => setPage((p) => Math.max(p - 1, 1))
-  const goNext = () => setPage((p) => Math.min(p + 1, totalPages))
+  const goPrev = () => {
+    setDirection("left")
+    setPage((p) => Math.max(p - 1, 1))
+  }
 
-  const [text, setText] = useAtom(composeAtom);
+  const goNext = () => {
+    setDirection("right")
+    setPage((p) => Math.min(p + 1, totalPages))
+  }
+
+
+  const [text, setText] = useAtom(composeAtom)
 
   const { state } = useLocation()
 
@@ -85,35 +94,30 @@ const AliasPick = () => {
         <div className={`mail-header-loader ${loading ? "active" : ""}`} />
       </div>
       <div className="swiveled-cry">Create</div>
-      <div
-        onClick={() => createMessage()}
-        className="pater-hear"
-      >
-        <div className="cuter-item tapered-earn">
+      <div className="pater-hear">
+        <div onClick={() => createMessage()} className="cuter-item tapered-earn">
           <div><PlusIcon width={50} height={50} fill="rgba(37, 150, 190)" /></div>
           <div className="haptic-pipe">New Mail</div>
         </div>
       </div>
       {messages.length ? <div className="swiveled-cry">Previous e-mails</div> : undefined}
       <>
-        <div className="pater-hear">
+        <div className={`pater-hear slide-${direction}`} key={page}>
           {paginatedMessages.map((message, index) => (
             <div
               key={index}
               className="tapered-earn"
               onClick={() => {
                 if (message.text) {
-                  localStorage.setItem("text", message.text)
-
-                  setText(message.text)
-                }
-                else {
-                  localStorage.removeItem("text", message.text)
+                  localStorage.setItem("text", message.text);
+                  setText(message.text);
+                } else {
+                  localStorage.removeItem("text");
                 }
 
                 navigate(`/dashboard/track-boat/${message.eas}`, {
                   state: { eas: message.eas, tid: message.tid },
-                })
+                });
               }}
             >
               <div className="switched-vee">{message.eas}</div>
@@ -124,6 +128,7 @@ const AliasPick = () => {
             </div>
           ))}
         </div>
+
         {messages.length > ITEMS_PER_PAGE && (
           <div className="grid-pagination">
             <button onClick={goPrev} disabled={page === 1}>

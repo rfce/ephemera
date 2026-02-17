@@ -59,7 +59,7 @@ const TrackTable = ({ rows = [] }) => {
             </tr>
           ) : (
             paginatedRows.map((row, index) => (
-              <tr key={index}>
+              <tr key={index} className={index === 0 ? "highlight-row" : ""}>
                 <td>{renderFormattedDate(row.timestamp)}</td>
                 <td>{renderFormattedDate(row.timestamp, true)}</td>
                 <td className="mono">{row.ip}</td>
@@ -68,6 +68,7 @@ const TrackTable = ({ rows = [] }) => {
             ))
           )}
         </tbody>
+
       </table>
 
       {/* Pagination Controls */}

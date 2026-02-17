@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { composeAtom } from '@org/shared-state';
 import { useEffect, useRef, useState } from "react";
 import axios from "../config/backend"
-import { MailIcon, RightArrow, ReadReciept } from "../assets/Icons.jsx"
+import { MailIcon, RightArrow, ReadReciept, EmailPack } from "../assets/Icons.jsx"
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { parse } from "twemoji-parser";
 import Table from "./Table"
@@ -138,14 +138,15 @@ const TrackMessage = () => {
 
   return (
     <div className="_3ono _6pzh">
-      <div onClick={() => navigate("/dashboard")} className="flamen-vow">
+      <div onClick={() => navigate("/dashboard/create-pixels", { state: { eas, tid } })} className="flamen-vow">
         <div className="relate-glen">
           <RightArrow className="shuns-ropy" fill="rgb(84, 183, 219)" />
           <div>Dashboard</div>
         </div>
          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <MailIcon width={23} height={23} fill="white" />
-          <div>Recepient • {recipient} • {eas}</div>
+          <div>Recepient • {recipient}</div>
+          <div style={{ fontSize: "14px", padding: "5px 12px", border: "2px solid #ffc354", backgroundColor: "white", color: "rgb(84, 183, 219)", borderRadius: "20px" }}>{eas}</div>
         </div>
       </div>
       <div className="eugenics-demy">
