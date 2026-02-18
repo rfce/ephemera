@@ -46,34 +46,58 @@
 ._0giz label {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    font-size: 18px;
+    font-weight: 600;
     color: rgba(37, 150, 190);
-    margin-bottom: 0px;
 }
 
 ._0giz input {
     width: 20vw;
-    height: 50px;
-    border-radius: 8px;
+    height: 58px;
+    border-radius: 20px;
     outline: none;
-    border: 1px solid rgba(37, 150, 190);
-    padding: 0px 15px;
-    font-size: 15px;
+    border: none;
+    border: 2px dashed rgba(37, 150, 190);
+    padding: 0px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(37, 150, 190);
+}
+
+._0giz input::placeholder {
+    font-weight: 600;
+    color: rgb(142, 197, 217);
 }
 
 ._0giz .besot-exit {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
-    background-color: rgba(37, 150, 190);
-    font-weight: 600;
-    height: 52px;
-    padding: 0px 15px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    width: fit-content;
-    cursor: pointer;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    rgba(37,150,190,1),
+    rgba(37,150,190,0.8)
+  );
+  padding: 14px 24px;
+  font-size: 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 10px 26px rgba(37,150,190,0.25);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  width: fit-content;
+  margin-top: 30px;
+}
+
+._0giz .besot-exit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(37,150,190,0.35);
 }
 
 ._0giz .tzetzes-rhos {
@@ -82,15 +106,9 @@
     position: relative;
 }
 
-._0giz .tzetzes-rhos .besot-exit {
-    position: absolute;
-    top: 34px;
-    right: -50px;
-}
-
 ._0giz .swingers-tuft {
     position: absolute;
-    top: 80px;
+    top: 200px;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -103,12 +121,19 @@
 ._0giz .swingers-tuft .tithings-yum {
     display: flex;
     flex-grow: 0;
+    align-items: center;
     gap: 8px;
     cursor: pointer;
     background-color: white;
-    border: 3px solid rgba(37, 150, 190);
+    border: 3px solid rgb(136, 200, 223);
     width: fit-content;
     height: fit-content;
-    padding: 6px 10px;
+    padding: 10px 15px;
     border-radius: 8px;
+    font-size: 18px;
 }
+
+._0giz .swingers-tuft .tithings-yum.active {
+    background-color: rgb(136, 200, 223);
+}
+

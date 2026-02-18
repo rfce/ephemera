@@ -116,4 +116,69 @@
   border-color: rgba(37, 150, 190, 0.5);
 }
 
+._8rid .outfind-sore {
+    position: relative;
+}
+
+._8rid .outfind-sore .degut-jug {
+  position: absolute;
+  top: 50px;
+  right: -20vw;
+
+  font-size: 3.2vw;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  max-width: 40vw;
+  line-height: 1.2;
+  text-align: center;
+
+  /* Gradient text */
+  background: linear-gradient(
+    120deg,
+    rgba(37, 150, 190, 1),
+    rgba(84, 183, 219, 1),
+    rgba(37, 150, 190, 1)
+  );
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow: 0 4px 20px rgba(37, 150, 190, 0.25);
+
+  animation:
+    premiumGradientFlow 6s ease-in-out infinite,
+    floatText 5s ease-in-out infinite;
+}
+
+@keyframes floatText {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Smooth flowing gradient animation */
+@keyframes premiumGradientFlow {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+._8rid .outfind-sore video {
+    position: absolute;
+    top: -50px;
+    right: -40vw;
+    width: 15vw;
+}
 

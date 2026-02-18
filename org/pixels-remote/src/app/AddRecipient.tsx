@@ -10,6 +10,7 @@ const AddRecipient = () => {
   const [recipient, setRecipient] = useState("")
   const [toast, setToast] = useState("")
   const [autoComplete, setAutoComplete] = useState([])
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
   const [step, setStep] = useAtom(stepsAtom);
 
@@ -64,32 +65,59 @@ const AddRecipient = () => {
   return (
     <div className="_0giz">
       <div className="tumble-duos">
-        <div 
+        <div
           tabIndex={0}
           onKeyDown={(e) => {
-              if (e.key === "Enter" && autoComplete.length > 0) {
-                setRecipient(autoComplete[0].address)
-              }
-            }} 
+            if (!autoComplete.length) return
+
+            if (e.key === "ArrowRight") {
+              e.preventDefault()
+              setSelectedIndex((prev) => (prev + 1) % autoComplete.length)
+            }
+
+            if (e.key === "ArrowLeft") {
+              e.preventDefault()
+              setSelectedIndex((prev) =>
+                prev === 0 ? autoComplete.length - 1 : prev - 1
+              )
+            }
+
+            if (e.key === "Tab") {
+              e.preventDefault()
+              setRecipient(autoComplete[selectedIndex].address)
+            }
+
+            if (e.key === "Enter") {
+              e.preventDefault()
+              createRecipient()
+            }
+          }}
+
           className="tzetzes-rhos"
         >
+
           <label>
-            Recipient email †
+            Who are you sending this email to?
             <input
+              placeholder="e.g. john-doe@proton.me"
               value={recipient}
               onChange={e => setRecipient(e.target.value)}
             />
           </label>
           {toast && <div>{toast}</div>}
           <div onClick={() => createRecipient()} className="besot-exit">
-            Create Pixel <RightArrow width="24px" height="24px" fill="white" />
+            Continue to compose email <RightArrow width="24px" height="24px" fill="white" />
           </div>
           <div
             className="swingers-tuft"
           >
-            {autoComplete.map(note => {
+            {autoComplete.map((note, idx) => {
               return (
-                <div key={note._id} onClick={() => setRecipient(note.address)} className="tithings-yum">
+                <div key={note._id}
+                  className={idx === selectedIndex ? "tithings-yum active" : "tithings-yum"}
+                  onMouseEnter={() => setSelectedIndex(idx)}
+                  onClick={() => setRecipient(note.address)}
+                >
                   {note.address}
                 </div>
               )

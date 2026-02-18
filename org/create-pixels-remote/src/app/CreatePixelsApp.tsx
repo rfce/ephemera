@@ -5,6 +5,7 @@ import "./css/App.css"
 // This ensures it always points to localhost:4201 (or production remote)
 const Logo = new URL('../assets/Logo.jpg', import.meta.url).href;
 const Background = new URL('../assets/Developer activity-pana.png', import.meta.url).href;
+const Animation = new URL('../assets/AI Searching.webm', import.meta.url).href;
 
 const CreatePixelsApp = () => {
   const [name, setName] = useState("")
@@ -21,6 +22,14 @@ const CreatePixelsApp = () => {
       </div>
       <div className="outfind-sore">
         <img src={Background} alt="" width={800} style={{ marginTop: "-20px" }} />
+        <div className="degut-jug">Emails that tell you when they’re opened.</div>
+         <video
+            src={Animation}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
       </div>
     </div>
   )

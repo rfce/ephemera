@@ -104,7 +104,7 @@
     rgba(37, 150, 190, 0.10),
     rgba(37, 150, 190, 0.05)
   );
-  box-shadow: inset 3px 0 0 rgba(37, 150, 190, 0.7);
+  /* box-shadow: inset 3px 0 0 rgba(37, 150, 190, 0.7); */
 }
 
 .track-table tbody tr.highlight-row td {
