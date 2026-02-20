@@ -135,9 +135,9 @@
   /* Gradient text */
   background: linear-gradient(
     120deg,
-    rgba(37, 150, 190, 1),
-    rgba(84, 183, 219, 1),
-    rgba(37, 150, 190, 1)
+    #a2ad7b,
+    #e07d6c,
+    #fad0c9
   );
   background-size: 200% auto;
 
@@ -146,10 +146,10 @@
   background-clip: text;
   color: transparent;
 
-  text-shadow: 0 4px 20px rgba(37, 150, 190, 0.25);
+  text-shadow: 0 4px 20px rgba(190, 114, 37, 0.30);
 
   animation:
-    premiumGradientFlow 6s ease-in-out infinite,
+    premiumGradientFlow 10s ease-in-out infinite,
     floatText 5s ease-in-out infinite;
 }
 
@@ -180,5 +180,70 @@
     top: -50px;
     right: -40vw;
     width: 15vw;
+}
+
+._8rid .floating-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 120px;
+  pointer-events: none; /* so it doesn't block clicks */
+  z-index: 1;
+  opacity: 0.9;
+  will-change: transform;
+}
+
+._8rid .water-wave {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px; /* increased height = more “crust” */
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+._8rid .water-wave svg {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+}
+
+._8rid .water-wave .wave {
+  will-change: transform;
+}
+
+._8rid .water-wave .back {
+  fill: rgba(37, 150, 190, 0.08);
+  animation: waveFlowBack 28s linear infinite;
+}
+
+._8rid .water-wave .front {
+  fill: rgba(37, 150, 190, 0.18);
+  animation: waveFlowFront 16s linear infinite;
+}
+
+
+@keyframes waveFlowFront {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes waveFlowBack {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+._8rid .outfind-sore .debugged-deys {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  /* max-height: calc(100vh - 60px);
+  overflow: hidden; */
+} 
+
+._8rid .outfind-sore .debugged-deys img {
+  width: 50vw;
 }
 
