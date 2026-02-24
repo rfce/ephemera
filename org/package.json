@@ -43,6 +43,7 @@
     "react-router-dom": "6.29.0",
     "react-spinners": "^0.17.0",
     "timeago.js": "^4.0.2",
-    "twemoji-parser": "^14.0.0"
+    "twemoji-parser": "^14.0.0",
+    "ua-parser-js": "^2.0.9"
   }
 }

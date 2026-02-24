@@ -39,7 +39,7 @@ export default defineConfig(({ mode }) => ({
         './CreateMessage': './src/app/CreateMessage.tsx',
         './TrackMessage': './src/app/TrackMessage.tsx',
       },
-      shared: ['react', 'react-dom', 'react-router-dom', 'jotai', 'react-spinners', '@emoji-mart/react', '@emoji-mart/data', 'twemoji-parser'],
+      shared: ['react', 'react-dom', 'react-router-dom', 'jotai', 'react-spinners', '@emoji-mart/react', '@emoji-mart/data', 'twemoji-parser', 'ua-parser-js'],
     }),
   ].filter(Boolean),
   build: {

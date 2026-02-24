@@ -112,6 +112,8 @@
     width: 100%;
     border-radius: 0 0 6px 6px;
     opacity: 0;
+    overflow: hidden;
+    position: relative;
     background: linear-gradient(90deg,
             #ffd166,
             #ff6b6b,

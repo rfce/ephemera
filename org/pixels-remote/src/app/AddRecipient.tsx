@@ -1,22 +1,25 @@
 import "./css/App.css"
-import { RightArrow } from "../assets/Icons.jsx"
+import { RightArrow, HeartIcon } from "../assets/Icons.jsx"
 import { useAtom } from 'jotai';
 import { stepsAtom } from '@org/shared-state';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "../config/backend"
 import { useNavigate } from "react-router-dom";
+
+const EmailTick = new URL('../assets/Email Tick.webm', import.meta.url).href;
 
 const AddRecipient = () => {
   const [recipient, setRecipient] = useState("")
   const [toast, setToast] = useState("")
   const [autoComplete, setAutoComplete] = useState([])
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
 
   const [step, setStep] = useAtom(stepsAtom);
 
   const navigate = useNavigate()
 
-  console.log({ step })
+  const ref = useRef(null)
 
   const fetchRecipients = async () => {
     const { data, status } = await axios.post("/Message/fetch-recipient", { recipient })
@@ -61,6 +64,22 @@ const AddRecipient = () => {
 
     return () => clearTimeout(timeout)
   }, [toast])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // animate once, not like a clingy ex
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, [])
 
   return (
     <div className="_0giz">
@@ -124,6 +143,34 @@ const AddRecipient = () => {
             })}
           </div>
         </div>
+      </div>
+      <div ref={ref} className={`slide-in ${isVisible ? "visible" : ""}`}>
+        <div className="habanera-logo">
+          <video
+            src={EmailTick}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="tills-loos"
+          />
+          <div>
+            <h1>Track emails the simple way</h1>
+            <div className="vixen-atom">fast, private, and zero integrations</div>
+          </div>
+        </div>
+        <ul className="yoghs-loos">
+          <li>No OAuth or inbox access required</li>
+          <li>Instant setup, zero integrations</li>
+          <li>Lightweight & distraction-free</li>
+          <li>Privacy-first tracking approach</li>
+          <li>Built for speed, not enterprise overhead</li>
+        </ul>
+      </div>
+      <div className="azine-swat">
+        <div>Made with&nbsp;</div>
+        <HeartIcon /> 
+        <div>&nbsp;for better emails</div>
       </div>
     </div>
   )

@@ -139,3 +139,61 @@
     border-color: rgb(202, 234, 245);
 }
 
+._0giz .habanera-logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+    color: #a2ad7b;
+    font-weight: 600;
+    margin-top: -30px;
+}
+
+._0giz .habanera-logo video {
+    position: absolute;
+    top: 220px;
+    left: 500px;
+    width: 200px;
+}
+
+._0giz .yoghs-loos {
+    margin-left: 0px;
+    font-size: 20px;
+    line-height: 55px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+._0giz .yoghs-loos li {
+  padding-left: 20px;
+  color: #a2ad7b;
+  font-weight: 500;
+}
+
+._0giz .azine-swat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -100px;
+    left: -50vw;
+    color: rgb(88, 88, 88);
+    width: 100vw;
+}
+
+._0giz .vixen-atom {
+    margin-left: 20px;
+}
+
+._0giz .slide-in {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+._0giz .slide-in.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+

@@ -177,7 +177,7 @@ const CreateMessage = () => {
 
     setTimeout(() => {
       enableTracking()
-    }, 5000)
+    }, 2000)
   }
 
   const enableTracking = async () => {
@@ -282,7 +282,7 @@ const CreateMessage = () => {
                 onClick={handleConfirmSend}
                 disabled={sending}
               >
-                {sending ? "Enabling tracking..." : "Yes, I've sent it"}
+                Yes, I've sent it
                 <RightArrow className="nursing-nag" />
               </button>
             </div>

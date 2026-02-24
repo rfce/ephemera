@@ -157,6 +157,77 @@ const EmailPack = (props) => (
   </svg>
 )
 
+const HeartIcon = ({
+  size = 24,
+  fill = "#40E0D0",
+  className = "",
+  ...props
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...props}
+    >
+      <path
+        fill={fill}
+        d="M12 21.2c-.4 0-.8-.15-1.1-.45C8.5 18.9 2.8 14.1 2.8 9c0-3.1 2.4-5.2 5.2-5.2 2 0 3.7 1 4 2.4.3-1.4 2-2.4 4-2.4 2.8 0 5.2 2.1 5.2 5.2 0 5.1-5.7 9.9-8.1 11.75-.3.3-.7.45-1.1.45z"
+      />
+    </svg>
+  );
+};
+
+const PhoneIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlSpace="preserve"
+    width={800}
+    height={800}
+    viewBox="0 0 27.442 27.442"
+    {...props}
+  >
+    <path d="M19.494 0H7.948a1.997 1.997 0 0 0-1.997 1.999v23.446c0 1.102.892 1.997 1.997 1.997h11.546a1.998 1.998 0 0 0 1.997-1.997V1.999A1.999 1.999 0 0 0 19.494 0zm-8.622 1.214h5.7c.144 0 .261.215.261.481s-.117.482-.261.482h-5.7c-.145 0-.26-.216-.26-.482s.115-.481.26-.481zm2.85 24.255a1.275 1.275 0 1 1 0-2.55 1.275 1.275 0 0 1 0 2.55zm6.273-4.369H7.448V3.373h12.547V21.1z" />
+  </svg>
+)
+
+const DesktopIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={800}
+    height={800}
+    viewBox="-0.5 0 32 32"
+    {...props}
+  >
+    <title>{"desktop"}</title>
+    <path
+      fill={props.fill ? props.fill : "#000"}
+      fillRule="evenodd"
+      d="M27 0H4a4 4 0 0 0-4 4v14h31V4a4 4 0 0 0-4-4ZM0 22a4 4 0 0 0 4 4h23a4 4 0 0 0 4-4v-2H0v2Zm22 8h-2v-2h-8v2h-2a1 1 0 1 0 0 2h12a1 1 0 1 0 0-2Z"
+    />
+  </svg>
+)
+
+const TabletIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={800}
+    height={800}
+    fill="none"
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <path
+      fill={props.fill ? props.fill : "#000"}
+      fillRule="evenodd"
+      d="M3.172 18.828C4.343 20 6.229 20 10 20h4c3.771 0 5.657 0 6.828-1.172C22 17.657 22 15.771 22 12c0-3.771 0-5.657-1.172-6.828C19.657 4 17.771 4 14 4h-4C6.229 4 4.343 4 3.172 5.172 2 6.343 2 8.229 2 12c0 3.771 0 5.657 1.172 6.828ZM9 16.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5H9Z"
+      clipRule="evenodd"
+    />
+  </svg>
+)
+
 export {
   RightArrow,
   PlusIcon,
@@ -167,5 +238,9 @@ export {
   TickIcon,
   CloseIcon,
   ReadReciept,
-  EmailPack
+  EmailPack,
+  HeartIcon,
+  PhoneIcon,
+  DesktopIcon,
+  TabletIcon
 }

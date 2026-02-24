@@ -5,6 +5,63 @@
     min-height: 100vh;
 }
 
+._5nbv {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+._5nbv .addicts-jay {
+  width: 55px;
+  height: 55px;
+  margin: 5px;
+  margin-right: 20px;
+  color: rgb(190, 57, 133);
+  background-color: rgba(255, 162, 215, 0.221);
+  border: 3px solid rgb(190, 57, 133);
+  border-radius: 100px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+._5nbv .outfind-sore {
+  position: relative;
+}
+
+._5nbv .subsect-melt {
+  position: absolute;
+  top: 70px;
+  left: -220px;
+  width: 280px;
+  z-index: 3;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+._5nbv .republic-tab {
+  font-size: 16px;
+  padding: 12px 15px;
+  cursor: pointer;
+}
+
+._5nbv .republic-tab:hover {
+  background-color: rgba(255, 229, 244, 0.221);
+}
+
+._5nbv .republic-tab.active {
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(190, 57, 133);
+  background-color: rgba(255, 205, 233, 0.221);
+}
+
 ._8rid .trebly-oat {
     display: flex;
     align-items: center;

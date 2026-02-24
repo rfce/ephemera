@@ -329,16 +329,107 @@
 ._3ono .cordobas-ouzo {
     margin-left: 100px;
     position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+._3ono .cordobas-ouzo .athlete-tuna {
+    flex: 1;
+}
+
+._3ono .cordobas-ouzo .insects-cere {
+    margin-top: 100px;
+    margin-left: 50px;
+    font-size: 24px;
+    font-weight: 600;
+    color: rgb(54, 54, 54);
+}
+
+._3ono .swiveled-cry.no-top {
+    margin-top: 0px;
+}
+
+._3ono .canny-two {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+._3ono .canny-two .curst-vugs {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+._3ono .canny-two .curst-vugs svg {
+    width: 28px;
+    height: 28px;
+}
+
+._3ono .yuans-hex {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(37, 150, 190);
+}
+
+._3ono .helios-oafs {
+    color: whitesmoke;
+    background-color: #2596be;
+    border: 3px solid rgb(217, 243, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+._3ono .tempting-bray {
+    margin-top: 50px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    height: 58vh;
+    width: 30vw;
+    overflow-y: auto;
+}
+
+._3ono .canny-two img {
+    width: 400px;
+    margin-top: 50px;
+}
+
+._3ono .collect-ahoy {
+    display: flex;
+    flex-direction: column;
+    color: #a2ad7b;
+}
+
+._3ono .collect-ahoy h1 {
+    margin: 0px;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+._3ono .collect-ahoy h1:nth-of-type(2) {
+    font-size: 35px;
 }
 
 ._3ono .scenter-sic {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    z-index: 1;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px
+}
+
+._3ono .scenter-sic svg {
+    transform: translateY(3px);
 }
 
 ._3ono .cordobas-ouzo svg {
@@ -348,9 +439,9 @@
 
 ._3ono .vouchees-awes {
     margin-left: 0px;
+    margin-top: 100px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border: none;
-    background-color: white;
-    padding: 0px;
 }
 
 ._3ono .swiveled-cry.sifters-from {
