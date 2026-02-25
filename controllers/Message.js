@@ -176,7 +176,7 @@ const fetchMessages = async (req, res) => {
         })
     }
 
-    const messages = await Message.find({ author: author._id, recipient: __recipient._id }).sort("-createdAt")
+    const messages = await Message.find({ author: author._id, recipient: __recipient._id }).populate("tid").sort("-createdAt")
 
     const count = await Message.countDocuments({ author: author._id, recipient: __recipient._id })
 
