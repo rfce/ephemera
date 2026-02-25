@@ -7,39 +7,136 @@
 }
 
 ._7iic .tapered-earn {
+    position: relative;
     width: 200px;
     height: 200px;
-    border: 1px solid rgb(119, 204, 235);
-    border-radius: 10px;
+    border: 1px solid rgb(224, 247, 255);
+    border-radius: 20px;
     cursor: pointer;
-}
-
-._7iic .tapered-earn:hover {
-    box-shadow: none;
+    background-color: rgb(224, 247, 255);
 }
 
 ._7iic .tapered-earn:not(.cuter-item) {
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 10px;
     box-sizing: border-box;
-    height: 120px;
+    width: 340px;
+    height: 200px;
     border-width: 0px;
 }
 
-._7iic .switched-vee {
-    color: white;
-    background-color: rgb(84, 183, 219);
-    padding: 8px 15px;
-    border-radius: 20px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-weight: 600;
+._7iic .tapered-earn .snick-suq {
+    color: rgba(37, 150, 190);
+    margin-top: 60px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 35px;
+    margin-bottom: 10px;
 }
 
-._7iic .flamen-vow {
+._7iic .tapered-earn .harsh-lob {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(37, 150, 190);
+    background-color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
     margin-top: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    width: fit-content;
+    margin-left: 10px;
+    border: 3px solid rgba(131, 222, 255, 0.142);
+}
+
+._7iic .tapered-earn .harsh-lob.bg {
+    padding: 4px 15px;
+}
+
+._7iic .tapered-earn .harsh-lob:first-of-type {
+    margin-left: 35px;
+}
+
+._7iic .outsail-gyps {
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 2px;
+}
+
+._7iic .nonfoam-jury {
+    display: flex;
+}
+
+._7iic .switched-vee {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 30px;
+    background-color: rgb(224, 247, 255);
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+._7iic .switched-vee > div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(37, 150, 190);
+    width: 150px;
+    background-color: white;
+    border-radius: 18px;
+    font-size: 18px;
+    font-weight: 600;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-bottom: 20px;
+}
+
+._7iic .switched-vee .deluge-sum {
+    position: absolute;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+}
+
+._7iic .switched-vee .deluge-sum.right {
+    right: -20px;
+}
+
+._7iic .switched-vee .deluge-sum.left {
+    left: -20px;
+}
+
+._7iic .switched-vee > div:first-of-type::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: -20px;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(224, 247, 255);
+    border-top-right-radius: 18px;
+    z-index: 3;
+}
+
+._7iic .switched-vee > div:first-of-type::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: -20px;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(224, 247, 255);
+    border-top-left-radius: 18px;
 }
 
 ._7iic .cuter-item {
@@ -49,6 +146,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 ._7iic .haptic-pipe {

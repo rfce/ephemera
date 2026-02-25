@@ -4,10 +4,10 @@ import { useAtom } from 'jotai';
 import { composeAtom } from '@org/shared-state';
 import { useEffect, useMemo, useState } from "react";
 import axios from "../config/backend"
-import { PlusIcon, ChevronLeft, MailIcon } from "../assets/Icons.jsx"
+import { PlusIcon, ChevronLeft, MailIcon, ReadReciept, DraftsIcon, SendIcon, UnreadIcon } from "../assets/Icons.jsx"
 import { useLocation, useNavigate } from "react-router-dom";
 
-const ITEMS_PER_PAGE = 6
+const ITEMS_PER_PAGE = 4
 
 const truncate = (str = "", max = 50) => {
   if (str.length <= max) return str
@@ -76,7 +76,6 @@ const AliasPick = () => {
     fetchMessages()
   }, [])
 
-
   return (
     <div className="_7iic">
       <div className="mail-header" style={{ paddingBottom: "6px" }}>
@@ -116,14 +115,37 @@ const AliasPick = () => {
                 }
 
                 navigate(`/dashboard/track-boat/${message.eas}`, {
-                  state: { eas: message.eas, tid: message.tid },
+                  state: { eas: message.eas, tid: message.tid._id },
                 });
               }}
             >
-              <div className="switched-vee">{message.eas}</div>
-              <div>{truncate(message.text, 20)}</div>
-              <div className="flamen-vow">
-                <RightArrow width={40} height={40} fill="rgb(84, 183, 219)" />
+              <div className="switched-vee">
+                <div>
+                  <div>{message.eas}</div>
+                  <div className="deluge-sum left"></div>
+                  <div className="deluge-sum right"></div>
+                </div>
+              </div>
+              <div className="snick-suq">{truncate(message.text, 30)}</div>
+              <div style={{ width: "100%", display: "flex", alignItems: "center" }}>
+                {message.tid?.fire ? (
+                  <div className="nonfoam-jury">
+                    <div className="harsh-lob">
+                      <SendIcon width={25} height={25} fill="#89e694" />
+                      <div>Sent</div>
+                    </div>
+                  {message.tid?.unix.length ? <div className="harsh-lob">
+                    <ReadReciept width={25} height={25} fill="#89e694" /> 
+                    <div>Read</div>
+                  </div> : undefined}
+                  </div>
+                ) : undefined}
+                {message.tid?.fire ? undefined : (
+                  <div className="harsh-lob bg">
+                    <DraftsIcon width={23} height={23} fill="#c4c4c4" />
+                    <div className="outsail-gyps">Draft</div>
+                  </div>
+                )}
               </div>
             </div>
           ))}

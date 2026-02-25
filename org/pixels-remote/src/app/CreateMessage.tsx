@@ -163,8 +163,6 @@ const CreateMessage = () => {
   const hasPaste = async () => {
     const { data, status } = await axios.post("/Image/has-paste", { tid: String(tid) })
 
-    console.log({ data })
-
     if (data.success && data.paste) {
       setHasPasted(true)
     }
@@ -253,7 +251,9 @@ const CreateMessage = () => {
   useEffect(() => {
     const tex = localStorage.getItem("text")
 
-    tex && setText(tex)
+    if (tex && !text) {
+      setText(tex)
+    }
   }, [])
 
 

@@ -228,6 +228,54 @@ const TabletIcon = (props) => (
   </svg>
 )
 
+const DraftsIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={800}
+    height={800}
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <title>{"ic_fluent_drafts_24_regular"}</title>
+    <path
+      fill={props.fill ? props.fill : "#212121"}
+      fillRule="nonzero"
+      d="m20.877 2.825.153.145.145.153a3.579 3.579 0 0 1-.145 4.907L9.062 20a2.25 2.25 0 0 1-.999.58l-5.116 1.395a.75.75 0 0 1-.92-.921l1.395-5.116a2.25 2.25 0 0 1 .58-.999L15.97 2.97a3.579 3.579 0 0 1 4.907-.145ZM15 6.061l-9.938 9.938a.75.75 0 0 0-.193.333l-1.05 3.85 3.85-1.05A.75.75 0 0 0 8 18.937L17.94 9 15 6.06ZM6.525 11l-1.5 1.5H2.75a.75.75 0 1 1 0-1.5h3.775Zm4-4-1.5 1.5H2.75a.75.75 0 0 1 0-1.5h7.775Zm6.505-2.97-.97.97L19 7.94l.97-.97a2.078 2.078 0 1 0-2.94-2.94ZM14.525 3l-1.5 1.5H2.75a.75.75 0 0 1 0-1.5h11.775Z"
+    />
+  </svg>
+)
+
+const SendIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={800}
+    height={800}
+    className="icon"
+    viewBox="0 0 1024 1024"
+    {...props}
+  >
+    <path d="M931.4 498.9 94.9 79.5c-3.4-1.7-7.3-2.1-11-1.2-8.5 2.1-13.8 10.7-11.7 19.3l86.2 352.2c1.3 5.3 5.2 9.6 10.4 11.3l147.7 50.7-147.6 50.7c-5.2 1.8-9.1 6-10.3 11.3L72.2 926.5c-.9 3.7-.5 7.6 1.2 10.9 3.9 7.9 13.5 11.1 21.5 7.2l836.5-417c3.1-1.5 5.6-4.1 7.2-7.1 3.9-8 .7-17.6-7.2-21.6zM170.8 826.3l50.3-205.6 295.2-101.3c2.3-.8 4.2-2.6 5-5 1.4-4.2-.8-8.7-5-10.2L221.1 403 171 198.2l628 314.9-628.2 313.2z" />
+  </svg>
+)
+
+const UnreadIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={800}
+    height={800}
+    fill="none"
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <path
+      fill={props.fill ? props.fill : "#1C274C"}
+      fillRule="evenodd"
+      d="M1 5a3 3 0 0 1 3-3h4.558a3 3 0 0 1 2.847 2.051L11.72 5H20a2 2 0 0 1 2 2v2.01a2 2 0 0 1 1.77 2.348l-1.637 9A2 2 0 0 1 20.165 22H3a2 2 0 0 1-2-2V5Zm19 4V7h-8.28a2 2 0 0 1-1.897-1.368l-.316-.948A1 1 0 0 0 8.558 4H4a1 1 0 0 0-1 1v7.27l.354-1.682A2 2 0 0 1 5.311 9H20ZM3.366 20a.998.998 0 0 0 .113-.294L5.31 11h16.491l-1.637 9H3.366Z"
+      clipRule="evenodd"
+    />
+  </svg>
+)
+
 export {
   RightArrow,
   PlusIcon,
@@ -242,5 +290,8 @@ export {
   HeartIcon,
   PhoneIcon,
   DesktopIcon,
-  TabletIcon
+  TabletIcon,
+  DraftsIcon,
+  SendIcon,
+  UnreadIcon
 }
