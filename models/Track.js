@@ -3,6 +3,7 @@ const { Schema } = mongoose
 
 // paste - has the user pasted content into an e-mail client
 // fire - has the tracking started
+// firefox - when was tracking started
 const trackSchema = Schema(
     {
         paste: {
@@ -13,6 +14,7 @@ const trackSchema = Schema(
             type: Boolean,
             default: false
         },
+        firefox: Date,
         unix: {
             type: [{
                 ip: String,

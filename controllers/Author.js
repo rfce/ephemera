@@ -133,7 +133,10 @@ const enableTracking = async (req, res) => {
         })
     }
 
-    const updated = await Track.findOneAndUpdate({ _id: tid, paste: true }, { fire: true })
+    const updated = await Track.findOneAndUpdate({ _id: tid, paste: true }, { 
+        fire: true,
+        firefox: new Date() 
+    })
 
     if (updated === null) {
         return res.json({
