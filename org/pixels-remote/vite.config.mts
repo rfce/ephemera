@@ -39,7 +39,27 @@ export default defineConfig(({ mode }) => ({
         './CreateMessage': './src/app/CreateMessage.tsx',
         './TrackMessage': './src/app/TrackMessage.tsx',
       },
-      shared: ['react', 'react-dom', 'react-router-dom', 'jotai', 'react-spinners', '@emoji-mart/react', '@emoji-mart/data', 'twemoji-parser', 'ua-parser-js'],
+      shared: {
+        // Core: Must be singletons and eager for the app to boot and sync correctly
+        'react': { singleton: true, eager: true, requiredVersion: false },
+        'react-dom': { singleton: true, eager: true, requiredVersion: false },
+        'react-router-dom': { singleton: true, eager: true, requiredVersion: false },
+
+        // State: MUST be singleton and eager for Jotai atoms to communicate between remotes
+        'jotai': { singleton: true, eager: true, requiredVersion: false },
+        '@org/shared-state': {
+          singleton: true,
+          eager: true,
+          requiredVersion: false
+        },
+
+        // UI/Utilities: Singletons to save memory, but eager is usually not required
+        'react-spinners': { singleton: true },
+        '@emoji-mart/react': { singleton: true },
+        '@emoji-mart/data': { singleton: true },
+        'twemoji-parser': { singleton: true },
+        'ua-parser-js': { singleton: true }
+      }
     }),
   ].filter(Boolean),
   build: {

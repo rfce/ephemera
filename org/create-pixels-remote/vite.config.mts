@@ -38,7 +38,26 @@ export default defineConfig(({ mode }) => ({
         './Header': './src/app/Header.tsx',
         './Recommended': './src/app/Recommended.tsx',
       },
-      shared: ['react', 'react-dom', 'react-router-dom', 'jotai', 'react-spinners', '@emoji-mart/react', '@emoji-mart/data', 'twemoji-parser'],
+      shared: {
+        // Core dependencies should almost always be eager and singletons
+        'react': { singleton: true, eager: true, requiredVersion: false },
+        'react-dom': { singleton: true, eager: true, requiredVersion: false },
+        'react-router-dom': { singleton: true, eager: true, requiredVersion: false },
+
+        // State management MUST be eager to ensure atoms are ready when the UI mounts
+        'jotai': { singleton: true, eager: true, requiredVersion: false },
+        '@org/shared-state': {
+          singleton: true,
+          eager: true,
+          requiredVersion: false
+        },
+
+        // These can remain lazy (default) to keep the initial load light
+        'react-spinners': { singleton: true },
+        '@emoji-mart/react': { singleton: true },
+        '@emoji-mart/data': { singleton: true },
+        'twemoji-parser': { singleton: true }
+      }
     }),
   ].filter(Boolean),
   build: {

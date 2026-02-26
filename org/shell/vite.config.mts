@@ -30,7 +30,26 @@ export default defineConfig(({ mode }) => ({
         "upload": 'http://localhost:4203/assets/remoteEntry.js',
         "view": 'http://localhost:4204/assets/remoteEntry.js',
       },
-      shared: ['react', 'react-dom', 'react-router-dom', 'jotai', 'react-spinners', '@emoji-mart/react', '@emoji-mart/data', 'twemoji-parser'],
+      shared: {
+        // Core UI: Must be singletons and eager to avoid "Multiple React instances" errors
+        'react': { singleton: true, eager: true, requiredVersion: false },
+        'react-dom': { singleton: true, eager: true, requiredVersion: false },
+        'react-router-dom': { singleton: true, eager: true, requiredVersion: false },
+
+        // State: MUST be singleton and eager so atoms sync across the Host and Remotes
+        'jotai': { singleton: true, eager: true, requiredVersion: false },
+        '@org/shared-state': {
+          singleton: true,
+          eager: true,
+          requiredVersion: false
+        },
+
+        // Utilities: Singletons to save memory, but can load lazily (eager: false)
+        'react-spinners': { singleton: true },
+        '@emoji-mart/react': { singleton: true },
+        '@emoji-mart/data': { singleton: true },
+        'twemoji-parser': { singleton: true }
+      }
     }),
   ].filter(Boolean),
   build: {

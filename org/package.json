@@ -8,6 +8,14 @@
     "prod": "pnpm nx run shell:serve-prod"
   },
   "private": true,
+  "workspaces": [
+    "shared/state",
+    "shell",
+    "pixels-remote",
+    "create-pixels-remote",
+    "upload-remote",
+    "view-remote"
+  ],
   "devDependencies": {
     "@nx/js": "22.3.3",
     "@nx/react": "^22.3.3",
@@ -37,6 +45,7 @@
   "dependencies": {
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
+    "@org/shared-state": "workspace:*",
     "jotai": "^2.16.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
