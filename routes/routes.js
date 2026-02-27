@@ -22,5 +22,6 @@ router.post("/Message/fetch-recipient", Authentication, Message.fetchRecipients)
 router.post("/Message/fetch-messages", Authentication, Message.fetchMessages)
 router.post("/Message/create-message", Authentication, Message.createMessage)
 router.post("/Message/save-message", Authentication, Message.discardMessage)
+router.post("/Message/seen-opens", Authentication, Message.readNotification)
 
 module.exports = router

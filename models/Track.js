@@ -15,6 +15,10 @@ const trackSchema = Schema(
             default: false
         },
         firefox: Date,
+        receipt:{
+            type: Number,
+            default: 0
+        },
         unix: {
             type: [{
                 ip: String,

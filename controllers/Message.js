@@ -188,10 +188,54 @@ const fetchMessages = async (req, res) => {
     })
 }
 
+const readNotification = async (req, res) => {
+    const { tid } = req.body
+
+    if (typeof tid !== 'string' || tid.trim() === '') {
+        return res.json({
+            success: false,
+            message: "Tracking id is required"
+        })
+    }
+
+    const author = req.user
+
+    const message = await Message.findOne({ author: author._id, tid })
+
+    if (message === null) {
+        return res.json({
+            success: false,
+            message: "Please send a valid tracking id"
+        })
+    }
+
+    const track = await Track.findOneAndUpdate({ _id: tid, fire: true },
+        [{
+            $set: {
+                receipt: { $size: { $ifNull: ["$unix", []] } }
+            }
+        }],
+        { new: true }
+    )
+
+    if (track === null) {
+        return res.json({
+            success: false,
+            message: "Couldn't find a tracked message"
+        })
+    }
+
+    res.json({
+        success: true,
+        message: "Updated the receipt"
+    })
+}
+
 module.exports = {
     createRecipient,
     fetchRecipients,
     fetchMessages,
     createMessage,
-    discardMessage
+    discardMessage,
+    readNotification
 }
