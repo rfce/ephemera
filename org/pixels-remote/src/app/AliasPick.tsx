@@ -126,10 +126,14 @@ const AliasPick = () => {
               }}
             >
               {message.tid ? (message.tid.receipt < message.tid.unix.length) ? (
-                <div data-tooltip-id="my-tooltip-1" onMouseEnter={() => setNewOpens(message.tid.unix.length - message.tid.receipt)}>
-                  <BellIcon className="yoghourt-nix" />
+                <>
+                  <BellIcon 
+                    className="yoghourt-nix" 
+                    data-tooltip-id="my-tooltip-1" 
+                    onMouseEnter={() => setNewOpens(message.tid.unix.length - message.tid.receipt)}
+                  />
                   <div className="outbred-log">{message.tid.unix.length - message.tid.receipt}</div>
-                </div>
+                </>
               ) : undefined : undefined}
               <div className="switched-vee">
                 <div>
