@@ -152,8 +152,14 @@ const TrackMessage = () => {
     }
   }
 
+  const seenOpens = async () => {
+    const { data, status } = await axios.post("/Message/seen-opens", { tid: String(tid) })
+
+  }
+
   useEffect(() => {
     fetchTracking()
+    seenOpens()
   }, [])
 
   if (loading) {

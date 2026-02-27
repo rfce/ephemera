@@ -276,6 +276,70 @@ const UnreadIcon = (props) => (
   </svg>
 )
 
+const BellIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={800}
+    height={800}
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <style>
+      {`
+        .bell {
+          transform-origin: 12px 3px;
+          animation: ring 1s ease-in-out infinite;
+        }
+
+        @keyframes ring {
+          0%   { transform: rotate(0deg); }
+          15%  { transform: rotate(15deg); }
+          30%  { transform: rotate(-12deg); }
+          45%  { transform: rotate(10deg); }
+          60%  { transform: rotate(-6deg); }
+          75%  { transform: rotate(4deg); }
+          100% { transform: rotate(0deg); }
+        }
+
+        .wave-left {
+          transform-origin: 4px 10px;
+          animation: waveLeft 1s ease-in-out infinite;
+        }
+
+        .wave-right {
+          transform-origin: 20px 10px;
+          animation: waveRight 1s ease-in-out infinite;
+        }
+
+        @keyframes waveLeft {
+          0%   { opacity: 0.2; transform: scale(0.8); }
+          30%  { opacity: 1; transform: scale(1.1); }
+          60%  { opacity: 0.4; transform: scale(0.9); }
+          100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        @keyframes waveRight {
+          0%   { opacity: 0.2; transform: scale(0.8); }
+          30%  { opacity: 1; transform: scale(1.1); }
+          60%  { opacity: 0.4; transform: scale(0.9); }
+          100% { opacity: 0.2; transform: scale(0.8); }
+        }
+      `}
+    </style>
+    <path
+      className="wave-left"
+      d="m5.705 3.71-1.41-1.42C1 5.563 1 7.935 1 11h1l1-.063C3 8.009 3 6.396 5.705 3.71z"
+    />
+    <path
+      className="wave-right"
+      d="m19.704 2.29-1.408 1.42C21 6.396 21 8.009 21 11l2-.063c0-3.002 0-5.374-3.296-8.647z"
+    />
+    <g className="bell">
+      <path d="M12 22a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22zm7-7.414V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.184 4.073 5 6.783 5 10v4.586l-1.707 1.707A.996.996 0 0 0 3 17v1a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-1a.996.996 0 0 0-.293-.707L19 14.586z" />
+    </g>
+  </svg>
+)
+
 export {
   RightArrow,
   PlusIcon,
@@ -293,5 +357,6 @@ export {
   TabletIcon,
   DraftsIcon,
   SendIcon,
-  UnreadIcon
+  UnreadIcon,
+  BellIcon
 }
