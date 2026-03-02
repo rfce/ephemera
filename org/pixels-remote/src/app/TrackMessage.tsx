@@ -92,9 +92,13 @@ const renderLastSeen = (track = []) => {
 };
 
 const formatDate = (dateString) => {
+  if (!dateString) return "—"; // or "Not sent yet"
+
   const date = new Date(dateString);
 
-  // 1. Create the formatter
+  // Check invalid date
+  if (isNaN(date.getTime())) return "Invalid date";
+
   const formatter = new Intl.DateTimeFormat('en-GB', {
     day: '2-digit',
     month: 'short',
@@ -104,25 +108,24 @@ const formatDate = (dateString) => {
     hour12: true,
   });
 
-  // 2. Format the date
-  // This returns: "04 Feb 2026, 12:10 pm"
   const parts = formatter.formatToParts(date);
-  
-  // 3. Extract parts to match your specific dash/case requirements
-  const d = parts.find(p => p.type === 'day').value;
-  const m = parts.find(p => p.type === 'month').value;
-  const y = parts.find(p => p.type === 'year').value;
-  const hr = parts.find(p => p.type === 'hour').value;
-  const min = parts.find(p => p.type === 'minute').value;
-  const dayPeriod = parts.find(p => p.type === 'dayPeriod').value.toUpperCase();
 
-  return `${d}-${m}-${y} ${hr}:${min} ${dayPeriod}`;
+  const d = parts.find(p => p.type === 'day')?.value ?? "";
+  const m = parts.find(p => p.type === 'month')?.value ?? "";
+  const y = parts.find(p => p.type === 'year')?.value ?? "";
+  const hr = parts.find(p => p.type === 'hour')?.value ?? "";
+  const min = parts.find(p => p.type === 'minute')?.value ?? "";
+  const dayPeriod = (parts.find(p => p.type === 'dayPeriod')?.value ?? "").toUpperCase();
+
+  return `${d}-${m}-${y} ${hr}:${min} ${dayPeriod}`.trim();
 };
 
 
 const TrackMessage = () => {
   const [track, setTrack] = useState([])
   const [loading, setLoading] = useState(true)
+  const [freshRead, setFreshRead] = useState(0)
+  const [sentAt, setSentAt] = useState(undefined)
 
   const [text, setText] = useAtom(composeAtom)
 
@@ -146,6 +149,8 @@ const TrackMessage = () => {
     if (data.success) {
       setText(data.message.text)
       setTrack(data.track.unix)
+      setFreshRead(data.track.unix.length - data.track.receipt)
+      setSentAt(data.track.firefox)
     }
     else {
       navigate(`/dashboard/message/${eas}`, { state: { tid } })
@@ -159,8 +164,13 @@ const TrackMessage = () => {
 
   useEffect(() => {
     fetchTracking()
-    seenOpens()
   }, [])
+
+  useEffect(() => {
+    if (freshRead) {
+      seenOpens()
+    }
+  }, [freshRead])
 
   if (loading) {
     return (
@@ -171,9 +181,7 @@ const TrackMessage = () => {
   // <div className="eugenics-demy">
   //       <Table rows={track} />
   //     </div>
-  // <ReadReciept fill={track.length ? "rgb(96, 230, 89)" : "#c4c4c4"} />
-  //         {track.length ? <div>Seen</div> : <div>Not seen</div>}
-
+ 
   return (
     <div className="_3ono _6pzh">
       <div onClick={() => navigate("/dashboard/create-pixels", { state: { eas, tid } })} className="flamen-vow">
@@ -189,31 +197,43 @@ const TrackMessage = () => {
       </div>
       <div className="cordobas-ouzo">
         <div className="athlete-tuna">
-         <div className="sifters-from swiveled-cry"></div>
-          <div className="vouchees-awes">
-            <div className="sifters-from swiveled-cry no-top">Message Sent</div>
-            <div
-              ref={contentRef}
-              dangerouslySetInnerHTML={{
-                __html: textToTwemojiHtml(text, tid),
-              }}
-            />
-          </div>
-          <div className="sifters-from swiveled-cry">Status</div>
-          <div className="scenter-sic">
-            <ReadReciept fill={track.length ? "rgb(96, 230, 89)" : "#c4c4c4"} />
-            <div>{renderLastSeen(track)}</div>
-          </div>
-        </div>
+  <div className="premium-message-card">
+    {/* Header */}
+    <div className="pmc-header">
+      <div className="pmc-title">Message</div>
+
+      <div className={`pmc-status ${track.length ? "read" : "unread"}`}>
+        <ReadReciept fill={track.length ? "rgb(96, 230, 89)" : "#c4c4c4"} />
+        <span>{renderLastSeen(track)}</span>
+      </div>
+    </div>
+
+    {/* Message body */}
+    <div
+      ref={contentRef}
+      className="pmc-body"
+      dangerouslySetInnerHTML={{
+        __html: textToTwemojiHtml(text, tid),
+      }}
+    />
+
+    {/* Footer */}
+    <div className="pmc-footer">
+      <span className="pmc-time-label">Sent</span>
+      <span className="pmc-time-value">{formatDate(sentAt)}</span>
+    </div>
+  </div>
+</div>
         <div className="athlete-tuna">
           {track.length ? <div className="insects-cere">History</div> : undefined}
           <div className={track.length ? "tempting-bray" : "laciest-deep"}>
-            {track.length ? track.map((data) => {
+            {track.length ? track.map((data, index) => {
               const parser = new UAParser(data.ua)
 
               const result = parser.getResult()
                 return (
-                  <div className="canny-two">
+                  <div className={freshRead && (freshRead > index) ? "canny-two highlight" : "canny-two"}>
+                    <div className="housefly-fire">New</div>
                     <div className="curst-vugs">
                       {result.device.type === undefined ? <DesktopIcon fill="rgb(95, 175, 222)" /> : (result.device.type === "mobile" ? <PhoneIcon fill="rgb(95, 175, 222)" /> : <TabletIcon fill="rgb(95, 175, 222)" />)}
                     </div>
