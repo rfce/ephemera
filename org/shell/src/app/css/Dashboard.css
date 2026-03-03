@@ -14,3 +14,15 @@
 ._2tow .groaning-zing {
     display: flex;
 }
+
+@media (max-width: 900px) {
+  ._2tow .groaning-zing {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  ._2tow .groaning-zing > div {
+    width: 100%;
+  }
+}

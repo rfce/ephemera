@@ -1402,7 +1402,7 @@
   }
 
   ._6pzh .pater-hear {
-    padding: 20px 40px;
+    padding: 0px;
   }
 
   ._6pzh .swiveled-cry {
@@ -1453,10 +1453,6 @@
     padding: 0px 20px;
     font-size: 18px;
     margin-top: 30px;
-  }
-
-  ._6pzh .pater-hear {
-    padding: 20px;
   }
 
   ._6pzh .swoop-bit textarea {
@@ -1636,6 +1632,104 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* ---------------- MOBILE LAYOUT FIX ---------------- */
+@media (max-width: 900px) {
+  /* Make root vertical */
+  ._6pzh {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Stack compose + preview */
+  ._6pzh .cordobas-ouzo {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+  }
+
+  /* Remove fixed height */
+  ._6pzh .cordobas-ouzo > div:first-of-type {
+    height: auto;
+  }
+
+  /* Make sections full width */
+  ._6pzh .cordobas-ouzo > div {
+    width: 100%;
+  }
+
+  /* Remove preview left margin */
+  ._6pzh .vouchees-awes {
+    margin-left: 0;
+    width: unset;
+    max-width: 100%;
+    height: auto;
+    min-height: 140px;
+  }
+
+  /* Textarea full width */
+  ._6pzh .swoop-bit {
+    width: 100%;
+  }
+
+  ._6pzh .swoop-bit textarea {
+    width: 100%;
+  }
+
+  /* Align status steps */
+  ._6pzh .gonapod-box {
+    margin-left: 0;
+  }
+
+  /* Fix paddings from desktop offsets */
+  ._6pzh .flamen-vow,
+  ._6pzh .gaped-hex,
+  ._6pzh .swiveled-cry {
+    padding: 0 20px;
+    margin-left: 0;
+  }
+
+  ._6pzh .gaped-hex {
+    margin: 20px 20px 0 20px;
+  }
+
+  /* Button full width */
+  ._6pzh .cardia-ess {
+    margin: 40px 0 0 0;
+    padding: 0 20px;
+  }
+
+  ._6pzh .cardia-ess button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Recommended section below */
+  .recommended-section {
+    order: 99;
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 20px;
+  }
+}
+
+/* Smaller phones */
+@media (max-width: 600px) {
+
+  ._6pzh .cordobas-ouzo {
+    gap: 25px;
+  }
+
+  ._6pzh .preview-content {
+    font-size: 14px;
+  }
+
+  ._6pzh .gonapod-box {
+    font-size: 14px;
+    gap: 12px;
+  }
+
 }
 
 

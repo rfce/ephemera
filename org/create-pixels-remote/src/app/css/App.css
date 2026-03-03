@@ -304,3 +304,61 @@
   width: 50vw;
 }
 
+/* ---------------- RESPONSIVE FIX ---------------- */
+@media (max-width: 900px) {
+
+  /* Root container */
+  ._8rid {
+    min-height: auto;
+    width: 100%;
+  }
+
+  /* Main wrapper full width */
+  ._8rid .mettle-bang {
+    margin-left: 0;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  /* Heading spacing adjust */
+  ._8rid .franc-fink {
+    margin-top: 30px;
+  }
+
+  /* Category pills wrap nicely */
+  ._8rid .category-bar {
+    gap: 10px;
+  }
+
+  /* Grid full width */
+  ._8rid .messages-grid {
+    max-width: 100%;
+  }
+
+  /* Remove floating decorative overflow */
+  ._8rid .outfind-sore .degut-jug,
+  ._8rid .outfind-sore video,
+  ._8rid .outfind-sore .debugged-deys {
+    display: none;
+  }
+
+  /* Reduce wave height */
+  ._8rid .water-wave {
+    height: 120px;
+  }
+}
+
+/* Smaller phones */
+@media (max-width: 600px) {
+
+  ._8rid .message-card {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  ._8rid .cat-pill {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+}
