@@ -1301,8 +1301,12 @@
 
 
 ._6pzh .shyer-fell.disabled {
-  opacity: 0.45;
+  color: rgba(0, 0, 0, 0.2);
   cursor: not-allowed;
+}
+
+._6pzh .shyer-fell.disabled svg {
+  fill: rgba(0, 0, 0, 0.2);
 }
 
 

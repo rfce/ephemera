@@ -186,12 +186,8 @@ const CreateMessage = () => {
     }
   }
 
-  const discardMessage = async () => {
-    setText("")
-    navigate(`/dashboard/create-pixels`, { state: { eas, tid } })
-  }
-
-  const saveMessage = async () => {
+  const saveMessage = async (wait = false) => {
+    if (wait) setLoading(true) 
     try {
       await axios.post("/Message/save-message", {
         eas,
@@ -201,6 +197,16 @@ const CreateMessage = () => {
     } catch (err) {
       console.error("Auto-save failed", err)
     }
+
+    setLoading(false)
+  }
+
+  const discardMessage = async () => {
+    if (!text) {
+      await saveMessage(true)
+    }
+    setText("")
+    navigate(`/dashboard/create-pixels`, { state: { eas, tid } })
   }
 
   useEffect(() => {
@@ -218,11 +224,19 @@ const CreateMessage = () => {
   }, [copied])
 
   useEffect(() => {
+    if (!text) return
+
     // Save or discard message
     const handler = setTimeout(() => {
       saveMessage()
     }, 1000)
 
+     return () => {
+      clearTimeout(handler)
+    }
+  }, [text])
+
+  useEffect(() => {
     setHasCopied(false)
 
     const valid = hasNativeEmoji(text)
@@ -234,10 +248,6 @@ const CreateMessage = () => {
     }
 
     setHasEmoji(false)
-
-    return () => {
-      clearTimeout(handler)
-    }
   }, [text])
 
   useEffect(() => {
