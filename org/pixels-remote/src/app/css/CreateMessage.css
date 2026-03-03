@@ -24,11 +24,11 @@
 
 ._6pzh .swoop-bit textarea {
     width: 400px;
-    height: 150px;
+    height: 158px;
     resize: none;
     font-size: 18px;
     border: 1px solid rgb(119, 204, 235);
-    border-radius: 10px;
+    border-radius: 18px;
     padding: 20px;
     font-family: "Roboto", sans-serif;
 }
@@ -1712,6 +1712,15 @@
     margin-top: 30px;
     padding: 0 20px;
   }
+
+  ._3ono .cordobas-ouzo {
+    margin-left: 0px;
+  }
+
+  ._3ono .tempting-bray {
+    margin-left: 0px;
+    width: 100vw;
+  }
 }
 
 /* Smaller phones */
@@ -1731,5 +1740,7 @@
   }
 
 }
+
+
 
 
