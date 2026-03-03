@@ -340,6 +340,42 @@ const BellIcon = (props) => (
   </svg>
 )
 
+const DeleteIcon = ({ fill = "#ff4d4f", size = 16, ...props }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    {...props}
+  >
+    <style>
+      {`
+        .bin {
+          transform-origin: center;
+          transition: transform 0.25s ease;
+        }
+
+        .lid {
+          transform-origin: center bottom;
+          transition: transform 0.25s ease;
+        }
+      `}
+    </style>
+
+    <path
+      className="bin"
+      d="M3 6v8c0 .554.446 1 1 1h8c.554 0 1-.446 1-1V6z"
+      fill={fill}
+    />
+
+    <path
+      className="lid"
+      d="M5 1v2H2v2h12V3h-3V1zm1 1h4v1H6z"
+      fill={fill}
+    />
+  </svg>
+)
+
 export {
   RightArrow,
   PlusIcon,
@@ -358,5 +394,6 @@ export {
   DraftsIcon,
   SendIcon,
   UnreadIcon,
-  BellIcon
+  BellIcon,
+  DeleteIcon
 }

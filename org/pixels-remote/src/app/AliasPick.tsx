@@ -4,7 +4,7 @@ import { useAtom } from 'jotai';
 import { composeAtom } from '@org/shared-state';
 import { useEffect, useMemo, useState } from "react";
 import axios from "../config/backend"
-import { PlusIcon, ChevronLeft, MailIcon, ReadReciept, DraftsIcon, SendIcon, BellIcon } from "../assets/Icons.jsx"
+import { PlusIcon, ChevronLeft, MailIcon, ReadReciept, DraftsIcon, SendIcon, BellIcon, DeleteIcon } from "../assets/Icons.jsx"
 import { useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from 'react-tooltip'
 

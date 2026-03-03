@@ -298,9 +298,9 @@ const CreateMessage = () => {
         <RightArrow className="shuns-ropy" fill="rgb(84, 183, 219)" />
         <div>New E-mail</div>
       </div>
-      <div className="gaped-hex">
-        <div>Nickname</div>
-        <div className="openings-luge">{eas}</div>
+      <div className="gaped-hex premium-nickname">
+        <div className="nickname-label">Nickname</div>
+        <div className="openings-luge nickname-value">{eas}</div>
       </div>
       <div className="cordobas-ouzo">
         <div>
@@ -347,16 +347,25 @@ const CreateMessage = () => {
         <div>
           <>
             <div className="sifters-from swiveled-cry">Preview</div>
-            <div className="vouchees-awes">
+
+            <div className="vouchees-awes premium-preview">
               <div
+                className="preview-content"
                 ref={contentRef}
                 dangerouslySetInnerHTML={{
                   __html: textToTwemojiHtml(text, tid),
                 }}
               />
-              <button className={hasEmoji ? "shyer-fell" : "shyer-fell disabled"} disabled={!hasEmoji} onClick={handleCopy}>
-                {copied ? <TickIcon width={21} height={21} /> : <CopyIcon width={21} height={21} />}
-                <div>{copied ? "copied" : "copy"}</div>
+
+              <button
+                className={hasEmoji ? "shyer-fell" : "shyer-fell disabled"}
+                disabled={!hasEmoji}
+                onClick={handleCopy}
+              >
+                <span className="copy-inner">
+                  {copied ? <TickIcon width={21} height={21} /> : <CopyIcon width={21} height={21} />}
+                  <span className="copy-text">{copied ? "Copied" : "Copy"}</span>
+                </span>
               </button>
             </div>
           </>
