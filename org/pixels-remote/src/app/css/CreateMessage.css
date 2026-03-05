@@ -212,8 +212,9 @@
 }
 
 ._6pzh .shyer-fell.disabled {
-    filter: grayscale(100%);
     cursor: not-allowed;
+    border-left-color: rgb(119, 204, 235);
+    border-bottom-color: rgb(119, 204, 235);
 }
 
 ._6pzh .cardia-ess {
