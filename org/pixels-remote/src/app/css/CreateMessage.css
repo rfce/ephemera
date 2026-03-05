@@ -152,8 +152,8 @@
     border: 1px solid rgb(119, 204, 235);
     border-top: 1px solid white;
     border-right: 1px solid white;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 14px;
     background-color: white;
     display: flex;
     align-items: center;
@@ -161,7 +161,7 @@
     font-size: 14px;
     font-weight: 500;
     color: rgba(37, 150, 190);
-    padding: 5px 8px;
+    padding: 8px 16px 11px 11px;
     cursor: pointer;
 }
 
@@ -1273,6 +1273,51 @@
   transition: color 0.2s ease;
 }
 
+._6pzh .shyer-fell::before {
+  content: "";
+  position: absolute;
+  top: -1px; 
+  left: -15px;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+}
+
+._6pzh .shyer-fell::after {
+  content: "";
+  position: absolute;
+  bottom: -15px; 
+  right: -1px;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+}
+
+._6pzh .shyer-fell .coelom-resh {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+}
+
+._6pzh .shyer-fell .coelom-resh.left {
+  top: -1px; 
+  left: -21px;
+  border-top: 1px solid rgb(119, 204, 235);
+  border-right: 1px solid rgb(119, 204, 235);
+  border-top-right-radius: 12px;
+}
+
+._6pzh .shyer-fell .coelom-resh.right {
+  bottom: -21px; 
+  right: -1px;
+  width: 20px;
+  height: 20px;
+  border-top: 1px solid rgb(119, 204, 235);
+  border-right: 1px solid rgb(119, 204, 235);
+  border-top-right-radius: 12px;
+  z-index: 2;
+}
 
 ._6pzh .copy-inner {
   display: inline-flex;

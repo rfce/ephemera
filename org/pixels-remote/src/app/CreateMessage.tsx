@@ -385,6 +385,8 @@ const CreateMessage = () => {
                 disabled={!hasEmoji}
                 onClick={handleCopy}
               >
+                <div className="coelom-resh left"></div>
+                <div className="coelom-resh right"></div>
                 <span className="copy-inner">
                   {copied ? <TickIcon width={21} height={21} /> : <CopyIcon width={21} height={21} />}
                   <span className="copy-text">{copied ? "Copied" : "Copy"}</span>
