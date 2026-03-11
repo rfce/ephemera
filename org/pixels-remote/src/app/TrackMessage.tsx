@@ -53,7 +53,7 @@ function textToTwemojiHtml(
 
     // emoji image
     html += `<img
-      src="https://ephemera-wglj.onrender.com/api/Image/${unified}.png"
+      src="https://backend.trackpixels.online/api/Image/${unified}.png"
       alt="${emoji.text}"
       width="25"
       height="25"

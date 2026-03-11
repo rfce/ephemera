@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react"
 import "./css/App.css"
+import { useState, useEffect, useRef } from "react"
+import { useNavigate } from "react-router-dom"
 
 // Create the URL dynamically based on where *this* module lives
 // This ensures it always points to localhost:4201 (or production remote)
@@ -53,6 +54,8 @@ const Dashboard = () => {
   const [name, setName] = useState("")
   const [words, setWords] = useState("")
 
+  const navigate = useNavigate()
+
   return (
     <div className="_8rid">
       <div className="trebly-oat">
@@ -60,6 +63,10 @@ const Dashboard = () => {
         <div>
           <div>Track Pixels</div>
           <div className="tabarded-tux">Send Magic • Track Everything</div>
+        </div>
+        <div className="panter-voes">
+          <div onClick={() => navigate("/sign-in")}>Login</div>
+          <div onClick={() => navigate("/sign-up")}>Sign Up</div>
         </div>
       </div>
       <div className="outfind-sore">

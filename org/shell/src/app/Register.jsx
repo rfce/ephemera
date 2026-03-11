@@ -40,7 +40,7 @@ const Register = () => {
     return (
         <div className="_3bqk">
             <div className="_0giz">
-                <div className="trebly-oat">
+                <div onClick={() => navigate("/")} className="trebly-oat">
                     <img className="steep-hiss" src={Logo} alt="Logo" />
                     <div>
                         <div>Track Pixels</div>
