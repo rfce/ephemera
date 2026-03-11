@@ -76,7 +76,7 @@ const Register = () => {
                     {error && <div style={{ color: "red" }}>{error}</div>}
                     <button onClick={() => register()}>Proceed</button>
                     Already have an account?&nbsp;
-                    <Link to="/">Login</Link>
+                    <Link to="/sign-in">Login</Link>
                     <br />
                 </div>
             </div>

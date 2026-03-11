@@ -9,6 +9,7 @@ import PublicRoute from './PublicRoute.jsx'
 import Pixels from './Pixels.jsx'
 import NewMessage from './NewMessage.jsx'
 import Track from './Track.jsx'
+import LandingPage from './LandingPage.jsx'
 
 export function App() {
   return (
@@ -16,7 +17,8 @@ export function App() {
       <div>
         <Routes>
           <Route element={<PublicRoute />}>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/sign-in" element={<Login />} />
             <Route path="/sign-up" element={<Register />} />
           </Route>
           <Route element={<ProtectedRoute />}>

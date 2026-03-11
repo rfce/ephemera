@@ -37,6 +37,7 @@ export default defineConfig(({ mode }) => ({
         './CreatePixelsApp': './src/app/CreatePixelsApp.tsx',
         './Header': './src/app/Header.tsx',
         './Recommended': './src/app/Recommended.tsx',
+        './Dashboard': './src/app/Dashboard.tsx',
       },
       shared: {
         // Core dependencies should almost always be eager and singletons

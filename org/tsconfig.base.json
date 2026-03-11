@@ -17,6 +17,7 @@
     "paths": {
       "shell/state": ["shell/src/atoms/index.js"],
       "pixels/PixelsApp": ["pixels-remote/src/app/AddRecipient.tsx"],
+      "pixels/Landing": ["pixels-remote/src/app/Landing.tsx"],
       "pixels/AliasPick": ["pixels-remote/src/app/AliasPick.tsx"],
       "pixels/CreateMessage": ["pixels-remote/src/app/CreateMessage.tsx"],
       "pixels/TrackMessage": ["pixels-remote/src/app/TrackMessage.tsx"],
@@ -28,6 +29,9 @@
       ],
       "create-pixels/Recommended": [
         "create-pixels-remote/src/app/Recommended.tsx"
+      ],
+      "create-pixels/Dashboard": [
+        "create-pixels-remote/src/app/Dashboard.tsx"
       ],
       "upload/UploadApp": ["upload-remote/src/app/index.ts"],
       "view/ViewApp": ["view-remote/src/app/index.ts"],
