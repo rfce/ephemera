@@ -7,6 +7,7 @@ import axios from "../config/backend"
 import { useNavigate } from "react-router-dom";
 
 const EmailTick = new URL('../assets/Email Tick.webm', import.meta.url).href;
+const DemoVideo = new URL('../assets/Demo -video.mp4', import.meta.url).href;
 
 const Landing = () => {
   const [recipient, setRecipient] = useState("")
@@ -14,6 +15,7 @@ const Landing = () => {
   const [autoComplete, setAutoComplete] = useState([])
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
+  const [videoVisible, setVideoVisible] = useState(true)
 
   const [step, setStep] = useAtom(stepsAtom);
 
@@ -81,45 +83,48 @@ const Landing = () => {
     return () => observer.disconnect();
   }, [])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      const offset = Math.min(scrollY * 0.15, 120) // limit movement
+
+      if (document.documentElement) {
+        document.documentElement.style.setProperty(
+          "--video-offset",
+          `${offset}px`
+        )
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <div className="_0giz">
       <div className="tumble-duos">
-        <div
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (!autoComplete.length) return
+        <div className="tzetzes-rhos">
+          <div
 
-            if (e.key === "ArrowRight") {
-              e.preventDefault()
-              setSelectedIndex((prev) => (prev + 1) % autoComplete.length)
-            }
-
-            if (e.key === "ArrowLeft") {
-              e.preventDefault()
-              setSelectedIndex((prev) =>
-                prev === 0 ? autoComplete.length - 1 : prev - 1
-              )
-            }
-
-            if (e.key === "Tab") {
-              e.preventDefault()
-              setRecipient(autoComplete[selectedIndex].address)
-            }
-
-            if (e.key === "Enter") {
-              e.preventDefault()
-              createRecipient()
-            }
-          }}
-
-          className="tzetzes-rhos"
-        >
-
-         
-          <div onClick={() => createRecipient()} className="besot-exit">
-            Continue to compose email <RightArrow width="24px" height="24px" fill="white" />
+            className={`video-container ${videoVisible ? "video-visible" : ""}`}
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline // Extremely important for Safari/iOS autoplay
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block'
+              }}
+            >
+              <source src={DemoVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
-         
+
         </div>
       </div>
       <div ref={ref} className={`slide-in ${isVisible ? "visible" : ""}`}>
@@ -147,7 +152,7 @@ const Landing = () => {
       </div>
       <div className="azine-swat">
         <div>Made with&nbsp;</div>
-        <HeartIcon /> 
+        <HeartIcon />
         <div>&nbsp;for better emails</div>
       </div>
     </div>

@@ -74,21 +74,9 @@ const Dashboard = () => {
           <img src={Background} alt="" />
         </div>
         <div className="degut-jug">Emails that tell you when they’re opened.</div>
-        <FloatingVideo src={Animation} />
       </div>
       <div className="water-wave">
-        <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
-          <defs>
-            <path
-              id="wavePath"
-              d="M0,100 C200,160 400,40 720,100 C1040,160 1240,40 1440,100 L1440,200 L0,200 Z"
-            />
-          </defs>
-          <use href="#wavePath" className="wave back" x="0" />
-          <use href="#wavePath" className="wave back" x="1440" />
-          <use href="#wavePath" className="wave front" x="0" />
-          <use href="#wavePath" className="wave front" x="1440" />
-        </svg>
+      
       </div>
 
     </div>
