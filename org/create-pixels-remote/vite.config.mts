@@ -57,7 +57,8 @@ export default defineConfig(({ mode }) => ({
         'react-spinners': { singleton: true },
         '@emoji-mart/react': { singleton: true },
         '@emoji-mart/data': { singleton: true },
-        'twemoji-parser': { singleton: true }
+        'twemoji-parser': { singleton: true },
+        'react-stacked-center-carousel': { singleton: true }
       }
     }),
   ].filter(Boolean),

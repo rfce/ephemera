@@ -51,6 +51,7 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "6.29.0",
     "react-spinners": "^0.17.0",
+    "react-stacked-center-carousel": "^1.0.14",
     "react-tooltip": "^5.30.0",
     "timeago.js": "^4.0.2",
     "twemoji-parser": "^14.0.0",

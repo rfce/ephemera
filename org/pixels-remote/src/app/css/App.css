@@ -217,7 +217,7 @@
     margin-top: 150px;
 }
 
-._0giz .habanera-logo video {
+._0giz .habanera-logo img {
     position: absolute;
     top: 220px;
     left: 500px;
@@ -233,9 +233,20 @@
 }
 
 ._0giz .yoghs-loos li {
+    color: #e07d6c;
   padding-left: 20px;
-  color: #e07d6c;
   font-weight: 500;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+._0giz .yoghs-loos li svg {
+    width: 30px;
+    height: 30px;
+    fill: #ff9e8dde;
 }
 
 ._0giz .azine-swat {
@@ -263,3 +274,15 @@
   opacity: 1;
   transform: translateX(0);
 }
+
+._2sww .azine-swat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -800px;
+    left: -50vw;
+    color: rgb(88, 88, 88);
+    width: 100vw;
+}
+
