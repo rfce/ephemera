@@ -76,6 +76,7 @@ const Dashboard = () => {
                 </div>
                 <div className="partners-divider" />
                 <div className="partners-active">
+                  <span className="platform-dot"></span>
                   {data[activeIndex]?.name}
                 </div>
               </div>

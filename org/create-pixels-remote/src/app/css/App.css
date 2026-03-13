@@ -505,8 +505,7 @@
 	align-items: center;
 
 	padding: 60px 80px;
-	margin-bottom: 70px;
-
+	margin-bottom: 100px;
 	max-width: 760px;
 
 	border-radius: 28px;
@@ -526,25 +525,28 @@
 	backdrop-filter: blur(10px);
 
 	text-align: center;
-
 	gap: 24px;
+
+	animation: aquaCardGlow 5s ease-in-out infinite;
 }
 
-.partners-label {
+/* ---------- SMALL LABEL ---------- */
+
+._8rid .partners-label {
 
 	font-size: 12px;
 	font-weight: 700;
-
 	letter-spacing: 1.6px;
 
 	color: rgba(64,224,208,0.8);
 
 	text-transform: uppercase;
-
 	margin-bottom: 12px;
 }
 
-.partners-heading h2 {
+/* ---------- HEADING ---------- */
+
+._8rid .partners-heading h2 {
 
 	font-size: 36px;
 	font-weight: 650;
@@ -555,19 +557,13 @@
 
 	max-width: 520px;
 	margin-bottom: 14px;
+
+	letter-spacing: 0.3px;
 }
 
-.accent-text {
-
-	color: #dd7d6c;
-
-	text-shadow: 0 4px 18px rgba(221,125,108,0.35);
-}
-
-.partners-heading p {
+._8rid .partners-heading p {
 
 	font-size: 16px;
-
 	color: #2a6662;
 
 	line-height: 1.7;
@@ -577,7 +573,19 @@
 	opacity: 0.9;
 }
 
-.partners-divider {
+/* ---------- ACCENT TEXT ---------- */
+
+._8rid .accent-text {
+
+	color: #dd7d6c;
+
+	text-shadow:
+		0 4px 18px rgba(221,125,108,0.35);
+}
+
+/* ---------- DIVIDER ---------- */
+
+._8rid .partners-divider {
 
 	width: 120px;
 	height: 1px;
@@ -592,79 +600,84 @@
 	margin: 10px 0;
 }
 
-/* ---------- HEADING ---------- */
-
-._8rid .partners-heading h2 {
-	font-size: 34px;
-	font-weight: 600;
-	margin-bottom: 12px;
-	color: #083c3a;
-	letter-spacing: 0.3px;
-}
-
-._8rid .partners-heading p {
-	font-size: 16px;
-	color: #2a6662;
-	max-width: 520px;
-	line-height: 1.6;
-	margin-bottom: 30px;
-}
-
-/* ---------- ACTIVE PLATFORM PILL ---------- */
+/* ---------- ACTIVE PLATFORM BADGE ---------- */
 
 ._8rid .partners-active {
+
 	display: inline-flex;
 	align-items: center;
-	justify-content: center;
+	gap: 10px;
 
 	margin: 25px 0 40px;
-	padding: 10px 22px;
+	padding: 12px 26px;
 
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 600;
 	letter-spacing: 0.4px;
 
-	color: #0a4f4b;
+	color: #083c3a;
 
-	border-radius: 999px;
+	border-radius: 40px;
 
 	background: linear-gradient(
 		135deg,
 		rgba(64,224,208,0.25),
-		rgba(64,224,208,0.10)
+		rgba(64,224,208,0.08)
 	);
 
 	border: 1px solid rgba(64,224,208,0.35);
 
 	box-shadow:
-		0 6px 20px rgba(64,224,208,0.25),
-		0 0 25px rgba(64,224,208,0.15);
+		0 10px 30px rgba(64,224,208,0.25),
+		inset 0 1px 0 rgba(255,255,255,0.6);
 
-	backdrop-filter: blur(6px);
+	backdrop-filter: blur(8px);
 
-	animation: aquaGlow 3.5s ease-in-out infinite;
 	transition: all 0.35s ease;
+
+	animation: badgeFloat 4s ease-in-out infinite;
 }
 
 ._8rid .partners-active:hover {
+
 	transform: translateY(-2px);
+
 	box-shadow:
-		0 10px 28px rgba(64,224,208,0.35),
-		0 0 40px rgba(64,224,208,0.25);
+		0 16px 40px rgba(64,224,208,0.35),
+		inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+/* ---------- PLATFORM DOT ---------- */
+
+._8rid .platform-dot {
+
+	width: 10px;
+	height: 10px;
+
+	border-radius: 50%;
+
+	background: #40E0D0;
+
+	box-shadow:
+		0 0 8px rgba(64,224,208,0.7),
+		0 0 16px rgba(64,224,208,0.4);
 }
 
 /* ---------- CAROUSEL ---------- */
 
-.react-stacked-center-carousel {
+._8rid .react-stacked-center-carousel {
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
 	transform: translateX(70px);
 }
 
 /* ---------- LOGO WRAPPER ---------- */
 
-.partner-logo-wrapper {
+._8rid .partner-logo-wrapper {
+
 	width: 140px;
 	height: 120px;
 
@@ -677,9 +690,11 @@
 
 /* ---------- LOGO ---------- */
 
-.partner-logo {
+._8rid .partner-logo {
+
 	width: 80px;
 	height: 80px;
+
 	object-fit: contain;
 
 	filter: grayscale(1);
@@ -693,28 +708,54 @@
 
 /* ---------- ACTIVE LOGO ---------- */
 
-.partner-logo-wrapper.active .partner-logo {
+._8rid .partner-logo-wrapper.active .partner-logo {
+
 	filter: grayscale(0);
 	opacity: 1;
+
 	transform: scale(1.12);
 }
 
 /* ---------- HOVER EFFECT ---------- */
 
-.partner-logo-wrapper:hover .partner-logo {
+._8rid .partner-logo-wrapper:hover .partner-logo {
+
 	filter: grayscale(0);
 	opacity: 0.9;
+
 	transform: scale(1.05);
+}
+
+/* ---------- PERFORMANCE ---------- */
+
+._8rid .partner-logo,
+._8rid .partner-logo-wrapper,
+._8rid .partners-active {
+
+	will-change: transform;
 }
 
 /* ---------- ANIMATIONS ---------- */
 
+@keyframes badgeFloat {
+
+	0%,100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-3px);
+	}
+}
+
 @keyframes aquaGlow {
+
 	0%,100% {
 		box-shadow:
 			0 6px 20px rgba(64,224,208,0.25),
 			0 0 25px rgba(64,224,208,0.15);
 	}
+
 	50% {
 		box-shadow:
 			0 10px 28px rgba(64,224,208,0.35),
@@ -723,20 +764,16 @@
 }
 
 @keyframes aquaCardGlow {
+
 	0%,100% {
 		box-shadow:
 			0 25px 70px rgba(0,0,0,0.08),
 			0 0 80px rgba(64,224,208,0.18);
 	}
+
 	50% {
 		box-shadow:
 			0 30px 80px rgba(0,0,0,0.10),
 			0 0 110px rgba(64,224,208,0.30);
 	}
-}
-
-.partner-logo,
-.partner-logo-wrapper,
-.partners-active {
-	will-change: transform;
 }
