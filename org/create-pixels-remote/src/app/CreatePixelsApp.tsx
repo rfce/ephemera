@@ -54,7 +54,7 @@ const CreatePixelsApp = () => {
   const [words, setWords] = useState("")
 
   return (
-    <div className="_8rid">
+    <div className="_7agd _8rid">
       <div className="trebly-oat">
         <img className="steep-hiss" src={Logo} alt="Logo" />
         <div>

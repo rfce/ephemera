@@ -1,5 +1,5 @@
 import "./css/App.css"
-import { RightArrow, HeartIcon } from "../assets/Icons.jsx"
+import { RightArrow, HeartIcon, TickIcon } from "../assets/Icons.jsx"
 import { useAtom } from 'jotai';
 import { stepsAtom } from '@org/shared-state';
 import { useEffect, useRef, useState } from "react";
@@ -143,34 +143,6 @@ const AddRecipient = () => {
             })}
           </div>
         </div>
-      </div>
-      <div ref={ref} className={`slide-in ${isVisible ? "visible" : ""}`}>
-        <div className="habanera-logo">
-          <video
-            src={EmailTick}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="tills-loos"
-          />
-          <div>
-            <h1>Track emails the simple way</h1>
-            <div className="vixen-atom">fast, private, and zero integrations</div>
-          </div>
-        </div>
-        <ul className="yoghs-loos">
-          <li>No OAuth or inbox access required</li>
-          <li>Instant setup, zero integrations</li>
-          <li>Lightweight & distraction-free</li>
-          <li>Privacy-first tracking approach</li>
-          <li>Built for speed, not enterprise overhead</li>
-        </ul>
-      </div>
-      <div className="azine-swat">
-        <div>Made with&nbsp;</div>
-        <HeartIcon /> 
-        <div>&nbsp;for better emails</div>
       </div>
     </div>
   )

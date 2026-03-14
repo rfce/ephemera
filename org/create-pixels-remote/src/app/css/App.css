@@ -369,11 +369,18 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	/* max-height: calc(100vh - 60px);
-  overflow: hidden; */
+}
+
+._7agd .outfind-sore .debugged-deys {
+	max-height: calc(100vh - 60px);
+  overflow: hidden;
 }
 
 ._8rid .outfind-sore .debugged-deys img {
+	width: 50vw;
+}
+
+._7agd .outfind-sore .debugged-deys img {
 	width: 50vw;
 }
 
