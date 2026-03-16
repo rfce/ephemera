@@ -74,7 +74,7 @@ const Dashboard = () => {
                     <span className="accent-text"> email platforms</span>
                   </h2>
                   <p>
-                    TrackPixels works seamlessly with the tools you already use.
+                    Track Pixels works seamlessly with the tools you already use.
                     No integrations, plugins, or inbox access required.
                   </p>
                 </div>
