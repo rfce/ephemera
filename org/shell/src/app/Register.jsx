@@ -12,13 +12,20 @@ const Register = () => {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
 
     const register = async () => {
+        if (loading) return
+
+        setLoading(true)
+
         const { data, status } = await axios.post(`${api}/Auth/register`, {
             fname, username, password
         })
+
+        setLoading(false)
 
         if (data.success === false) {
             setError(data.message)
@@ -27,6 +34,12 @@ const Register = () => {
         }
 
         navigate("/dashboard")
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            register()
+        }
     }
 
     useEffect(() => {
@@ -55,15 +68,16 @@ const Register = () => {
                 <div className="robbers-woo">
                     <h2>Sign Up</h2>
                     <div>Name</div>
-                    <input value={fname} onChange={e => setFname(e.target.value)} />
+                    <input onKeyDown={handleKeyDown} value={fname} onChange={e => setFname(e.target.value)} />
                     <div>Username</div>
-                    <input value={username} onChange={e => setUsername(e.target.value)} />
+                    <input onKeyDown={handleKeyDown} value={username} onChange={e => setUsername(e.target.value)} />
                     <div>Password</div>
                     <div className="password-wrapper">
                         <input
                             type={showPassword ? "text" : "password"}
                             value={password}
                             onChange={e => setPassword(e.target.value)}
+                            onKeyDown={handleKeyDown}
                         />
                         <span
                             className="password-toggle"
@@ -74,7 +88,11 @@ const Register = () => {
                     </div>
                     <br />
                     {error && <div style={{ color: "red" }}>{error}</div>}
-                    <button onClick={() => register()}>Proceed</button>
+                    <button 
+                        onClick={() => register()}
+                        disabled={loading}
+                        className={loading ? "loading" : ""}
+                    >Proceed</button>
                     Already have an account?&nbsp;
                     <Link to="/sign-in">Login</Link>
                     <br />

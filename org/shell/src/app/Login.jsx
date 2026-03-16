@@ -14,15 +14,22 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [token, setToken] = useAtom(tokenAtom)
 
     const navigate = useNavigate()
 
     const login = async () => {
+        if (loading) return
+
+        setLoading(true)
+
         const { data, status } = await axios.post(`${api}/Auth/sign-in`, {
             username, password
         })
+
+        setLoading(false)
 
         if (data.success === false) {
             setError(data.message)
@@ -34,6 +41,12 @@ const Login = () => {
         setToken(data.token)
 
         navigate("/dashboard")
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            login()
+        }
     }
 
     useEffect(() => {
@@ -62,13 +75,14 @@ const Login = () => {
                 <div className="robbers-woo">
                     <h2>Login</h2>
                     <div>Username</div>
-                    <input value={username} onChange={e => setUsername(e.target.value)} />
+                    <input  onKeyDown={handleKeyDown} value={username} onChange={e => setUsername(e.target.value)} />
                     <div>Password</div>
                     <div className="password-wrapper">
                         <input
                             type={showPassword ? "text" : "password"}
                             value={password}
                             onChange={e => setPassword(e.target.value)}
+                            onKeyDown={handleKeyDown}
                         />
                         <span
                             className="password-toggle"
@@ -79,7 +93,11 @@ const Login = () => {
                     </div>
                     <br />
                     {error && <div style={{ color: "red" }}>{error}</div>}
-                    <button onClick={() => login()}>Login</button>
+                    <button 
+                        onClick={() => login()}
+                        disabled={loading}
+                        className={loading ? "loading" : ""}
+                    >Login</button>
                     <br />
                     Don't have an account?&nbsp;
                     <Link to="/sign-up">Sign Up</Link>

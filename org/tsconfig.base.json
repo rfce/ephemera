@@ -33,8 +33,6 @@
       "create-pixels/Dashboard": [
         "create-pixels-remote/src/app/Dashboard.tsx"
       ],
-      "upload/UploadApp": ["upload-remote/src/app/index.ts"],
-      "view/ViewApp": ["view-remote/src/app/index.ts"],
       "@org/shared-state": ["shared/state/src/index.ts"]
     }
   },

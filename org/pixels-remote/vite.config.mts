@@ -24,6 +24,9 @@ export default defineConfig(({ mode }) => ({
     cors: {
       origin: '*',
     },
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
   },
   plugins: [
     react(),

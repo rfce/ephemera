@@ -14,6 +14,8 @@ const TutaIcon = new URL('../assets/Tuta Icon.png', import.meta.url).href;
 const MailcomIcon = new URL('../assets/Mail.com Icon.png', import.meta.url).href;
 const YahooIcon = new URL('../assets/Yahoo Icon.png', import.meta.url).href;
 const ZohoIcon = new URL('../assets/Zoho Icon.png', import.meta.url).href;
+const InfomaniakIcon = new URL('../assets/Infomaniak Icon.png', import.meta.url).href;
+const AOLIcon = new URL('../assets/AOL Icon.jpg', import.meta.url).href;
 
 const data = [
   { image: GmailIcon, name: "Gmail" },
@@ -23,6 +25,8 @@ const data = [
   { image: GMXIcon, name: "GMX Mail" },
   { image: MailcomIcon, name: "Mail.com" },
   { image: ZohoIcon, name: "Zoho Mail" },
+  { image: InfomaniakIcon, name: "Infomaniak Mail" },
+  { image: AOLIcon, name: "AOL Mail" },
 ]
 
 const Dashboard = () => {
