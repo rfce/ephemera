@@ -5,8 +5,8 @@ import { StackedCarousel } from "react-stacked-center-carousel"
 
 // Create the URL dynamically based on where *this* module lives
 // This ensures it always points to localhost:4201 (or production remote)
-const Logo = new URL('../assets/Logo.jpg', import.meta.url).href;
-const Background = new URL('../assets/poppy-flowers.png', import.meta.url).href;
+const Logo = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/Logo_tcmc8s"
+const Background = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/poppy-flowers_gnbawa"
 const GmailIcon = new URL('../assets/Gmail Icon.png', import.meta.url).href;
 const GMXIcon = new URL('../assets/GMX Icon.png', import.meta.url).href;
 const OutlookIcon = new URL('../assets/Outlook Icon.png', import.meta.url).href;

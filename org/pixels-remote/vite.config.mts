@@ -63,7 +63,8 @@ export default defineConfig(({ mode }) => ({
         '@emoji-mart/data': { singleton: true },
         'twemoji-parser': { singleton: true },
         'ua-parser-js': { singleton: true },
-        'react-tooltip': { singleton: true }
+        'react-tooltip': { singleton: true },
+        'hls.js': { singleton: true }
       }
     }),
   ].filter(Boolean),

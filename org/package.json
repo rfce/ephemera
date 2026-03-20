@@ -46,6 +46,7 @@
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
     "@org/shared-state": "workspace:*",
+    "hls.js": "^1.6.15",
     "jotai": "^2.16.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

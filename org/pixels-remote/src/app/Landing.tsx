@@ -5,9 +5,10 @@ import { stepsAtom } from '@org/shared-state';
 import { useEffect, useRef, useState } from "react";
 import axios from "../config/backend"
 import { useNavigate } from "react-router-dom";
+import Video from "./Video";
 
 const Shield = new URL('../assets/Shield.png', import.meta.url).href;
-const DemoVideo = new URL('../assets/Demo -video.mp4', import.meta.url).href;
+const DemoVideo = "https://res.cloudinary.com/dkcyztevs/video/upload/sp_auto/Demo_-video_e1o2o3.m3u8"
 
 const Landing = () => {
   const [recipient, setRecipient] = useState("")
@@ -90,22 +91,8 @@ const Landing = () => {
 
             className="video-container"
           >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline // Extremely important for Safari/iOS autoplay
-              style={{
-                width: '100%',
-                height: 'auto',
-                display: 'block'
-              }}
-            >
-              <source src={DemoVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <Video src={DemoVideo} />
           </div>
-
         </div>
       </div>
       <div ref={ref} className={`slide-in ${isVisible ? "visible" : ""}`}>
@@ -128,11 +115,11 @@ const Landing = () => {
             <TickIcon />
             Lightweight and distraction-free</li>
           <li>
-            
+
             <TickIcon />
             Privacy-first tracking approach</li>
           <li><TickIcon />
-          Built for speed, not enterprise overhead</li>
+            Built for speed, not enterprise overhead</li>
         </ul>
       </div>
       <div className="azine-swat">

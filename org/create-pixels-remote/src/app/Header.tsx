@@ -3,8 +3,8 @@ import "./css/App.css"
 
 // Create the URL dynamically based on where *this* module lives
 // This ensures it always points to localhost:4201 (or production remote)
-const Logo = new URL('../assets/Logo.jpg', import.meta.url).href;
-const Background = new URL('../assets/Developer activity-pana.png', import.meta.url).href;
+const Logo = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/Logo_tcmc8s"
+const Background = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/poppy-flowers_gnbawa"
 
 function decodeJWT(token) {
   try {

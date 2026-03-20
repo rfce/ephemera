@@ -127,7 +127,6 @@
         coralGlow 4s ease-in-out infinite,
         floatVideo 6s ease-in-out infinite;
 
-    pointer-events: none;
     z-index: 3;
 }
 
