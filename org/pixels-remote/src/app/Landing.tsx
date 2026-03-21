@@ -7,7 +7,6 @@ import axios from "../config/backend"
 import { useNavigate } from "react-router-dom";
 import Video from "./Video";
 
-const Shield = new URL('../assets/Shield.png', import.meta.url).href;
 const DemoVideo = "https://res.cloudinary.com/dkcyztevs/video/upload/sp_auto/Demo_-video_e1o2o3.m3u8"
 
 const Landing = () => {

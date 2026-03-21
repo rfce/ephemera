@@ -7,16 +7,16 @@ import { StackedCarousel } from "react-stacked-center-carousel"
 // This ensures it always points to localhost:4201 (or production remote)
 const Logo = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/Logo_tcmc8s"
 const Background = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/poppy-flowers_gnbawa"
-const GmailIcon = new URL('../assets/Gmail Icon.png', import.meta.url).href;
-const GMXIcon = new URL('../assets/GMX Icon.png', import.meta.url).href;
-const OutlookIcon = new URL('../assets/Outlook Icon.png', import.meta.url).href;
-const TutaIcon = new URL('../assets/Tuta Icon.png', import.meta.url).href;
-const MailcomIcon = new URL('../assets/Mail.com Icon.png', import.meta.url).href;
-const YahooIcon = new URL('../assets/Yahoo Icon.png', import.meta.url).href;
-const ZohoIcon = new URL('../assets/Zoho Icon.png', import.meta.url).href;
-const InfomaniakIcon = new URL('../assets/Infomaniak Icon.png', import.meta.url).href;
-const AOLIcon = new URL('../assets/AOL Icon.jpg', import.meta.url).href;
-const iCloudIcon = new URL('../assets/icloud Icon.png', import.meta.url).href;
+const GmailIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073230/Gmail_Icon_uigcyc.png"
+const GMXIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073230/GMX_Icon_wa39gq.png"
+const OutlookIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073231/Outlook_Icon_tumep2.png"
+const TutaIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073230/Tuta_Icon_j2qlaf.png"
+const MailcomIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073230/Mail.com_Icon_r4wwss.png"
+const YahooIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073231/Yahoo_Icon_ptjyuz.png"
+const ZohoIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073231/Zoho_Icon_kilrzq.png"
+const InfomaniakIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073230/Infomaniak_Icon_cr92pf.png"
+const AOLIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073230/AOL_Icon_yjccal.jpg"
+const iCloudIcon = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/v1774073230/icloud_Icon_a8ygkj.png"
 
 const data = [
   { image: GmailIcon, name: "Gmail" },
