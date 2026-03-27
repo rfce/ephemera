@@ -126,6 +126,69 @@ const Landing = () => {
         <HeartIcon />
         <div>&nbsp;for better emails</div>
       </div>
+      <div className="whinnied-hug">
+        <footer className="footer">
+          <div className="footer-container">
+
+            {/* Brand */}
+            <div className="footer-brand">
+              <h2>TrackPixels</h2>
+              <p>
+                Real-time email tracking and analytics. Know exactly when your emails are opened and clicked.
+              </p>
+
+              <button className="footer-cta" onClick={() => navigate("/sign-up")}>
+                Get Started Free
+              </button>
+            </div>
+
+            {/* Links */}
+            <div className="footer-links">
+              <div>
+                <h4>Product</h4>
+                <ul>
+                  <li>Features</li>
+                  <li>Pricing</li>
+                  <li>API</li>
+                  <li>Integrations</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4>Resources</h4>
+                <ul>
+                  <li>Docs</li>
+                  <li>Guides</li>
+                  <li>Blog</li>
+                  <li>Status</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4>Company</h4>
+                <ul>
+                  <li>About</li>
+                  <li>Contact</li>
+                  <li>Careers</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom bar */}
+          <div className="footer-bottom">
+            <p>© {new Date().getFullYear()} TrackPixels. All rights reserved.</p>
+
+            <div className="footer-legal">
+              <span>Privacy</span>
+              <span>Terms</span>
+              <span>Security</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
     </div>
   )
 }

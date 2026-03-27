@@ -673,12 +673,13 @@
 /* ---------- CAROUSEL ---------- */
 
 ._8rid .react-stacked-center-carousel {
-
+	margin-top: 400px;
+	
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	transform: translateX(70px);
+	transform: translate(50px, 100px);
 }
 
 /* ---------- LOGO WRAPPER ---------- */
@@ -784,3 +785,190 @@
 			0 0 110px rgba(64,224,208,0.30);
 	}
 }
+
+/* ---------- CONTAINER ---------- */
+._8rid .partners-blob {
+  position: relative;
+  width: 100vw;
+  margin-top: 120px;
+  padding-bottom: 200px;
+}
+
+/* ---------- SVG BACKGROUND ---------- */
+._8rid .partners-bg {
+  position: absolute;
+  inset: 0;
+  width: 200%; /* needed for smooth wave loop */
+  height: 100%;
+}
+
+/* ---------- CONTENT ---------- */
+._8rid .partners-content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* padding: 120px 20px 160px; */
+  text-align: center;
+}
+
+/* ---------- TEXT ---------- */
+._8rid .partners-heading {
+  max-width: 620px;
+  margin-bottom: 24px;
+}
+
+._8rid .partners-heading h2 {
+  color: #2b1e1b;
+}
+
+._8rid .partners-heading p {
+  color: #7a5a54;
+}
+
+._8rid .partners-label {
+  color: #e07d6c;
+  letter-spacing: 1.4px;
+}
+
+._8rid .accent-text {
+  color: #ff8a7a;
+  text-shadow: 0 4px 18px rgba(255,138,122,0.35);
+}
+
+/* ---------- DIVIDER ---------- */
+._8rid .partners-divider {
+  width: 120px;
+  height: 1px;
+  margin: 12px 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,138,122,0.6),
+    transparent
+  );
+}
+
+/* ---------- ACTIVE BADGE ---------- */
+._8rid .partners-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 20px 0 40px;
+  padding: 12px 26px;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #3b2a27;
+
+  border-radius: 40px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,138,122,0.25),
+    rgba(255,138,122,0.08)
+  );
+
+  border: 1px solid rgba(255,138,122,0.35);
+
+  box-shadow:
+    0 10px 30px rgba(255,138,122,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+._8rid .partners-active:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 40px rgba(255,138,122,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+/* ---------- DOT ---------- */
+._8rid .platform-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  background: #ff8a7a;
+
+  box-shadow:
+    0 0 8px rgba(255,138,122,0.7),
+    0 0 16px rgba(255,138,122,0.4);
+}
+
+/* ---------- CAROUSEL ---------- */
+._8rid .react-stacked-center-carousel {
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- LOGOS ---------- */
+._8rid .partner-logo-wrapper {
+  width: 140px;
+  height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.4s ease;
+}
+
+._8rid .partner-logo {
+  width: 80px;
+  height: 80px;
+
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.4;
+
+  transition: all 0.35s ease;
+}
+
+._8rid .partner-logo-wrapper.active .partner-logo {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+._8rid .partner-logo-wrapper:hover .partner-logo {
+  filter: grayscale(0);
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+._8rid .partners-stats {
+  display: flex;
+  gap: 40px;
+  margin: 30px 0 50px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+._8rid .partners-stats div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+._8rid .partners-stats strong {
+  font-size: 22px;
+  color: #ff8a7a;
+}
+
+._8rid .partners-stats span {
+  font-size: 13px;
+  color: rgba(59, 42, 39, 0.7);
+}
+

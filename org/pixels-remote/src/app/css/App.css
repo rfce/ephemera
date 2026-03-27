@@ -279,9 +279,267 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: -1000px;
+    bottom: -1500px;
     left: -50vw;
     color: rgb(88, 88, 88);
     width: 100vw;
+    z-index: 4;
 }
 
+._2sww .whinnied-hug {
+    position: absolute;
+    bottom: -1400px;
+    left: 0px;
+    width: 100vw;
+    transform: translateX(-50vw);
+    z-index: 3;
+}
+
+._2sww .footer {
+  background: #0f1115;
+  color: #cfcfcf;
+  padding: 60px 20px 30px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Layout */
+._2sww .footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Brand */
+._2sww .footer-brand {
+  max-width: 380px;
+}
+
+._2sww .footer-brand h2 {
+  color: #ffffff;
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+._2sww .footer-brand p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #9aa0a6;
+}
+
+/* CTA */
+._2sww .footer-cta {
+  margin-top: 18px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #a2ad7b;
+  color: #0f1115;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+._2sww .footer-cta:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* Links */
+._2sww .footer-links {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+._2sww .footer-links h4 {
+  color: #ffffff;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+._2sww .footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+._2sww .footer-links li {
+  font-size: 13px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  color: #9aa0a6;
+  transition: color 0.2s;
+}
+
+._2sww .footer-links li:hover {
+  color: #a2ad7b;
+}
+
+/* Bottom bar */
+._2sww .footer-bottom {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(162, 173, 123, 0.2);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #8a8a8a;
+}
+
+._2sww .footer-legal {
+  display: flex;
+  gap: 20px;
+}
+
+._2sww .footer-legal span {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+._2sww .footer-legal span:hover {
+  color: #a2ad7b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  ._2sww .footer-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  ._2sww .footer-links {
+    gap: 30px;
+  }
+
+  ._2sww .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+
+
+._0giz .habanera-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 160px;
+
+  /* layout */
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* 🔥 MAIN HEADING */
+._0giz .habanera-logo h1 {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  background: linear-gradient(
+    120deg,
+    #ff8a7a,
+    #ffb3a7,
+    #ffd6cf
+  );
+
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  letter-spacing: -0.5px;
+}
+
+/* ✨ SUBTEXT */
+._0giz .vixen-atom {
+  margin-left: 0;
+  margin-top: 10px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  color: rgba(224, 125, 108, 0.85);
+
+  letter-spacing: 0.4px;
+}
+
+._0giz .yoghs-loos {
+  margin-top: 50px;
+  margin-bottom: 120px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Each item becomes a soft card */
+._0giz .yoghs-loos li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 14px 18px;
+  border-radius: 12px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  color: #3b2a27;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 138, 122, 0.12),
+    rgba(255, 138, 122, 0.04)
+  );
+
+  border: 1px solid rgba(255, 138, 122, 0.25);
+
+  transition: all 0.25s ease;
+}
+
+/* hover lift */
+._0giz .yoghs-loos li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255,138,122,0.2);
+}
+
+/* ICON */
+._0giz .yoghs-loos li svg {
+  width: 22px;
+  height: 22px;
+
+  fill: #ff8a7a;
+
+  filter: drop-shadow(0 0 6px rgba(255,138,122,0.4));
+}
+
+._0giz .habanera-logo::after {
+  content: "";
+  width: 120px;
+  height: 4px;
+  margin-top: 16px;
+
+  background: linear-gradient(
+    90deg,
+    #ff8a7a,
+    transparent
+  );
+
+  border-radius: 10px;
+}
+
+._0giz .yoghs-loos {
+    margin: 0px;
+    padding: 0px;
+    max-width: 700px;
+}

@@ -65,50 +65,71 @@ const Dashboard = () => {
         <div className="debugged-deys">
           <img src={Background} alt="" />
           <div className="greater-lux">
-            <div className="partners-premium">
-              <div className="partners-header-card">
+            <div className="partners-blob">
+
+              {/* Content */}
+              <div className="partners-content">
+
                 <div className="partners-heading">
                   <div className="partners-label">
                     EMAIL PLATFORM SUPPORT
                   </div>
+
                   <h2>
                     Works with your favorite
                     <span className="accent-text"> email platforms</span>
                   </h2>
+
                   <p>
                     Track Pixels works seamlessly with the tools you already use.
                     No integrations, plugins, or inbox access required.
                   </p>
                 </div>
+
                 <div className="partners-divider" />
+
                 <div className="partners-active">
                   <span className="platform-dot"></span>
                   {data[activeIndex]?.name}
                 </div>
+
+                <div className="partners-stats">
+                  <div>
+                    <strong>10K+</strong>
+                    <span>Emails tracked</span>
+                  </div>
+                  <div>
+                    <strong>99.9%</strong>
+                    <span>Uptime</span>
+                  </div>
+                  <div>
+                    <strong>&lt;1s</strong>
+                    <span>Tracking latency</span>
+                  </div>
+                </div>
+                <StackedCarousel
+                  ref={carouselRef}
+                  data={data}
+                  slideWidth={220}
+                  carouselWidth={1400}
+                  maxVisibleSlide={5}
+                  onActiveSlideChange={(index) => setActiveIndex(index)}
+                  slideComponent={({ dataIndex, data }) => {
+                    const isActive = dataIndex === activeIndex;
+
+                    return (
+                      <div className={`partner-logo-wrapper ${isActive ? "active" : ""}`}>
+                        <img
+                          src={data[dataIndex].image}
+                          className="partner-logo"
+                          alt="partner"
+                        />
+                      </div>
+                    );
+                  }}
+                />
+
               </div>
-              <StackedCarousel
-                ref={carouselRef}
-                data={data}
-                slideWidth={220}
-                carouselWidth={1400}
-                maxVisibleSlide={5}
-                onActiveSlideChange={(index) => setActiveIndex(index)}
-                slideComponent={({ dataIndex, data }) => {
-
-                  const isActive = dataIndex === activeIndex
-
-                  return (
-                    <div className={`partner-logo-wrapper ${isActive ? "active" : ""}`}>
-                      <img
-                        src={data[dataIndex].image}
-                        className="partner-logo"
-                        alt="partner"
-                      />
-                    </div>
-                  )
-                }}
-              />
-
             </div>
           </div>
         </div>
