@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Video from "./Video";
 
 const DemoVideo = "https://res.cloudinary.com/dkcyztevs/video/upload/sp_auto/Demo_-video_e1o2o3.m3u8"
+const AnimatedBot = new URL('../assets/Email Tick.webm', import.meta.url).href;
 
 const Landing = () => {
   const [recipient, setRecipient] = useState("")
@@ -97,6 +98,19 @@ const Landing = () => {
       <div ref={ref} className={`slide-in ${isVisible ? "visible" : ""}`}>
         <div className="habanera-logo">
           <div>
+            <video
+              style={{ position: "absolute", top: -170, left: 120 }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="hero-video"
+              width={160}
+            >
+              <source src={AnimatedBot} type="video/webm" />
+            </video>
+          </div>
+          <div>
             <h1>Track emails the simple way</h1>
             <div className="vixen-atom">fast, private, and zero integrations</div>
           </div>
@@ -123,8 +137,11 @@ const Landing = () => {
       </div>
       <div className="azine-swat">
         <div>Made with&nbsp;</div>
-        <HeartIcon />
+        <HeartIcon fill="#a2ad7b" />
         <div>&nbsp;for better emails</div>
+      </div>
+      <div className="azine-swat" style={{ transform: "translate(10px, 375px)", fontSize: "11px" }}>
+        by Ahskid
       </div>
       <div className="whinnied-hug">
         <footer className="footer">
