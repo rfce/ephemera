@@ -1787,6 +1787,14 @@
 
 }
 
+@media screen and (max-width: 1370px) { 
+  ._3ono .tempting-bray {
+    width: 35vw;
+  }
 
+  ._3ono .canny-two {
+    width: 600px;
+  }
+}
 
 

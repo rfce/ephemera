@@ -8,7 +8,6 @@ import { PlusIcon, ChevronLeft, MailIcon, ReadReciept, DraftsIcon, SendIcon, Bel
 import { useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from 'react-tooltip'
 
-const ITEMS_PER_PAGE = 4
 
 const truncate = (str = "", max = 50) => {
   if (str.length <= max) return str
@@ -23,12 +22,13 @@ const AliasPick = () => {
   const [loading, setLoading] = useState(false)
   const [direction, setDirection] = useState("right")
   const [newOpens, setNewOpens] = useState(0)
+  const [itemsPerPage, setItemsPerPage] = useState(4)
 
-  const totalPages = Math.ceil(messages.length / ITEMS_PER_PAGE)
+  const totalPages = Math.ceil(messages.length / itemsPerPage)
 
   const paginatedMessages = useMemo(() => {
-    const start = (page - 1) * ITEMS_PER_PAGE
-    return messages.slice(start, start + ITEMS_PER_PAGE)
+    const start = (page - 1) * itemsPerPage
+    return messages.slice(start, start + itemsPerPage)
   }, [messages, page])
 
   const goPrev = () => {
@@ -74,8 +74,18 @@ const AliasPick = () => {
     }
   }
 
+  const updateItems = () => {
+    setItemsPerPage(window.innerWidth <= 1370 ? 3 : 4);
+  }
+
   useEffect(() => {
     fetchMessages()
+
+    updateItems()
+    
+    window.addEventListener("resize", updateItems)
+
+    return () => window.removeEventListener("resize", updateItems)
   }, [])
 
   return (
@@ -85,7 +95,7 @@ const AliasPick = () => {
           id="my-tooltip-1"
           place="bottom"
           content={`You have ${newOpens} new opens`}
-        /> 
+        />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "18px", color: "white", backgroundColor: "rgba(37, 150, 190)", padding: "20px 80px" }}>
           <div onClick={() => navigate("/dashboard")} style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
             <div><ChevronLeft width={20} height={20} fill="white" style={{ transform: "translate(-5px, 2px)" }} /></div>
@@ -127,9 +137,9 @@ const AliasPick = () => {
             >
               {message.tid ? (message.tid.receipt < message.tid.unix.length) ? (
                 <>
-                  <BellIcon 
-                    className="yoghourt-nix" 
-                    data-tooltip-id="my-tooltip-1" 
+                  <BellIcon
+                    className="yoghourt-nix"
+                    data-tooltip-id="my-tooltip-1"
                     onMouseEnter={() => setNewOpens(message.tid.unix.length - message.tid.receipt)}
                   />
                   <div className="outbred-log">{message.tid.unix.length - message.tid.receipt}</div>
@@ -167,7 +177,7 @@ const AliasPick = () => {
           ))}
         </div>
 
-        {messages.length > ITEMS_PER_PAGE && (
+        {messages.length > itemsPerPage && (
           <div className="grid-pagination">
             <button onClick={goPrev} disabled={page === 1}>
               ← Prev

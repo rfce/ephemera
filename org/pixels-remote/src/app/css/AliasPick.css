@@ -510,3 +510,9 @@
     font-size: 11px;
   }
 }
+
+@media screen and (max-width: 1370px) {  
+  ._7iic .pater-hear { 
+    max-width:90vw;
+  }
+}
