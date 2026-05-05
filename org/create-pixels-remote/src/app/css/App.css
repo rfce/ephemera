@@ -983,4 +983,10 @@
 		filter:
 			sepia(1) saturate(6) hue-rotate(-18deg) brightness(1.08) contrast(1.05);
 	}
+
+	._8rid .mettle-bang {
+		margin-left: 0px;
+		transform: translate(-40px, 0px);
+		scale: 0.9;
+	}
 }

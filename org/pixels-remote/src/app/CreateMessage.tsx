@@ -18,7 +18,8 @@ function escapeHtml(str: string) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/'/g, "&#039;")
+    .replace(/\n/g, "<br>");
 }
 
 function getUnifiedFromUrl(url: string) {
@@ -94,7 +95,7 @@ const CreateMessage = () => {
 
   const navigate = useNavigate()
 
-  const tid = state.tid
+  const tid = "state.tid"
 
   const recipient = localStorage.getItem("recipient")
 
@@ -187,7 +188,7 @@ const CreateMessage = () => {
   }
 
   const saveMessage = async (wait = false) => {
-    if (wait) setLoading(true) 
+    if (wait) setLoading(true)
     try {
       await axios.post("/Message/save-message", {
         eas,
@@ -231,7 +232,7 @@ const CreateMessage = () => {
       saveMessage()
     }, 1000)
 
-     return () => {
+    return () => {
       clearTimeout(handler)
     }
   }, [text])
@@ -317,90 +318,108 @@ const CreateMessage = () => {
           <PuffLoader color="white" />
         </div>
       )}
-      <div onClick={() => discardMessage()} className="flamen-vow">
-        <RightArrow className="shuns-ropy" fill="rgb(84, 183, 219)" />
-        <div>New E-mail</div>
-      </div>
-      <div className="gaped-hex premium-nickname">
-        <div className="nickname-label">Nickname</div>
-        <div className="openings-luge nickname-value">{eas}</div>
-      </div>
-      <div className="cordobas-ouzo">
-        <div>
-          <div className="swiveled-cry">Compose</div>
-          <div className="pater-hear">
-            <div className="swoop-bit">
-              <textarea
-                ref={textareaRef}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Type message"
-                rows={4}
-              />
-
-              <button onClick={() => setOpen(!open)}>
-                <StickerIcon className="jocund-zone" />
-              </button>
-
-              {open && (
-                <div style={{ position: "absolute", bottom: 50, zIndex: 1000 }}>
-                  <Picker
-                    data={data}
-                    onEmojiSelect={(e) => insertAtCursor(e.native)}
-                    previewPosition="none"
-                    skinTonePosition="none"
-                  />
-                </div>
-              )}
+      <div className="blurry-woo">
+        <div onClick={() => discardMessage()} className="flamen-vow">
+          <RightArrow className="shuns-ropy" fill="rgb(84, 183, 219)" />
+          <div>New E-mail</div>
+          <div onClick={(e) => e.stopPropagation()} className="oversat-yore">
+            <div>
+              <div>
+                <div className="nickname-label">Recipient</div>
+                <div className="openings-luge nickname-value">{recipient}</div>
+              </div>
+              <div>
+                <div className="nickname-label">Nickname</div>
+                <div className="openings-luge nickname-value">{eas}</div>
+              </div>
             </div>
           </div>
-          <div className="gonapod-box">
-            {hasEmoji ? <TickIcon width={25} height={25} fill="#74cd75" /> : <PuffLoader size={16} />}
-            <div className={hasEmoji ? "shoed-mud emoji" : "shoed-mud"}>Add at least one emoji to enable tracking</div>
-          </div>
-          {hasEmoji && <div style={{ marginTop: "10px" }} className="gonapod-box">
-            {hasCopied ? <TickIcon width={25} height={25} fill="#74cd75" /> : <PuffLoader size={16} />}
-            <div className={hasCopied ? "shoed-mud emoji" : "shoed-mud"}>Copy your email</div>
-          </div>}
-          {(hasEmoji && hasCopied) && <div style={{ marginTop: "10px" }} className="gonapod-box">
-            {hasPasted ? <TickIcon width={25} height={25} fill="#74cd75" /> : <PuffLoader size={16} />}
-            <div className={hasPasted ? "shoed-mud emoji" : "shoed-mud"}>Send it from your email app</div>
-          </div>}
         </div>
-        <div>
-          <>
-            <div className="sifters-from swiveled-cry">Preview</div>
+        <div className="cordobas-ouzo">
+          <div>
+            <div className="swiveled-cry">Compose</div>
+            <div className="pater-hear">
+              <div className="swoop-bit">
+                <textarea
+                  ref={textareaRef}
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder="Type message"
+                  rows={4}
+                />
 
-            <div className="vouchees-awes premium-preview">
-              <div
-                className="preview-content"
-                ref={contentRef}
-                dangerouslySetInnerHTML={{
-                  __html: textToTwemojiHtml(text, tid),
-                }}
-              />
+                <button onClick={() => setOpen(!open)}>
+                  <StickerIcon className="jocund-zone" />
+                </button>
 
-              <button
-                className={hasEmoji ? "shyer-fell" : "shyer-fell disabled"}
-                disabled={!hasEmoji}
-                onClick={handleCopy}
-              >
-                <div className="coelom-resh left"></div>
-                <div className="coelom-resh right"></div>
-                <span className="copy-inner">
-                  {copied ? <TickIcon width={21} height={21} /> : <CopyIcon width={21} height={21} />}
-                  <span className="copy-text">{copied ? "Copied" : "Copy"}</span>
-                </span>
-              </button>
+                {open && (
+                  <div style={{ position: "absolute", bottom: 50, zIndex: 1000 }}>
+                    <Picker
+                      data={data}
+                      onEmojiSelect={(e) => insertAtCursor(e.native)}
+                      previewPosition="none"
+                      skinTonePosition="none"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
-          </>
+            <div className="gonapod-box">
+              {hasEmoji ? <TickIcon width={25} height={25} fill="#74cd75" /> : <PuffLoader size={16} />}
+              <div className={hasEmoji ? "shoed-mud emoji" : "shoed-mud"}>Add at least one emoji to enable tracking</div>
+            </div>
+            {hasEmoji && <div style={{ marginTop: "10px" }} className="gonapod-box">
+              {hasCopied ? <TickIcon width={25} height={25} fill="#74cd75" /> : <PuffLoader size={16} />}
+              <div className={hasCopied ? "shoed-mud emoji" : "shoed-mud"}>
+                Copy your email
+              </div>
+            </div>}
+            {(hasEmoji && hasCopied) && <div style={{ marginTop: "10px" }} className="gonapod-box">
+              {hasPasted ? <TickIcon width={25} height={25} fill="#74cd75" /> : <PuffLoader size={16} />}
+              <div className={hasPasted ? "shoed-mud emoji" : "shoed-mud"}>Send to recipient from your email app</div>
+              <div className="tidings-did">
+                <div onClick={() => window.open("https://mail.google.com", "_blank", "noreferrer")}>Gmail</div>
+                <div onClick={() => window.open("https://outlook.live.com", "_blank", "noreferrer")}>Outlook</div>
+                <div onClick={() => window.open("https://mail.yahoo.com", "_blank", "noreferrer")}>Yahoo</div>
+                <div>etc</div>
+              </div>
+            </div>}
+          </div>
+          <div>
+            <>
+              <div className="sifters-from swiveled-cry">Preview</div>
+
+              <div className="vouchees-awes premium-preview">
+                <div
+                  className="preview-content"
+                  ref={contentRef}
+                  dangerouslySetInnerHTML={{
+                    __html: textToTwemojiHtml(text, tid),
+                  }}
+                />
+
+                <button
+                  className={hasEmoji ? "shyer-fell" : "shyer-fell disabled"}
+                  disabled={!hasEmoji}
+                  onClick={handleCopy}
+                >
+                  <div className="coelom-resh left"></div>
+                  <div className="coelom-resh right"></div>
+                  <span className="copy-inner">
+                    {copied ? <TickIcon width={21} height={21} /> : <CopyIcon width={21} height={21} />}
+                    <span className="copy-text">{copied ? "Copied" : "Copy"}</span>
+                  </span>
+                </button>
+              </div>
+            </>
+          </div>
         </div>
-      </div>
-      <div className="cardia-ess">
-        <button onClick={() => setPopup(true)} disabled={!hasPasted}>
-          Next Step
-          <RightArrow className="elegits-yip" />
-        </button>
+        <div className="cardia-ess">
+          <button onClick={() => setPopup(true)} disabled={!hasPasted}>
+            Next Step
+            <RightArrow className="elegits-yip" />
+          </button>
+        </div>
       </div>
     </div>
   )
