@@ -9,6 +9,7 @@ import { parse } from "twemoji-parser"
 import Table from "./Table"
 import { format } from "timeago.js"
 import { UAParser } from "ua-parser-js"
+import { PuffLoader } from "react-spinners"
 
 const Contract = new URL('../assets/contract.png', import.meta.url).href
 
@@ -174,13 +175,11 @@ const TrackMessage = () => {
 
   if (loading) {
     return (
-      <div>Loading...</div>
+      <div style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <PuffLoader color="#e07d6c" />
+      </div>
     )
   }
-
-  // <div className="eugenics-demy">
-  //       <Table rows={track} />
-  //     </div>
  
   return (
     <div className="_3ono _6pzh">

@@ -1,5 +1,6 @@
 import "./css/Dashboard.css"
 import React, { Suspense } from 'react'
+import { PuffLoader } from "react-spinners"
 
 const Header = React.lazy(() => import('create-pixels/Header'))
 const CreateMessage = React.lazy(() => import('pixels/CreateMessage'))
@@ -8,22 +9,21 @@ const Recommended = React.lazy(() => import('create-pixels/Recommended'))
 const NewMessage = () => {
     return (
         <div className="_2tow">
-            <Suspense fallback={<div>Loading…</div>}>
+            <Suspense fallback={
+                <div className="raven-zoea">
+                    <PuffLoader color="#e07d6c" />
+                </div>
+            }>
                 <Header />
-            </Suspense>
-            <div className="groaning-zing">
-                <div>
-                    <Suspense fallback={<div>Loading…</div>}>
+                <div className="groaning-zing">
+                    <div>
                         <CreateMessage />
-                    </Suspense>
-                </div>
-                <div>
-                    <Suspense fallback={<div>Loading…</div>}>
+                    </div>
+                    <div>
                         <Recommended />
-                    </Suspense>
+                    </div>
                 </div>
-            </div>
-
+            </Suspense>
         </div>
     )
 }

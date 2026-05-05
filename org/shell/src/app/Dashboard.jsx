@@ -1,5 +1,6 @@
 import "./css/Dashboard.css"
 import React, { Suspense } from 'react'
+import { PuffLoader } from "react-spinners"
 
 const PixelsApp = React.lazy(() => import('pixels/PixelsApp'))
 const CreatePixelsApp = React.lazy(() => import('create-pixels/CreatePixelsApp'))
@@ -7,10 +8,12 @@ const CreatePixelsApp = React.lazy(() => import('create-pixels/CreatePixelsApp')
 const Dashboard = () => {
     return (
         <div className="_8bxc">
-            <Suspense fallback={<div>Loading…</div>}>
+            <Suspense fallback={
+                <div className="raven-zoea">
+                    <PuffLoader color="#e07d6c" />
+                </div>
+            }>
                 <CreatePixelsApp />
-            </Suspense>
-            <Suspense fallback={<div>Loading…</div>}>
                 <PixelsApp />
             </Suspense>
         </div>

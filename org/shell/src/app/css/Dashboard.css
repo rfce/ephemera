@@ -15,6 +15,22 @@
     display: flex;
 }
 
+._2tow .raven-zoea {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+._8bxc .raven-zoea {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 900px) {
   ._2tow .groaning-zing {
     display: flex;

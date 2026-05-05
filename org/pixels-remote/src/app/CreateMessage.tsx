@@ -95,7 +95,7 @@ const CreateMessage = () => {
 
   const navigate = useNavigate()
 
-  const tid = "state.tid"
+  const tid = state.tid
 
   const recipient = localStorage.getItem("recipient")
 
