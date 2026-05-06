@@ -123,13 +123,6 @@ const formatDate = (dateString) => {
 
 
 const TrackMessage = () => {
-  const [track, setTrack] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [freshRead, setFreshRead] = useState(0)
-  const [sentAt, setSentAt] = useState(undefined)
-
-  const [text, setText] = useAtom(composeAtom)
-
   const { eas } = useParams()
 
   const { state } = useLocation()
@@ -139,24 +132,12 @@ const TrackMessage = () => {
   const recipient = localStorage.getItem('recipient')
 
   const tid = state.tid
+  const track = state.track.unix
+  const freshRead = state.track.unix.length - state.track.receipt
+  const sentAt = state.track.firefox
+  const text = state.message.text
 
   const contentRef = useRef(null)
-
-  const fetchTracking = async () => {
-    const { data, status } = await axios.post("/Image/track-boat", { tid: String(tid) })
-
-    setLoading(false)
-
-    if (data.success) {
-      setText(data.message.text)
-      setTrack(data.track.unix)
-      setFreshRead(data.track.unix.length - data.track.receipt)
-      setSentAt(data.track.firefox)
-    }
-    else {
-      navigate(`/dashboard/message/${eas}`, { state: { tid } })
-    }
-  }
 
   const seenOpens = async () => {
     const { data, status } = await axios.post("/Message/seen-opens", { tid: String(tid) })
@@ -164,22 +145,10 @@ const TrackMessage = () => {
   }
 
   useEffect(() => {
-    fetchTracking()
-  }, [])
-
-  useEffect(() => {
     if (freshRead) {
       seenOpens()
     }
   }, [freshRead])
-
-  if (loading) {
-    return (
-      <div style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <PuffLoader color="#e07d6c" />
-      </div>
-    )
-  }
  
   return (
     <div className="_3ono _6pzh">

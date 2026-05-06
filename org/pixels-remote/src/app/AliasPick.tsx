@@ -74,6 +74,23 @@ const AliasPick = () => {
     }
   }
 
+  const fetchTracking = async (eas, tid) => {
+    setLoading(true)
+
+    const { data, status } = await axios.post("/Image/track-boat", { tid: String(tid) })
+
+    setLoading(false)
+
+    if (data.success) {
+      navigate(`/dashboard/track-boat/${eas}`, {
+                  state: { eas: eas, tid: tid, message: data.message, track: data.track },
+                })
+    }
+    else {
+      navigate(`/dashboard/message/${eas}`, { state: { tid } })
+    }
+  }
+
   const updateItems = () => {
     setItemsPerPage(window.innerWidth <= 1370 ? 3 : 4);
   }
@@ -130,9 +147,7 @@ const AliasPick = () => {
                   localStorage.removeItem("text");
                 }
 
-                navigate(`/dashboard/track-boat/${message.eas}`, {
-                  state: { eas: message.eas, tid: message.tid._id },
-                });
+                fetchTracking(message.eas, message.tid._id)
               }}
             >
               {message.tid ? (message.tid.receipt < message.tid.unix.length) ? (
