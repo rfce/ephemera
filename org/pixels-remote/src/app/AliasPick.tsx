@@ -107,7 +107,7 @@ const AliasPick = () => {
 
   return (
     <div className="_7iic">
-      <div className="mail-header" style={{ paddingBottom: "6px" }}>
+      <div className="mail-header">
         <Tooltip
           id="my-tooltip-1"
           place="bottom"
@@ -123,8 +123,8 @@ const AliasPick = () => {
             <div>Recepient • {recipient}</div>
           </div>
         </div>
-        <div className={`mail-header-loader ${loading ? "active" : ""}`} />
       </div>
+        <div className={`mail-header-loader ${loading ? "active" : ""}`} />
       <div className="swiveled-cry">Create</div>
       <div className="pater-hear">
         <div onClick={() => createMessage()} className="cuter-item tapered-earn">
