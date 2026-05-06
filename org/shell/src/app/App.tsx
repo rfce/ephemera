@@ -1,3 +1,4 @@
+import "./css/App.css"
 import { Route, Routes, Link } from 'react-router-dom'
 import Login from "./Login.jsx"
 import Register from "./Register.jsx"
@@ -10,8 +11,27 @@ import Pixels from './Pixels.jsx'
 import NewMessage from './NewMessage.jsx'
 import Track from './Track.jsx'
 import LandingPage from './LandingPage.jsx'
+import { useEffect, useState } from 'react'
+import { preloadAllRemotes } from './helpers/Run.js'
+import { PuffLoader } from 'react-spinners'
 
 export function App() {
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    preloadAllRemotes().then(() => setReady(true))
+  }, [])
+
+  if (!ready) {
+    return (
+      <div className="_8bxc">
+        <div className="raven-zoea">
+          <PuffLoader color="#e07d6c" />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <Provider store={sharedStore}>
       <div>

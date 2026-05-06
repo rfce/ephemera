@@ -1,29 +1,24 @@
 import "./css/Dashboard.css"
 import React, { Suspense } from 'react'
 import { PuffLoader } from "react-spinners"
+import { lazy } from "./helpers/Preload"
 
-const Header = React.lazy(() => import('create-pixels/Header'))
-const CreateMessage = React.lazy(() => import('pixels/CreateMessage'))
-const Recommended = React.lazy(() => import('create-pixels/Recommended'))
+const Header = lazy(() => import('create-pixels/Header'))
+const CreateMessage = lazy(() => import('pixels/CreateMessage'))
+const Recommended = lazy(() => import('create-pixels/Recommended'))
 
 const NewMessage = () => {
     return (
         <div className="_2tow">
-            <Suspense fallback={
-                <div className="raven-zoea">
-                    <PuffLoader color="#e07d6c" />
+            <Header />
+            <div className="groaning-zing">
+                <div>
+                    <CreateMessage />
                 </div>
-            }>
-                <Header />
-                <div className="groaning-zing">
-                    <div>
-                        <CreateMessage />
-                    </div>
-                    <div>
-                        <Recommended />
-                    </div>
+                <div>
+                    <Recommended />
                 </div>
-            </Suspense>
+            </div>
         </div>
     )
 }

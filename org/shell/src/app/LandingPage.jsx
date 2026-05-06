@@ -1,21 +1,16 @@
 import "./css/Dashboard.css"
 import React, { Suspense } from 'react'
 import { PuffLoader } from "react-spinners"
+import { lazy } from "./helpers/Preload"
 
-const Landing = React.lazy(() => import('pixels/Landing'))
-const Dashboard = React.lazy(() => import('create-pixels/Dashboard'))
+const Landing = lazy(() => import('pixels/Landing'))
+const Dashboard = lazy(() => import('create-pixels/Dashboard'))
 
 const LandingPage = () => {
     return (
         <div className="_8bxc">
-            <Suspense fallback={
-                <div className="raven-zoea">
-                    <PuffLoader color="#e07d6c" />
-                </div>
-            }>
-                <Dashboard />
-                <Landing />
-            </Suspense>
+            <Dashboard />
+            <Landing />
         </div>
     )
 }

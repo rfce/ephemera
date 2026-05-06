@@ -1,25 +1,20 @@
 import "./css/Dashboard.css"
 import React, { Suspense } from 'react'
 import { PuffLoader } from "react-spinners"
+import { lazy } from "./helpers/Preload"
 
-const Header = React.lazy(() => import('create-pixels/Header'))
-const TrackMessage = React.lazy(() => import('pixels/TrackMessage'))
+const Header = lazy(() => import('create-pixels/Header'))
+const TrackMessage = lazy(() => import('pixels/TrackMessage'))
 
 const Track = () => {
     return (
         <div className="_2tow">
-            <Suspense fallback={
-                <div className="raven-zoea">
-                    <PuffLoader color="#e07d6c" />
+            <Header />
+            <div className="groaning-zing">
+                <div>
+                    <TrackMessage />
                 </div>
-            }>
-                <Header />
-                <div className="groaning-zing">
-                    <div>
-                        <TrackMessage />
-                    </div>
-                </div>
-            </Suspense>
+            </div>
         </div>
     )
 }
