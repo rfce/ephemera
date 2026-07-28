@@ -6,7 +6,34 @@ const authorSchema = Schema(
         fname: String,
         username: {
             type: String,
-            required: true
+            required: true,
+            unique: true,
+            lowercase: true,
+            trim: true
+        },
+        address: {
+            type: String,
+            required: true,
+            unique: true,
+            lowercase: true,
+            trim: true
+        },
+        verified: {
+            type: Boolean,
+            default: false
+        },
+        verification: {
+            otp: String,
+            attempts: {
+                type: Number,
+                default: 0
+            },
+            resends: {
+                type: Number,
+                default: 0
+            },
+            timestamp: Date,
+            expires: Date
         },
         password: {
             type: String,
@@ -14,7 +41,7 @@ const authorSchema = Schema(
         }
     },
     {
-        timestamps : true
+        timestamps: true
     }
 )
 

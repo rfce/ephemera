@@ -8,8 +8,12 @@ const { Authentication } = require("../middleware/Authentication")
 router.get("/keep-alive", Author.keepAlive)
 router.post("/Auth/sign-in", Author.loginUser)
 router.post("/Auth/register", Author.registerUser)
+router.post("/Auth/is-username", Author.checkUsername)
+router.post("/Auth/verify", Author.verifyEmail)
 router.post("/Image/upload", Author.uploadImage)
 router.get("/Message/active", Author.activeMessage)
+
+router.get("/send-email", Author.sendEmail)
 
 router.get("/Image/:id", Author.fetchImage)
 router.post("/Image/toggle-copy", Authentication, Author.togglePaste)
