@@ -1,0 +1,518 @@
+._2yyr {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff8f6;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Floating background blobs */
+
+._2yyr .bg-blob {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(55px);
+    opacity: 1;
+    animation: floatBlob 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+._2yyr .blob-1 {
+    width: 320px;
+    height: 320px;
+    background: rgba(224, 125, 108, 0.32);
+
+    top: -100px;
+    left: -80px;
+}
+
+._2yyr .blob-2 {
+    width: 260px;
+    height: 260px;
+    background: rgba(255, 166, 140, 0.28);
+
+    bottom: -60px;
+    right: -50px;
+
+    animation-delay: 2s;
+}
+
+._2yyr .blob-3 {
+    width: 220px;
+    height: 220px;
+    background: rgba(255, 190, 170, 0.32);
+
+    top: 40%;
+    right: 10%;
+
+    animation-delay: 4s;
+}
+
+@keyframes floatBlob {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(-18px) scale(1.05);
+    }
+
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
+
+._2yyr .validate-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+._2yyr .validate-card {
+    width: 100%;
+    max-width: 500px;
+    background: transparent;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    padding: 52px 46px;
+    border-radius: 30px;
+
+    text-align: center;
+
+    animation: cardEnter 0.7s ease;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
+._2yyr .validate-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 36px;
+}
+
+._2yyr .validate-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 22px;
+    object-fit: cover;
+    transition: 0.25s ease;
+}
+
+._2yyr .validate-logo:hover {
+    transform: translateY(-2px) scale(1.03);
+}
+
+._2yyr .brand-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #de7a69;
+    text-align: left;
+    letter-spacing: -0.5px;
+}
+
+._2yyr .brand-subtitle {
+    font-size: 10px;
+    color: #999;
+    text-align: left;
+    margin-top: 4px;
+    letter-spacing: 0.2px;
+}
+
+._2yyr .validate-card h2 {
+    margin-bottom: 14px;
+    color: #2d2d2d;
+    font-size: 34px;
+    letter-spacing: -1px;
+}
+
+._2yyr .verify-description {
+    font-size: 15px;
+    color: #777;
+    line-height: 1.7;
+    max-width: 320px;
+    margin: 0 auto 14px;
+}
+
+._2yyr .verify-email {
+    font-size: 16px;
+    font-weight: 700;
+    color: #de7a69;
+    word-break: break-word;
+    margin-bottom: 40px;
+}
+
+._2yyr .change-email {
+    font-size: 14px;
+    color: #8d8d8d;
+    margin-bottom: 36px;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+._2yyr .change-email span {
+    color: #de7a69;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+._2yyr .change-email span:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+._2yyr .otp-container {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 34px;
+}
+
+._2yyr .otp-box {
+    width: 62px;
+    height: 72px;
+
+    border-radius: 18px;
+    border: 1px solid #f2c2ba;
+
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        transform 0.15s;
+
+    background: rgba(255,255,255,0.95);
+    color: #444;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.6),
+        0 2px 6px rgba(0,0,0,0.02);
+}
+
+._2yyr .otp-box:focus {
+    border-color: #de7a69;
+
+    box-shadow:
+        0 0 0 5px rgba(224, 125, 108, 0.14),
+        0 6px 18px rgba(224, 125, 108, 0.08);
+
+    transform: translateY(-2px);
+}
+
+._2yyr button {
+    width: 100%;
+    height: 58px;
+
+    border: none;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e07d6c,
+            #dc6f5d
+        );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s,
+        box-shadow 0.18s,
+        opacity 0.18s;
+
+    box-shadow:
+        0 10px 24px rgba(224, 125, 108, 0.24);
+}
+
+._2yyr button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 30px rgba(224, 125, 108, 0.28);
+}
+
+._2yyr button:active {
+    transform: scale(0.985);
+}
+
+._2yyr .resend-wrapper {
+    font-size: 14px;
+    color: #8d8d8d;
+    margin-bottom: 28px;
+    line-height: 1.7;
+}
+
+._2yyr .resend-wrapper span {
+    color: #de7a69;
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: 6px;
+    transition: 0.2s;
+}
+
+._2yyr .resend-wrapper span:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+._2yyr .go-back {
+    margin-top: 22px;
+    font-size: 14px;
+    color: #de7b69af;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+._2yyr .go-back span {
+    color: rgb(152, 152, 152);
+    font-weight: 400;
+}
+
+@media (max-width: 640px) {
+
+    ._2yyr .validate-card {
+        padding: 42px 24px;
+        border-radius: 24px;
+    }
+
+    ._2yyr .brand-title {
+        font-size: 26px;
+    }
+
+    ._2yyr .validate-card h2 {
+        font-size: 30px;
+    }
+
+    ._2yyr .otp-container {
+        gap: 10px;
+    }
+
+    ._2yyr .otp-box {
+        width: 48px;
+        height: 58px;
+        font-size: 24px;
+    }
+}
+
+._2yyr .floating-toast {
+    position: fixed;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    width: min(92vw, 430px);
+    padding: 16px 18px;
+
+    border-radius: 22px;
+
+    background: rgba(244, 251, 251, 0.68);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+    border: 1px solid rgba(255, 255, 255, 0.45);
+
+    box-shadow:
+        0 18px 45px rgba(20, 184, 166, 0.14),
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+    animation:
+        toastAppear 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        toastFloat 4s ease-in-out infinite;
+}
+
+._2yyr .toast-sphere {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(circle at 25% 22%,
+            #d9fffb 0%,
+            #9ff7ef 16%,
+            #4fd9cd 38%,
+            #14b8a6 65%,
+            #0f766e 100%);
+
+    box-shadow:
+        0 4px 12px rgba(20, 184, 166, 0.22),
+        inset -2px -3px 6px rgba(0, 0, 0, 0.12),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.35);
+
+    animation:
+        sphereBreath 2.8s ease-in-out infinite,
+        sphereFloat 3.6s ease-in-out infinite;
+}
+
+._2yyr .toast-sphere::before {
+    content: none;
+}
+
+._2yyr .toast-sphere::after {
+    content: "";
+    position: absolute;
+    width: 58%;
+    height: 58%;
+    top: 8%;
+    left: 10%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.78) 0%,
+        rgba(255, 255, 255, 0.28) 45%,
+        transparent 80%
+    );
+    filter: blur(0.5px);
+    animation: highlightMove 5s ease-in-out infinite;
+}
+
+._2yyr .toast-symbol {
+    width: 26px;
+    height: 26px;
+    z-index: 2;
+
+    filter:
+        drop-shadow(0 0 4px rgba(255, 255, 255, 1))
+        drop-shadow(0 0 10px rgba(255, 255, 255, 0.85));
+
+    animation: symbolGlow 2.4s ease-in-out infinite;
+}
+
+._2yyr .toast-content {
+    flex: 1;
+    min-width: 0;
+}
+
+._2yyr .toast-title {
+    font-size: 0.96rem;
+    font-weight: 700;
+    color: #0f5f59;
+    margin-bottom: 2px;
+    letter-spacing: -0.01em;
+}
+
+._2yyr .toast-message {
+    font-size: 0.9rem;
+    color: #2f5f5a;
+    line-height: 1.4;
+}
+
+/* Apple-like subtle animations */
+@keyframes toastAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-18px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+@keyframes toastFloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-2px);
+    }
+}
+
+@keyframes sphereBreath {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes sphereFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-1px);
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.45;
+        transform: scale(0.96);
+    }
+    50% {
+        opacity: 0.75;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes highlightMove {
+    0%, 100% {
+        transform: translateX(-2px) translateY(-1px);
+        opacity: 0.55;
+    }
+    50% {
+        transform: translateX(4px) translateY(2px);
+        opacity: 0.9;
+    }
+}
+
+@keyframes symbolGlow {
+    0%, 100% {
+        transform: scale(1);
+        filter:
+            drop-shadow(0 0 3px rgba(255, 255, 255, 0.95))
+            drop-shadow(0 0 8px rgba(255, 255, 255, 0.65));
+    }
+    50% {
+        transform: scale(1.08);
+        filter:
+            drop-shadow(0 0 5px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 14px rgba(255, 255, 255, 0.9));
+    }
+}

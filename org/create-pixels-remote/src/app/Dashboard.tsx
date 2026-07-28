@@ -107,28 +107,29 @@ const Dashboard = () => {
                     <span>Tracking latency</span>
                   </div>
                 </div>
-                <StackedCarousel
-                  ref={carouselRef}
-                  data={data}
-                  slideWidth={220}
-                  carouselWidth={1400}
-                  maxVisibleSlide={5}
-                  onActiveSlideChange={(index) => setActiveIndex(index)}
-                  slideComponent={({ dataIndex, data }) => {
-                    const isActive = dataIndex === activeIndex;
+                <div className="align-nil">
+                  <StackedCarousel
+                    ref={carouselRef}
+                    data={data}
+                    slideWidth={220}
+                    carouselWidth={1400}
+                    maxVisibleSlide={5}
+                    onActiveSlideChange={(index) => setActiveIndex(index)}
+                    slideComponent={({ dataIndex, data }) => {
+                      const isActive = dataIndex === activeIndex;
 
-                    return (
-                      <div className={`partner-logo-wrapper ${isActive ? "active" : ""}`}>
-                        <img
-                          src={data[dataIndex].image}
-                          className="partner-logo"
-                          alt="partner"
-                        />
-                      </div>
-                    );
-                  }}
-                />
-
+                      return (
+                        <div className={`partner-logo-wrapper ${isActive ? "active" : ""}`}>
+                          <img
+                            src={data[dataIndex].image}
+                            className="partner-logo"
+                            alt="partner"
+                          />
+                        </div>
+                      );
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

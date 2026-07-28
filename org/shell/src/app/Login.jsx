@@ -75,7 +75,7 @@ const Login = () => {
                 <div className="robbers-woo">
                     <h2>Login</h2>
                     <div>Username</div>
-                    <input  onKeyDown={handleKeyDown} value={username} onChange={e => setUsername(e.target.value)} />
+                    <input onKeyDown={handleKeyDown} value={username} onChange={e => setUsername(e.target.value)} />
                     <div>Password</div>
                     <div className="password-wrapper">
                         <input
@@ -91,9 +91,17 @@ const Login = () => {
                             {showPassword ? "Hide" : "Show"}
                         </span>
                     </div>
+                    <div className="forgot-password-row">
+                        <div
+                            className="forgot-password-btn"
+                            onClick={() => navigate("/forgot-password")}
+                        >
+                            Forgot password?
+                        </div>
+                    </div>
                     <br />
                     {error && <div style={{ color: "red" }}>{error}</div>}
-                    <button 
+                    <button
                         onClick={() => login()}
                         disabled={loading}
                         className={loading ? "loading" : ""}

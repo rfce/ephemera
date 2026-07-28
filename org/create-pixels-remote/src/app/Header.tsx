@@ -41,10 +41,10 @@ const Header = () => {
       </div>
       <div className="outfind-sore">
         <div onClick={() => setPopup(prev => !prev)} className="addicts-jay">
-          {decoded.fname[0]}
+          {decoded.username[0]}
         </div>
         {popup ? <div className="subsect-melt">
-           <div className="republic-tab active">Hello, {decoded.fname}</div>
+           <div className="republic-tab active">Hello, {decoded.username}</div>
           <div onClick={() => handleLogout()} className="republic-tab">Logout</div>
         </div> : undefined}
       </div>

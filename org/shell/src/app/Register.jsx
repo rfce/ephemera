@@ -7,12 +7,13 @@ import "./css/Register.css"
 const Logo = new URL('../assets/Logo.jpg', import.meta.url).href;
 
 const Register = () => {
-    const [fname, setFname] = useState("")
+    const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const [showPassword, setShowPassword] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [usernameError, setUsernameError] = useState("")
 
     const navigate = useNavigate()
 
@@ -22,7 +23,7 @@ const Register = () => {
         setLoading(true)
 
         const { data, status } = await axios.post(`${api}/Auth/register`, {
-            fname, username, password
+            username, email, password
         })
 
         setLoading(false)
@@ -33,7 +34,19 @@ const Register = () => {
             return
         }
 
-        navigate("/dashboard")
+        navigate(`/verify?email=${email}`)
+    }
+
+    const checkUsername = async () => {
+        const { data, status } = await axios.post(`${api}/Auth/is-username`, { username })
+
+        if (data.success) {
+            setUsernameError(false)
+
+            return
+        }
+
+        setUsernameError(data.message)
     }
 
     const handleKeyDown = (e) => {
@@ -49,6 +62,22 @@ const Register = () => {
             }, 5000)
         }
     }, [error])
+
+
+    useEffect(() => {
+        // Don't check tiny usernames
+        if (username.trim().length < 4) {
+            setUsernameError("")
+            return
+        }
+
+        const timeout = setTimeout(() => {
+            checkUsername()
+        }, 500)
+
+        return () => clearTimeout(timeout)
+
+    }, [username])
 
     return (
         <div className="_3bqk">
@@ -67,10 +96,11 @@ const Register = () => {
                 <div className="bg-shape blob-3"></div>
                 <div className="robbers-woo">
                     <h2>Sign Up</h2>
-                    <div>Name</div>
-                    <input onKeyDown={handleKeyDown} value={fname} onChange={e => setFname(e.target.value)} />
                     <div>Username</div>
-                    <input onKeyDown={handleKeyDown} value={username} onChange={e => setUsername(e.target.value)} />
+                    <input className={usernameError ? "error" : undefined} onKeyDown={handleKeyDown} value={username} onChange={e => setUsername(e.target.value)} />
+                    {usernameError === false ? <div className="airless-down green">Username available</div> : usernameError ? <div className="airless-down">{usernameError}</div> : undefined}
+                    <div>E-mail Address</div>
+                    <input onKeyDown={handleKeyDown} value={email} onChange={e => setEmail(e.target.value)} />
                     <div>Password</div>
                     <div className="password-wrapper">
                         <input
@@ -88,7 +118,7 @@ const Register = () => {
                     </div>
                     <br />
                     {error && <div style={{ color: "red" }}>{error}</div>}
-                    <button 
+                    <button
                         onClick={() => register()}
                         disabled={loading}
                         className={loading ? "loading" : ""}

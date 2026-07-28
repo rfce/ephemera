@@ -1,0 +1,189 @@
+.validate-email-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        135deg,
+        #fff8f6 0%,
+        #ffe9e5 50%,
+        #fff3f1 100%
+    );
+    padding: 20px;
+    overflow: hidden;
+}
+
+.success-card {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 32px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 25px 60px rgba(15, 23, 42, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    text-align: center;
+    animation: cardAppear 0.8s ease-out;
+}
+
+.success-card::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(
+        circle,
+        rgba(224, 125, 108, 0.12) 0%,
+        transparent 70%
+    );
+    z-index: -1;
+    border-radius: 40px;
+}
+
+.success-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.success-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f28b82, #e07d6c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:
+        0 0 0 8px rgba(224, 125, 108, 0.12),
+        0 12px 30px rgba(224, 125, 108, 0.35);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.success-icon svg {
+    width: 42px;
+    height: 42px;
+}
+
+.success-card h1 {
+    margin: 0 0 16px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+}
+
+.success-message {
+    margin: 0 0 28px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #475569;
+}
+
+.countdown-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    border-radius: 18px;
+    background: rgba(248, 250, 252, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    color: #334155;
+    font-weight: 600;
+}
+
+.countdown-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.login-button {
+    margin-top: 22px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #f28b82, #e07d6c);
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 20px rgba(224, 125, 108, 0.28);
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(224, 125, 108, 0.38);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 0 8px rgba(224, 125, 108, 0.12),
+            0 12px 30px rgba(224, 125, 108, 0.35);
+    }
+    50% {
+        transform: scale(1.04);
+        box-shadow:
+            0 0 0 14px rgba(224, 125, 108, 0.08),
+            0 16px 36px rgba(224, 125, 108, 0.45);
+    }
+}
+
+@media (max-width: 520px) {
+    .success-card {
+        padding: 32px 24px;
+    }
+
+    .success-card h1 {
+        font-size: 1.7rem;
+    }
+
+    .countdown-box {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+.redirect-text {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #8b5e57;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.redirect-text span {
+    color: #e07d6c;
+    font-weight: 700;
+    font-size: 1rem;
+}

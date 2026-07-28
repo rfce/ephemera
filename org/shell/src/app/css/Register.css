@@ -54,6 +54,11 @@
     outline: none;
 }
 
+._5big .robbers-woo input.error:focus {
+    border-color: #ff7878;
+    box-shadow: 0 0 0 3px rgba(234, 124, 102, 0.1);
+}
+
 ._5big .robbers-woo input:focus {
     border-color: #667eea;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -230,6 +235,25 @@
 
 .password-toggle:hover {
     color: #764ba2;
+}
+
+._5big .robbers-woo div.forgot-password-btn {
+    width: fit-content;
+    color: rgba(102, 126, 234, 0.706);
+    cursor: pointer;
+}
+
+._5big .robbers-woo div.airless-down {
+    all: unset;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(246, 102, 102);
+    margin-top: 10px;
+}
+
+._5big .robbers-woo div.airless-down.green { 
+    color: rgb(79, 202, 79);
 }
 
 /* 5. Keyframes for the "Blur in / Blur out" and movement */
