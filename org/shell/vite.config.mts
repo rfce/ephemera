@@ -32,24 +32,19 @@ export default defineConfig(({ mode }) => {
           "create-pixels": env.VITE_CREATE_PIXELS
         },
         shared: {
-          // Core UI: Must be singletons and eager to avoid "Multiple React instances" errors
-          'react': { singleton: true, eager: true, requiredVersion: false },
-          'react-dom': { singleton: true, eager: true, requiredVersion: false },
-          'react-router-dom': { singleton: true, eager: true, requiredVersion: false },
+          // Preload only what the host needs to mount. This emits modulepreload
+          // links in index.html, so these chunks fetch concurrently.
+          'react': { singleton: true, requiredVersion: false, modulePreload: true },
+          'react-dom': { singleton: true, requiredVersion: false, modulePreload: true },
+          'react-router-dom': { singleton: true, requiredVersion: false, modulePreload: true },
 
-          // State: MUST be singleton and eager so atoms sync across the Host and Remotes
-          'jotai': { singleton: true, eager: true, requiredVersion: false },
+          // State remains singleton, but is module-preloaded alongside React.
+          'jotai': { singleton: true, requiredVersion: false, modulePreload: true },
           '@org/shared-state': {
             singleton: true,
-            eager: true,
-            requiredVersion: false
-          },
-
-          // Utilities: Singletons to save memory, but can load lazily (eager: false)
-          'react-spinners': { singleton: true },
-          '@emoji-mart/react': { singleton: true },
-          '@emoji-mart/data': { singleton: true },
-          'twemoji-parser': { singleton: true }
+            requiredVersion: false,
+            modulePreload: true
+          }
         }
       }),
     ].filter(Boolean),
