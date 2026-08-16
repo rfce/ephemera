@@ -32,19 +32,15 @@ const load = (moduleNames) => Promise.all(moduleNames.map((name) => remoteLoader
 export const preloadRouteRemotes = (pathname = window.location.pathname) =>
   load(routeModules(pathname))
 
-// Load everything else at low priority once the first route can paint.
+// Load everything else once the first route has had a chance to paint.
 export const preloadRemainingRemotes = (pathname = window.location.pathname) => {
   const required = new Set(routeModules(pathname))
   return load(Object.keys(remoteLoaders).filter((name) => !required.has(name)))
 }
 
 export const scheduleRemainingRemotes = (pathname = window.location.pathname) => {
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(() => preloadRemainingRemotes(pathname))
-    return
-  }
-
-  // Two frames guarantee that the browser gets an opportunity to paint first.
+  // requestIdleCallback can be delayed indefinitely on a busy page. Two frames
+  // preserve the first paint while reliably starting the background Promise.all.
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => window.setTimeout(() => preloadRemainingRemotes(pathname), 0))
   })
