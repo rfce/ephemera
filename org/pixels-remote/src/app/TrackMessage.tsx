@@ -123,6 +123,12 @@ const formatDate = (dateString) => {
 
 
 const TrackMessage = () => {
+  const [track, setTrack] = useState("")
+  const [freshRead, setFreshRead] = useState(0)
+  const [sentAt, setSentAt] = useState("")
+  const [text, setText] = useState("")
+  const [loading, setLoading] = useState(true)
+
   const { eas } = useParams()
 
   const { state } = useLocation()
@@ -132,12 +138,21 @@ const TrackMessage = () => {
   const recipient = localStorage.getItem('recipient')
 
   const tid = state.tid
-  const track = state.track.unix
-  const freshRead = state.track.unix.length - state.track.receipt
-  const sentAt = state.track.firefox
-  const text = state.message.text
 
   const contentRef = useRef(null)
+
+  const fetchStatus = async () => {
+    const { data, status } = await axios.post("/Image/track-boat", { tid: String(tid) })
+
+    if (data.success) {
+      setTrack(data.track.unix)
+      setFreshRead(data.track.unix.length - data.track.receipt)
+      setSentAt(data.track.firefox)
+      setText(data.message.text)
+    }
+
+    setLoading(false)
+  }
 
   const seenOpens = async () => {
     const { data, status } = await axios.post("/Message/seen-opens", { tid: String(tid) })
@@ -145,11 +160,13 @@ const TrackMessage = () => {
   }
 
   useEffect(() => {
+    fetchStatus()
+
     if (freshRead) {
       seenOpens()
     }
   }, [freshRead])
- 
+
   return (
     <div className="_3ono _6pzh">
       <div onClick={() => navigate("/dashboard/create-pixels", { state: { eas, tid } })} className="flamen-vow">
@@ -163,35 +180,36 @@ const TrackMessage = () => {
           <div style={{ fontSize: "14px", padding: "5px 12px", border: "2px solid #ffc354", backgroundColor: "white", color: "rgb(84, 183, 219)", borderRadius: "20px" }}>{eas}</div>
         </div>
       </div>
-      <div className="cordobas-ouzo">
+      <div className={`mail-header-loader ${loading ? "active" : ""}`} />
+      {loading ? undefined : <div className="cordobas-ouzo">
         <div className="athlete-tuna">
-  <div className="premium-message-card">
-    {/* Header */}
-    <div className="pmc-header">
-      <div className="pmc-title">Message</div>
+          <div className="premium-message-card">
+            {/* Header */}
+            <div className="pmc-header">
+              <div className="pmc-title">Message</div>
 
-      <div className={`pmc-status ${track.length ? "read" : "unread"}`}>
-        <ReadReciept fill={track.length ? "rgb(96, 230, 89)" : "#c4c4c4"} />
-        <span>{renderLastSeen(track)}</span>
-      </div>
-    </div>
+              <div className={`pmc-status ${track.length ? "read" : "unread"}`}>
+                <ReadReciept fill={track.length ? "rgb(96, 230, 89)" : "#c4c4c4"} />
+                <span>{renderLastSeen(track)}</span>
+              </div>
+            </div>
 
-    {/* Message body */}
-    <div
-      ref={contentRef}
-      className="pmc-body"
-      dangerouslySetInnerHTML={{
-        __html: textToTwemojiHtml(text, tid),
-      }}
-    />
+            {/* Message body */}
+            <div
+              ref={contentRef}
+              className="pmc-body"
+              dangerouslySetInnerHTML={{
+                __html: textToTwemojiHtml(text, tid),
+              }}
+            />
 
-    {/* Footer */}
-    <div className="pmc-footer">
-      <span className="pmc-time-label">Sent</span>
-      <span className="pmc-time-value">{formatDate(sentAt)}</span>
-    </div>
-  </div>
-</div>
+            {/* Footer */}
+            <div className="pmc-footer">
+              <span className="pmc-time-label">Sent</span>
+              <span className="pmc-time-value">{formatDate(sentAt)}</span>
+            </div>
+          </div>
+        </div>
         <div className="athlete-tuna">
           {track.length ? <div className="insects-cere">History</div> : undefined}
           <div className={track.length ? "tempting-bray" : "laciest-deep"}>
@@ -199,24 +217,24 @@ const TrackMessage = () => {
               const parser = new UAParser(data.ua)
 
               const result = parser.getResult()
-                return (
-                  <div className={freshRead && (freshRead > index) ? "canny-two highlight" : "canny-two"}>
-                    <div className="housefly-fire">New</div>
-                    <div className="curst-vugs">
-                      {result.device.type === undefined ? <DesktopIcon fill="rgb(95, 175, 222)" /> : (result.device.type === "mobile" ? <PhoneIcon fill="rgb(95, 175, 222)" /> : <TabletIcon fill="rgb(95, 175, 222)" />)}
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-
-                      <div className="yuans-hex">{formatDate(new Date(data.timestamp))}</div>
-                      <div style={{ color: "#6e6e6e" }}>{data.ip}</div>
-                      <div style={{ display: "flex" }}>
-                        <div className="helios-oafs">{result.os.name}</div>
-                        <div className="helios-oafs">{result.browser.name}</div>
-                      </div>
-                    </div>
-                    
+              return (
+                <div className={freshRead && (freshRead > index) ? "canny-two highlight" : "canny-two"}>
+                  <div className="housefly-fire">New</div>
+                  <div className="curst-vugs">
+                    {result.device.type === undefined ? <DesktopIcon fill="rgb(95, 175, 222)" /> : (result.device.type === "mobile" ? <PhoneIcon fill="rgb(95, 175, 222)" /> : <TabletIcon fill="rgb(95, 175, 222)" />)}
                   </div>
-                )
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+
+                    <div className="yuans-hex">{formatDate(new Date(data.timestamp))}</div>
+                    <div style={{ color: "#6e6e6e" }}>{data.ip}</div>
+                    <div style={{ display: "flex" }}>
+                      <div className="helios-oafs">{result.os.name}</div>
+                      <div className="helios-oafs">{result.browser.name}</div>
+                    </div>
+                  </div>
+
+                </div>
+              )
             }) : (
               <div className="collect-ahoy canny-two">
                 <div>
@@ -228,7 +246,7 @@ const TrackMessage = () => {
             )}
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   )
 }

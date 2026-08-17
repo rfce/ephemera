@@ -173,18 +173,20 @@ const CreateMessage = () => {
     if (sending) return
 
     setSending(true)
-
-    setTimeout(() => {
-      enableTracking()
-    }, 2000)
+    
+    enableTracking()
   }
 
   const enableTracking = async () => {
-    const { data, status } = await axios.post("/Image/enable-tracking", { tid: String(tid), text })
+    await axios.post("/Image/enable-tracking", { tid: String(tid), text })
+    
+    const { data, status } = await axios.post("/Image/track-boat", { tid: String(tid) })
 
     if (data.success) {
-      navigate("/dashboard/track-boat/" + eas, { state: { tid } })
-    }
+      navigate(`/dashboard/track-boat/${eas}`, {
+                  state: { eas: eas, tid: tid },
+                })
+    } 
   }
 
   const saveMessage = async (wait = false) => {
