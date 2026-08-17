@@ -18,6 +18,7 @@ const truncate = (str = "", max = 50) => {
 
 const AliasPick = () => {
   const [messages, setMessages] = useState([])
+  const [messagesLoading, setMessagesLoading] = useState(true)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const [direction, setDirection] = useState("right")
@@ -51,10 +52,14 @@ const AliasPick = () => {
   const recipient = localStorage.getItem("recipient")
 
   const fetchMessages = async () => {
-    const { data, status } = await axios.post("/Message/fetch-messages", { recipient })
+    try {
+      const { data } = await axios.post("/Message/fetch-messages", { recipient })
 
-    if (data.success) {
-      setMessages(data.messages)
+      if (data.success) {
+        setMessages(data.messages)
+      }
+    } finally {
+      setMessagesLoading(false)
     }
   }
 
@@ -126,10 +131,21 @@ const AliasPick = () => {
           <div className="haptic-pipe">New Mail</div>
         </div>
       </div>
-      {messages.length ? <div className="swiveled-cry">Previous e-mails</div> : undefined}
+      {messagesLoading || messages.length ? <div className="swiveled-cry">Previous e-mails</div> : undefined}
       <>
         <div className={`pater-hear slide-${direction}`} key={page}>
-          {paginatedMessages.map((message, index) => (
+          {messagesLoading ? [0, 1, 2].map((item) => (
+            <div className="tapered-earn alias-message-skeleton" key={item} aria-hidden="true">
+              <div className="switched-vee">
+                <div><span className="alias-skeleton-line alias-skeleton-alias" /></div>
+              </div>
+              <div className="alias-skeleton-content">
+                <span className="alias-skeleton-line alias-skeleton-subject" />
+                <span className="alias-skeleton-line alias-skeleton-subject-short" />
+                <span className="alias-skeleton-chip" />
+              </div>
+            </div>
+          )) : paginatedMessages.map((message, index) => (
             <div
               key={index}
               className="tapered-earn"

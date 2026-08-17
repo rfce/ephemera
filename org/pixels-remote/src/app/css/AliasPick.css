@@ -186,6 +186,68 @@
     color: rgba(37, 150, 190);
 }
 
+/* Previous e-mails loading cards */
+._7iic .alias-message-skeleton {
+  cursor: default;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+._7iic .alias-message-skeleton::after {
+  display: none;
+}
+
+._7iic .alias-skeleton-line,
+._7iic .alias-skeleton-chip {
+  display: block;
+  background: linear-gradient(100deg, #bcd8e5 25%, #ebf5f9 45%, #bcd8e5 65%);
+  background-size: 250% 100%;
+  animation: aliasSkeletonShimmer 1.5s ease-in-out infinite;
+}
+
+._7iic .alias-skeleton-line {
+  height: 14px;
+  border-radius: 999px;
+}
+
+._7iic .alias-message-skeleton .switched-vee > div {
+  padding-bottom: 20px;
+}
+
+._7iic .alias-skeleton-alias {
+  width: 92px;
+  height: 14px;
+}
+
+._7iic .alias-skeleton-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 63px 0 0 35px;
+}
+
+._7iic .alias-skeleton-subject { width: 220px; }
+._7iic .alias-skeleton-subject-short { width: 145px; }
+
+._7iic .alias-skeleton-chip {
+  width: 88px;
+  height: 29px;
+  margin-top: 4px;
+  border-radius: 999px;
+}
+
+@keyframes aliasSkeletonShimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ._7iic .alias-skeleton-line,
+  ._7iic .alias-skeleton-chip {
+    animation: none;
+  }
+}
+
 /* Pagination container */
 ._7iic .grid-pagination {
     display: flex;
