@@ -1007,6 +1007,117 @@
   color: #3a3a3a;
 }
 
+/* Track message loading state */
+._3ono .track-message-skeleton {
+  pointer-events: none;
+}
+
+._3ono .track-message-skeleton .premium-message-card::before {
+  display: none;
+}
+
+._3ono .skeleton-line,
+._3ono .skeleton-icon,
+._3ono .skeleton-tag,
+._3ono .skeleton-status {
+  background: linear-gradient(100deg, #c7dce6 25%, #edf5f8 45%, #c7dce6 65%);
+  background-size: 250% 100%;
+  animation: trackMessageSkeletonShimmer 1.5s ease-in-out infinite;
+}
+
+._3ono .skeleton-line {
+  height: 14px;
+  border-radius: 999px;
+}
+
+._3ono .skeleton-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 138px;
+  height: 28px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 999px;
+}
+
+._3ono .skeleton-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+}
+
+._3ono .skeleton-status .skeleton-icon {
+  background: rgba(156, 188, 201, 0.95);
+  animation: none;
+}
+
+._3ono .skeleton-status-text { width: 84px; height: 10px; }
+
+._3ono .skeleton-message-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+._3ono .skeleton-message-line-medium { width: 82%; }
+._3ono .skeleton-message-line-short { width: 56%; }
+._3ono .skeleton-footer-time { width: 152px; height: 11px; }
+
+._3ono .skeleton-history-list {
+  gap: 34px;
+  overflow: hidden;
+}
+
+._3ono .skeleton-history-item {
+  margin-bottom: 0;
+}
+
+._3ono .skeleton-history-item .curst-vugs {
+  background: #dcecf2;
+  border: none;
+  box-shadow: none;
+}
+
+._3ono .skeleton-history-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+._3ono .skeleton-history-date { width: 190px; }
+._3ono .skeleton-history-ip { width: 118px; height: 12px; }
+
+._3ono .skeleton-tags {
+  display: flex;
+  gap: 8px;
+}
+
+._3ono .skeleton-tag {
+  width: 72px;
+  height: 26px;
+  border-radius: 999px;
+}
+
+._3ono .skeleton-tag-short { width: 88px; }
+
+@keyframes trackMessageSkeletonShimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ._3ono .skeleton-line,
+  ._3ono .skeleton-icon,
+  ._3ono .skeleton-tag,
+  ._3ono .skeleton-status {
+    animation: none;
+  }
+}
+
 
 @keyframes pmcEnter {
   from {
@@ -1953,5 +2064,3 @@
 
 
 }
-
-

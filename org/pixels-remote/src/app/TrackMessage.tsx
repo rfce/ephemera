@@ -9,7 +9,6 @@ import { parse } from "twemoji-parser"
 import Table from "./Table"
 import { format } from "timeago.js"
 import { UAParser } from "ua-parser-js"
-import { PuffLoader } from "react-spinners"
 
 const Contract = new URL('../assets/contract.png', import.meta.url).href
 
@@ -180,8 +179,44 @@ const TrackMessage = () => {
           <div style={{ fontSize: "14px", padding: "5px 12px", border: "2px solid #ffc354", backgroundColor: "white", color: "rgb(84, 183, 219)", borderRadius: "20px" }}>{eas}</div>
         </div>
       </div>
-      <div className={`mail-header-loader ${loading ? "active" : ""}`} />
-      {loading ? undefined : <div className="cordobas-ouzo">
+      {loading ? <div className="cordobas-ouzo track-message-skeleton" aria-busy="true" aria-label="Loading message details">
+        <div className="athlete-tuna">
+          <div className="premium-message-card">
+            <div className="pmc-header">
+              <div className="pmc-title">Message</div>
+              <div className="skeleton-status">
+                <div className="skeleton-icon" />
+                <div className="skeleton-line skeleton-status-text" />
+              </div>
+            </div>
+            <div className="pmc-body skeleton-message-body">
+              <div className="skeleton-line" />
+              <div className="skeleton-line skeleton-message-line-medium" />
+              <div className="skeleton-line skeleton-message-line-short" />
+            </div>
+            <div className="pmc-footer">
+              <span className="pmc-time-label">Sent</span>
+              <div className="skeleton-line skeleton-footer-time" />
+            </div>
+          </div>
+        </div>
+        <div className="athlete-tuna">
+          <div className="insects-cere">History</div>
+          <div className="tempting-bray skeleton-history-list">
+            {[0, 1, 2].map((item) => <div className="canny-two skeleton-history-item" key={item}>
+              <div className="curst-vugs skeleton-icon" />
+              <div className="skeleton-history-details">
+                <div className="skeleton-line skeleton-history-date" />
+                <div className="skeleton-line skeleton-history-ip" />
+                <div className="skeleton-tags">
+                  <div className="skeleton-tag" />
+                  <div className="skeleton-tag skeleton-tag-short" />
+                </div>
+              </div>
+            </div>)}
+          </div>
+        </div>
+      </div> : <div className="cordobas-ouzo">
         <div className="athlete-tuna">
           <div className="premium-message-card">
             {/* Header */}
