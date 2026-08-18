@@ -33,17 +33,6 @@
     font-family: "Roboto", sans-serif;
 }
 
-._6pzh .swoop-bit button {
-    background-color: transparent;
-    padding: 6px;
-    font-size: 24px;
-    border: none;
-    position: absolute;
-    bottom: 8px;
-    left: 10px;
-    cursor: pointer;
-}
-
 ._6pzh .swoop-bit .jocund-zone {
     width: 40px;
     height: 40px;
@@ -1998,6 +1987,277 @@
   line-height: 1.35;
 }
 
+/* =========================================================
+   Quick Emoji Reaction Bar
+   ========================================================= */
+
+._6pzh .swoop-bit .quick-emoji-bar {
+    position: absolute;
+    left: 14px;
+    bottom: 12px;
+
+    display: flex;
+    align-items: center;
+
+    height: 42px;
+    padding: 4px 6px;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(37, 150, 190, 0.14);
+
+    box-shadow:
+        0 8px 22px rgba(37, 150, 190, 0.12),
+        0 2px 5px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    z-index: 20;
+
+    animation: quickEmojiAppear
+        0.35s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* Emoji group */
+
+._6pzh .swoop-bit .quick-emoji-list {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
+
+/* Individual emoji */
+
+._6pzh .swoop-bit .quick-emoji {
+    position: relative;
+
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s cubic-bezier(.22, 1, .36, 1),
+        background 0.18s ease;
+}
+
+
+/* Twemoji image */
+
+._6pzh .swoop-bit .quick-emoji img {
+    width: 24px;
+    height: 24px;
+
+    object-fit: contain;
+
+    user-select: none;
+    pointer-events: none;
+
+    transition:
+        transform 0.18s cubic-bezier(.22, 1, .36, 1),
+        filter 0.18s ease;
+}
+
+
+/* Hover */
+
+._6pzh .swoop-bit .quick-emoji:hover {
+    background: rgba(37, 150, 190, 0.08);
+    transform: translateY(-2px);
+}
+
+._6pzh .swoop-bit .quick-emoji:hover img {
+    transform: scale(1.28);
+    filter: drop-shadow(0 4px 6px rgba(37, 150, 190, 0.16));
+}
+
+
+/* Press */
+
+._6pzh .swoop-bit .quick-emoji:active {
+    transform: scale(0.9);
+}
+
+._6pzh .swoop-bit .quick-emoji:active img {
+    transform: scale(1.05);
+}
+
+
+/* Divider */
+
+._6pzh .swoop-bit .quick-emoji-divider {
+    width: 1px;
+    height: 22px;
+
+    margin: 0 5px;
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(37, 150, 190, 0.18),
+        transparent
+    );
+}
+
+
+/* More button */
+
+._6pzh .swoop-bit .quick-emoji-more {
+    position: relative;
+
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 1px solid rgba(37, 150, 190, 0.12);
+    border-radius: 50%;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.98),
+        rgba(237, 249, 253, 0.95)
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    color: rgb(37, 150, 190);
+
+    box-shadow:
+        0 3px 8px rgba(37, 150, 190, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    transition:
+        transform 0.18s cubic-bezier(.22, 1, .36, 1),
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+
+._6pzh .swoop-bit .quick-emoji-more span {
+    font-family: Arial, sans-serif;
+
+    font-size: 22px;
+    font-weight: 300;
+
+    line-height: 1;
+
+    transform: translateY(-1px);
+
+    transition: transform 0.18s ease;
+}
+
+
+._6pzh .swoop-bit .quick-emoji-more:hover {
+    transform: translateY(-2px) scale(1.05);
+
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #eaf8fc
+    );
+
+    box-shadow:
+        0 7px 16px rgba(37, 150, 190, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+
+._6pzh .swoop-bit .quick-emoji-more:hover span {
+    transform: rotate(90deg);
+}
+
+
+._6pzh .swoop-bit .quick-emoji-more:active {
+    transform: scale(0.92);
+}
+
+
+/* =========================================================
+   Emoji Picker
+   ========================================================= */
+
+._6pzh .swoop-bit .emoji-picker-popover {
+    position: absolute;
+
+    left: 10px;
+    bottom: 62px;
+
+    z-index: 1000;
+
+    animation: emojiPickerEnter
+        0.28s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* =========================================================
+   Animations
+   ========================================================= */
+
+@keyframes quickEmojiAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+@keyframes emojiPickerEnter {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+        transform-origin: bottom left;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        transform-origin: bottom left;
+    }
+}
+
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    ._6pzh .swoop-bit .quick-emoji-bar,
+    ._6pzh .swoop-bit .emoji-picker-popover {
+        animation: none;
+    }
+
+    ._6pzh .swoop-bit .quick-emoji,
+    ._6pzh .swoop-bit .quick-emoji img,
+    ._6pzh .swoop-bit .quick-emoji-more {
+        transition: none;
+    }
+}
+
 /* Floating Animation */
 @keyframes coralFloat {
   0%,
@@ -2010,6 +2270,326 @@
   }
 }
 
+/* =========================================================
+   Copy Button Spotlight / Onboarding Guide
+   ========================================================= */
+
+._6pzh .copy-guide-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    pointer-events: auto;
+
+    animation: copyGuideFadeIn 0.28s ease;
+}
+
+
+/* ---------------------------------------------------------
+   Spotlight
+   --------------------------------------------------------- */
+
+._6pzh .copy-guide-spotlight {
+    position: fixed;
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 255, 255, 0.72);
+
+    box-shadow:
+        0 0 0 9999px rgba(7, 15, 22, 0.68),
+        0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 0 24px rgba(119, 204, 235, 0.38);
+
+    pointer-events: none;
+
+    animation:
+        copySpotlightIn
+        0.45s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* subtle breathing glow */
+
+._6pzh .copy-guide-spotlight::after {
+    content: "";
+
+    position: absolute;
+    inset: -5px;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(119, 204, 235, 0.35);
+
+    animation: copySpotlightPulse 1.8s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   Tooltip
+   --------------------------------------------------------- */
+
+._6pzh .copy-guide-tooltip {
+    position: fixed;
+
+    width: 290px;
+
+    padding: 15px 15px 14px;
+
+    display: grid;
+
+    grid-template-columns: 38px 1fr;
+
+    column-gap: 11px;
+    row-gap: 11px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 39, 47, 0.97),
+            rgba(14, 23, 30, 0.96)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.35),
+        0 5px 18px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    color: white;
+
+    animation:
+        copyTooltipIn
+        0.42s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* ---------------------------------------------------------
+   Arrow pointing toward Copy
+   --------------------------------------------------------- */
+
+._6pzh .copy-guide-arrow {
+    position: absolute;
+
+    top: -7px;
+    left: 50%;
+
+    width: 14px;
+    height: 14px;
+
+    background: rgb(27, 37, 45);
+
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    transform: translateX(-50%) rotate(45deg);
+}
+
+
+/* ---------------------------------------------------------
+   Copy icon
+   --------------------------------------------------------- */
+
+._6pzh .copy-guide-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: rgb(119, 204, 235);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(119, 204, 235, 0.18),
+            rgba(119, 204, 235, 0.07)
+        );
+
+    border: 1px solid rgba(119, 204, 235, 0.18);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 5px 14px rgba(119, 204, 235, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   Text
+   --------------------------------------------------------- */
+
+._6pzh .copy-guide-content {
+    padding-top: 1px;
+}
+
+
+._6pzh .copy-guide-title {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    line-height: 1.25;
+
+    letter-spacing: 0.1px;
+
+    color: rgba(255, 255, 255, 0.96);
+}
+
+
+._6pzh .copy-guide-message {
+    margin-top: 5px;
+
+    font-size: 11.5px;
+
+    line-height: 1.5;
+
+    color: rgba(255, 255, 255, 0.62);
+}
+
+
+._6pzh .copy-guide-message strong {
+    color: rgb(119, 204, 235);
+
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   OK button
+   --------------------------------------------------------- */
+
+._6pzh .copy-guide-ok {
+    grid-column: 2;
+
+    justify-self: end;
+
+    min-width: 58px;
+
+    padding: 7px 15px;
+
+    border: 1px solid rgba(119, 204, 235, 0.25);
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(119, 204, 235, 0.18),
+            rgba(119, 204, 235, 0.08)
+        );
+
+    color: rgb(147, 218, 241);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+
+._6pzh .copy-guide-ok:hover {
+    transform: translateY(-1px);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(119, 204, 235, 0.27),
+            rgba(119, 204, 235, 0.12)
+        );
+
+    box-shadow:
+        0 5px 15px rgba(119, 204, 235, 0.12);
+}
+
+
+._6pzh .copy-guide-ok:active {
+    transform: translateY(0) scale(0.96);
+}
+
+
+/* ---------------------------------------------------------
+   Animations
+   --------------------------------------------------------- */
+
+@keyframes copyGuideFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes copySpotlightIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes copySpotlightPulse {
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.025);
+    }
+}
+
+
+@keyframes copyTooltipIn {
+    from {
+        opacity: 0;
+        transform: translateY(-7px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    ._6pzh .copy-guide-overlay,
+    ._6pzh .copy-guide-spotlight,
+    ._6pzh .copy-guide-spotlight::after,
+    ._6pzh .copy-guide-tooltip {
+        animation: none;
+    }
+}
 
 @media screen and (max-width: 1370px) { 
   ._3ono .tempting-bray {
@@ -2064,3 +2644,4 @@
 
 
 }
+

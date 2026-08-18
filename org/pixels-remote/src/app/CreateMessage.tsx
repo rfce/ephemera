@@ -26,6 +26,17 @@ function getUnifiedFromUrl(url: string) {
   return url.split("/").pop()?.replace(".svg", "");
 }
 
+const QUICK_EMOJIS = ["😀", "❤️", "😂", "😍", "🙌"]
+
+function getTwemojiUrl(emoji) {
+  const entities = parse(emoji)
+
+  if (!entities.length) return null
+
+  const unified = getUnifiedFromUrl(entities[0].url)
+
+  return `https://lookup.trackpixels.online/api/Image/${unified}.png`
+}
 
 function textToTwemojiHtml(
   text: string,
@@ -76,6 +87,46 @@ function hasNativeEmoji(text) {
   return /\p{Extended_Pictographic}/u.test(text);
 }
 
+const QuickEmojiBar = ({ onEmojiSelect, onMore }) => {
+  return (
+    <div className="quick-emoji-bar">
+
+      <div className="quick-emoji-list">
+        {QUICK_EMOJIS.map((emoji) => {
+          const src = getTwemojiUrl(emoji)
+
+          return (
+            <button
+              key={emoji}
+              type="button"
+              className="quick-emoji"
+              onClick={() => onEmojiSelect(emoji)}
+              aria-label={`Insert ${emoji}`}
+            >
+              <img
+                src={src}
+                alt={emoji}
+                draggable="false"
+              />
+            </button>
+          )
+        })}
+      </div>
+
+      <div className="quick-emoji-divider" />
+
+      <button
+        type="button"
+        className="quick-emoji-more"
+        onClick={onMore}
+        aria-label="More emojis"
+      >
+        <span>+</span>
+      </button>
+
+    </div>
+  )
+}
 
 const CreateMessage = () => {
   const [open, setOpen] = useState(false)
@@ -85,7 +136,14 @@ const CreateMessage = () => {
   const [hasPasted, setHasPasted] = useState(false)
   const [popup, setPopup] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [sending, setSending] = useState(false);
+  const [sending, setSending] = useState(false)
+  const [showCopyGuide, setShowCopyGuide] = useState(false)
+  const [copyButtonRect, setCopyButtonRect] = useState(null)
+  const [copyGuideSeen, setCopyGuideSeen] = useState(() => {
+    return localStorage.getItem("copy_tutorial_seen") === "true"
+  })
+
+  const copyButtonRef = useRef(null)
 
   const [text, setText] = useAtom(composeAtom)
 
@@ -173,20 +231,20 @@ const CreateMessage = () => {
     if (sending) return
 
     setSending(true)
-    
+
     enableTracking()
   }
 
   const enableTracking = async () => {
     await axios.post("/Image/enable-tracking", { tid: String(tid), text })
-    
+
     const { data, status } = await axios.post("/Image/track-boat", { tid: String(tid) })
 
     if (data.success) {
       navigate(`/dashboard/track-boat/${eas}`, {
-                  state: { eas: eas, tid: tid },
-                })
-    } 
+        state: { eas: eas, tid: tid },
+      })
+    }
   }
 
   const saveMessage = async (wait = false) => {
@@ -252,6 +310,39 @@ const CreateMessage = () => {
 
     setHasEmoji(false)
   }, [text])
+
+  useEffect(() => {
+    if (
+      !hasEmoji ||
+      !text.trim() ||
+      hasCopied ||
+      copyGuideSeen
+    ) {
+      return
+    }
+
+    const timer = setTimeout(() => {
+      if (!copyButtonRef.current) return
+
+      const rect = copyButtonRef.current.getBoundingClientRect()
+
+      setCopyButtonRect({
+        top: rect.top,
+        left: rect.left,
+        width: rect.width,
+        height: rect.height
+      })
+
+      setShowCopyGuide(true)
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [
+    text,
+    hasEmoji,
+    hasCopied,
+    copyGuideSeen
+  ])
 
   useEffect(() => {
     if (hasCopied === false) {
@@ -350,12 +441,13 @@ const CreateMessage = () => {
                   rows={4}
                 />
 
-                <button onClick={() => setOpen(!open)}>
-                  <StickerIcon className="jocund-zone" />
-                </button>
+                <QuickEmojiBar
+                  onEmojiSelect={insertAtCursor}
+                  onMore={() => setOpen(!open)}
+                />
 
                 {open && (
-                  <div style={{ position: "absolute", bottom: 50, zIndex: 1000 }}>
+                  <div className="emoji-picker-popover">
                     <Picker
                       data={data}
                       onEmojiSelect={(e) => insertAtCursor(e.native)}
@@ -401,6 +493,7 @@ const CreateMessage = () => {
                 />
 
                 <button
+                  ref={copyButtonRef}
                   className={hasEmoji ? "shyer-fell" : "shyer-fell disabled"}
                   disabled={!hasEmoji}
                   onClick={handleCopy}
@@ -423,6 +516,67 @@ const CreateMessage = () => {
           </button>
         </div>
       </div>
+      {showCopyGuide && copyButtonRect && (
+        <div className="copy-guide-overlay">
+
+          {/* Spotlight */}
+          <div
+            className="copy-guide-spotlight"
+            style={{
+              top: copyButtonRect.top - 10,
+              left: copyButtonRect.left - 10,
+              width: copyButtonRect.width + 20,
+              height: copyButtonRect.height + 20
+            }}
+          />
+
+          {/* Pointer / message */}
+          <div
+            className="copy-guide-tooltip"
+            style={{
+              top: copyButtonRect.top + copyButtonRect.height + 24,
+              left: Math.max(
+                20,
+                copyButtonRect.left +
+                copyButtonRect.width / 2 -
+                145
+              )
+            }}
+          >
+            <div className="copy-guide-arrow" />
+
+            <div className="copy-guide-icon">
+              <CopyIcon width={19} height={19} />
+            </div>
+
+            <div className="copy-guide-content">
+              <div className="copy-guide-title">
+                Your email is ready
+              </div>
+
+              <div className="copy-guide-message">
+                Click <strong>Copy</strong> to copy the
+                trackable email to your clipboard.
+              </div>
+            </div>
+
+            <button
+              className="copy-guide-ok"
+              onClick={() => {
+                setShowCopyGuide(false)
+                setCopyGuideSeen(true)
+                localStorage.setItem(
+                  "copy_tutorial_seen",
+                  "true"
+                )
+              }}
+            >
+              OK
+            </button>
+          </div>
+
+        </div>
+      )}
     </div>
   )
 }
