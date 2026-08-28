@@ -33,6 +33,9 @@
       "create-pixels/Dashboard": [
         "create-pixels-remote/src/app/Dashboard.tsx"
       ],
+      "create-pixels/QuickMode": [
+        "create-pixels-remote/src/app/QuickMode.tsx"
+      ],
       "@org/shared-state": ["shared/state/src/index.ts"]
     }
   },

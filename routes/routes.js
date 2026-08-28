@@ -21,6 +21,13 @@ router.post("/Image/enable-tracking", Authentication, Author.enableTracking)
 router.post("/Image/has-paste", Authentication, Author.socketPaste)
 router.post("/Image/track-boat", Authentication, Author.messageStatus)
 
+router.get("/Focus/prepare-hash", Author.prepareHash)
+router.get("/Focus/:id", Author.focusImage)
+router.post("/Focus/has-paste", Author.focusPaste)
+router.post("/Focus/toggle-copy", Author.focusReset)
+router.post("/Focus/enable-tracking", Author.focusFire)
+router.post("/Focus/track-boat", Author.focusStatus)
+
 router.post("/Message/create-recipient", Authentication, Message.createRecipient)
 router.post("/Message/fetch-recipient", Authentication, Message.fetchRecipients)
 router.post("/Message/fetch-messages", Authentication, Message.fetchMessages)

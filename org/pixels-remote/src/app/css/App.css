@@ -424,7 +424,14 @@
   }
 }
 
+._0giz {
+  opacity: 1;
+  transform: translateY(0);
 
+  transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+}
 
 
 ._0giz .habanera-logo {
@@ -538,6 +545,13 @@
   margin: 0px;
   padding: 0px;
   max-width: 700px;
+}
+
+._0giz.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+
+  pointer-events: none;
 }
 
 @media screen and (max-width: 1370px) {

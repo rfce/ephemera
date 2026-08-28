@@ -31,7 +31,7 @@ const data = [
   { image: AOLIcon, name: "AOL Mail" },
 ]
 
-const Dashboard = () => {
+const Dashboard = ({ hidden }) => {
   const [activeIndex, setActiveIndex] = useState(0)
 
   const carouselRef = useRef()
@@ -49,7 +49,7 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <div className="_8rid">
+    <div className={hidden ? "_8rid hidden" : "_8rid"}>
       <div className="trebly-oat">
         <img className="steep-hiss" src={Logo} alt="Logo" />
         <div>
@@ -63,8 +63,8 @@ const Dashboard = () => {
       </div>
       <div className="outfind-sore">
         <div className="debugged-deys">
-          <img src={Background} alt="" />
           <div className="greater-lux">
+            <img style={{ position: "absolute", left: "-250px", top: "-140px", opacity: 0.5 }} src={Background} alt="" />
             <div className="partners-blob">
 
               {/* Content */}

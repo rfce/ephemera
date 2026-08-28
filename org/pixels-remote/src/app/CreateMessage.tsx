@@ -199,8 +199,8 @@ const CreateMessage = () => {
     }
 
     // 3. Extract the modified HTML and plain text
-    const html = doc.body.innerHTML;
-    const text = doc.body.textContent || "";
+    const html = doc.body.innerHTML
+    const text = doc.body.textContent?.trim() || firstImg?.getAttribute("alt") || "🙂"
 
     try {
       await navigator.clipboard.write([

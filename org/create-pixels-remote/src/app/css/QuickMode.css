@@ -1,0 +1,2568 @@
+._2dja {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    min-height: 100vh;
+
+    opacity: 1;
+    transform: translateY(0);
+
+    pointer-events: auto;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+
+    overflow-y: auto;
+}
+
+._2dja .gawkier-pal {
+    padding-left: 50px;
+    display: flex;
+}
+
+/* Hidden QuickMode */
+._2dja.hidden {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+}
+
+/* Actual QuickMode content */
+._2dja .block-kiss {
+    position: relative;
+    z-index: 1;
+}
+
+._2dja .steep-hiss {
+    width: 50px;
+    height: 50px;
+}
+
+._2dja .trebly-oat {
+    display: flex;
+    align-items: center;
+	gap: 8px;
+	font-size: 20px;
+	font-weight: 700;
+	color: rgb(190, 57, 133);
+	padding: 5px 0px 5px 10px;
+}
+
+._2dja .trebly-oat .tabarded-tux {
+  font-size: 12px;
+  font-weight: 400;
+  padding-top: 2px;
+}
+
+._2dja .emoji-grid-shell {
+    box-sizing: border-box;
+
+    width: 235px;
+}
+
+._2dja .emoji-grid {
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 8px;
+}
+
+/* Every emoji card */
+._2dja .emoji-cell {
+    box-sizing: border-box;
+
+    aspect-ratio: 1;
+
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 40px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(245, 246, 250, 0.98)
+        );
+
+    box-shadow:
+        0 4px 12px rgba(20, 25, 45, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+._2dja .emoji-cell:not(:last-of-type) {
+    border: 1px solid rgb(240, 240, 240);
+}
+
+._2dja .emoji-cell:hover {
+    background: #ffffff;
+
+    box-shadow:
+        0 7px 18px rgba(20, 25, 45, 0.13),
+        inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+._2dja .emoji-cell:active {
+    background: #f5f6fa;
+}
+
+/* Only the emoji zooms */
+._2dja .emoji {
+    box-sizing: border-box;
+
+    font-size: 30px;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: scale(1);
+
+    transition:
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+        filter 0.25s ease;
+
+    will-change: transform;
+}
+
+._2dja .emoji-cell:hover .emoji {
+    transform: scale(1.18);
+
+    filter:
+        drop-shadow(0 4px 5px rgba(0, 0, 0, 0.12));
+}
+
+._2dja .emoji-cell:focus-visible {
+    box-sizing: border-box;
+
+    outline: 2px solid rgba(80, 100, 255, 0.7);
+    outline-offset: 2px;
+}
+
+/* Plus button cell — no square background */
+._2dja .add-cell {
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: transparent;
+
+    box-shadow: none;
+
+    overflow: visible;
+}
+
+._2dja .add-cell:hover {
+    background: transparent;
+
+    box-shadow: none;
+}
+
+._2dja .add-cell:active {
+    background: transparent;
+}
+
+/* Circular add button */
+._2dja .add-cell::before {
+    box-sizing: border-box;
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 54%;
+    aspect-ratio: 1;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #eef0f5
+        );
+
+    box-shadow:
+        0 4px 12px rgba(20, 25, 45, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 1);
+
+    transition:
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.25s ease;
+}
+
+._2dja .plus-icon {
+    box-sizing: border-box;
+
+    position: absolute;
+    z-index: 1;
+
+    left: 50%;
+    top: 50%;
+
+    width: 12px;
+    height: 12px;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        linear-gradient(
+            #5d6272,
+            #5d6272
+        ) center / 12px 2px no-repeat,
+
+        linear-gradient(
+            #5d6272,
+            #5d6272
+        ) center / 2px 12px no-repeat;
+
+    font-size: 0;
+
+    transition:
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+._2dja .add-cell:hover::before {
+    transform: translate(-50%, -50%) scale(1.08);
+
+    box-shadow:
+        0 7px 18px rgba(20, 25, 45, 0.16),
+        inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+._2dja .add-cell:hover .plus-icon {
+    transform: translate(-50%, -50%) scale(1.12);
+}
+
+@media (max-width: 480px) {
+    ._2dja.emoji-grid-shell {
+        width: 210px;
+    }
+
+    ._2dja .emoji {
+        font-size: 27px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ._2dja .emoji,
+    ._2dja .add-cell::before,
+    ._2dja .plus-icon {
+        transition: none;
+    }
+}
+
+._2dja .emoji-picker-popover {
+    position: absolute;
+
+    left: 250px;
+    bottom: -120px;
+
+    z-index: 1000;
+
+    animation: emojiPickerEnter
+        0.28s cubic-bezier(.22, 1, .36, 1);
+}
+
+@keyframes emojiPickerEnter {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+        transform-origin: bottom left;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        transform-origin: bottom left;
+    }
+}
+
+._2dja .ebooks-pelf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 73px;
+    height: 73px;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 40px;
+    background-color: white;
+}
+
+._2dja .step-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 16px;
+}
+
+
+._2dja .step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    min-width: 58px;
+    height: 28px;
+
+    padding: 0 10px;
+
+    border: 1px solid rgba(190, 57, 133, 0.14);
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 239, 248, 1),
+            rgba(252, 229, 243, 1)
+        );
+
+    color: rgb(190, 57, 133);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.02em;
+
+    box-shadow:
+        0 4px 12px rgba(190, 57, 133, 0.08);
+}
+
+
+._2dja .step-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+
+._2dja .step-label {
+    color: #a5a6af;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+}
+
+
+._2dja .step-text h2 {
+    margin: 0;
+
+    color: #242530;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
+}
+
+._2dja .eutaxies-gnus {
+    display: flex;
+    align-items: start;
+
+    gap: 18px;
+
+    margin-top: 12px;
+    padding: 16px;
+
+    border: none;
+    border-radius: 22px;
+
+    background: white;
+
+    width: fit-content;
+}
+
+
+/* Information area */
+
+._2dja .tracked-emoji-info {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 8px;
+}
+
+
+/* Step badge */
+
+._2dja .step-two-badge {
+    display: inline-flex;
+    align-items: center;
+
+    height: 24px;
+    padding: 0 9px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(190, 57, 133, 0.09);
+
+    border:
+        1px solid rgba(190, 57, 133, 0.12);
+
+    color: rgb(190, 57, 133);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.03em;
+}
+
+
+/* Heading */
+
+._2dja .tracked-emoji-text h3 {
+    margin: 0 0 4px;
+
+    color: #242530;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.02em;
+}
+
+
+._2dja .tracked-emoji-text p {
+    margin: 0;
+
+    max-width: 360px;
+
+    color: #777987;
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+/* Copy button */
+
+._2dja .copy-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 36px;
+
+    padding: 0 14px;
+
+    border: 0;
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgb(211, 84, 145),
+            rgb(180, 48, 125)
+        );
+
+    box-shadow:
+        0 7px 16px rgba(190, 57, 133, 0.22);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        filter 0.22s ease;
+}
+
+
+._2dja .copy-button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.04);
+
+    box-shadow:
+        0 11px 24px rgba(190, 57, 133, 0.3);
+}
+
+
+._2dja .copy-button:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 5px 10px rgba(190, 57, 133, 0.18);
+}
+
+
+._2dja .copy-button svg {
+    flex-shrink: 0;
+
+    transition: transform 0.2s ease;
+}
+
+
+._2dja .copy-button:hover svg {
+    transform: scale(1.08);
+}
+
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    ._2dja .eutaxies-gnus {
+        align-items: flex-start;
+
+        gap: 13px;
+
+        padding: 13px;
+    }
+
+
+    ._2dja .tracked-emoji-text h3 {
+        font-size: 16px;
+    }
+
+
+    ._2dja .copy-button {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   MAIN WORKFLOW
+========================================= */
+
+._2dja .gawkier-pal {
+    display: flex;
+    align-items: stretch;
+
+    gap: 0;
+
+    width: fit-content;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+
+    padding: 22px 26px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.92),
+            rgba(249, 249, 252, 0.95)
+        );
+}
+
+
+/* =========================================
+   BOTH STEPS
+========================================= */
+
+._2dja .emoji-step,
+._2dja .eutaxies-gnus {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    background: transparent;
+
+    border: 0;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+._2dja .emoji-step {
+    width: 235px;
+}
+
+
+._2dja .eutaxies-gnus {
+    width: 280px;
+}
+
+
+/* =========================================
+   STEP HEADER
+========================================= */
+
+._2dja .step-title {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 4px;
+}
+
+
+._2dja .step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 38px;
+
+    padding: 0;
+
+    border-radius: 13px;
+
+    border:
+        1px solid rgba(190, 57, 133, 0.15);
+
+    color: rgb(190, 57, 133);
+
+    font-size: 11px;
+    font-weight: 750;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 242, 249, 1),
+            rgba(250, 228, 241, 1)
+        );
+
+    box-shadow:
+        0 5px 14px rgba(190, 57, 133, 0.08);
+}
+
+
+._2dja .step-text {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+._2dja .step-label {
+    color: #a3a4ae;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+
+    line-height: 1;
+}
+
+
+._2dja .step-text h2 {
+    margin: 0;
+
+    color: #292a34;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+._2dja .step-description {
+    margin:
+        8px 0
+        16px 49px;
+
+    color: #858692;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    max-width: 210px;
+}
+
+/* =========================================
+   WORKFLOW CONNECTOR
+========================================= */
+
+._2dja .workflow-divider {
+    position: relative;
+
+    width: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+._2dja .workflow-line {
+    width: 1px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(190, 57, 133, 0.15) 20%,
+            rgba(190, 57, 133, 0.15) 80%,
+            transparent
+        );
+}
+
+
+/* Arrow floating over line */
+
+._2dja .workflow-arrow {
+    position: absolute;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: rgb(190, 57, 133);
+
+    font-size: 17px;
+    font-weight: 500;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f5f8
+        );
+
+    border:
+        1px solid rgba(190, 57, 133, 0.12);
+
+    box-shadow:
+        0 6px 16px rgba(30, 25, 45, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+._2dja .gawkier-pal:hover .workflow-arrow {
+    transform: translateX(3px);
+
+    box-shadow:
+        0 8px 22px rgba(190, 57, 133, 0.15);
+}
+
+._2dja .emoji-grid-shell {
+    width: 235px;
+}
+
+
+._2dja .emoji-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 8px;
+}
+
+
+._2dja .emoji-cell {
+    box-sizing: border-box;
+
+    aspect-ratio: 1;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(225, 225, 232, 0.9);
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 1),
+            rgba(246, 247, 250, 1)
+        );
+
+    box-shadow:
+        0 5px 14px rgba(30, 30, 45, 0.07),
+        inset 0 1px 1px rgba(255, 255, 255, 1);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+
+/* Selected emoji */
+
+._2dja .emoji-cell.selected {
+    border-color:
+        rgba(190, 57, 133, 0.65);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 246, 251, 1),
+            rgba(252, 232, 244, 1)
+        );
+
+    box-shadow:
+        0 6px 18px rgba(190, 57, 133, 0.16),
+        inset 0 0 0 3px rgba(255, 255, 255, 0.75);
+}
+
+
+._2dja .emoji-cell:hover {
+    border-color:
+        rgba(190, 57, 133, 0.3);
+
+    box-shadow:
+        0 9px 20px rgba(30, 30, 45, 0.1);
+}
+
+
+._2dja .emoji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: scale(1);
+
+    transition:
+        transform 0.25s
+        cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    will-change: transform;
+}
+
+
+._2dja .emoji-cell:hover .emoji {
+    transform: scale(1.15);
+}
+
+
+._2dja .emoji-cell.selected .emoji {
+    transform: scale(1.08);
+}
+
+/* =========================================
+   TRACKED RESULT
+========================================= */
+
+._2dja .tracked-result {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: auto;
+
+    padding: 12px;
+
+    border-radius: 20px;
+
+    border:
+        1px solid rgba(230, 230, 236, 0.9);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.9),
+            rgba(248, 248, 251, 0.9)
+        );
+
+    box-shadow:
+        0 8px 22px rgba(30, 25, 45, 0.04);
+
+    user-select: none;
+}
+
+
+._2dja .ebooks-pelf {
+    width: 70px;
+    height: 70px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(230, 230, 236, 0.9);
+
+    box-shadow:
+        0 7px 16px rgba(30, 25, 45, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+
+._2dja .ebooks-pelf img {
+    display: block;
+
+    filter:
+        drop-shadow(
+            0 4px 6px
+            rgba(0, 0, 0, 0.1)
+        );
+}
+
+
+._2dja .tracked-emoji-info {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    min-width: 0;
+}
+
+
+/* Ready status */
+
+._2dja .tracking-ready {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #9b4d79;
+
+    font-size: 10px;
+    font-weight: 650;
+
+    padding: 5px 8px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(190, 57, 133, 0.08);
+}
+
+
+._2dja .tracking-ready span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: rgb(190, 57, 133);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(190, 57, 133, 0.1);
+}
+
+/* =========================================
+   STEP 3 — PASTE & SEND
+========================================= */
+
+._2dja .send-step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 280px;
+}
+
+
+/* Keep the workflow connector consistent */
+
+._2dja .workflow-divider {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 62px;
+    flex-shrink: 0;
+}
+
+._2dja .workflow-line {
+    width: 1px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(190, 57, 133, 0.16) 20%,
+            rgba(190, 57, 133, 0.16) 80%,
+            transparent
+        );
+}
+
+._2dja .workflow-arrow {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid rgba(190, 57, 133, 0.12);
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8f5f8
+        );
+
+    color: rgb(190, 57, 133);
+
+    font-size: 17px;
+
+    box-shadow:
+        0 6px 16px rgba(30, 25, 45, 0.08);
+}
+
+
+/* Step description */
+
+._2dja .send-step .step-description {
+    margin: 8px 0 16px 49px;
+
+    max-width: 225px;
+
+    color: #858692;
+
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+
+/* Email client hints */
+
+._2dja .email-clients {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin: 0 0 14px 49px;
+}
+
+._2dja .email-client {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    height: 30px;
+
+    padding: 0 9px;
+
+    border: 1px solid rgba(225, 225, 232, 0.9);
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.7);
+
+    color: #6f707b;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+._2dja .email-client:hover {
+    transform: translateY(-1px);
+
+    border-color: rgba(190, 57, 133, 0.22);
+
+    box-shadow:
+        0 5px 12px rgba(30, 25, 45, 0.06);
+}
+
+._2dja .client-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 16px;
+    height: 16px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(190, 57, 133, 0.08);
+
+    color: rgb(190, 57, 133);
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+/* Instruction before activation */
+
+._2dja .send-info {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 9px;
+
+    width: 100%;
+
+    margin-bottom: 12px;
+    padding: 11px 12px;
+
+    border: 1px solid rgba(190, 57, 133, 0.1);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 246, 251, 0.9),
+            rgba(252, 248, 251, 0.9)
+        );
+}
+
+._2dja .send-info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: rgb(190, 57, 133);
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    box-shadow:
+        0 3px 8px rgba(190, 57, 133, 0.2);
+}
+
+._2dja .send-info p {
+    margin: 0;
+
+    color: #777783;
+
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+
+/* Main activation button */
+
+._2dja .sent-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    width: 100%;
+    min-height: 42px;
+
+    padding: 0 16px;
+
+    border: 0;
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgb(211, 84, 145),
+            rgb(180, 48, 125)
+        );
+
+    box-shadow:
+        0 9px 20px rgba(190, 57, 133, 0.24);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        filter 0.22s ease;
+}
+
+._2dja .sent-button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.04);
+
+    box-shadow:
+        0 13px 28px rgba(190, 57, 133, 0.32);
+}
+
+._2dja .sent-button:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 6px 14px rgba(190, 57, 133, 0.2);
+}
+
+._2dja .sent-button svg {
+    transition: transform 0.22s ease;
+}
+
+._2dja .sent-button:hover svg {
+    transform: translateX(3px);
+}
+
+/* =========================================
+   STEP 3 — PASTE DETECTION
+========================================= */
+
+._2dja .step-three-badge {
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        color 0.35s ease,
+        transform 0.35s ease;
+}
+
+._2dja .step-number,
+._2dja .step-check {
+    position: absolute;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.35s cubic-bezier(.22, 1, .36, 1);
+}
+
+._2dja .step-number {
+    opacity: 1;
+    transform: scale(1);
+}
+
+._2dja .step-check {
+    width: 20px;
+    height: 20px;
+
+    opacity: 0;
+
+    transform: scale(0.4);
+}
+
+
+/* When emoji is detected */
+
+._2dja .email-detected .step-three-badge {
+    border-color: rgba(190, 57, 133, 0.35);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgb(211, 84, 145),
+            rgb(180, 48, 125)
+        );
+
+    color: white;
+
+    box-shadow:
+        0 6px 18px rgba(190, 57, 133, 0.28);
+
+    animation: stepComplete 0.55s cubic-bezier(.22, 1, .36, 1);
+}
+
+._2dja .email-detected .step-number {
+    opacity: 0;
+    transform: scale(0.4);
+}
+
+._2dja .email-detected .step-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+@keyframes stepComplete {
+    0% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.18);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   PASTE STATUS
+========================================= */
+
+._2dja .paste-status {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 9px;
+
+    width: 100%;
+
+    margin-bottom: 12px;
+    margin-top: 50px;
+    padding: 11px 12px;
+
+    border: 1px solid rgba(220, 220, 228, 0.9);
+    border-radius: 14px;
+
+    background:
+        rgba(248, 248, 251, 0.85);
+
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+._2dja .paste-status.detected {
+    border-color: rgba(190, 57, 133, 0.2);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 242, 249, 0.95),
+            rgba(252, 248, 251, 0.95)
+        );
+
+    box-shadow:
+        0 6px 18px rgba(190, 57, 133, 0.07);
+}
+
+._2dja .paste-status-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 20px;
+    height: 20px;
+
+    margin-top: 1px;
+
+    border-radius: 50%;
+
+    background: rgba(150, 150, 165, 0.12);
+
+    color: #858692;
+
+    transition:
+        background 0.35s ease,
+        color 0.35s ease,
+        transform 0.35s ease;
+}
+
+._2dja .paste-status.detected .paste-status-icon {
+    background: rgb(190, 57, 133);
+
+    color: white;
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 4px 10px rgba(190, 57, 133, 0.22);
+}
+
+._2dja .paste-status strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #555663;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+._2dja .paste-status.detected strong {
+    color: rgb(190, 57, 133);
+}
+
+._2dja .paste-status p {
+    margin: 0;
+
+    color: #858692;
+
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+
+/* Waiting animation */
+
+._2dja .status-pulse {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #9697a2;
+
+    animation: waitingPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes waitingPulse {
+    0%,
+    100% {
+        opacity: 0.45;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+
+/* =========================================
+   DISABLED / ENABLED BUTTON
+========================================= */
+
+._2dja .sent-button {
+    opacity: 1;
+}
+
+._2dja .sent-button:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.55;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b9b9c2,
+            #9d9da8
+        );
+
+    box-shadow:
+        none;
+}
+
+._2dja .sent-button:disabled:hover {
+    transform: none;
+
+    filter: none;
+
+    box-shadow: none;
+}
+
+._2dja .sent-button:disabled:hover svg {
+    transform: none;
+}
+
+
+/* Enabled state gets a subtle attention effect */
+
+._2dja .email-detected .sent-button:not(:disabled) {
+    animation:
+        buttonReady 0.6s cubic-bezier(.22, 1, .36, 1);
+}
+
+@keyframes buttonReady {
+    0% {
+        transform: scale(0.96);
+        opacity: 0.5;
+    }
+
+    60% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   HOW TRACKING WORKS
+========================================= */
+
+._2dja .tracking-flow {
+    width: min(680px, calc(100vw - 40px));
+    margin: 42px auto 28px;
+    text-align: center;
+    margin-bottom: 160px;
+}
+
+._2dja .tracking-flow-header {
+    margin-bottom: 22px;
+}
+
+._2dja .tracking-eyebrow {
+    display: inline-flex;
+    align-items: center;
+
+    color: rgb(190, 57, 133);
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+._2dja .tracking-eyebrow::before,
+._2dja .tracking-eyebrow::after {
+    content: "";
+
+    width: 18px;
+    height: 1px;
+
+    margin: 0 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(190, 57, 133, 0.45)
+        );
+}
+
+._2dja .tracking-eyebrow::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(190, 57, 133, 0.45),
+            transparent
+        );
+}
+
+._2dja .tracking-flow-header p {
+    margin: 7px 0 0;
+
+    color: #888996;
+
+    font-size: 12px;
+}
+
+
+/* Journey */
+
+._2dja .tracking-journey {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px 22px;
+
+    border: 1px solid rgba(220, 220, 228, 0.7);
+    border-radius: 24px;
+
+    background:
+        rgba(255, 255, 255, 0.42);
+
+    box-shadow:
+        0 12px 40px rgba(40, 35, 60, 0.04),
+        inset 0 1px rgba(255, 255, 255, 0.8);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* Individual step */
+
+._2dja .journey-step {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 125px;
+
+    text-align: left;
+}
+
+._2dja .journey-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(215, 215, 225, 0.9);
+    border-radius: 15px;
+
+    color: #777987;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.95),
+            rgba(245, 245, 249, 0.9)
+        );
+
+    box-shadow:
+        0 5px 14px rgba(30, 25, 50, 0.06);
+}
+
+
+/* Selected emoji gets accent */
+
+._2dja .emoji-icon {
+    font-size: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 242, 249, 0.95),
+            rgba(252, 230, 242, 0.85)
+        );
+
+    border-color:
+        rgba(190, 57, 133, 0.16);
+}
+
+
+/* Tracking icon */
+
+._2dja .tracking-icon {
+    color: rgb(190, 57, 133);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 240, 248, 0.95),
+            rgba(248, 229, 240, 0.9)
+        );
+
+    border-color:
+        rgba(190, 57, 133, 0.16);
+}
+
+
+/* Text */
+
+._2dja .journey-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+._2dja .journey-content strong {
+    color: #383945;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+._2dja .journey-content span {
+    color: #999aa5;
+
+    font-size: 9px;
+    white-space: nowrap;
+}
+
+
+/* Connecting line */
+
+._2dja .journey-line {
+    position: relative;
+
+    width: 42px;
+    height: 1px;
+
+    margin: 0 12px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(190, 57, 133, 0.12),
+            rgba(190, 57, 133, 0.38),
+            rgba(190, 57, 133, 0.12)
+        );
+}
+
+._2dja .journey-pulse {
+    position: absolute;
+
+    top: 50%;
+    left: -8px;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+
+    background: rgb(190, 57, 133);
+
+    box-shadow:
+        0 0 8px rgba(190, 57, 133, 0.55);
+
+    animation: journeyMove 2.8s ease-in-out infinite;
+}
+
+._2dja .journey-pulse.delay {
+    animation-delay: 1.35s;
+}
+
+@keyframes journeyMove {
+    0% {
+        left: -8px;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        left: calc(100% + 8px);
+        opacity: 0;
+    }
+}
+
+/* =========================================
+   COPY SUCCESS TOAST
+========================================= */
+
+._2dja .copy-toast {
+    position: fixed;
+
+    left: 50%;
+    top: 25px;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    min-width: 280px;
+
+    padding: 11px 14px;
+
+    border-radius: 17px;
+
+    color: #333441;
+
+    backdrop-filter: blur(18px);
+
+    transform:
+        translate(-50%, 25px)
+        scale(0.96);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.28s ease,
+        transform 0.38s cubic-bezier(.22, 1, .36, 1);
+
+    overflow: hidden;
+}
+
+
+/* Visible */
+
+._2dja .copy-toast.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0)
+        scale(1);
+}
+
+
+/* Icon */
+
+._2dja .copy-toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgb(211, 84, 145),
+            rgb(180, 48, 125)
+        );
+
+    box-shadow:
+        0 6px 16px rgba(190, 57, 133, 0.25);
+
+    transform: scale(0.7) rotate(-12deg);
+
+    transition:
+        transform 0.4s cubic-bezier(.22, 1.5, .36, 1);
+}
+
+
+/* Icon pops in */
+
+._2dja .copy-toast.show .copy-toast-icon {
+    transform: scale(1) rotate(0deg);
+}
+
+
+/* Checkmark */
+
+._2dja .copy-toast-icon svg {
+    stroke-dasharray: 30;
+    stroke-dashoffset: 30;
+}
+
+._2dja .copy-toast.show .copy-toast-icon svg {
+    animation:
+        drawCheck 0.45s ease forwards 0.18s;
+}
+
+@keyframes drawCheck {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+/* Text */
+
+._2dja .copy-toast-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+._2dja .copy-toast-content strong {
+    color: #393946;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+._2dja .copy-toast-content span {
+    color: #858692;
+
+    font-size: 10px;
+}
+
+
+/* Progress bar */
+
+._2dja .copy-toast-progress {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 3px;
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgb(211, 84, 145),
+            rgb(180, 48, 125)
+        );
+}
+
+._2dja .copy-toast.show .copy-toast-progress {
+    animation:
+        toastProgress 3s linear forwards;
+}
+
+@keyframes toastProgress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 480px) {
+    ._2dja .copy-toast {
+        width: calc(100vw - 32px);
+        min-width: 0;
+
+        bottom: 18px;
+    }
+}
+
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    ._2dja .copy-toast,
+    ._2dja .copy-toast-icon,
+    ._2dja .copy-toast-icon svg,
+    ._2dja .copy-toast-progress {
+        transition: none;
+        animation: none;
+    }
+}
+
+.email-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background:
+        rgba(38, 30, 34, 0.18);
+
+    backdrop-filter:
+        blur(16px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(16px)
+        saturate(135%);
+
+    animation:
+        overlayReveal 0.35s ease forwards;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.email-confirm-modal {
+    position: relative;
+
+    width: min(100%, 500px);
+
+    padding: 44px;
+
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255, 255, 255, 0.82);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 30px 80px rgba(88, 49, 67, 0.2),
+        0 8px 30px rgba(224, 125, 108, 0.12);
+
+    backdrop-filter:
+        blur(30px)
+        saturate(150%);
+
+    -webkit-backdrop-filter:
+        blur(30px)
+        saturate(150%);
+
+    animation:
+        modalReveal 0.45s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        forwards;
+}
+
+
+/* =========================
+   DECORATIVE GLOWS
+========================= */
+
+.modal-glow {
+    position: absolute;
+
+    width: 240px;
+    height: 240px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(50px);
+
+    opacity: 0.3;
+}
+
+.modal-glow-one {
+    top: -120px;
+    left: -100px;
+
+    background:
+        #f3a3b4;
+}
+
+.modal-glow-two {
+    right: -130px;
+    bottom: -150px;
+
+    background:
+        #e07d6c;
+}
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+.modal-close {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    z-index: 2;
+
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid
+        rgba(224, 125, 108, 0.14);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.55);
+
+    color:
+        #9b7180;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg);
+
+    background:
+        rgba(224, 125, 108, 0.1);
+
+    color:
+        #e07d6c;
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.confirm-icon {
+    position: relative;
+
+    width: 86px;
+    height: 86px;
+
+    margin:
+        0 auto
+        26px;
+}
+
+.confirm-icon-inner {
+    width: 76px;
+    height: 76px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff4f1,
+            #ffe5de
+        );
+
+    border:
+        1px solid
+        rgba(224, 125, 108, 0.2);
+
+    box-shadow:
+        0 14px 35px
+        rgba(224, 125, 108, 0.16);
+
+    font-size: 34px;
+
+    animation:
+        iconFloat
+        3s ease-in-out
+        infinite;
+}
+
+.confirm-check {
+    position: absolute;
+
+    right: 0;
+    bottom: 2px;
+
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c64b8a,
+            #b73b7d
+        );
+
+    border:
+        3px solid
+        rgba(255, 255, 255, 0.9);
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    box-shadow:
+        0 6px 15px
+        rgba(183, 59, 125, 0.3);
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.confirm-content {
+    position: relative;
+
+    text-align: center;
+}
+
+.confirm-eyebrow {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color:
+        #b8457f;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+.confirm-content h2 {
+    margin: 0;
+
+    color:
+        #354052;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    letter-spacing: -0.6px;
+}
+
+.confirm-content p {
+    max-width: 400px;
+
+    margin:
+        16px auto
+        0;
+
+    color:
+        #7d8490;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   INFO BOX
+========================= */
+
+.confirm-note {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-top: 28px;
+    padding: 14px 16px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(224, 125, 108, 0.07);
+
+    border:
+        1px solid
+        rgba(224, 125, 108, 0.14);
+
+    color:
+        #8a7280;
+
+    font-size: 12px;
+}
+
+.confirm-note-icon {
+    flex-shrink: 0;
+
+    width: 26px;
+    height: 26px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255, 255, 255, 0.7);
+
+    color:
+        #c04b84;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.confirm-actions {
+    position: relative;
+
+    display: grid;
+    grid-template-columns:
+        1fr 1.45fr;
+
+    gap: 12px;
+
+    margin-top: 26px;
+}
+
+.confirm-btn {
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border-radius: 15px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.confirm-btn:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.7;
+}
+
+
+/* NOT YET */
+
+.confirm-btn.secondary {
+    background:
+        rgba(255, 255, 255, 0.65);
+
+    border:
+        1px solid
+        rgba(136, 122, 130, 0.16);
+
+    color:
+        #7a7480;
+}
+
+.confirm-btn.secondary:hover:not(:disabled) {
+    transform:
+        translateY(-2px);
+
+    background:
+        white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(60, 45, 55, 0.08);
+}
+
+
+/* CONFIRM */
+
+.confirm-btn.primary {
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c54886,
+            #b93778
+        );
+
+    color: white;
+
+    box-shadow:
+        0 12px 25px
+        rgba(185, 55, 120, 0.26);
+}
+
+.confirm-btn.primary:hover:not(:disabled) {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 16px 30px
+        rgba(185, 55, 120, 0.34);
+}
+
+.confirm-btn.primary:active,
+.confirm-btn.secondary:active {
+    transform:
+        translateY(0)
+        scale(0.98);
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+.btn-loader {
+    width: 16px;
+    height: 16px;
+
+    border: 2px solid
+        rgba(255, 255, 255, 0.35);
+
+    border-top-color:
+        white;
+
+    border-radius: 50%;
+
+    animation:
+        spin 0.7s linear infinite;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes overlayReveal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalReveal {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes iconFloat {
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-5px);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 560px) {
+
+    .email-confirm-modal {
+        padding:
+            38px 22px
+            22px;
+
+        border-radius: 25px;
+    }
+
+    .confirm-content h2 {
+        font-size: 23px;
+    }
+
+    .confirm-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .confirm-btn.primary {
+        order: -1;
+    }
+}

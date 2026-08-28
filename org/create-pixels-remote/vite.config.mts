@@ -41,6 +41,7 @@ export default defineConfig(({ mode }) => ({
         './Header': './src/app/Header.tsx',
         './Recommended': './src/app/Recommended.tsx',
         './Dashboard': './src/app/Dashboard.tsx',
+        './QuickMode': './src/app/QuickMode.tsx',
       },
       shared: {
         // Core dependencies should almost always be eager and singletons

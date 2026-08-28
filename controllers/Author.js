@@ -8,9 +8,11 @@ const path = require("path")
 const fs = require('fs')
 const Track = require("../models/Track")
 const { isValidObjectId } = require("mongoose")
+const { v4: uuid, validate } = require("uuid")
 const crypto = require("crypto")
 const nodemailer = require("nodemailer")
 const axios = require("axios")
+const Ghost = require("../models/Ghost")
 
 const BASE_DIR = path.join(process.cwd(), "uploads", "twemoji")
 
@@ -268,6 +270,33 @@ const togglePaste = async (req, res) => {
     })
 }
 
+const focusReset = async (req, res) => {
+    const { hash, paste } = req.body
+
+    if (validate(hash) === false) {
+        return res.json({
+            success: false,
+            message: "Invalid hash"
+        })
+    }
+
+    const ghost = await Ghost.findOne({ hash })
+
+    if (ghost === null) {
+        return res.json({
+            success: false,
+            message: "Invalid track id"
+        })
+    }
+
+    await Ghost.findOneAndUpdate({ hash }, { paste })
+
+    res.json({
+        success: true,
+        message: "Toggle paste success"
+    })
+}
+
 const enableTracking = async (req, res) => {
     const { tid, text } = req.body
 
@@ -305,6 +334,42 @@ const enableTracking = async (req, res) => {
         return res.json({
             success: false,
             message: "You didn't paste into an e-mail client"
+        })
+    }
+
+    res.json({
+        success: true,
+        message: "Tracking has been enabled"
+    })
+}
+
+const focusFire = async (req, res) => {
+    const { hash, text } = req.body
+
+    if (typeof text !== 'string' || text.trim() === '') {
+        return res.json({
+            success: false,
+            message: "Text sent is required"
+        })
+    }
+
+    if (validate(hash) === false) {
+        return res.json({
+            success: false,
+            message: "Invalid hash"
+        })
+    }
+
+    const ghost = await Ghost.findOneAndUpdate({ hash }, { 
+        text,
+        fire: true,
+        firefox: new Date()
+    })
+
+    if (ghost === null) {
+        return res.json({
+            success: false,
+            message: "Ghost not found"
         })
     }
 
@@ -352,6 +417,39 @@ const messageStatus = async (req, res) => {
     })
 }
 
+const focusStatus = async (req, res) => {
+    const { hash } = req.body
+
+    if (validate(hash) === false) {
+        return res.json({
+            success: false,
+            message: "Invalid hash"
+        })
+    }
+
+    const message = await Ghost.findOne({ hash })
+
+    if (message === null) {
+        return res.json({
+            success: false,
+            message: "Ghost not found"
+        })
+    }
+
+    if (message.fire === false) {
+        return res.json({
+            success: false,
+            message: "Tracking not started"
+        })
+    }
+
+    res.json({
+        success: true,
+        message: "Trackig status",
+        data: message
+    })
+}
+
 const socketPaste = async (req, res) => {
     const { tid } = req.body
 
@@ -380,6 +478,32 @@ const socketPaste = async (req, res) => {
         success: true,
         message: "Tracking status",
         paste: track.paste
+    })
+}
+
+const focusPaste = async (req, res) => {
+    const { hash } = req.body
+
+    if (validate(hash) === false) {
+        return res.json({
+            success: false,
+            message: "Invalid hash"
+        })
+    }
+
+    const ghost = await Ghost.findOne({ hash })
+
+    if (ghost === null) {
+        return res.json({
+            success: false,
+            message: "Ghost not found"
+        })
+    }
+
+    res.json({
+        success: true,
+        message: "Tracking status",
+        paste: ghost.paste
     })
 }
 
@@ -453,6 +577,92 @@ const fetchImage = async (req, res) => {
     }
 
     await Track.findOneAndUpdate({ _id: tid, fire: true }, update)
+
+    res.sendFile(image)
+}
+
+const prepareHash = async (req, res) => {
+    const hash = uuid()
+
+    await Ghost.create({ hash })
+
+    res.json({
+        success: true,
+        message: "Hash generated for incognito user",
+        hash
+    })
+}
+
+const focusImage = async (req, res) => {
+    const { id } = req.params
+    const { hash } = req.query
+
+    const ua = req.get('User-Agent')
+
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip
+
+    // Strips path parts
+    const filename = path.basename(id)
+
+    // Invalid path not a png
+    if (!/^[a-zA-Z0-9._-]+\.png$/.test(filename)) {
+        return res.json({
+            success: false,
+            message: "Invalid mime type"
+        })
+    }
+
+    const image = path.resolve(BASE_DIR, filename)
+
+    if (!fs.existsSync(image)) {
+        return res.json({
+            success: false,
+            message: "Emoji doesn't exist"
+        })
+    }
+
+    if (hash === undefined) {
+        return res.sendFile(image)
+    }
+
+    const track = await Ghost.findOne({ hash })
+
+    if (track === null) {
+        return res.json({
+            success: false,
+            message: "Ghost not found"
+        })
+    }
+
+    // Check if user pasted into client
+    if (track.paste === false && track.fire === false) {
+        await Ghost.findOneAndUpdate({ hash, paste: false }, {
+            paste: true
+        })
+
+        return res.sendFile(image)
+    }
+
+    // Save the timestamp to message
+    const update = {
+        $push: {
+            unix: {
+                $each: [
+                    {
+                        ip,
+                        ua,
+                        timestamp: new Date(),
+                    },
+                ],
+                $position: 0, // insert at beginning (newest first)
+            },
+        },
+        $set: {
+            seen: true,
+        }
+    }
+
+    await Ghost.findOneAndUpdate({ hash, fire: true }, update)
 
     res.sendFile(image)
 }
@@ -994,5 +1204,11 @@ module.exports = {
     messageStatus,
     checkUsername,
     verifyEmail,
-    sendEmail
+    sendEmail,
+    focusImage,
+    prepareHash,
+    focusPaste,
+    focusReset,
+    focusFire,
+    focusStatus
 }

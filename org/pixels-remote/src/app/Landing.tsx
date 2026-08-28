@@ -10,7 +10,7 @@ import Video from "./Video";
 const DemoVideo = "https://res.cloudinary.com/dkcyztevs/video/upload/sp_auto/Demo_-video_e1o2o3.m3u8"
 const AnimatedBot = new URL('../assets/Email Tick.webm', import.meta.url).href;
 
-const Landing = () => {
+const Landing = ({ hidden }) => {
   const [recipient, setRecipient] = useState("")
   const [toast, setToast] = useState("")
   const [autoComplete, setAutoComplete] = useState([])
@@ -84,7 +84,7 @@ const Landing = () => {
   }, [])
 
   return (
-    <div className="_2sww _0giz">
+    <div className={hidden ? "_2sww _0giz hidden" : "_2sww _0giz"}>
       <div className="tumble-duos">
         <div className="tzetzes-rhos">
           <div
