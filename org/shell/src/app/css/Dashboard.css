@@ -1,34 +1,34 @@
 ._8bxc {
-  display: flex;
+    display: flex;
 }
 
 ._2tow {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 ._2tow ._8rid {
-  min-height: unset;
+    min-height: unset;
 }
 
 ._2tow .groaning-zing {
-  display: flex;
+    display: flex;
 }
 
 ._2tow .raven-zoea {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 ._8bxc .raven-zoea {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 ._8bxc .clouds-gee {
@@ -102,31 +102,21 @@
         High-contrast premium coral mesh
     */
     background:
-        radial-gradient(
-            circle at 10% 30%,
+        radial-gradient(circle at 10% 30%,
             #ffb38a 0%,
-            transparent 42%
-        ),
-        radial-gradient(
-            circle at 85% 20%,
+            transparent 42%),
+        radial-gradient(circle at 85% 20%,
             #a98cc8 0%,
-            transparent 48%
-        ),
-        radial-gradient(
-            circle at 75% 85%,
+            transparent 48%),
+        radial-gradient(circle at 75% 85%,
             #7d6ba8 0%,
-            transparent 52%
-        ),
-        radial-gradient(
-            circle at 20% 90%,
+            transparent 52%),
+        radial-gradient(circle at 20% 90%,
             #e889a8 0%,
-            transparent 48%
-        ),
-        linear-gradient(
-            135deg,
+            transparent 48%),
+        linear-gradient(135deg,
             #e07d6c,
-            #c96f88
-        );
+            #c96f88);
 
     background-size:
         180% 180%,
@@ -243,13 +233,19 @@
 }
 
 @media (max-width: 900px) {
-  ._2tow .groaning-zing {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
+    ._2tow .groaning-zing {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
 
-  ._2tow .groaning-zing>div {
-    width: 100%;
-  }
+    ._2tow .groaning-zing>div {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    ._8bxc .clouds-gee {
+        display: none !important;
+    }
 }

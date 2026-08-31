@@ -3809,3 +3809,418 @@ VERY SMALL PHONES
         font-size: 9px;
     }
 }
+
+/* =========================================================
+   TRACKING ACTIVE — FINAL MOBILE VIEWPORT FIX
+   Append at the VERY END of the stylesheet
+   ========================================================= */
+
+@media screen and (max-width: 650px) {
+
+    /* -----------------------------------------------------
+       RELEASE BODY FROM QUICK MODE WIDTH CONSTRAINT
+       Only applies when TrackingActive exists
+       ----------------------------------------------------- */
+
+    body:has(._3ult) {
+        width: 100%;
+        max-width: none !important;
+        min-width: 0;
+        margin: 0;
+        overflow-x: hidden !important;
+    }
+
+
+    /* -----------------------------------------------------
+       TRACKING ACTIVE ROOT
+       Exact viewport width/height
+       ----------------------------------------------------- */
+
+    ._3ult {
+        position: fixed !important;
+        inset: 0 !important;
+
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* -----------------------------------------------------
+       PAGE
+       ----------------------------------------------------- */
+
+    ._3ult .tracking-page {
+        position: relative;
+
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        min-height: 100dvh;
+
+        margin: 0 !important;
+
+        overflow-x: hidden !important;
+
+        box-sizing: border-box;
+    }
+
+
+    /* -----------------------------------------------------
+       HEADER
+       ----------------------------------------------------- */
+
+    ._3ult .tracking-header {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        box-sizing: border-box;
+    }
+
+
+    ._3ult .tracking-header > * {
+        min-width: 0;
+    }
+
+
+    ._3ult .tracking-header .block-kiss {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+
+    ._3ult .trebly-oat {
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box;
+    }
+
+
+    /* -----------------------------------------------------
+       MAIN SHELL
+       ----------------------------------------------------- */
+
+    ._3ult .tracking-shell {
+        width: calc(100% - 28px) !important;
+        max-width: none !important;
+        min-width: 0 !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* -----------------------------------------------------
+       HERO
+       IMPORTANT:
+       Existing CSS had:
+       width: calc(100% - 400px)
+       ----------------------------------------------------- */
+
+    ._3ult .tracking-hero {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        box-sizing: border-box;
+    }
+
+
+    ._3ult .hero-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        padding: 0 !important;
+
+        box-sizing: border-box;
+    }
+
+
+    ._3ult .hero-content h2,
+    ._3ult .hero-content p {
+        max-width: 100% !important;
+    }
+
+
+    /* -----------------------------------------------------
+       STATS
+       ----------------------------------------------------- */
+
+    ._3ult .tracking-stats-grid {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+
+        box-sizing: border-box;
+    }
+
+
+    ._3ult .stat-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* -----------------------------------------------------
+       CURRENT STATUS
+       Existing CSS had:
+       width: calc(100% - 430px)
+       ----------------------------------------------------- */
+
+    ._3ult .current-status {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* -----------------------------------------------------
+       STATUS CONTENT
+       ----------------------------------------------------- */
+
+    ._3ult .status-main {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+
+    ._3ult .status-main > div:last-child {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       DASHBOARD
+       ----------------------------------------------------- */
+
+    ._3ult .dashboard-grid {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    ._3ult .dashboard-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    ._3ult .history-card,
+    ._3ult .visitor-card {
+        min-width: 0 !important;
+        max-width: 100% !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* -----------------------------------------------------
+       HISTORY
+       ----------------------------------------------------- */
+
+    ._3ult .history-list {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        overflow-x: hidden !important;
+    }
+
+
+    ._3ult .history-item {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    ._3ult .history-content {
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+
+    ._3ult .history-top {
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+
+    /* -----------------------------------------------------
+       VISITOR
+       ----------------------------------------------------- */
+
+    ._3ult .visitor-data {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+
+    ._3ult .visitor-row {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        box-sizing: border-box;
+    }
+
+
+    ._3ult .visitor-row strong {
+        min-width: 0;
+    }
+
+
+    ._3ult .user-agent {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        box-sizing: border-box;
+    }
+
+
+    /* -----------------------------------------------------
+       START OVER / TRACKER ACTIONS
+       ----------------------------------------------------- */
+
+    ._3ult .tracker-actions {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* -----------------------------------------------------
+       PREVENT LONG CONTENT FROM CREATING WIDTH
+       ----------------------------------------------------- */
+
+    ._3ult img,
+    ._3ult svg,
+    ._3ult video,
+    ._3ult canvas {
+        max-width: 100%;
+    }
+
+
+    ._3ult p,
+    ._3ult h1,
+    ._3ult h2,
+    ._3ult h3,
+    ._3ult h4,
+    ._3ult span,
+    ._3ult strong {
+        overflow-wrap: anywhere;
+    }
+
+
+    /* -----------------------------------------------------
+       BACKGROUND EFFECTS
+       Keep them inside the visual viewport
+       ----------------------------------------------------- */
+
+    ._3ult .tracking-bg-orb {
+        max-width: none !important;
+        pointer-events: none;
+    }
+
+
+    ._3ult .tracking-bg-grid {
+        max-width: none !important;
+        pointer-events: none;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+   ========================================================= */
+
+@media screen and (max-width: 380px) {
+
+    ._3ult .tracking-shell {
+        width: calc(100% - 20px) !important;
+        max-width: calc(100% - 20px) !important;
+    }
+
+
+    /* Remove the existing calc(100% - 380px) */
+    ._3ult .history-card,
+    ._3ult .visitor-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+
+    ._3ult .tracker-actions {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}

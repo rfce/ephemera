@@ -43,17 +43,17 @@
 ._2dja .trebly-oat {
     display: flex;
     align-items: center;
-	gap: 8px;
-	font-size: 20px;
-	font-weight: 700;
-	color: rgb(190, 57, 133);
-	padding: 5px 0px 5px 10px;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(190, 57, 133);
+    padding: 5px 0px 5px 10px;
 }
 
 ._2dja .trebly-oat .tabarded-tux {
-  font-size: 12px;
-  font-weight: 400;
-  padding-top: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    padding-top: 2px;
 }
 
 ._2dja .emoji-grid-shell {
@@ -91,11 +91,9 @@
     border-radius: 40px;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(255, 255, 255, 0.98),
-            rgba(245, 246, 250, 0.98)
-        );
+            rgba(245, 246, 250, 0.98));
 
     box-shadow:
         0 4px 12px rgba(20, 25, 45, 0.08),
@@ -204,11 +202,9 @@
     border-radius: 50%;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             #ffffff,
-            #eef0f5
-        );
+            #eef0f5);
 
     box-shadow:
         0 4px 12px rgba(20, 25, 45, 0.1),
@@ -234,15 +230,11 @@
     transform: translate(-50%, -50%);
 
     background:
-        linear-gradient(
-            #5d6272,
-            #5d6272
-        ) center / 12px 2px no-repeat,
+        linear-gradient(#5d6272,
+            #5d6272) center / 12px 2px no-repeat,
 
-        linear-gradient(
-            #5d6272,
-            #5d6272
-        ) center / 2px 12px no-repeat;
+        linear-gradient(#5d6272,
+            #5d6272) center / 2px 12px no-repeat;
 
     font-size: 0;
 
@@ -273,6 +265,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     ._2dja .emoji,
     ._2dja .add-cell::before,
     ._2dja .plus-icon {
@@ -288,8 +281,7 @@
 
     z-index: 1000;
 
-    animation: emojiPickerEnter
-        0.28s cubic-bezier(.22, 1, .36, 1);
+    animation: emojiPickerEnter 0.28s cubic-bezier(.22, 1, .36, 1);
 }
 
 @keyframes emojiPickerEnter {
@@ -342,11 +334,9 @@
     border-radius: 999px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgba(255, 239, 248, 1),
-            rgba(252, 229, 243, 1)
-        );
+            rgba(252, 229, 243, 1));
 
     color: rgb(190, 57, 133);
 
@@ -501,11 +491,9 @@
     font-weight: 600;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgb(211, 84, 145),
-            rgb(180, 48, 125)
-        );
+            rgb(180, 48, 125));
 
     box-shadow:
         0 7px 16px rgba(190, 57, 133, 0.22);
@@ -591,11 +579,9 @@
     border-radius: 28px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgba(255, 255, 255, 0.92),
-            rgba(249, 249, 252, 0.95)
-        );
+            rgba(249, 249, 252, 0.95));
 }
 
 
@@ -666,11 +652,9 @@
     font-weight: 750;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(255, 242, 249, 1),
-            rgba(250, 228, 241, 1)
-        );
+            rgba(250, 228, 241, 1));
 
     box-shadow:
         0 5px 14px rgba(190, 57, 133, 0.08);
@@ -717,8 +701,7 @@
 
 ._2dja .step-description {
     margin:
-        8px 0
-        16px 49px;
+        8px 0 16px 49px;
 
     color: #858692;
 
@@ -751,13 +734,11 @@
     height: 100%;
 
     background:
-        linear-gradient(
-            to bottom,
+        linear-gradient(to bottom,
             transparent,
             rgba(190, 57, 133, 0.15) 20%,
             rgba(190, 57, 133, 0.15) 80%,
-            transparent
-        );
+            transparent);
 }
 
 
@@ -781,11 +762,9 @@
     font-weight: 500;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             #ffffff,
-            #f7f5f8
-        );
+            #f7f5f8);
 
     border:
         1px solid rgba(190, 57, 133, 0.12);
@@ -844,11 +823,9 @@
     cursor: pointer;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(255, 255, 255, 1),
-            rgba(246, 247, 250, 1)
-        );
+            rgba(246, 247, 250, 1));
 
     box-shadow:
         0 5px 14px rgba(30, 30, 45, 0.07),
@@ -868,11 +845,9 @@
         rgba(190, 57, 133, 0.65);
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(255, 246, 251, 1),
-            rgba(252, 232, 244, 1)
-        );
+            rgba(252, 232, 244, 1));
 
     box-shadow:
         0 6px 18px rgba(190, 57, 133, 0.16),
@@ -897,8 +872,7 @@
     transform: scale(1);
 
     transition:
-        transform 0.25s
-        cubic-bezier(0.2, 0.8, 0.2, 1);
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 
     will-change: transform;
 }
@@ -935,11 +909,9 @@
         1px solid rgba(230, 230, 236, 0.9);
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(255, 255, 255, 0.9),
-            rgba(248, 248, 251, 0.9)
-        );
+            rgba(248, 248, 251, 0.9));
 
     box-shadow:
         0 8px 22px rgba(30, 25, 45, 0.04);
@@ -973,10 +945,7 @@
     display: block;
 
     filter:
-        drop-shadow(
-            0 4px 6px
-            rgba(0, 0, 0, 0.1)
-        );
+        drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 
@@ -1023,8 +992,7 @@
     background: rgb(190, 57, 133);
 
     box-shadow:
-        0 0 0 3px
-        rgba(190, 57, 133, 0.1);
+        0 0 0 3px rgba(190, 57, 133, 0.1);
 }
 
 /* =========================================
@@ -1058,13 +1026,11 @@
     height: 100%;
 
     background:
-        linear-gradient(
-            to bottom,
+        linear-gradient(to bottom,
             transparent,
             rgba(190, 57, 133, 0.16) 20%,
             rgba(190, 57, 133, 0.16) 80%,
-            transparent
-        );
+            transparent);
 }
 
 ._2dja .workflow-arrow {
@@ -1081,11 +1047,9 @@
     border-radius: 50%;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             #ffffff,
-            #f8f5f8
-        );
+            #f8f5f8);
 
     color: rgb(190, 57, 133);
 
@@ -1194,11 +1158,9 @@
     border-radius: 14px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgba(255, 246, 251, 0.9),
-            rgba(252, 248, 251, 0.9)
-        );
+            rgba(252, 248, 251, 0.9));
 }
 
 ._2dja .send-info-icon {
@@ -1259,11 +1221,9 @@
     font-weight: 700;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgb(211, 84, 145),
-            rgb(180, 48, 125)
-        );
+            rgb(180, 48, 125));
 
     box-shadow:
         0 9px 20px rgba(190, 57, 133, 0.24);
@@ -1344,11 +1304,9 @@
     border-color: rgba(190, 57, 133, 0.35);
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgb(211, 84, 145),
-            rgb(180, 48, 125)
-        );
+            rgb(180, 48, 125));
 
     color: white;
 
@@ -1416,11 +1374,9 @@
     border-color: rgba(190, 57, 133, 0.2);
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgba(255, 242, 249, 0.95),
-            rgba(252, 248, 251, 0.95)
-        );
+            rgba(252, 248, 251, 0.95));
 
     box-shadow:
         0 6px 18px rgba(190, 57, 133, 0.07);
@@ -1500,6 +1456,7 @@
 }
 
 @keyframes waitingPulse {
+
     0%,
     100% {
         opacity: 0.45;
@@ -1527,11 +1484,9 @@
     opacity: 0.55;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #b9b9c2,
-            #9d9da8
-        );
+            #9d9da8);
 
     box-shadow:
         none;
@@ -1609,20 +1564,16 @@
     margin: 0 8px;
 
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             transparent,
-            rgba(190, 57, 133, 0.45)
-        );
+            rgba(190, 57, 133, 0.45));
 }
 
 ._2dja .tracking-eyebrow::after {
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             rgba(190, 57, 133, 0.45),
-            transparent
-        );
+            transparent);
 }
 
 ._2dja .tracking-flow-header p {
@@ -1686,11 +1637,9 @@
     color: #777987;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(255, 255, 255, 0.95),
-            rgba(245, 245, 249, 0.9)
-        );
+            rgba(245, 245, 249, 0.9));
 
     box-shadow:
         0 5px 14px rgba(30, 25, 50, 0.06);
@@ -1703,11 +1652,9 @@
     font-size: 22px;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(255, 242, 249, 0.95),
-            rgba(252, 230, 242, 0.85)
-        );
+            rgba(252, 230, 242, 0.85));
 
     border-color:
         rgba(190, 57, 133, 0.16);
@@ -1720,11 +1667,9 @@
     color: rgb(190, 57, 133);
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(255, 240, 248, 0.95),
-            rgba(248, 229, 240, 0.9)
-        );
+            rgba(248, 229, 240, 0.9));
 
     border-color:
         rgba(190, 57, 133, 0.16);
@@ -1768,12 +1713,10 @@
     overflow: hidden;
 
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             rgba(190, 57, 133, 0.12),
             rgba(190, 57, 133, 0.38),
-            rgba(190, 57, 133, 0.12)
-        );
+            rgba(190, 57, 133, 0.12));
 }
 
 ._2dja .journey-pulse {
@@ -1849,8 +1792,7 @@
     backdrop-filter: blur(18px);
 
     transform:
-        translate(-50%, 25px)
-        scale(0.96);
+        translate(-50%, 25px) scale(0.96);
 
     opacity: 0;
 
@@ -1870,8 +1812,7 @@
     opacity: 1;
 
     transform:
-        translate(-50%, 0)
-        scale(1);
+        translate(-50%, 0) scale(1);
 }
 
 
@@ -1892,11 +1833,9 @@
     color: white;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgb(211, 84, 145),
-            rgb(180, 48, 125)
-        );
+            rgb(180, 48, 125));
 
     box-shadow:
         0 6px 16px rgba(190, 57, 133, 0.25);
@@ -1973,11 +1912,9 @@
     transform-origin: left;
 
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             rgb(211, 84, 145),
-            rgb(180, 48, 125)
-        );
+            rgb(180, 48, 125));
 }
 
 ._2dja .copy-toast.show .copy-toast-progress {
@@ -2011,6 +1948,7 @@
 /* Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
+
     ._2dja .copy-toast,
     ._2dja .copy-toast-icon,
     ._2dja .copy-toast-icon svg,
@@ -2035,12 +1973,10 @@
         rgba(38, 30, 34, 0.18);
 
     backdrop-filter:
-        blur(16px)
-        saturate(135%);
+        blur(16px) saturate(135%);
 
     -webkit-backdrop-filter:
-        blur(16px)
-        saturate(135%);
+        blur(16px) saturate(135%);
 
     animation:
         overlayReveal 0.35s ease forwards;
@@ -2066,25 +2002,20 @@
         rgba(255, 255, 255, 0.82);
 
     border:
-        1px solid
-        rgba(255, 255, 255, 0.9);
+        1px solid rgba(255, 255, 255, 0.9);
 
     box-shadow:
         0 30px 80px rgba(88, 49, 67, 0.2),
         0 8px 30px rgba(224, 125, 108, 0.12);
 
     backdrop-filter:
-        blur(30px)
-        saturate(150%);
+        blur(30px) saturate(150%);
 
     -webkit-backdrop-filter:
-        blur(30px)
-        saturate(150%);
+        blur(30px) saturate(150%);
 
     animation:
-        modalReveal 0.45s
-        cubic-bezier(0.16, 1, 0.3, 1)
-        forwards;
+        modalReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 
@@ -2142,8 +2073,7 @@
     display: grid;
     place-items: center;
 
-    border: 1px solid
-        rgba(224, 125, 108, 0.14);
+    border: 1px solid rgba(224, 125, 108, 0.14);
 
     border-radius: 12px;
 
@@ -2186,8 +2116,7 @@
     height: 86px;
 
     margin:
-        0 auto
-        26px;
+        0 auto 26px;
 }
 
 .confirm-icon-inner {
@@ -2200,26 +2129,20 @@
     border-radius: 24px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #fff4f1,
-            #ffe5de
-        );
+            #ffe5de);
 
     border:
-        1px solid
-        rgba(224, 125, 108, 0.2);
+        1px solid rgba(224, 125, 108, 0.2);
 
     box-shadow:
-        0 14px 35px
-        rgba(224, 125, 108, 0.16);
+        0 14px 35px rgba(224, 125, 108, 0.16);
 
     font-size: 34px;
 
     animation:
-        iconFloat
-        3s ease-in-out
-        infinite;
+        iconFloat 3s ease-in-out infinite;
 }
 
 .confirm-check {
@@ -2237,15 +2160,12 @@
     border-radius: 50%;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #c64b8a,
-            #b73b7d
-        );
+            #b73b7d);
 
     border:
-        3px solid
-        rgba(255, 255, 255, 0.9);
+        3px solid rgba(255, 255, 255, 0.9);
 
     color: white;
 
@@ -2253,8 +2173,7 @@
     font-weight: 700;
 
     box-shadow:
-        0 6px 15px
-        rgba(183, 59, 125, 0.3);
+        0 6px 15px rgba(183, 59, 125, 0.3);
 }
 
 
@@ -2298,8 +2217,7 @@
     max-width: 400px;
 
     margin:
-        16px auto
-        0;
+        16px auto 0;
 
     color:
         #7d8490;
@@ -2330,8 +2248,7 @@
         rgba(224, 125, 108, 0.07);
 
     border:
-        1px solid
-        rgba(224, 125, 108, 0.14);
+        1px solid rgba(224, 125, 108, 0.14);
 
     color:
         #8a7280;
@@ -2410,8 +2327,7 @@
         rgba(255, 255, 255, 0.65);
 
     border:
-        1px solid
-        rgba(136, 122, 130, 0.16);
+        1px solid rgba(136, 122, 130, 0.16);
 
     color:
         #7a7480;
@@ -2425,8 +2341,7 @@
         white;
 
     box-shadow:
-        0 8px 20px
-        rgba(60, 45, 55, 0.08);
+        0 8px 20px rgba(60, 45, 55, 0.08);
 }
 
 
@@ -2436,17 +2351,14 @@
     border: none;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #c54886,
-            #b93778
-        );
+            #b93778);
 
     color: white;
 
     box-shadow:
-        0 12px 25px
-        rgba(185, 55, 120, 0.26);
+        0 12px 25px rgba(185, 55, 120, 0.26);
 }
 
 .confirm-btn.primary:hover:not(:disabled) {
@@ -2454,15 +2366,13 @@
         translateY(-2px);
 
     box-shadow:
-        0 16px 30px
-        rgba(185, 55, 120, 0.34);
+        0 16px 30px rgba(185, 55, 120, 0.34);
 }
 
 .confirm-btn.primary:active,
 .confirm-btn.secondary:active {
     transform:
-        translateY(0)
-        scale(0.98);
+        translateY(0) scale(0.98);
 }
 
 
@@ -2474,8 +2384,7 @@
     width: 16px;
     height: 16px;
 
-    border: 2px solid
-        rgba(255, 255, 255, 0.35);
+    border: 2px solid rgba(255, 255, 255, 0.35);
 
     border-top-color:
         white;
@@ -2506,20 +2415,19 @@
         opacity: 0;
 
         transform:
-            translateY(20px)
-            scale(0.96);
+            translateY(20px) scale(0.96);
     }
 
     to {
         opacity: 1;
 
         transform:
-            translateY(0)
-            scale(1);
+            translateY(0) scale(1);
     }
 }
 
 @keyframes iconFloat {
+
     0%,
     100% {
         transform:
@@ -2548,8 +2456,7 @@
 
     .email-confirm-modal {
         padding:
-            38px 22px
-            22px;
+            38px 22px 22px;
 
         border-radius: 25px;
     }
@@ -2653,7 +2560,7 @@
     }
 
 
-    ._2dja .trebly-oat > div {
+    ._2dja .trebly-oat>div {
         min-width: 0;
         max-width: 100%;
 
@@ -2661,7 +2568,7 @@
     }
 
 
-    ._2dja .trebly-oat > div > div:first-child {
+    ._2dja .trebly-oat>div>div:first-child {
         max-width: 100%;
 
         overflow: hidden;
@@ -2727,9 +2634,9 @@
        to participate in the mobile layout.
        ===================================================== */
 
-    ._2dja .gawkier-pal > .emoji-step,
-    ._2dja .gawkier-pal > .eutaxies-gnus,
-    ._2dja .gawkier-pal > .send-step {
+    ._2dja .gawkier-pal>.emoji-step,
+    ._2dja .gawkier-pal>.eutaxies-gnus,
+    ._2dja .gawkier-pal>.send-step {
 
         display: flex;
         flex-direction: column;
@@ -2763,7 +2670,7 @@
        STEP 1
        ===================================================== */
 
-    ._2dja .gawkier-pal > .emoji-step {
+    ._2dja .gawkier-pal>.emoji-step {
         align-items: center;
         justify-content: center;
 
@@ -2861,7 +2768,7 @@
        STEP 2
        ===================================================== */
 
-    ._2dja .gawkier-pal > .eutaxies-gnus {
+    ._2dja .gawkier-pal>.eutaxies-gnus {
 
         align-items: center;
         justify-content: center;
@@ -2903,7 +2810,7 @@
        STEP 3
        ===================================================== */
 
-    ._2dja .gawkier-pal > .send-step {
+    ._2dja .gawkier-pal>.send-step {
 
         align-items: center;
         justify-content: center;
@@ -2973,7 +2880,9 @@
         margin: 40px auto 70px;
 
         box-sizing: border-box;
-    }._2dja .copy-toast {
+    }
+
+    ._2dja .copy-toast {
         position: fixed;
 
         top: max(14px, env(safe-area-inset-top));
@@ -2990,7 +2899,8 @@
 
         z-index: 999999;
     }
-._2dja .copy-toast {
+
+    ._2dja .copy-toast {
         position: fixed;
 
         top: max(14px, env(safe-area-inset-top));
@@ -3007,7 +2917,8 @@
 
         z-index: 999999;
     }
-._2dja .copy-toast {
+
+    ._2dja .copy-toast {
         position: fixed;
 
         top: max(14px, env(safe-area-inset-top));
@@ -3024,7 +2935,8 @@
 
         z-index: 999999;
     }
-._2dja .copy-toast {
+
+    ._2dja .copy-toast {
         position: fixed;
 
         top: max(14px, env(safe-area-inset-top));
@@ -3056,15 +2968,15 @@
         padding-right: 14px;
     }
 
-    ._2dja .gawkier-pal > .emoji-step {
+    ._2dja .gawkier-pal>.emoji-step {
         padding-top: 0px;
         margin-top: 50px;
     }
 
 
-    ._2dja .gawkier-pal > .emoji-step,
-    ._2dja .gawkier-pal > .eutaxies-gnus,
-    ._2dja .gawkier-pal > .send-step {
+    ._2dja .gawkier-pal>.emoji-step,
+    ._2dja .gawkier-pal>.eutaxies-gnus,
+    ._2dja .gawkier-pal>.send-step {
 
         width: calc(100vw - 24px);
         max-width: 336px;
@@ -3118,8 +3030,7 @@
         z-index: 2147483647 !important;
 
         transform:
-            translate(-50%, 25px)
-            scale(0.96) !important;
+            translate(-50%, 25px) scale(0.96) !important;
 
         opacity: 0 !important;
 
@@ -3132,8 +3043,7 @@
         top: 14px !important;
 
         transform:
-            translate(-50%, 0)
-            scale(1) !important;
+            translate(-50%, 0) scale(1) !important;
 
         opacity: 1 !important;
     }
@@ -3212,8 +3122,7 @@
         z-index: 2147483647 !important;
 
         transform:
-            translate3d(-50%, 25px, 0)
-            scale(0.96) !important;
+            translate3d(-50%, 25px, 0) scale(0.96) !important;
 
         opacity: 0 !important;
 
@@ -3227,8 +3136,7 @@
         top: max(14px, env(safe-area-inset-top)) !important;
 
         transform:
-            translate3d(-50%, 0, 0)
-            scale(1) !important;
+            translate3d(-50%, 0, 0) scale(1) !important;
 
         opacity: 1 !important;
     }
@@ -3382,12 +3290,10 @@
         overflow: hidden;
 
         background:
-            linear-gradient(
-                to bottom,
+            linear-gradient(to bottom,
                 rgba(190, 57, 133, 0.08),
                 rgba(190, 57, 133, 0.38),
-                rgba(190, 57, 133, 0.08)
-            );
+                rgba(190, 57, 133, 0.08));
     }
 
 
@@ -3476,5 +3382,207 @@
         height: 24px;
         flex-basis: 24px;
         margin-left: 19px;
+    }
+}
+
+/* =========================================================
+   FINAL MOBILE VIEWPORT LOCK
+   Append at the very END of the stylesheet
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+
+    /* -----------------------------------------------------
+       LOCK QUICK MODE TO THE REAL VIEWPORT
+       ----------------------------------------------------- */
+
+    ._2dja {
+        position: fixed !important;
+        inset: 0 !important;
+
+        width: 100vw !important;
+        max-width: 100vw !important;
+
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        max-height: 100dvh !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow: hidden !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* -----------------------------------------------------
+       CONTENT IS THE ONLY SCROLLING AREA
+       ----------------------------------------------------- */
+
+    ._2dja .block-kiss {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        height: 100% !important;
+        min-height: 0 !important;
+        max-height: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* -----------------------------------------------------
+       PREVENT CHILDREN FROM CREATING HORIZONTAL OVERFLOW
+       ----------------------------------------------------- */
+
+    ._2dja .block-kiss,
+    ._2dja .block-kiss>*,
+    ._2dja .gawkier-pal,
+    ._2dja .tracking-flow,
+    ._2dja .tracking-journey {
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+
+    /* -----------------------------------------------------
+       HEADER
+       ----------------------------------------------------- */
+
+    ._2dja .trebly-oat {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        box-sizing: border-box !important;
+
+        overflow: hidden !important;
+    }
+
+
+    /* -----------------------------------------------------
+       WORKFLOW
+       ----------------------------------------------------- */
+
+    ._2dja .gawkier-pal {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+
+        box-sizing: border-box !important;
+
+        overflow-x: hidden !important;
+    }
+
+
+    /* -----------------------------------------------------
+       PREVENT MOBILE STEPS FROM EXCEEDING VIEWPORT
+       ----------------------------------------------------- */
+
+    ._2dja .gawkier-pal>.emoji-step,
+    ._2dja .gawkier-pal>.eutaxies-gnus,
+    ._2dja .gawkier-pal>.send-step {
+
+        width: calc(100vw - 32px) !important;
+        max-width: 336px !important;
+        min-width: 0 !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        box-sizing: border-box !important;
+
+        left: auto !important;
+        right: auto !important;
+
+        transform: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       MAKE INTERNAL CONTENTS SHRINK SAFELY
+       ----------------------------------------------------- */
+
+    ._2dja .step-title,
+    ._2dja .step-description,
+    ._2dja .tracked-result,
+    ._2dja .email-clients,
+    ._2dja .paste-status,
+    ._2dja .sent-button,
+    ._2dja .emoji-grid-shell,
+    ._2dja .emoji-grid {
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* -----------------------------------------------------
+       REMOVE QUICK / EXPERT MODE SELECTOR COMPLETELY
+       ----------------------------------------------------- */
+
+    ._2dja .mode-selector,
+    ._2dja .quick-mode-selector,
+    ._2dja .expert-mode-selector,
+    ._2dja .mode-switcher,
+    ._2dja .mode-toggle,
+    ._2dja [class*="mode-selector"],
+    ._2dja [class*="mode-switcher"],
+    ._2dja [class*="mode-toggle"] {
+        display: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       ABSOLUTE SAFETY NET
+       ----------------------------------------------------- */
+
+    html,
+    body {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media screen and (max-width: 380px) {
+
+    ._2dja {
+        width: 100vw !important;
+        max-width: 100vw !important;
+
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+    }
+
+    ._2dja .block-kiss {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    ._2dja .gawkier-pal>.emoji-step,
+    ._2dja .gawkier-pal>.eutaxies-gnus,
+    ._2dja .gawkier-pal>.send-step {
+        width: calc(100vw - 24px) !important;
+        max-width: 336px !important;
     }
 }
