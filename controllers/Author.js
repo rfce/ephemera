@@ -16,6 +16,28 @@ const Ghost = require("../models/Ghost")
 
 const BASE_DIR = path.join(process.cwd(), "uploads", "twemoji")
 
+const headers = {
+    "Content-Type": "image/png",
+
+    "Pragma": "public",
+    "Expires": "0",
+    "Cache-Control": "must-revalidate, post-check=0, pre-check=0, private",
+    "Content-Transfer-Encoding": "binary",
+
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT",
+    "Access-Control-Allow-Headers":
+        "Content-Type, Authorization, X-Requested-With, x-csrf-token",
+    "Access-Control-Allow-Credentials": "true",
+
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "1; mode=block",
+    "X-Content-Type-Options": "nosniff",
+
+    "Strict-Transport-Security":
+        "max-age=31536000; includeSubDomains"
+}
+
 const verificationTemplate = (otp) => {
     return `
         <div style="
@@ -360,7 +382,7 @@ const focusFire = async (req, res) => {
         })
     }
 
-    const ghost = await Ghost.findOneAndUpdate({ hash }, { 
+    const ghost = await Ghost.findOneAndUpdate({ hash }, {
         text,
         fire: true,
         firefox: new Date()
@@ -640,6 +662,8 @@ const focusImage = async (req, res) => {
             paste: true
         })
 
+        res.set(headers);
+
         return res.sendFile(image)
     }
 
@@ -663,6 +687,8 @@ const focusImage = async (req, res) => {
     }
 
     await Ghost.findOneAndUpdate({ hash, fire: true }, update)
+
+    res.set(headers);
 
     res.sendFile(image)
 }
