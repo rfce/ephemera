@@ -576,6 +576,8 @@ const fetchImage = async (req, res) => {
             paste: true
         })
 
+        res.set(headers)
+
         return res.sendFile(image)
     }
 
@@ -599,6 +601,8 @@ const fetchImage = async (req, res) => {
     }
 
     await Track.findOneAndUpdate({ _id: tid, fire: true }, update)
+
+    res.set(headers)
 
     res.sendFile(image)
 }
