@@ -2201,8 +2201,8 @@
 ._6pzh .swoop-bit .emoji-picker-popover {
     position: absolute;
 
-    left: 10px;
-    bottom: 62px;
+    left: 260px;
+    bottom: -62px;
 
     z-index: 1000;
 

@@ -59,8 +59,6 @@ export default defineConfig(({ mode }) => ({
 
         // UI/Utilities: Singletons to save memory, but eager is usually not required
         'react-spinners': { singleton: true },
-        '@emoji-mart/react': { singleton: true },
-        '@emoji-mart/data': { singleton: true },
         'twemoji-parser': { singleton: true },
         'ua-parser-js': { singleton: true },
         'react-tooltip': { singleton: true },

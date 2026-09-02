@@ -262,6 +262,12 @@
     ._2dja .emoji {
         font-size: 27px;
     }
+
+    ._2dja .emoji-picker-popover {
+        position: fixed !important;
+        left: 5px !important;
+        top: 100px !important;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -276,8 +282,8 @@
 ._2dja .emoji-picker-popover {
     position: absolute;
 
-    left: 250px;
-    bottom: -120px;
+    left: 480px;
+    bottom: 120px;
 
     z-index: 1000;
 

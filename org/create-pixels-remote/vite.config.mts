@@ -59,8 +59,6 @@ export default defineConfig(({ mode }) => ({
 
         // These can remain lazy (default) to keep the initial load light
         'react-spinners': { singleton: true },
-        '@emoji-mart/react': { singleton: true },
-        '@emoji-mart/data': { singleton: true },
         'twemoji-parser': { singleton: true },
         'react-stacked-center-carousel': { singleton: true }
       }

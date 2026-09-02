@@ -5,10 +5,13 @@ import { useEffect, useRef, useState } from "react";
 import axios from "../config/backend"
 import { StickerIcon, CopyIcon, TickIcon, ChevronLeft, RightArrow } from "../assets/Icons.jsx"
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data"
 import { parse } from "twemoji-parser";
 import { PuffLoader } from "react-spinners";
+
+// Import the side-effects to ensure the custom element registers itself
+// We DO NOT import { Picker } to prevent using the wrong class reference
+import "emoji-mart"
+import data from "@emoji-mart/data"
 
 const SentEmail = new URL('../assets/Email sent.webm', import.meta.url).href;
 
@@ -127,6 +130,65 @@ const QuickEmojiBar = ({ onEmojiSelect, onMore }) => {
     </div>
   )
 }
+
+export function EmojiPicker({ onEmojiSelect }) {
+    const pickerRef = useRef(null);
+
+    // Store the latest callback in a ref 
+    const onEmojiSelectRef = useRef(onEmojiSelect);
+    useEffect(() => {
+        onEmojiSelectRef.current = onEmojiSelect;
+    }, [onEmojiSelect]);
+
+    useEffect(() => {
+        const container = pickerRef.current;
+        let isMounted = true; 
+
+        const initializePicker = async () => {
+            // 1. Wait for the browser to register the web component
+            await customElements.whenDefined('em-emoji-picker');
+
+            if (!isMounted || !container) return;
+            container.innerHTML = "";
+
+            // 2. THE MAGIC FIX: Get the exact class reference from the browser registry.
+            // This bypasses the Vite/Federation proxy that causes "Illegal constructor".
+            const PickerClass = customElements.get('em-emoji-picker');
+
+            // 3. Instantiate it with the options object (just like new Picker(options))
+            const pickerElement = new PickerClass({
+                data,
+                previewPosition: "none",
+                skinTonePosition: "none",
+                onEmojiSelect: (emoji) => {
+                    if (onEmojiSelectRef.current) {
+                        onEmojiSelectRef.current(emoji);
+                    }
+                }
+            });
+
+            container.appendChild(pickerElement);
+        };
+
+        initializePicker();
+
+        return () => {
+            isMounted = false;
+            if (container) {
+                container.innerHTML = "";
+            }
+        };
+    }, []);
+
+    return (
+        <div
+            ref={pickerRef}
+            // Simply stop the click from bubbling up to your background wrapper
+            onClick={(e) => e.stopPropagation()} 
+        />
+    );
+}
+
 
 const CreateMessage = () => {
   const [open, setOpen] = useState(false)
@@ -448,11 +510,8 @@ const CreateMessage = () => {
 
                 {open && (
                   <div className="emoji-picker-popover">
-                    <Picker
-                      data={data}
+                    <EmojiPicker
                       onEmojiSelect={(e) => insertAtCursor(e.native)}
-                      previewPosition="none"
-                      skinTonePosition="none"
                     />
                   </div>
                 )}
