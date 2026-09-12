@@ -50,7 +50,7 @@ const Dashboard = ({ hidden }) => {
 
   return (
     <div className={hidden ? "_8rid hidden" : "_8rid"}>
-      <div className="trebly-oat">
+      {/* <div className="trebly-oat">
         <img className="steep-hiss" src={Logo} alt="Logo" />
         <div>
           <div>Track Pixels</div>
@@ -60,7 +60,7 @@ const Dashboard = ({ hidden }) => {
           <div onClick={() => navigate("/sign-in")}>Login</div>
           <div onClick={() => navigate("/sign-up")}>Sign Up</div>
         </div>
-      </div>
+      </div> */}
       <div className="outfind-sore">
         <div className="debugged-deys">
           <div className="greater-lux">
@@ -134,7 +134,7 @@ const Dashboard = ({ hidden }) => {
             </div>
           </div>
         </div>
-        <div className="degut-jug">Emails that tell you when they’re opened.</div>
+        {/* <div className="degut-jug">Emails that tell you when they’re opened.</div> */}
       </div>
       <div className="water-wave">
 

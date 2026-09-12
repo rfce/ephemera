@@ -1,3 +1,7 @@
+html, body {
+    scroll-behavior: smooth !important;
+}
+
 ._8bxc .raven-zoea {
     width: 100vw;
     height: 100vh;

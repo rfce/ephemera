@@ -1,0 +1,1566 @@
+/* =========================================================
+   TRACKPIXELS HERO
+   Scoped to ._6clb
+   ========================================================= */
+
+._6clb {
+    --bg: #000000;
+    --text: #ffffff;
+    --muted: #9a9a9a;
+    --stat: #d8d8d8;
+    --border: rgba(255, 255, 255, 0.16);
+    --border-soft: rgba(255, 255, 255, 0.12);
+
+    --logo: 15.5px;
+    --logo-mark: 22px;
+    --nav: 14px;
+    --nav-h: 40px;
+    --btn: 13.5px;
+    --btn-h: 40px;
+    --hero-btn-h: 42px;
+    --h1: 48px;
+    --lede: 15.5px;
+    --badge: 12.5px;
+    --stat-size: 13.5px;
+
+    --header-y: 22px;
+    --header-x: 40px;
+    --stats-x: 72px;
+    --stats-y: 36px;
+
+    --hero-gap: 85px;
+    --copy-max: 860px;
+    --lede-max: 470px;
+
+    position: relative;
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+
+    background: transparent;
+    color: #fff;
+
+    font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+._6clb a {
+    color: inherit;
+    text-decoration: none;
+}
+
+._6clb button {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   HERO CONTAINER
+   ========================================================= */
+
+._6clb .vesper-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    background: #000;
+
+    overflow: hidden;
+}
+
+
+/* Everything belonging to the hero stays inside it */
+
+._6clb .page {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+
+/* =========================================================
+   VIDEO
+   ========================================================= */
+
+._6clb .hero-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    z-index: 0;
+
+    opacity: 0;
+    transform: scale(1.03);
+
+    animation:
+        hero-photo-in 1.4s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        0.05s both;
+}
+
+
+/* Black overlay belongs ONLY to the Hero */
+
+._6clb .vesper-page::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 0;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   GRAIN
+   ========================================================= */
+
+._6clb .grain {
+    position: absolute;
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    opacity: 0.055;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+._6clb .header {
+    position: relative;
+    z-index: 50;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    padding:
+        var(--header-y)
+        var(--header-x)
+        10px;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+._6clb .logo {
+    display: inline-flex;
+    align-items: center;
+
+    justify-self: start;
+
+    gap: 9px;
+
+    color: #fff;
+
+    font-size: var(--logo);
+    font-weight: 600;
+
+    letter-spacing: -0.03em;
+}
+
+._6clb .logo-mark {
+    width: var(--logo-mark);
+    height: var(--logo-mark);
+
+    flex: 0 0 auto;
+}
+
+._6clb .logo-suffix {
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   NAV
+   ========================================================= */
+
+._6clb .site-nav {
+    display: flex;
+    align-items: center;
+
+    justify-self: center;
+
+    gap: 8px;
+}
+
+._6clb .nav-link {
+    position: relative;
+
+    overflow: hidden;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: var(--nav-h);
+    padding: 0 18px;
+
+    border: 1px solid rgba(198, 198, 198, 0.55);
+    border-radius: 7px;
+
+    background:
+        linear-gradient(
+            105deg,
+            #050505 0%,
+            #2a2a2a 48%,
+            #4a4a4a 100%
+        );
+
+    color: #f3f3f3;
+
+    font-size: var(--nav);
+    font-weight: 400;
+
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+._6clb .nav-link::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.16) 50%,
+            transparent 70%
+        );
+
+    transform: translateX(-120%);
+
+    transition: transform 0.6s ease;
+}
+
+._6clb .nav-link:hover {
+    border-color: rgba(235, 235, 235, 0.9);
+
+    background:
+        linear-gradient(
+            105deg,
+            #111 0%,
+            #3a3a3a 45%,
+            #6a6a6a 100%
+        );
+
+    box-shadow:
+        0 0 18px rgba(200, 210, 230, 0.18);
+}
+
+._6clb .nav-link:hover::before {
+    transform: translateX(120%);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+._6clb .btn {
+    position: relative;
+    isolation: isolate;
+
+    overflow: hidden;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: var(--btn-h);
+    padding: 0 16px;
+
+    border-radius: 6px;
+
+    font-size: var(--btn);
+    font-weight: 500;
+
+    letter-spacing: -0.02em;
+    line-height: 1;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background 0.35s ease,
+        border 0.35s ease,
+        box-shadow 0.35s ease,
+        color 0.35s ease,
+        filter 0.35s ease;
+}
+
+._6clb .btn::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.45) 48%,
+            transparent 76%
+        );
+
+    transform: translateX(-130%);
+
+    transition: transform 0.65s ease;
+}
+
+._6clb .btn:hover::after {
+    transform: translateX(130%);
+}
+
+._6clb .btn-solid {
+    border: 1px solid #fff;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff 0%,
+            #e7e7e7 48%,
+            #cfcfcf 100%
+        );
+
+    color: #111;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+._6clb .btn-solid:hover {
+    border-color: #f2f6ff;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff 0%,
+            #f3f6ff 42%,
+            #d5def2 100%
+        );
+
+    box-shadow:
+        inset 0 1px 0 #fff,
+        0 0 22px rgba(186, 208, 255, 0.35),
+        0 8px 18px rgba(255, 255, 255, 0.12);
+}
+
+._6clb .btn-ghost {
+    border: 1px solid rgba(198, 198, 198, 0.55);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.12),
+            rgba(0, 0, 0, 0.5) 46%,
+            rgba(150, 170, 200, 0.1)
+        );
+
+    color: #fff;
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+._6clb .btn-ghost:hover {
+    border-color: rgba(220, 230, 255, 0.8);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(210, 225, 255, 0.18),
+            rgba(0, 0, 0, 0.35) 48%,
+            rgba(180, 195, 220, 0.16)
+        );
+
+    box-shadow:
+        0 0 24px rgba(170, 200, 255, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+._6clb .header-cta {
+    justify-self: end;
+}
+
+
+/* =========================================================
+   BURGER
+   ========================================================= */
+
+._6clb .burger {
+    display: none;
+
+    position: relative;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    background: rgba(8, 8, 8, 0.55);
+
+    place-items: center;
+
+    z-index: 80;
+
+    cursor: pointer;
+}
+
+._6clb .burger span {
+    position: absolute;
+
+    width: 16px;
+    height: 1.5px;
+
+    border-radius: 1px;
+
+    background: #fff;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.2s ease;
+}
+
+._6clb .burger span:nth-child(1) {
+    transform: translateY(-5.5px);
+}
+
+._6clb .burger span:nth-child(3) {
+    transform: translateY(5.5px);
+}
+
+._6clb.menu-open .burger span:nth-child(1) {
+    transform: translateY(0) rotate(45deg);
+}
+
+._6clb.menu-open .burger span:nth-child(2) {
+    opacity: 0;
+}
+
+._6clb.menu-open .burger span:nth-child(3) {
+    transform: translateY(0) rotate(-45deg);
+}
+
+
+/* =========================================================
+   HERO CONTENT
+   ========================================================= */
+
+._6clb .hero {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    min-height: 0;
+
+    padding:
+        8px
+        24px
+        var(--hero-gap);
+
+    margin-top: -180px;
+}
+
+._6clb .hero-copy {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    max-width: var(--copy-max);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+._6clb .badge {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 22px;
+    padding: 9px 15px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7d7d7d 0%,
+            #2a2a2a 52%,
+            #0a0a0a 100%
+        );
+
+    color: #f2f2f2;
+
+    font-size: var(--badge);
+    font-weight: 400;
+
+    letter-spacing: -0.01em;
+}
+
+._6clb .badge-star {
+    width: 18px;
+    height: 20px;
+
+    filter:
+        drop-shadow(
+            0 0 3px rgba(255, 255, 255, 0.45)
+        );
+
+    animation:
+        in-star 0.9s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        0.28s both;
+}
+
+
+/* =========================================================
+   HEADLINE
+   ========================================================= */
+
+._6clb .hero h1 {
+    color: #fff;
+
+    font-size: var(--h1);
+    font-weight: 500;
+
+    letter-spacing: -0.045em;
+    line-height: 1.12;
+}
+
+._6clb .headline-line {
+    display: block;
+
+    overflow: hidden;
+
+    padding:
+        0.06em
+        0.15em
+        0.14em;
+}
+
+._6clb .hero h1 em {
+    color: #9a9a9a;
+
+    font-family:
+        "Instrument Serif",
+        "Times New Roman",
+        Times,
+        serif;
+
+    font-size: 1.08em;
+    font-style: italic;
+    font-weight: 400;
+
+    letter-spacing: -0.03em;
+
+    animation:
+        in-em 1.2s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        0.72s both;
+}
+
+
+/* =========================================================
+   LEDE
+   ========================================================= */
+
+._6clb .lede {
+    max-width: var(--lede-max);
+
+    margin-top: 18px;
+
+    color: #9a9a9a;
+
+    font-size: var(--lede);
+    font-weight: 400;
+
+    line-height: 1.55;
+    letter-spacing: -0.015em;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+._6clb .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 26px;
+}
+
+._6clb .hero-btn {
+    height: var(--hero-btn-h);
+    padding: 0 18px;
+}
+
+._6clb .hero-actions .btn-solid:hover {
+    box-shadow:
+        0 0 26px rgba(186, 208, 255, 0.4),
+        0 8px 18px rgba(255, 255, 255, 0.14);
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+._6clb .stats {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    padding:
+        0
+        var(--stats-x)
+        max(
+            var(--stats-y),
+            env(safe-area-inset-bottom)
+        );
+
+    color: #d8d8d8;
+}
+
+._6clb .stat {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 14px;
+
+    color: #d8d8d8;
+
+    font-size: var(--stat-size);
+
+    letter-spacing: -0.015em;
+    white-space: nowrap;
+}
+
+._6clb .stat-icon {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+
+    flex: 0 0 auto;
+}
+
+._6clb .stat-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+._6clb .stat-icon-wide {
+    width: 38px !important;
+    height: 21px !important;
+}
+
+
+/* =========================================================
+   MENU BACKDROP
+   ========================================================= */
+
+._6clb .menu-backdrop {
+    display: none;
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 40;
+
+    background: rgba(8, 8, 8, 0.42);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.28s ease,
+        visibility 0.28s ease;
+}
+
+._6clb.menu-open .menu-backdrop {
+    opacity: 1;
+    visibility: visible;
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+
+/* =========================================================
+   ENTRANCE ANIMATIONS
+   ========================================================= */
+
+._6clb .appear {
+    opacity: 1;
+
+    animation-duration: 1.05s;
+    animation-fill-mode: both;
+
+    animation-timing-function:
+        cubic-bezier(0.16, 1, 0.3, 1);
+
+    animation-delay: var(--d, 0.08s);
+}
+
+._6clb .appear.is-in,
+._6clb .hero-photo.is-in {
+    animation: none !important;
+
+    opacity: 1;
+    transform: none;
+
+    clip-path: none;
+    filter: none;
+}
+
+._6clb .appear--scale {
+    animation-name: in-scale;
+}
+
+._6clb .appear--soft {
+    animation-name: in-soft;
+    animation-duration: var(--duration, 1.05s);
+}
+
+._6clb .appear--mask {
+    animation-name: in-mask;
+}
+
+._6clb .appear--pop {
+    animation-name: in-pop;
+}
+
+._6clb .appear--btn {
+    animation-name: in-btn;
+}
+
+._6clb .appear--side {
+    animation-name: in-side;
+}
+
+._6clb .appear--stat {
+    animation-name: in-stat;
+}
+
+
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
+@keyframes hero-photo-in {
+    from {
+        opacity: 0;
+        transform: scale(1.03);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes in-scale {
+    from {
+        opacity: 0;
+        transform: scale(0.84);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes in-soft {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes in-mask {
+    from {
+        opacity: 0;
+        transform: translateY(40%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes in-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes in-btn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes in-side {
+    from {
+        opacity: 0;
+        transform: translateX(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes in-stat {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes in-star {
+    0% {
+        transform: scale(0.2) rotate(-50deg);
+    }
+
+    65% {
+        transform: scale(1.2) rotate(8deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes in-em {
+    from {
+        opacity: 0.35;
+        filter: blur(4px);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1600px) {
+    ._6clb {
+        --logo: 17px;
+        --logo-mark: 24px;
+        --nav: 15px;
+        --nav-h: 44px;
+        --btn: 15px;
+        --btn-h: 44px;
+        --hero-btn-h: 48px;
+        --h1: 64px;
+        --lede: 18px;
+        --badge: 13.5px;
+        --stat-size: 15px;
+        --header-y: 28px;
+        --header-x: 64px;
+        --stats-x: 96px;
+        --stats-y: 44px;
+        --copy-max: 980px;
+        --lede-max: 540px;
+    }
+
+    ._6clb .nav-link {
+        padding: 0 20px;
+    }
+
+    ._6clb .badge {
+        margin-bottom: 26px;
+    }
+
+    ._6clb .lede {
+        margin-top: 22px;
+    }
+
+    ._6clb .hero-actions {
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    ._6clb .stat-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    ._6clb .stat-icon-wide {
+        width: 45px !important;
+        height: 24px !important;
+    }
+}
+
+
+/* =========================================================
+   1920+
+   ========================================================= */
+
+@media (min-width: 1920px) {
+    ._6clb {
+        --logo: 18px;
+        --logo-mark: 26px;
+        --nav: 16px;
+        --nav-h: 48px;
+        --btn: 16px;
+        --btn-h: 48px;
+        --hero-btn-h: 52px;
+        --h1: 76px;
+        --lede: 20px;
+        --badge: 14.5px;
+        --stat-size: 16px;
+        --header-y: 32px;
+        --header-x: 80px;
+        --stats-x: 120px;
+        --stats-y: 52px;
+        --copy-max: 1120px;
+        --lede-max: 620px;
+    }
+
+    ._6clb .site-nav {
+        gap: 10px;
+    }
+
+    ._6clb .nav-link {
+        padding: 0 22px;
+    }
+
+    ._6clb .btn {
+        padding: 0 22px;
+    }
+
+    ._6clb .badge {
+        padding: 10px 15px;
+    }
+
+    ._6clb .stat-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    ._6clb .stat-icon-wide {
+        width: 48px !important;
+        height: 26px !important;
+    }
+}
+
+
+/* =========================================================
+   2560+
+   ========================================================= */
+
+@media (min-width: 2560px) {
+    ._6clb {
+        --h1: 88px;
+        --lede: 22px;
+        --header-x: 120px;
+        --stats-x: 160px;
+        --copy-max: 1280px;
+        --lede-max: 680px;
+    }
+}
+
+
+/* =========================================================
+   1280 - 1599
+   ========================================================= */
+
+@media (min-width: 1280px) and (max-width: 1599px) {
+    ._6clb {
+        --h1: 54px;
+        --lede: 16px;
+        --header-x: 48px;
+        --stats-x: 80px;
+        --copy-max: 900px;
+    }
+}
+
+
+/* =========================================================
+   901 - 1279
+   ========================================================= */
+
+@media (min-width: 901px) and (max-width: 1279px) {
+    ._6clb {
+        --logo: 15px;
+        --nav: 13px;
+        --nav-h: 36px;
+        --btn: 13px;
+        --btn-h: 38px;
+        --hero-btn-h: 40px;
+        --h1: 42px;
+        --lede: 15px;
+        --badge: 12px;
+        --stat-size: 12.5px;
+        --header-y: 16px;
+        --header-x: 28px;
+        --stats-x: 36px;
+        --stats-y: 28px;
+        --hero-gap: 64px;
+        --copy-max: 760px;
+        --lede-max: 440px;
+    }
+
+    ._6clb .nav-link {
+        padding: 0 14px;
+    }
+
+    ._6clb .badge {
+        margin-bottom: 16px;
+    }
+
+    ._6clb .lede {
+        margin-top: 14px;
+    }
+
+    ._6clb .hero-actions {
+        margin-top: 20px;
+    }
+}
+
+
+/* =========================================================
+   SHORT DESKTOP
+   ========================================================= */
+
+@media (min-width: 901px) and (max-height: 850px) {
+    ._6clb {
+        --header-y: 14px;
+        --stats-y: 24px;
+        --hero-gap: 48px;
+        --h1: 40px;
+    }
+
+    ._6clb .badge {
+        margin-bottom: 12px;
+    }
+
+    ._6clb .lede {
+        margin-top: 12px;
+    }
+
+    ._6clb .hero-actions {
+        margin-top: 16px;
+    }
+}
+
+@media (min-width: 901px) and (max-height: 720px) {
+    ._6clb {
+        --h1: 34px;
+        --lede: 14px;
+        --hero-gap: 32px;
+        --stats-y: 18px;
+        --nav-h: 30px;
+        --btn-h: 34px;
+        --hero-btn-h: 36px;
+    }
+
+    ._6clb .badge {
+        margin-bottom: 8px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+    ._6clb {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    ._6clb .vesper-page {
+        min-height: 100svh;
+        overflow: hidden;
+    }
+
+    ._6clb .page {
+        min-height: 100svh;
+    }
+
+    ._6clb .header {
+        grid-template-columns: 1fr auto auto;
+
+        gap: 8px;
+
+        padding:
+            max(16px, env(safe-area-inset-top))
+            16px
+            10px;
+    }
+
+    ._6clb .logo,
+    ._6clb .header-cta,
+    ._6clb .burger {
+        z-index: 80;
+    }
+
+    ._6clb .header-cta {
+        height: 40px;
+    }
+
+    ._6clb .burger {
+        display: grid;
+    }
+
+    ._6clb .menu-backdrop {
+        display: block;
+    }
+
+    ._6clb .site-nav {
+        position: absolute;
+        inset: 0;
+
+        z-index: 45;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 12px;
+
+        width: 100%;
+        height: 100%;
+
+        padding:
+            max(
+                96px,
+                calc(env(safe-area-inset-top) + 88px)
+            )
+            22px
+            32px;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transform: translateY(-8px);
+
+        transition:
+            opacity 0.28s ease,
+            transform 0.28s ease,
+            visibility 0.28s ease;
+    }
+
+    ._6clb .site-nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+
+        transform: translateY(0);
+    }
+
+    ._6clb .site-nav .nav-link {
+        width: 100%;
+        height: 56px;
+
+        border-radius: 10px;
+
+        font-size: 19px;
+    }
+
+    ._6clb .hero {
+        align-items: flex-end;
+
+        min-height: calc(100svh - 70px);
+
+        padding:
+            20px
+            20px
+            64px;
+    }
+
+    ._6clb .hero-copy {
+        max-width: 100%;
+    }
+
+    ._6clb .hero h1 {
+        font-size: 36px;
+    }
+
+    ._6clb .lede {
+        max-width: 100%;
+
+        margin-top: 18px;
+
+        font-size: 16.5px;
+    }
+
+    ._6clb .badge {
+        margin-bottom: 18px;
+
+        font-size: 13.5px;
+    }
+
+    ._6clb .hero-actions {
+        width: 100%;
+        margin-top: 26px;
+    }
+
+    ._6clb .hero-actions .btn {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    ._6clb .stats {
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 16px;
+
+        padding:
+            0
+            20px
+            max(
+                28px,
+                env(safe-area-inset-bottom)
+            );
+
+        text-align: center;
+        white-space: normal;
+    }
+
+    ._6clb .stat {
+        justify-content: center;
+
+        font-size: 15px;
+
+        white-space: normal;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+   ========================================================= */
+
+@media (max-width: 560px) {
+    ._6clb {
+        --header-x: 16px;
+    }
+
+    ._6clb .header {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    ._6clb .header-cta {
+        height: 46px;
+
+        padding: 0 14px;
+
+        font-size: 15px;
+    }
+
+    ._6clb .burger {
+        width: 42px;
+        height: 42px;
+    }
+
+    ._6clb .hero {
+        padding:
+            20px
+            20px
+            64px;
+    }
+
+    ._6clb .hero h1 {
+        font-size: 34px;
+    }
+
+    ._6clb .lede {
+        font-size: 16px;
+    }
+
+    ._6clb .hero-actions {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    ._6clb .hero-actions .btn {
+        width: 100%;
+
+        min-width: 0;
+
+        flex: none;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    ._6clb *,
+    ._6clb *::before,
+    ._6clb *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    ._6clb .appear,
+    ._6clb .hero-photo,
+    ._6clb .hero h1 em,
+    ._6clb .badge-star {
+        opacity: 1 !important;
+
+        transform: none !important;
+
+        clip-path: none !important;
+        filter: none !important;
+    }
+}
+
+/* =========================================================
+   SCROLL FIX OVERRIDE
+   Append this block at the VERY END of the CSS
+   ========================================================= */
+
+/* Prevent the Hero wrapper from becoming a scroll container */
+._6clb {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+}
+
+/* Hero = exactly one viewport */
+._6clb .vesper-page {
+    position: relative !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+}
+
+/* Don't create a second viewport-sized scroll area */
+._6clb .page {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+}
+
+/* Keep video contained inside Hero */
+._6clb .hero-photo {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+}
+
+/* Keep Hero overlay contained inside Hero */
+._6clb .vesper-page::before {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Hero content should fill the Hero, not create extra height */
+._6clb .hero {
+    min-height: 0 !important;
+    height: 100% !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    ._6clb {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+    }
+
+    ._6clb .vesper-page {
+        height: 100svh !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: hidden !important;
+    }
+
+    ._6clb .page {
+        height: 100% !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: hidden !important;
+    }
+
+    ._6clb .hero {
+        height: 100% !important;
+        min-height: 0 !important;
+    }
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   Make sure nothing inside the Hero captures page scrolling
+   ========================================================= */
+
+._6clb .vesper-page,
+._6clb .page {
+    overscroll-behavior: auto !important;
+    scroll-snap-type: none !important;
+    scroll-snap-align: none !important;
+}
+
+
+/* Don't let the Hero itself become sticky/fixed */
+._6clb .vesper-page {
+    position: relative !important;
+}
+
+._6clb .logo img {
+    width: 40px;
+    height: 40px;
+    filter:
+        grayscale(80%)
+        brightness(4.5)
+        contrast(1.15);
+}
+
+._6clb .logo span {
+    color: white;
+
+    text-shadow:
+        0 0 6px rgba(224, 125, 108, 0.35),
+        0 0 14px rgba(224, 125, 108, 0.18);
+
+    font-weight: 600;
+}

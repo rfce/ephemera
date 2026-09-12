@@ -13,7 +13,7 @@ const remoteLoaders = {
 }
 
 const routeModules = (pathname) => {
-  if (pathname === '/') return ['landing', 'dashboard', 'quickMode']
+  if (pathname === '/') return ['quickMode']
   if (pathname === '/dashboard') return ['pixelsApp', 'createPixelsApp']
   if (pathname === '/dashboard/create-pixels') return ['header', 'aliasPick']
   if (/^\/dashboard\/message\/[^/]+$/.test(pathname)) {

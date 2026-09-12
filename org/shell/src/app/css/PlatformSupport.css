@@ -1,0 +1,326 @@
+/* 
+  ================================================
+  PREMIUM LIGHT THEME SECTION WITH MAGIC CURSOR
+  ================================================
+*/
+
+/* Hide default cursor on this section and everything inside it */
+.prem-plat-section.light-mode {
+  width: 100%;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff; /* Surrounding page is white */ 
+}
+
+
+/* 
+   THE MAGIC CURSOR
+   A white circle with 'difference' blending turns black on a white background.
+   When it crosses black text, the difference is white (inverting it).
+*/
+.magic-cursor {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  pointer-events: none; /* Lets clicks pass through to the buttons */
+  z-index: 9999;
+  mix-blend-mode: difference;
+  
+  /* Center the cursor on the mouse point */
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.magic-cursor.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- LIGHT THEME CARD CONTAINER --- */
+
+.prem-plat-wrapper {
+  position: relative;
+  margin-top: -150px;
+  transform: translateX(-30px);
+}
+
+.prem-plat-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  scale: 0.9;
+  /* Premium White Card Aesthetics */
+  background-color: #ffffff;
+}
+
+/* --- TYPOGRAPHY (LIGHT THEME) --- */
+
+.prem-plat-kicker {
+  color: #e5604e; /* Darker coral for better contrast on white */
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.prem-plat-headline {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.5;
+  color: #0f1115; /* Charcoal black */
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px 0;
+}
+
+.prem-plat-headline .coral-highlight {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff8a7a 0%, #e5604e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prem-plat-subhead {
+  font-size: clamp(16px, 2vw, 20px);
+  color: #5f6368; /* Crisp medium grey */
+  max-width: 650px;
+  line-height: 2;
+  margin: 0 0 40px 0;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.prem-plat-divider {
+  width: 250px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(229, 96, 78, 0.3), transparent);
+  margin-bottom: 40px;
+}
+
+/* --- LIGHT THEME PILL --- */
+
+.prem-plat-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 32px;
+  
+  background-color: #ffffff;
+  border: 1px solid rgba(229, 96, 78, 0.2);
+  border-radius: 50px;
+  color: #0f1115;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 60px;
+  
+  box-shadow: 0 4px 14px rgba(229, 96, 78, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Optional hover interaction even though cursor is hidden */
+.prem-plat-pill:hover {
+  border-color: rgba(229, 96, 78, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(229, 96, 78, 0.15);
+}
+
+.prem-plat-pill .pulse-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #e5604e;
+  border-radius: 50%;
+  animation: coralPulseLight 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes coralPulseLight {
+  0% { box-shadow: 0 0 0 0 rgba(229, 96, 78, 0.5); }
+  100% { box-shadow: 0 0 0 12px rgba(229, 96, 78, 0); }
+}
+
+/* --- LIGHT THEME STATS --- */
+
+.prem-plat-stats {
+  display: flex;
+  justify-content: center;
+  gap: clamp(40px, 8vw, 100px);
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-number {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, #ff8a7a 0%, #e5604e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  color: #8c939b;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media screen and (max-width: 600px) {
+  .prem-plat-container {
+    padding: 60px 20px;
+    border-radius: 24px;
+  }
+  .prem-plat-stats {
+    gap: 40px;
+    flex-direction: column;
+  }
+}
+
+/* 
+  ================================================
+  FLOATING CORNER EMOJIS
+  ================================================
+*/
+
+.floating-emoji {
+  position: absolute;
+  width: 44px; /* Keeps them tastefully small */
+  height: auto;
+  z-index: 2; /* Sits slightly above the card edge for a 3D effect */
+  pointer-events: none; /* Prevents them from blocking the magic cursor */
+  
+  /* Adds a soft shadow so they pop off the white background */
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.08));
+}
+
+/* Top Left - Sweating Smile */
+.emoji-tl {
+  top: -20px;
+  left: -20px;
+  animation: floatTL 6s ease-in-out infinite alternate;
+}
+
+/* Top Right - Cake */
+.emoji-tr {
+  top: 40px;
+  right: -25px;
+  animation: floatTR 7.5s ease-in-out infinite alternate;
+}
+
+/* Bottom Left - Star Struck */
+.emoji-bl {
+  bottom: 20px;
+  left: -20px;
+  animation: floatBL 8s ease-in-out infinite alternate;
+}
+
+/* Organic, de-synchronized animations for each corner */
+@keyframes floatTL {
+  0%   { transform: translate(0, 0) rotate(-10deg) scale(1); }
+  100% { transform: translate(12px, 15px) rotate(5deg) scale(1.05); }
+}
+
+@keyframes floatTR {
+  0%   { transform: translate(0, 0) rotate(15deg) scale(1); }
+  100% { transform: translate(-15px, 10px) rotate(-5deg) scale(0.95); }
+}
+
+@keyframes floatBL {
+  0%   { transform: translate(0, 0) rotate(-5deg) scale(0.95); }
+  100% { transform: translate(10px, -15px) rotate(10deg) scale(1.05); }
+}
+
+/* Prevent horizontal scroll on mobile if emojis float too far out */
+@media screen and (max-width: 1050px) {
+  .floating-emoji {
+    width: 36px; /* Slightly smaller on mobile screens */
+  }
+  .emoji-tl { left: 10px; top: -15px; }
+  .emoji-tr { right: 10px; }
+  .emoji-bl { left: 10px; bottom: -10px; }
+}
+
+/* 
+  ================================================
+  PREMIUM SCROLL REVEAL ANIMATIONS
+  ================================================
+*/
+
+/* 1. Base hidden state for text/cards */
+.prem-plat-section .animate-item {
+  opacity: 0;
+  transform: translateY(40px);
+  /* A custom cubic-bezier creates that expensive, buttery "snap into place" feel */
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base hidden state for emoji wrappers (adds a slight scale effect) */
+.prem-plat-section .emoji-reveal-wrapper {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.6) translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 2. Revealed state when intersection observer fires */
+.prem-plat-section.is-visible .animate-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.prem-plat-section.is-visible .emoji-reveal-wrapper {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* 3. Staggered Delays */
+.prem-plat-section .delay-1 { transition-delay: 0.1s; }
+.prem-plat-section .delay-2 { transition-delay: 0.2s; }
+.prem-plat-section .delay-3 { transition-delay: 0.3s; }
+.prem-plat-section .delay-4 { transition-delay: 0.4s; }
+.prem-plat-section .delay-5 { transition-delay: 0.5s; }
+.prem-plat-section .delay-6 { transition-delay: 0.6s; }
+.prem-plat-section .delay-7 { transition-delay: 0.7s; }
+.prem-plat-section .delay-8 { transition-delay: 0.8s; }
+
+/* 4. Fix Emoji Positioning */
+/* Because we wrapped the emojis in a div for the entrance animation, 
+   we need to reset the inner img absolute positioning so they don't break. */
+.emoji-reveal-wrapper .floating-emoji {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+/* Re-apply the specific corner coordinates to the new wrapper */
+.emoji-reveal-wrapper.emoji-tl { top: -20px; left: -20px; }
+.emoji-reveal-wrapper.emoji-tr { top: 40px; right: -25px; }
+.emoji-reveal-wrapper.emoji-bl { bottom: 20px; left: -20px; }
+
+@media screen and (max-width: 1050px) {
+  .emoji-reveal-wrapper.emoji-tl { left: 10px; top: -15px; }
+  .emoji-reveal-wrapper.emoji-tr { right: 10px; }
+  .emoji-reveal-wrapper.emoji-bl { left: 10px; bottom: -10px; }
+}

@@ -10,6 +10,66 @@ import Video from "./Video";
 const DemoVideo = "https://res.cloudinary.com/dkcyztevs/video/upload/sp_auto/Demo_-video_e1o2o3.m3u8"
 const AnimatedBot = new URL('../assets/Email Tick.webm', import.meta.url).href;
 
+const features = [
+  "No inbox access required",
+  "Instant setup, zero integrations",
+  "Lightweight and distraction-free",
+  "Privacy-first tracking approach",
+  "Built for speed, not enterprise overhead"
+];
+
+function FeatureCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Auto-slide animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % features.length);
+    }, 3500); // Slides every 3.5 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  // Determine positions for the 3 visible cards + hidden ones
+  const getCardPositionClass = (index) => {
+    if (index === activeIndex) return "card-active";
+    
+    const prevIndex = (activeIndex - 1 + features.length) % features.length;
+    const nextIndex = (activeIndex + 1) % features.length;
+
+    if (index === prevIndex) return "card-prev";
+    if (index === nextIndex) return "card-next";
+    
+    // Puts the remaining cards out of view based on slide direction
+    const prevPrevIndex = (activeIndex - 2 + features.length) % features.length;
+    if (index === prevPrevIndex) return "card-hidden-left";
+    
+    return "card-hidden-right";
+  };
+
+  return (
+    <div className="premium-carousel-container">
+      <ul className="yoghs-loos premium-carousel">
+        {features.map((feature, index) => (
+          <li 
+            key={index} 
+            className={`premium-card ${getCardPositionClass(index)}`}
+            onClick={() => setActiveIndex(index)}
+          >
+            {/* Big Transparent Outline Number */}
+            <div className="card-number">{index + 1}</div>
+            
+            {/* Card Content */}
+            <div className="card-content">
+              <TickIcon />
+              <span>{feature}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 const Landing = ({ hidden }) => {
   const [recipient, setRecipient] = useState("")
   const [toast, setToast] = useState("")
@@ -98,7 +158,7 @@ const Landing = ({ hidden }) => {
       <div ref={ref} className={`slide-in ${isVisible ? "visible" : ""}`}>
         <div className="habanera-logo">
           <div>
-            <video
+            {/* <video
               style={{ position: "absolute", top: -170, left: 120 }}
               autoPlay
               muted
@@ -108,32 +168,14 @@ const Landing = ({ hidden }) => {
               width={160}
             >
               <source src={AnimatedBot} type="video/webm" />
-            </video>
+            </video> */}
           </div>
           <div>
             <h1>Track emails the simple way</h1>
             <div className="vixen-atom">fast, private, and zero integrations</div>
           </div>
         </div>
-        <ul className="yoghs-loos">
-          <li>
-            <TickIcon />
-            No inbox access required
-          </li>
-          <li>
-            <TickIcon />
-            Instant setup, zero integrations
-          </li>
-          <li>
-            <TickIcon />
-            Lightweight and distraction-free</li>
-          <li>
-
-            <TickIcon />
-            Privacy-first tracking approach</li>
-          <li><TickIcon />
-            Built for speed, not enterprise overhead</li>
-        </ul>
+        <FeatureCarousel />
       </div>
       <div className="azine-swat">
         <div>Made with&nbsp;</div>

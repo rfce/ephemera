@@ -16,6 +16,8 @@ import { Suspense, useEffect } from 'react'
 import { scheduleRemainingRemotes } from './helpers/Run.js'
 import ValidateEmail from "./ValidateEmail"
 import ValidateEmailSuccess from "./ValidateEmailSuccess"
+import Hero from "./Hero"
+import CreativeFooter from "./CreativeFooter"
 
 export function App() {
   const { pathname } = useLocation()
@@ -37,6 +39,7 @@ export function App() {
           <Routes>
             <Route element={<PublicRoute />}>
               <Route path="/" element={<LandingPage />} />
+              <Route path="/hero" element={<CreativeFooter />} />
               <Route path="/sign-in" element={<Login />} />
               <Route path="/sign-up" element={<Register />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />

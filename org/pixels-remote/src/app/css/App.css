@@ -229,8 +229,6 @@
   margin-left: 0px;
   font-size: 20px;
   line-height: 55px;
-  margin-top: 40px;
-  margin-bottom: 100px;
 }
 
 ._0giz .yoghs-loos li {
@@ -440,7 +438,7 @@
   align-items: center;
   gap: 10px;
 
-  margin-top: 160px;
+  margin-top: -300px;
 
   /* layout */
   flex-direction: column;
@@ -481,9 +479,6 @@
 }
 
 ._0giz .yoghs-loos {
-  margin-top: 50px;
-  margin-bottom: 120px;
-
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -556,7 +551,6 @@
 
 @media screen and (max-width: 1370px) {
   ._0giz .habanera-logo {
-    margin-bottom: -200px;
     margin-left: -100px;
     transform: translate(-100px, 180px);
     text-align: center;
@@ -567,14 +561,13 @@
   }
 
   ._0giz .tzetzes-rhos .video-container {
-    margin-top: 50px;
+    margin-top: -300px;
   }
 
   /* Container */
   ._0giz .yoghs-loos {
     position: absolute;
     margin: 0;
-    margin-top: 60px;
     padding: 80px;
 
     display: flex;
@@ -679,4 +672,77 @@
   ._2sww .azine-swat svg {
     scale: 0.8;
   }
+}
+
+/* 
+  ================================================
+  PREMIUM CARDS OVERRIDE (LOOK ONLY, NO LAYOUT CHANGES)
+  ================================================
+*/
+
+/* 1. Paint the existing cards with the coral theme */
+._0giz .yoghs-loos li.premium-card {
+  background: linear-gradient(135deg, #ff8a7a 0%, #e5604e 100%) !important;
+  border: none !important;
+  box-shadow: 0 10px 25px rgba(229, 96, 78, 0.25) !important;
+  position: relative !important; /* Needed to anchor the giant number */
+  overflow: hidden !important; /* Keeps the number from spilling out */
+}
+
+/* 2. Enhance the hover shadow (while keeping your original scale/wave animations) */
+._0giz .yoghs-loos li.premium-card:hover {
+  box-shadow: 0 20px 40px rgba(229, 96, 78, 0.5) !important;
+}
+
+/* 3. Style the Giant Transparent Outline Numbers */
+._0giz .yoghs-loos .card-number {
+  position: absolute !important;
+  top: -15px !important;
+  right: -5px !important;
+  font-size: 130px !important;
+  font-weight: 900 !important;
+  font-family: 'Arial Black', Impact, sans-serif !important;
+  line-height: 1 !important;
+  
+  /* Text Transparency & Stroke outline */
+  color: transparent !important;
+  -webkit-text-stroke: 3px rgba(255, 255, 255, 0.25) !important;
+  
+  z-index: 0 !important;
+  pointer-events: none !important; /* Ensures it doesn't block clicks */
+  transition: all 0.3s ease !important;
+}
+
+/* Brighten outline slightly on hover */
+._0giz .yoghs-loos li.premium-card:hover .card-number {
+  -webkit-text-stroke: 4px rgba(255, 255, 255, 0.6) !important;
+  transform: scale(1.05) translate(-2px, 2px) !important;
+}
+
+/* 4. Style the Inner Content to sit above the number */
+._0giz .yoghs-loos .card-content {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+/* 5. Make text and icons white */
+._0giz .yoghs-loos .card-content span {
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+._0giz .yoghs-loos .card-content svg {
+  width: 28px !important;
+  height: 28px !important;
+  fill: #ffffff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15)) !important;
 }

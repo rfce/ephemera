@@ -1,0 +1,245 @@
+/* 
+  ================================================
+  PREMIUM DARK CARDS WITH CORAL GLOW (WHITE BG)
+  ================================================
+*/
+
+.nettling-rye {
+  width: 100%;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* Assumes the surrounding page is white as requested */
+  background-color: #ffffff; 
+}
+
+.nettling-rye .mesh-carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+/* Base Card Style (Dark Theme) */
+.nettling-rye .mesh-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 270px;
+  height: 380px;
+  
+  /* Deep greyscale background */
+  background-color: #0f1115; 
+  
+  /* Subtle glassy inner border to define the dark card */
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1),
+              0 15px 35px rgba(0, 0, 0, 0.1); 
+              
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+              opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.8s ease;
+              
+  transform-origin: center center;
+}
+
+/* --- THE STACK POSITIONS --- */
+
+.nettling-rye .mesh-active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  z-index: 3;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15),
+              0 25px 50px rgba(0, 0, 0, 0.15); 
+}
+
+.nettling-rye .mesh-prev {
+  /* 
+    Math for exactly 10px gap: 
+    -50% (center it) - 50% (half of main card) - 42.5% (half of scaled 0.85 card) - 10px gap 
+  */
+  transform: translate(calc(-142.5% - 10px), -50%) scale(0.85);
+  opacity: 0.6;
+  z-index: 2;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05),
+              0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.nettling-rye .mesh-next {
+  /* 
+    Math for exactly 10px gap: 
+    -50% (center it) + 50% (half of main card) + 42.5% (half of scaled 0.85 card) + 10px gap 
+  */
+  transform: translate(calc(42.5% + 10px), -50%) scale(0.85);
+  opacity: 0.6;
+  z-index: 2;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05),
+              0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.nettling-rye .mesh-hidden-left {
+  /* Pushed off-screen relative to the new spacing */
+  transform: translate(calc(-200% - 10px), -50%) scale(0.6);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.nettling-rye .mesh-hidden-right {
+  /* Pushed off-screen relative to the new spacing */
+  transform: translate(calc(100% + 10px), -50%) scale(0.6);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- THE TWO-ORB AURORA GLOW ANIMATION (SILVER/DARK THEME) --- */
+
+.nettling-rye .mesh-gradient-bg {
+  position: absolute;
+  inset: 0; 
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Orb 1: Bright Frosted Silver */
+.nettling-rye .mesh-gradient-bg::before {
+  content: '';
+  position: absolute;
+  width: 160%;
+  height: 160%;
+  top: -30%;
+  left: -30%;
+  
+  /* Crisp, icy white/silver glow with very low opacity */
+  background: radial-gradient(
+    circle at center, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0.04) 40%, 
+    transparent 70%
+  );
+  
+  filter: blur(25px);
+  animation: orbDriftOne 9s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+/* Orb 2: Deep Metallic Slate */
+.nettling-rye .mesh-gradient-bg::after {
+  content: '';
+  position: absolute;
+  width: 160%;
+  height: 160%;
+  bottom: -30%;
+  right: -30%;
+  
+  /* A slightly darker, metallic grey to create depth when they overlap */
+  background: radial-gradient(
+    circle at center, 
+    rgba(160, 175, 190, 0.15) 0%, 
+    rgba(160, 175, 190, 0.04) 40%, 
+    transparent 70%
+  );
+  
+  filter: blur(25px);
+  animation: orbDriftTwo 12s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse;
+}
+
+/* Fluid, wandering motion for the Frosted Silver Orb */
+@keyframes orbDriftOne {
+  0%   { transform: translate(0%, 0%) scale(0.9); }
+  33%  { transform: translate(25%, 15%) scale(1.15); }
+  66%  { transform: translate(-10%, 30%) scale(0.85); }
+  100% { transform: translate(-20%, -10%) scale(1.1); }
+}
+
+/* Fluid, wandering motion for the Metallic Slate Orb */
+@keyframes orbDriftTwo {
+  0%   { transform: translate(0%, 0%) scale(1.1); }
+  33%  { transform: translate(-30%, -20%) scale(0.9); }
+  66%  { transform: translate(15%, -35%) scale(1.15); }
+  100% { transform: translate(25%, 15%) scale(0.85); }
+}
+
+
+/* --- STATIC GRAIN TEXTURE (Preserved for Tactile Feel) --- */
+
+.nettling-rye .mesh-grain-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.25; /* Slightly lowered opacity so the coral shines more */
+  mix-blend-mode: overlay; 
+  pointer-events: none;
+}
+
+
+/* --- TEXT CONTENT STYLING --- */
+
+.nettling-rye .mesh-content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+}
+
+.nettling-rye .mesh-content h3 {
+  /* Crisp white text pops against the dark background */
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.35;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
+  
+  /* A tight text shadow ensures legibility even when the bright coral glow passes directly behind the text */
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+/* --- PREMIUM OVERSIZED SILVER NUMBERING --- */
+
+.nettling-rye .mesh-number {
+  position: absolute;
+  top: -15px;
+  right: -5px;
+  
+  /* Massive, bold typography */
+  font-size: 160px;
+  font-weight: 900;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  
+  /* The Silver Shading: Bright at the top, fading into the dark card at the bottom */
+  background: linear-gradient(
+    180deg, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(160, 175, 190, 0.05) 50%, 
+    transparent 85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* A microscopic silver outline gives it that "etched" metallic glass look */
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);
+  
+  /* Sits above the orbs (z-index 1) but below the text (z-index 3) */
+  z-index: 2; 
+  user-select: none;
+  pointer-events: none;
+}
