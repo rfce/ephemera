@@ -1,37 +1,21 @@
-import { useEffect, useRef } from "react"
+import React, { useRef, useEffect } from "react"
 
 const Video = ({ src }) => {
   const videoRef = useRef(null)
 
+  // This simple useEffect ensures the video plays on iOS/Safari in low-power mode
   useEffect(() => {
-    const loadVideo = async () => {
-      const video = videoRef.current
-
-      // Safari supports HLS natively
-      if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = src
-        return
-      }
-
-      // Other browsers → use hls.js (lazy loaded)
-      const Hls = (await import("hls.js")).default
-
-      if (Hls.isSupported()) {
-        const hls = new Hls({
-          autoStartLoad: true,
-        })
-
-        hls.loadSource(src)
-        hls.attachMedia(video)
-      }
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.warn("Browser prevented autoplay:", error)
+      })
     }
-
-    loadVideo()
   }, [])
 
   return (
     <video
       ref={videoRef}
+      src={src}
       autoPlay
       muted
       loop
@@ -41,6 +25,13 @@ const Video = ({ src }) => {
         width: "100%",
         height: "auto",
         display: "block",
+        
+        /* The Chromium Hardware Acceleration Fixes */
+        transform: "translate3d(0, 0, 0)",
+        WebkitTransform: "translate3d(0, 0, 0)",
+        willChange: "transform",
+        backgroundColor: "transparent",
+        backfaceVisibility: "hidden"
       }}
     />
   )

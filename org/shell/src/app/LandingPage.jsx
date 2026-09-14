@@ -9,7 +9,7 @@ import PlatformSupport from "./PlatformSupport"
 
 const QuickMode = lazy(() => import('create-pixels/QuickMode'))
 
-const DemoVideo = "https://res.cloudinary.com/dkcyztevs/video/upload/sp_auto/Demo_-video_e1o2o3.m3u8"
+const DemoVideo = "https://res.cloudinary.com/dkcyztevs/video/upload/v1773988101/Demo_-video_e1o2o3.mp4"
 
 const LandingPage = () => {
     const [advancedMode, setAdvancedMode] = useState(() => localStorage.getItem("expert") == "true")
