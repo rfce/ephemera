@@ -18,12 +18,17 @@ import ValidateEmail from "./ValidateEmail"
 import ValidateEmailSuccess from "./ValidateEmailSuccess"
 import CreativeFooter from "./CreativeFooter"
 
-export function App() {
-  const { pathname } = useLocation()
-
+// 1. Create a component to handle background loading
+function BackgroundRemotesLoader({ pathname }) {
   useEffect(() => {
     scheduleRemainingRemotes(pathname)
   }, [pathname])
+
+  return null
+}
+
+export function App() {
+  const { pathname } = useLocation()
 
   return (
     <Provider store={sharedStore}>
@@ -34,6 +39,7 @@ export function App() {
           </div>
         }
       >
+        <BackgroundRemotesLoader pathname={pathname} />
         <div>
           <Routes>
             <Route element={<PublicRoute />}>
