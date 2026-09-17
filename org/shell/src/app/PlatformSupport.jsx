@@ -2,36 +2,8 @@ import "./css/PlatformSupport.css"
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function PlatformSupportLight() {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    // Set up the observer to trigger when 20% of the section is visible
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Optional: unobserve if you only want the animation to happen once
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
-
   return (
-    <section 
-      ref={sectionRef} 
-      className={`prem-plat-section light-mode ${isVisible ? 'is-visible' : ''}`}
-    >
+    <section className="prem-plat-section light-mode is-visible">
       <div className="prem-plat-wrapper">
         
         {/* Floating Corner Emojis - Wrapped for entrance animation */}

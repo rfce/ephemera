@@ -16,7 +16,6 @@ import { Suspense, useEffect } from 'react'
 import { scheduleRemainingRemotes } from './helpers/Run.js'
 import ValidateEmail from "./ValidateEmail"
 import ValidateEmailSuccess from "./ValidateEmailSuccess"
-import Hero from "./Hero"
 import CreativeFooter from "./CreativeFooter"
 
 export function App() {

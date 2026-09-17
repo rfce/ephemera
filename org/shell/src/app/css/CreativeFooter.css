@@ -89,11 +89,26 @@
     color: #080909;
 }
 
-.creative-footer-logo svg {
-    display: block;
+.creative-footer-logo img {
+    width: 250px;
+    transform: translate(0px, -30px);
+    opacity: 0.7;
+}
 
-    width: 100%;
-    height: auto;
+.creative-footer-logo .azine-swat {
+    display: flex;
+    align-items: center;
+    transform: translate(20px, -40px);
+    scale: 0.8;
+    color: rgb(112, 112, 112);
+    font-weight: 500;
+}
+
+.creative-footer-logo .daisied-tar {
+    color: rgb(112, 112, 112);
+    transform: translate(80px, -50px);
+    scale: 0.8;
+    font-weight: 500;
 }
 
 .creative-footer-contact {
