@@ -6,8 +6,9 @@ import CreativeFooter from "./CreativeFooter"
 import Video from "./Video"
 import MeshCarousel from "./MeshCarousel"
 import PlatformSupport from "./PlatformSupport"
+import QuickMode from "./QuickMode"
 
-const QuickMode = lazy(() => import('create-pixels/QuickMode'))
+// const QuickMode = lazy(() => import('create-pixels/QuickMode'))
 
 const DemoVideo = "https://res.cloudinary.com/dkcyztevs/video/upload/v1773988101/Demo_-video_e1o2o3.mp4"
 

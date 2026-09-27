@@ -9,11 +9,11 @@ const remoteLoaders = {
   recommended: () => import('create-pixels/Recommended'),
   aliasPick: () => import('pixels/AliasPick'),
   trackMessage: () => import('pixels/TrackMessage'),
-  quickMode: () => import('create-pixels/QuickMode'),
+  // quickMode: () => import('create-pixels/QuickMode'),
 }
 
 const routeModules = (pathname) => {
-  if (pathname === '/') return ['quickMode']
+  if (pathname === '/') return []
   if (pathname === '/dashboard') return ['pixelsApp', 'createPixelsApp']
   if (pathname === '/dashboard/create-pixels') return ['header', 'aliasPick']
   if (/^\/dashboard\/message\/[^/]+$/.test(pathname)) {

@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import "./css/ValidateEmail.css"
 import { ChevronLeft, LeftArrow } from "../assets/Icons"
-import axios from "axios"
-import api from "../config/backend"
+import axios from "../config/backend";
 
 const Logo = "https://res.cloudinary.com/dkcyztevs/image/upload/f_auto,q_auto/Logo_tcmc8s"
 
@@ -62,7 +61,7 @@ const ValidateEmail = () => {
     }
 
     const verifyOtp = async (code) => {
-        const { data, status } = await axios.post(`${api}/Auth/verify`, { email, otp: code })
+        const { data, status } = await axios.post("/Auth/verify", { email, otp: code })
 
         if (data.success) {
             navigate("/email-verified")

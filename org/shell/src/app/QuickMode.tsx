@@ -354,6 +354,12 @@ const QuickMode = ({ hidden }) => {
         }
     }, [selectedEmoji])
 
+    console.log(1)
+
+    useEffect(() => {
+        console.log(2)
+    }, [])
+
     const setPopup = (e) => {
         setEmailDetected(e)
         setTracking(e)

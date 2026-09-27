@@ -2,8 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import "./css/Register.css"
-import api from "../config/backend";
-import axios from "axios";
+import axios from "../config/backend";
 import { useAtom } from 'jotai'
 import { tokenAtom } from '@org/shared-state'
 
@@ -25,7 +24,7 @@ const Login = () => {
 
         setLoading(true)
 
-        const { data, status } = await axios.post(`${api}/Auth/sign-in`, {
+        const { data, status } = await axios.post("/Auth/sign-in", {
             username, password
         })
 

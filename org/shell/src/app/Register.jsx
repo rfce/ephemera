@@ -1,7 +1,6 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import api from "../config/backend"
+import axios from "../config/backend";
 import "./css/Register.css"
 
 const Logo = new URL('../assets/Logo.jpg', import.meta.url).href;
@@ -22,7 +21,7 @@ const Register = () => {
 
         setLoading(true)
 
-        const { data, status } = await axios.post(`${api}/Auth/register`, {
+        const { data, status } = await axios.post("/Auth/register", {
             username, email, password
         })
 
@@ -38,7 +37,7 @@ const Register = () => {
     }
 
     const checkUsername = async () => {
-        const { data, status } = await axios.post(`${api}/Auth/is-username`, { username })
+        const { data, status } = await axios.post("/Auth/is-username", { username })
 
         if (data.success) {
             setUsernameError(false)
