@@ -1,0 +1,110 @@
+/* Slides.css */
+
+._6clb .slides {
+  --slides-border: rgba(23, 22, 20, 0.07);
+  --slides-ink: #07111f;
+  --slides-muted: #87817a;
+  --slides-pill-height: 40px;
+
+  width: 100%;
+  color: var(--slides-ink);
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+._6clb .slides *,
+._6clb .slides *::before,
+._6clb .slides *::after {
+  box-sizing: border-box;
+}
+
+._6clb .slides-marquee {
+  overflow: hidden;
+  padding: 22px 0 4px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+
+._6clb .slides-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: slides-scroll 120s linear infinite;
+  will-change: transform;
+}
+
+._6clb .slides-marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 16px;
+  padding-right: 16px;
+}
+
+._6clb .slides-marquee:hover .slides-marquee__track {
+  animation-play-state: paused;
+}
+
+._6clb .slides-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: var(--slides-pill-height);
+  padding: 0 22px;
+  border: 1px solid var(--slides-border);
+  border-radius: 999px;
+  background: #fff;
+  white-space: nowrap;
+}
+
+._6clb .slides-pill__name {
+  color: var(--slides-ink);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+._6clb .slides-pill__tag {
+  color: var(--slides-muted);
+  font-size: 10.5px;
+  font-weight: 560;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+@keyframes slides-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 520px) {
+  ._6clb .slides-marquee {
+    padding: 18px 0 2px;
+  }
+
+  ._6clb .slides-pill {
+    padding-inline: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ._6clb .slides-marquee__track {
+    animation: none;
+  }
+}

@@ -7,6 +7,7 @@ import Video from "./Video"
 import MeshCarousel from "./MeshCarousel"
 import PlatformSupport from "./PlatformSupport"
 import QuickMode from "./QuickMode"
+import Slides from "./Slides"
 
 // const QuickMode = lazy(() => import('create-pixels/QuickMode'))
 
@@ -93,6 +94,8 @@ const LandingPage = () => {
                 </div>
                 <MeshCarousel />
                 <PlatformSupport />
+                <Slides />
+                <div style={{ marginBottom: "50px" }}></div>
                 <CreativeFooter />
             </> : undefined}
             <div className="_8bxc">

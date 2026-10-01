@@ -350,7 +350,7 @@ const CreativeFooter = () => {
                 role="img"
                 aria-label="Studio logo"
             >
-                <img src={BrandLogo} alt="Logo" />
+                {/* <img src={BrandLogo} alt="Logo" /> */}
             </div>
             <div className="creative-footer-contact">
                 <span className="creative-footer-tag">

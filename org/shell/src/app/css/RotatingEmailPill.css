@@ -1,0 +1,362 @@
+.rotating-email-pill {
+  --content-duration: 1800ms;
+
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+
+  width: 150px;
+  height: 44px;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 113, 101, 0.3);
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffaaa0 0%,
+      #ff8176 45%,
+      #f96359 100%
+    );
+
+  box-shadow:
+    0 12px 24px rgba(255, 113, 101, 0.2),
+    0 3px 7px rgba(7, 17, 31, 0.08),
+    inset 0 2px 2px rgba(255, 255, 255, 0.68),
+    inset 0 -5px 8px rgba(163, 40, 31, 0.16);
+
+  isolation: isolate;
+}
+
+/* Full liquid surface */
+
+.rotating-email-pill__liquid {
+  position: absolute;
+  z-index: 1;
+  inset: -15%;
+
+  display: block;
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at 20% 20%,
+      rgba(255, 255, 255, 0.52) 0 4%,
+      transparent 24%
+    ),
+    radial-gradient(
+      ellipse at 78% 75%,
+      rgba(188, 37, 48, 0.28),
+      transparent 42%
+    ),
+    linear-gradient(
+      125deg,
+      #ffb5aa 0%,
+      #ff8176 34%,
+      #ff6258 68%,
+      #e94f4d 100%
+    );
+
+  animation: liquid-drift 4200ms ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.rotating-email-pill__liquid::before {
+  content: "";
+
+  position: absolute;
+  inset: 12% -15% 35%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.54),
+      rgba(255, 255, 255, 0.12) 42%,
+      transparent 70%
+    );
+
+  filter: blur(5px);
+  transform: rotate(-8deg) scaleX(1.15);
+
+  animation: liquid-wave 2600ms ease-in-out infinite alternate;
+}
+
+.rotating-email-pill__liquid::after {
+  content: "";
+
+  position: absolute;
+  inset: 46% -20% -20%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 188, 179, 0.48),
+      rgba(255, 113, 101, 0.08) 58%,
+      transparent 72%
+    );
+
+  filter: blur(6px);
+  transform: rotate(5deg) scaleX(1.2);
+
+  animation: liquid-wave-reverse 3200ms ease-in-out infinite alternate;
+}
+
+.rotating-email-pill__highlight {
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  left: 14%;
+  width: 52%;
+  height: 7px;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.62);
+  filter: blur(4px);
+
+  animation: highlight-glide 3000ms ease-in-out infinite alternate;
+}
+
+/* Animated bubbles */
+
+.rotating-email-pill__bubble {
+  position: absolute;
+  z-index: 3;
+
+  display: block;
+  width: 4px;
+  height: 4px;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+
+  animation: bubble-float 2400ms ease-in-out infinite;
+}
+
+.rotating-email-pill__bubble--one {
+  left: 23%;
+  bottom: 8px;
+  animation-delay: 300ms;
+}
+
+.rotating-email-pill__bubble--two {
+  left: 67%;
+  bottom: 12px;
+  width: 3px;
+  height: 3px;
+  animation-delay: 900ms;
+}
+
+.rotating-email-pill__bubble--three {
+  left: 79%;
+  bottom: 6px;
+  width: 5px;
+  height: 5px;
+  animation-delay: 1500ms;
+}
+
+/* Content rotates, not the pill */
+
+.rotating-email-pill__content-stage {
+  position: relative;
+  z-index: 5;
+
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  place-items: center;
+
+  perspective: 700px;
+  transform-style: preserve-3d;
+}
+
+.rotating-email-pill__content {
+  position: absolute;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(139, 37, 34, 0.28);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotating-email-pill__content--front {
+  transform: rotateX(0deg) translateZ(1px);
+  animation: content-spin var(--content-duration)
+    cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.rotating-email-pill__content--back {
+  transform: rotateX(180deg) translateZ(1px);
+  animation: content-spin var(--content-duration)
+    cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.rotating-email-pill__dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+
+  border-radius: 50%;
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.15),
+    0 1px 3px rgba(125, 35, 31, 0.3);
+}
+
+@keyframes content-spin {
+  0%,
+  12% {
+    transform: rotateX(0deg) translateZ(1px);
+  }
+
+  50% {
+    transform: rotateX(180deg) translateZ(1px);
+  }
+
+  88%,
+  100% {
+    transform: rotateX(360deg) translateZ(1px);
+  }
+}
+
+@keyframes liquid-drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) rotate(-2deg) scale(1.04);
+  }
+
+  to {
+    transform: translate3d(3%, 2%, 0) rotate(4deg) scale(1.1);
+  }
+}
+
+@keyframes liquid-wave {
+  from {
+    transform: rotate(-8deg) translateX(-5%) scaleX(1.08);
+  }
+
+  to {
+    transform: rotate(7deg) translateX(8%) scaleX(1.2);
+  }
+}
+
+@keyframes liquid-wave-reverse {
+  from {
+    transform: rotate(5deg) translateX(7%) scaleX(1.15);
+  }
+
+  to {
+    transform: rotate(-5deg) translateX(-7%) scaleX(1.25);
+  }
+}
+
+@keyframes highlight-glide {
+  from {
+    transform: translateX(-10%) scaleX(0.9);
+    opacity: 0.45;
+  }
+
+  to {
+    transform: translateX(55%) scaleX(1.15);
+    opacity: 0.8;
+  }
+}
+
+@keyframes bubble-float {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translate3d(0, 4px, 0) scale(0.7);
+  }
+
+  45% {
+    opacity: 0.9;
+    transform: translate3d(3px, -8px, 0) scale(1);
+  }
+
+  80% {
+    opacity: 0;
+    transform: translate3d(-2px, -17px, 0) scale(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotating-email-pill__content,
+  .rotating-email-pill__liquid,
+  .rotating-email-pill__liquid::before,
+  .rotating-email-pill__liquid::after,
+  .rotating-email-pill__highlight,
+  .rotating-email-pill__bubble {
+    animation: none;
+  }
+}
+
+/* Fix overlapping labels: rotate one content stage instead of both labels */
+.rotating-email-pill {
+  perspective: 700px !important;
+}
+
+.rotating-email-pill__content-stage {
+  transform-origin: center center !important;
+  transform-style: preserve-3d !important;
+
+  animation: rotating-email-pill-content-stage-spin
+    var(--content-duration)
+    cubic-bezier(0.65, 0, 0.35, 1)
+    infinite !important;
+}
+
+/* Keep each label fixed on its own side */
+.rotating-email-pill__content {
+  animation: none !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+.rotating-email-pill__content--front {
+  transform: rotateX(0deg) translateZ(1px) !important;
+}
+
+.rotating-email-pill__content--back {
+  transform: rotateX(180deg) translateZ(1px) !important;
+}
+
+@keyframes rotating-email-pill-content-stage-spin {
+  0%,
+  12% {
+    transform: rotateX(0deg);
+  }
+
+  50% {
+    transform: rotateX(180deg);
+  }
+
+  88%,
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotating-email-pill__content-stage {
+    animation: none !important;
+  }
+}
