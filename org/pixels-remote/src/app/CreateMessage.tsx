@@ -329,7 +329,7 @@ const CreateMessage = () => {
       await saveMessage(true)
     }
     setText("")
-    navigate(`/dashboard/create-pixels`, { state: { eas, tid } })
+    navigate(`/dashboard`, { state: { eas, tid } })
   }
 
   useEffect(() => {

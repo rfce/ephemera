@@ -40,7 +40,7 @@ const AddRecipient = () => {
 
     localStorage.setItem("recipient", recipient)
 
-    navigate("/dashboard/create-pixels", { state: { eas: data.eas, tid: data.tid, recipient: data.recipient } })
+    navigate("/dashboard", { state: { eas: data.eas, tid: data.tid, recipient: data.recipient } })
   }
 
   useEffect(() => {

@@ -168,7 +168,7 @@ const TrackMessage = () => {
 
   return (
     <div className="_3ono _6pzh">
-      <div onClick={() => navigate("/dashboard/create-pixels", { state: { eas, tid } })} className="flamen-vow">
+      <div onClick={() => navigate("/dashboard", { state: { eas, tid } })} className="flamen-vow">
         <div className="relate-glen">
           <RightArrow className="shuns-ropy" fill="rgb(84, 183, 219)" />
           <div>Dashboard</div>

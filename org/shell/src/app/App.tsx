@@ -52,8 +52,7 @@ export function App() {
               <Route path="/email-verified" element={<ValidateEmailSuccess />} />
             </Route>
             <Route element={<ProtectedRoute />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/dashboard/create-pixels" element={<Pixels />} />
+              <Route path="/dashboard" element={<Pixels />} />
               <Route path="/dashboard/message/:eas" element={<NewMessage />} />
               <Route path="/dashboard/track-boat/:eas" element={<Track />} />
             </Route>

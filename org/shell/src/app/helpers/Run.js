@@ -1,6 +1,6 @@
 // Keep federation imports in one place so we can control their network priority.
 const remoteLoaders = {
-  pixelsApp: () => import('pixels/PixelsApp'),
+  pixelsApp: () => import('pixels/Dashboard'),
   createPixelsApp: () => import('create-pixels/CreatePixelsApp'),
   landing: () => import('pixels/Landing'),
   dashboard: () => import('create-pixels/Dashboard'),
@@ -14,8 +14,8 @@ const remoteLoaders = {
 
 const routeModules = (pathname) => {
   if (pathname === '/') return []
-  if (pathname === '/dashboard') return ['pixelsApp', 'createPixelsApp']
-  if (pathname === '/dashboard/create-pixels') return ['header', 'aliasPick']
+  if (pathname === '/dashboard') return ['pixelsApp']
+  
   if (/^\/dashboard\/message\/[^/]+$/.test(pathname)) {
     return ['header', 'createMessage', 'recommended']
   }

@@ -504,11 +504,10 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="page">
+        <div className="_3ujz page">
             {/* Header */}
             <header className="header">
                 <a
-                    href="#top"
                     className="logo appear appear--scale"
                     style={{ "--d": "0.08s" }}
                     aria-label="Vesper.ai"
