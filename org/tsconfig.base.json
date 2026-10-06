@@ -18,6 +18,7 @@
       "shell/state": ["shell/src/atoms/index.js"],
       "pixels/PixelsApp": ["pixels-remote/src/app/AddRecipient.tsx"],
       "pixels/Landing": ["pixels-remote/src/app/Landing.tsx"],
+      "pixels/Dashboard": ["pixels-remote/src/app/Dashboard.jsx"],
       "pixels/AliasPick": ["pixels-remote/src/app/AliasPick.tsx"],
       "pixels/CreateMessage": ["pixels-remote/src/app/CreateMessage.tsx"],
       "pixels/TrackMessage": ["pixels-remote/src/app/TrackMessage.tsx"],

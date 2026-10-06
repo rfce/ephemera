@@ -42,6 +42,7 @@ export default defineConfig(({ mode }) => ({
         './CreateMessage': './src/app/CreateMessage.tsx',
         './TrackMessage': './src/app/TrackMessage.tsx',
         './Landing': './src/app/Landing.tsx',
+        './Dashboard': './src/app/Dashboard.jsx',
       },
       shared: {
         // Core: Must be singletons and eager for the app to boot and sync correctly

@@ -1,0 +1,215 @@
+/* =========================================================
+   TRACK PIXELS — ACCOUNT POPOVER
+   ========================================================= */
+
+.profile-menu {
+    position: absolute;
+
+    top: calc(100% + 13px);
+    right: -4px;
+
+    z-index: 100;
+
+    width: 160px;
+    padding: 7px;
+
+    border-radius: 15px;
+
+    /*
+     * Matches the dashboard rather than pure black.
+     */
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 34, 54, 0.97),
+            rgba(20, 23, 42, 0.96)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.52),
+        0 4px 12px rgba(0, 0, 0, 0.28),
+        0 0 24px rgba(255, 154, 108, 0.045),
+        inset 0 1px 0 rgba(255, 255, 255, 0.065);
+
+    backdrop-filter: blur(18px) saturate(135%);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+
+    transform-origin: top right;
+
+    animation:
+        profileMenuIn 0.22s cubic-bezier(.2, .8, .25, 1) both;
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+/*
+ * Outer arrow/border.
+ *
+ * This is deliberately a separate pseudo-element instead
+ * of relying on a rotated square border.
+ */
+
+/* =========================================================
+   CLEAN TRIANGLE ARROW
+   ========================================================= */
+
+/* Outer (border-colored) triangle */
+.profile-menu::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 16px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(255, 255, 255, 0.14);
+  /* no clip-path, no square */
+}
+
+/* Inner (fill-colored) triangle – 1px inset creates the border edge */
+.profile-menu::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 17px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid rgb(24, 27, 46); /* matches menu fill */
+}
+
+/* Keep the old element hidden */
+.profile-menu-arrow {
+  display: none;
+}
+
+
+/* =========================================================
+   LOGOUT BUTTON
+   ========================================================= */
+
+.profile-menu-item {
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 9px 10px;
+
+    border-radius: 10px;
+
+    color: #b3b9d0;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    text-align: left;
+
+    background: transparent;
+
+    transition:
+        color 0.22s ease,
+        background 0.22s ease,
+        transform 0.22s cubic-bezier(.2, .8, .25, 1);
+}
+
+
+.profile-menu-icon {
+    width: 30px;
+    height: 30px;
+
+    flex: 0 0 30px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    color: #8f97b8;
+
+    background: rgba(255, 255, 255, 0.055);
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+
+    transition:
+        color 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease,
+        transform 0.22s cubic-bezier(.2, .8, .25, 1);
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.profile-menu-item:hover {
+    color: #f2f4fb;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(255, 154, 108, 0.085),
+            rgba(255, 77, 141, 0.055)
+        );
+
+    transform: translateX(2px);
+}
+
+.profile-menu-item:hover .profile-menu-icon {
+    color: #ffae8c;
+
+    background: rgba(255, 154, 108, 0.10);
+
+    border-color: rgba(255, 154, 108, 0.17);
+
+    transform: scale(1.05);
+}
+
+
+.profile-menu-item:active {
+    transform: translateX(2px) scale(.98);
+}
+
+
+/* =========================================================
+   ENTRANCE
+   ========================================================= */
+
+@keyframes profileMenuIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px) scale(.95);
+        filter: blur(2px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .profile-menu {
+        animation: none;
+    }
+
+    .profile-menu-item,
+    .profile-menu-icon {
+        transition: none;
+    }
+}
