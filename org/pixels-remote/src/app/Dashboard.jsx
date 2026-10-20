@@ -503,6 +503,12 @@ export default function Dashboard() {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.clear()
+
+        window.location.reload()
+    }
+
     return (
         <div className="_3ujz page">
             {/* Header */}
@@ -510,7 +516,7 @@ export default function Dashboard() {
                 <a
                     className="logo appear appear--scale"
                     style={{ "--d": "0.08s" }}
-                    aria-label="Vesper.ai"
+                    aria-label="Track Pixels"
                 >
                     <img src={Logo} alt="Logo" />
                     <span>
@@ -535,7 +541,7 @@ export default function Dashboard() {
                         onClose={() => setProfileOpen(false)}
                         onLogout={() => {
                             // Put your existing logout logic here.
-                            console.log("Logout");
+                            handleLogout();
                         }}
                     />
                 </div>
@@ -546,317 +552,317 @@ export default function Dashboard() {
                 <span className="hero-aura" aria-hidden="true" />
 
                 <div className="hero-group" ref={groupRef}>
-                {/* Greeting */}
-                <div className="greeting" key={hasRecipient ? "g-filled" : "g-empty"}>
-                    <h1 className="greeting-title">
-                        {username ? (
-                            <>{salutation}, <span className="greeting-name">{username}</span></>
-                        ) : (
-                            <span className="greeting-name">Welcome</span>
-                        )}
-                    </h1>
-                    <p className="greeting-sub">
-                        {hasRecipient
-                            ? "Pick up where you left off, or start something new."
-                            : "Who would you like to email first?"}
-                    </p>
-                </div>
+                    {/* Greeting */}
+                    <div className="greeting" key={hasRecipient ? "g-filled" : "g-empty"}>
+                        <h1 className="greeting-title">
+                            {username ? (
+                                <>{salutation}, <span className="greeting-name">{username}</span></>
+                            ) : (
+                                <span className="greeting-name">Welcome</span>
+                            )}
+                        </h1>
+                        <p className="greeting-sub">
+                            {hasRecipient
+                                ? "Pick up where you left off, or start something new."
+                                : "Who would you like to email first?"}
+                        </p>
+                    </div>
 
-                {/* Recipient card */}
-                <section className="recipient glass">
-                    <div className="recipient-top">
-                        <div className="env-wrap">
-                            <span className="env-ring ring-1" />
-                            <span className="env-ring ring-2" />
-                            <div className="env">
-                                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                                    <rect x="3" y="5" width="18" height="14" rx="3" />
-                                    <path d="m4 7.5 8 6 8-6" />
-                                </svg>
+                    {/* Recipient card */}
+                    <section className="recipient glass">
+                        <div className="recipient-top">
+                            <div className="env-wrap">
+                                <span className="env-ring ring-1" />
+                                <span className="env-ring ring-2" />
+                                <div className="env">
+                                    <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                        <rect x="3" y="5" width="18" height="14" rx="3" />
+                                        <path d="m4 7.5 8 6 8-6" />
+                                    </svg>
+                                </div>
                             </div>
-                        </div>
-                        <div className="recipient-info">
-                            <span className="recipient-label">
-                                {editing ? "Who are you sending this email to?" : "Sending to"}
-                            </span>
-                            {editing ? (
-                                <>
-                                    <div key={shake} className={`field ${error ? "field-error" : ""}`}>
-                                        <svg className="field-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <div className="recipient-info">
+                                <span className="recipient-label">
+                                    {editing ? "Who are you sending this email to?" : "Sending to"}
+                                </span>
+                                {editing ? (
+                                    <>
+                                        <div key={shake} className={`field ${error ? "field-error" : ""}`}>
+                                            <svg className="field-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                                <path d="M4 20h4L19 9a2.1 2.1 0 0 0-4-4L4 16v4Z" />
+                                                <path d="m13.5 6.5 4 4" />
+                                            </svg>
+                                            <input
+                                                ref={inputRef}
+                                                className="field-input"
+                                                type="email"
+                                                inputMode="email"
+                                                autoComplete="off"
+                                                spellCheck={false}
+                                                placeholder="e.g. john-doe@proton.me"
+                                                aria-label="Recipient email"
+                                                aria-invalid={error}
+                                                value={draft}
+                                                onChange={(e) => {
+                                                    setDraft(e.target.value);
+                                                    if (error) setError(false);
+                                                }}
+                                                onKeyDown={onFieldKey}
+                                            />
+                                            <span className="field-line" />
+                                        </div>
+                                        <span className={`field-hint ${error ? "field-hint-error" : ""}`}>
+                                            {error
+                                                ? "Please enter a valid email address"
+                                                : suggestions.length
+                                                    ? "← → to browse · Tab to autofill · Enter to save"
+                                                    : active
+                                                        ? "Press Enter to save · Esc to cancel"
+                                                        : "Press Enter to save"}
+                                        </span>
+                                        {suggestions.length > 0 && (
+                                            <div className="suggest" role="listbox" aria-label="Recipient suggestions">
+                                                {suggestions.map((s, idx) => (
+                                                    <button
+                                                        key={s._id}
+                                                        type="button"
+                                                        role="option"
+                                                        aria-selected={idx === selectedIndex}
+                                                        className={`suggest-item ${idx === selectedIndex ? "suggest-item-active" : ""}`}
+                                                        style={{ "--n": idx }}
+                                                        onMouseEnter={() => setSelectedIndex(idx)}
+                                                        onMouseDown={(ev) => ev.preventDefault()} /* keep focus in the input */
+                                                        onClick={() => pickSuggestion(s.address)}
+                                                    >
+                                                        {s.address}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </>
+                                ) : (
+                                    <span key={swap} className="recipient-email">{active}</span>
+                                )}
+                            </div>
+                            <div className="actions">
+                                {editing && active && (
+                                    <button className="btn-cancel" onClick={cancelEdit} aria-label="Cancel editing">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round">
+                                            <path d="M6 6l12 12M18 6 6 18" />
+                                        </svg>
+                                    </button>
+                                )}
+                                <button
+                                    className={`btn-change ${editing ? "btn-save" : ""}`}
+                                    onClick={editing ? saveEdit : startEdit}
+                                    disabled={saving}
+                                >
+                                    <span>{editing ? (saving ? "Saving…" : "Save") : "Change"}</span>
+                                    {editing ? (
+                                        <svg className="swap-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="m5 12.5 4.5 4.5L19 7.5" />
+                                        </svg>
+                                    ) : (
+                                        <svg className="swap-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M4 20h4L19 9a2.1 2.1 0 0 0-4-4L4 16v4Z" />
                                             <path d="m13.5 6.5 4 4" />
                                         </svg>
-                                        <input
-                                            ref={inputRef}
-                                            className="field-input"
-                                            type="email"
-                                            inputMode="email"
-                                            autoComplete="off"
-                                            spellCheck={false}
-                                            placeholder="e.g. john-doe@proton.me"
-                                            aria-label="Recipient email"
-                                            aria-invalid={error}
-                                            value={draft}
-                                            onChange={(e) => {
-                                                setDraft(e.target.value);
-                                                if (error) setError(false);
-                                            }}
-                                            onKeyDown={onFieldKey}
-                                        />
-                                        <span className="field-line" />
-                                    </div>
-                                    <span className={`field-hint ${error ? "field-hint-error" : ""}`}>
-                                        {error
-                                            ? "Please enter a valid email address"
-                                            : suggestions.length
-                                                ? "← → to browse · Tab to autofill · Enter to save"
-                                                : active
-                                                    ? "Press Enter to save · Esc to cancel"
-                                                    : "Press Enter to save"}
-                                    </span>
-                                    {suggestions.length > 0 && (
-                                        <div className="suggest" role="listbox" aria-label="Recipient suggestions">
-                                            {suggestions.map((s, idx) => (
-                                                <button
-                                                    key={s._id}
-                                                    type="button"
-                                                    role="option"
-                                                    aria-selected={idx === selectedIndex}
-                                                    className={`suggest-item ${idx === selectedIndex ? "suggest-item-active" : ""}`}
-                                                    style={{ "--n": idx }}
-                                                    onMouseEnter={() => setSelectedIndex(idx)}
-                                                    onMouseDown={(ev) => ev.preventDefault()} /* keep focus in the input */
-                                                    onClick={() => pickSuggestion(s.address)}
-                                                >
-                                                    {s.address}
-                                                </button>
-                                            ))}
-                                        </div>
                                     )}
-                                </>
-                            ) : (
-                                <span key={swap} className="recipient-email">{active}</span>
-                            )}
-                        </div>
-                        <div className="actions">
-                            {editing && active && (
-                                <button className="btn-cancel" onClick={cancelEdit} aria-label="Cancel editing">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round">
-                                        <path d="M6 6l12 12M18 6 6 18" />
-                                    </svg>
                                 </button>
-                            )}
-                            <button
-                                className={`btn-change ${editing ? "btn-save" : ""}`}
-                                onClick={editing ? saveEdit : startEdit}
-                                disabled={saving}
-                            >
-                                <span>{editing ? (saving ? "Saving…" : "Save") : "Change"}</span>
-                                {editing ? (
-                                    <svg className="swap-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="m5 12.5 4.5 4.5L19 7.5" />
-                                    </svg>
-                                ) : (
-                                    <svg className="swap-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M4 20h4L19 9a2.1 2.1 0 0 0-4-4L4 16v4Z" />
-                                        <path d="m13.5 6.5 4 4" />
-                                    </svg>
-                                )}
-                            </button>
+                            </div>
                         </div>
-                    </div>
 
-                    {emails.length > 0 && (
-                        <div className="chips">
-                            {emails.map((e) => (
-                                <button
-                                    key={e}
-                                    className={`chip ${e === active ? "chip-active" : ""}`}
-                                    onClick={() => selectEmail(e)}
-                                >
-                                    <span>{e}</span>
-                                    <span className="chip-x" onClick={(ev) => removeEmail(e, ev)} role="button" aria-label={`Remove ${e}`}>
-                                        <svg width="11" height="11" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" fill="none">
-                                            <path d="M6 6l12 12M18 6 6 18" />
-                                        </svg>
-                                    </span>
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </section>
+                        {emails.length > 0 && (
+                            <div className="chips">
+                                {emails.map((e) => (
+                                    <button
+                                        key={e}
+                                        className={`chip ${e === active ? "chip-active" : ""}`}
+                                        onClick={() => selectEmail(e)}
+                                    >
+                                        <span>{e}</span>
+                                        <span className="chip-x" onClick={(ev) => removeEmail(e, ev)} role="button" aria-label={`Remove ${e}`}>
+                                            <svg width="11" height="11" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" fill="none">
+                                                <path d="M6 6l12 12M18 6 6 18" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </section>
                 </div>
 
                 {/* Only meaningful once there is a recipient */}
                 {hasRecipient && (
-                <>
-                {/* Create new (AliasPick's "New Mail") */}
-                <button className="create" onClick={createMessage} disabled={creating} aria-busy={creating}>
-                    {/* Dark fluid fill -> frosted glass pane -> content */}
-                    <span className="create-fluid" aria-hidden="true">
-                        <i className="blob blob-1" />
-                        <i className="blob blob-2" />
-                        <i className="blob blob-3" />
-                    </span>
-                    <span className="create-glass" aria-hidden="true" />
-                    <span className="create-row">
-                        <span className="create-title">{creating ? "Setting things up…" : "Compose a new e-mail"}</span>
-                        <RightArrow width={22} fill="white" />
-                    </span>
-                </button>
-
-                {/* Previous */}
-                <section className="previous">
-                    <div className="previous-head">
-                        <h3 className="previous-title">Previous emails to this person</h3>
-                        {!messagesLoading && messages.length > 0 && (
-                            <span className="previous-count">{messages.length} total</span>
-                        )}
-                    </div>
-
-                    <div
-                        key={`${safePage}-${nonce}`}
-                        className={`cards ${phase === "out" ? "is-out" : "is-in"}`}
-                        style={{ "--dir": dir }}
-                        aria-live="polite"
-                        aria-busy={messagesLoading}
-                    >
-                        {messagesLoading ? (
-                            [0, 1, 2].map((i) => (
-                                <article className="card card--draft card-skel" key={i} style={{ "--i": i }} aria-hidden="true">
-                                    <span className="card-bar" />
-                                    <div className="card-top">
-                                        <span className="sk sk-circle" />
-                                        <span className="sk sk-pill" />
-                                    </div>
-                                    <div className="card-body">
-                                        <span className="sk sk-line sk-title" />
-                                        <span className="sk sk-line" />
-                                        <span className="sk sk-line sk-short" />
-                                    </div>
-                                    <div className="card-foot">
-                                        <span className="sk sk-line sk-link" />
-                                        <span className="sk sk-line sk-link" />
-                                    </div>
-                                </article>
-                            ))
-                        ) : pageCards.length === 0 ? (
-                            <div className="cards-empty">
-                                {active
-                                    ? "No emails to this person yet. Compose your first one above."
-                                    : "Add a recipient to see your previous emails."}
-                            </div>
-                        ) : (
-                            pageCards.map((m, i) => {
-                                const opens = m.tid?.unix?.length || 0;
-                                const newOpens = Math.max(0, opens - (m.tid?.receipt || 0));
-                                const sent = !!m.tid?.fire;
-                                const status = sent ? (opens ? "read" : "sent") : "draft";
-
-                                return (
-                                    <article
-                                        key={m.eas}
-                                        className={`card card--${status}`}
-                                        style={{ "--i": i }}
-                                        role="button"
-                                        tabIndex={0}
-                                        onClick={() => openMessage(m)}
-                                        onKeyDown={(e) => {
-                                            if (e.key === "Enter" || e.key === " ") {
-                                                e.preventDefault();
-                                                openMessage(m);
-                                            }
-                                        }}
-                                    >
-                                        <span className="card-bar" />
-
-                                        <div className="card-top">
-                                            <div className={`card-icon card-icon--${SLOTS[i].icon}`}>
-                                                <Icon name={SLOTS[i].icon} />
-                                            </div>
-                                            <div className="card-top-right">
-                                                {sent && (
-                                                    <span className={`pill ${opens === 0 ? "pill-zero" : ""}`}>
-                                                        {opens} {opens === 1 ? "open" : "opens"}
-                                                    </span>
-                                                )}
-                                                {newOpens > 0 && (
-                                                    <span
-                                                        className="bell bell-on"
-                                                        role="img"
-                                                        title={`You have ${newOpens} new ${newOpens === 1 ? "open" : "opens"}`}
-                                                        aria-label={`${newOpens} new opens`}
-                                                    >
-                                                        <Bell />
-                                                        <span className="bell-badge">{newOpens}</span>
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <h4 className="card-name" title={m.eas}>{m.eas}</h4>
-                                            <p className="card-desc">{m.text ? truncate(m.text, 60) : "No content yet"}</p>
-                                        </div>
-
-                                        <div className="card-foot">
-                                            <span className="card-link">
-                                                {sent ? "View opens" : "Continue draft"} <Arrow />
-                                            </span>
-                                            <span className={`sent status-${status}`}>
-                                                <i className="status-dot" />
-                                                {status === "read" ? "Read" : status === "sent" ? "Sent" : "Draft"}
-                                            </span>
-                                        </div>
-                                    </article>
-                                );
-                            })
-                        )}
-                    </div>
-
-                    {/* Static pagination (always in the same spot, never animates itself) */}
-                    {!messagesLoading && messages.length > PAGE_SIZE && (
-                        <nav className="pager" aria-label="Previous emails pagination" onKeyDown={onPagerKey}>
-                            <span className="pager-info">
-                                {rangeStart}–{rangeEnd} <em>of {messages.length}</em>
+                    <>
+                        {/* Create new (AliasPick's "New Mail") */}
+                        <button className="create" onClick={createMessage} disabled={creating} aria-busy={creating}>
+                            {/* Dark fluid fill -> frosted glass pane -> content */}
+                            <span className="create-fluid" aria-hidden="true">
+                                <i className="blob blob-1" />
+                                <i className="blob blob-2" />
+                                <i className="blob blob-3" />
                             </span>
-                            <div className="pager-controls">
-                                <button
-                                    className="pager-btn"
-                                    onClick={() => goTo(safePage - 1)}
-                                    disabled={safePage === 0 || busy}
-                                    aria-label="Previous page"
-                                >
-                                    <Chevron dir="left" />
-                                </button>
-                                {Array.from({ length: totalPages }, (_, p) => (
-                                    <button
-                                        key={p}
-                                        className={`pager-num ${p === safePage ? "pager-num-active" : ""}`}
-                                        onClick={() => goTo(p)}
-                                        disabled={busy && p !== safePage}
-                                        aria-label={`Page ${p + 1}`}
-                                        aria-current={p === safePage ? "page" : undefined}
-                                    >
-                                        {p + 1}
-                                    </button>
-                                ))}
-                                <button
-                                    className="pager-btn"
-                                    onClick={() => goTo(safePage + 1)}
-                                    disabled={safePage === totalPages - 1 || busy}
-                                    aria-label="Next page"
-                                >
-                                    <Chevron dir="right" />
-                                </button>
-                            </div>
-                            <span className="pager-info pager-info-right">
-                                Page {safePage + 1} / {totalPages}
+                            <span className="create-glass" aria-hidden="true" />
+                            <span className="create-row">
+                                <span className="create-title">{creating ? "Setting things up…" : "Compose a new e-mail"}</span>
+                                <RightArrow width={22} fill="white" />
                             </span>
-                        </nav>
-                    )}
-                </section>
-                </>
+                        </button>
+
+                        {/* Previous */}
+                        <section className="previous">
+                            <div className="previous-head">
+                                <h3 className="previous-title">Previous emails to this person</h3>
+                                {!messagesLoading && messages.length > 0 && (
+                                    <span className="previous-count">{messages.length} total</span>
+                                )}
+                            </div>
+
+                            <div
+                                key={`${safePage}-${nonce}`}
+                                className={`cards ${phase === "out" ? "is-out" : "is-in"}`}
+                                style={{ "--dir": dir }}
+                                aria-live="polite"
+                                aria-busy={messagesLoading}
+                            >
+                                {messagesLoading ? (
+                                    [0, 1, 2].map((i) => (
+                                        <article className="card card--draft card-skel" key={i} style={{ "--i": i }} aria-hidden="true">
+                                            <span className="card-bar" />
+                                            <div className="card-top">
+                                                <span className="sk sk-circle" />
+                                                <span className="sk sk-pill" />
+                                            </div>
+                                            <div className="card-body">
+                                                <span className="sk sk-line sk-title" />
+                                                <span className="sk sk-line" />
+                                                <span className="sk sk-line sk-short" />
+                                            </div>
+                                            <div className="card-foot">
+                                                <span className="sk sk-line sk-link" />
+                                                <span className="sk sk-line sk-link" />
+                                            </div>
+                                        </article>
+                                    ))
+                                ) : pageCards.length === 0 ? (
+                                    <div className="cards-empty">
+                                        {active
+                                            ? "No emails to this person yet. Compose your first one above."
+                                            : "Add a recipient to see your previous emails."}
+                                    </div>
+                                ) : (
+                                    pageCards.map((m, i) => {
+                                        const opens = m.tid?.unix?.length || 0;
+                                        const newOpens = Math.max(0, opens - (m.tid?.receipt || 0));
+                                        const sent = !!m.tid?.fire;
+                                        const status = sent ? (opens ? "read" : "sent") : "draft";
+
+                                        return (
+                                            <article
+                                                key={m.eas}
+                                                className={`card card--${status}`}
+                                                style={{ "--i": i }}
+                                                role="button"
+                                                tabIndex={0}
+                                                onClick={() => openMessage(m)}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "Enter" || e.key === " ") {
+                                                        e.preventDefault();
+                                                        openMessage(m);
+                                                    }
+                                                }}
+                                            >
+                                                <span className="card-bar" />
+
+                                                <div className="card-top">
+                                                    <div className={`card-icon card-icon--${SLOTS[i].icon}`}>
+                                                        <Icon name={SLOTS[i].icon} />
+                                                    </div>
+                                                    <div className="card-top-right">
+                                                        {sent && (
+                                                            <span className={`pill ${opens === 0 ? "pill-zero" : ""}`}>
+                                                                {opens} {opens === 1 ? "open" : "opens"}
+                                                            </span>
+                                                        )}
+                                                        {newOpens > 0 && (
+                                                            <span
+                                                                className="bell bell-on"
+                                                                role="img"
+                                                                title={`You have ${newOpens} new ${newOpens === 1 ? "open" : "opens"}`}
+                                                                aria-label={`${newOpens} new opens`}
+                                                            >
+                                                                <Bell />
+                                                                <span className="bell-badge">{newOpens}</span>
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                <div className="card-body">
+                                                    <h4 className="card-name" title={m.eas}>{m.eas}</h4>
+                                                    <p className="card-desc">{m.text ? truncate(m.text, 60) : "No content yet"}</p>
+                                                </div>
+
+                                                <div className="card-foot">
+                                                    <span className="card-link">
+                                                        {sent ? "View opens" : "Continue draft"} <Arrow />
+                                                    </span>
+                                                    <span className={`sent status-${status}`}>
+                                                        <i className="status-dot" />
+                                                        {status === "read" ? "Read" : status === "sent" ? "Sent" : "Draft"}
+                                                    </span>
+                                                </div>
+                                            </article>
+                                        );
+                                    })
+                                )}
+                            </div>
+
+                            {/* Static pagination (always in the same spot, never animates itself) */}
+                            {!messagesLoading && messages.length > PAGE_SIZE && (
+                                <nav className="pager" aria-label="Previous emails pagination" onKeyDown={onPagerKey}>
+                                    <span className="pager-info">
+                                        {rangeStart}–{rangeEnd} <em>of {messages.length}</em>
+                                    </span>
+                                    <div className="pager-controls">
+                                        <button
+                                            className="pager-btn"
+                                            onClick={() => goTo(safePage - 1)}
+                                            disabled={safePage === 0 || busy}
+                                            aria-label="Previous page"
+                                        >
+                                            <Chevron dir="left" />
+                                        </button>
+                                        {Array.from({ length: totalPages }, (_, p) => (
+                                            <button
+                                                key={p}
+                                                className={`pager-num ${p === safePage ? "pager-num-active" : ""}`}
+                                                onClick={() => goTo(p)}
+                                                disabled={busy && p !== safePage}
+                                                aria-label={`Page ${p + 1}`}
+                                                aria-current={p === safePage ? "page" : undefined}
+                                            >
+                                                {p + 1}
+                                            </button>
+                                        ))}
+                                        <button
+                                            className="pager-btn"
+                                            onClick={() => goTo(safePage + 1)}
+                                            disabled={safePage === totalPages - 1 || busy}
+                                            aria-label="Next page"
+                                        >
+                                            <Chevron dir="right" />
+                                        </button>
+                                    </div>
+                                    <span className="pager-info pager-info-right">
+                                        Page {safePage + 1} / {totalPages}
+                                    </span>
+                                </nav>
+                            )}
+                        </section>
+                    </>
                 )}
 
                 <footer className="foot">

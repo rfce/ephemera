@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
 ._5big {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     position: relative;
@@ -276,3 +278,763 @@
 }
 
 
+
+
+/* =====================================================================
+   DARK GLASS THEME  -  opt-in with <div className="_3bqk auth-dark">
+
+   Everything below is scoped to `.auth-dark`, so every rule above this
+   comment is untouched and any other page that shares this file (e.g. the
+   sign-up page) renders exactly as before. To give another page the same
+   look, add the `auth-dark` class to its `_3bqk` wrapper.
+   Keyframes are prefixed `auth-` so they can't collide with other pages.
+   ===================================================================== */
+
+@keyframes auth-rise {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes auth-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+}
+
+@keyframes auth-ripple {
+    0%   { transform: scale(0.8); opacity: 0.9; }
+    100% { transform: scale(1.35); opacity: 0; }
+}
+
+@keyframes auth-sheen {
+    0%, 60% { left: -80%; }
+    100%    { left: 160%; }
+}
+
+@keyframes auth-spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes auth-shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-7px); }
+    40%      { transform: translateX(6px); }
+    60%      { transform: translateX(-4px); }
+    80%      { transform: translateX(3px); }
+}
+
+/* ---- page shell ---- */
+._3bqk.auth-dark {
+    --bg: #0b0e1a;
+    --bg-2: #11152a;
+    --border: rgba(255, 255, 255, 0.09);
+    --text: #eef0fa;
+    --muted: #9097b8;
+    --text-soft: #a7aecb;
+    --pink: #ff4d8d;
+    --coral: #ff8a5c;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden; /* blobs bleed behind the header but never cause scrollbars */
+    background:
+        radial-gradient(900px 480px at 50% -10%, rgba(255, 77, 141, 0.14) 0%, transparent 65%),
+        radial-gradient(800px 480px at 100% 100%, rgba(140, 90, 255, 0.12) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+    background-color: var(--bg);
+    color: var(--text);
+    color-scheme: dark;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+._3bqk.auth-dark *,
+._3bqk.auth-dark *::before,
+._3bqk.auth-dark *::after {
+    box-sizing: border-box;
+}
+
+/* ---- header / brand ---- */
+._3bqk.auth-dark ._0giz {
+    position: relative;
+    z-index: 2;
+    flex: none;
+    align-items: center;
+    height: 72px;
+    min-height: 72px;
+    padding: 0 28px;
+}
+
+.auth-dark ._0giz .trebly-oat {
+    gap: 11px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #fff;
+    text-shadow: 0 0 6px rgba(224, 125, 108, 0.35), 0 0 14px rgba(224, 125, 108, 0.18);
+    user-select: none;
+    transition: opacity 0.3s;
+}
+
+.auth-dark ._0giz .trebly-oat:hover {
+    opacity: 0.85;
+}
+
+.auth-dark ._0giz .trebly-oat .tabarded-tux {
+    padding-top: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--muted);
+    text-shadow: none;
+}
+
+.auth-dark ._0giz .steep-hiss.auth-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter: grayscale(80%) brightness(4.5) contrast(1.15);
+}
+
+/* ---- stage + ambient blobs ---- */
+.auth-dark ._5big {
+    flex: 1;
+    width: 100%;
+    height: auto;
+    padding: 8px 20px 36px;
+    overflow: visible;
+    font-family: inherit;
+}
+
+.auth-dark ._5big .bg-shape {
+    opacity: 1;
+    filter: blur(70px);
+}
+
+.auth-dark ._5big .blob-1 { background: rgba(255, 77, 141, 0.55); }
+.auth-dark ._5big .blob-2 { background: rgba(140, 90, 255, 0.34); }
+.auth-dark ._5big .blob-3 { background: rgba(255, 138, 92, 0.2); }
+
+/* ---- glass card ---- */
+.auth-dark ._5big .robbers-woo {
+    max-width: 440px;
+    padding: 28px 32px 26px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    text-align: left;
+    color: var(--text);
+    background: linear-gradient(110deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 90, 150, 0.06) 55%, rgba(150, 100, 255, 0.07) 100%) !important;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    animation: auth-rise 0.9s 0.05s var(--ease) both;
+}
+
+/* hairline accent along the top edge, fading out at both ends */
+.auth-dark ._5big .robbers-woo::before {
+    content: "";
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    top: 0;
+    height: 2px;
+    border-radius: 0 0 2px 2px;
+    background: linear-gradient(90deg, transparent, #ff8a5c 30%, #ff4f7d 70%, transparent);
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+/* violet counter-glow bottom-right, echoing the page background */
+.auth-dark ._5big .robbers-woo::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -100px;
+    bottom: -110px;
+    width: 260px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(150, 100, 255, 0.22) 0%, transparent 70%);
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+/* glossy orb with ripples (same recipe as the Dashboard envelope) */
+.auth-dark ._5big .robbers-woo .auth-orb-wrap {
+    position: relative;
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 8px;
+    display: grid;
+    place-items: center;
+}
+
+.auth-dark ._5big .robbers-woo .auth-orb {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: radial-gradient(circle at 35% 25%, #ff9a6c 0%, #ff4f7d 60%, #ff3f84 100%);
+    box-shadow: 0 10px 24px rgba(255, 70, 120, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.4);
+    animation: auth-bob 4s ease-in-out infinite;
+}
+
+.auth-dark ._5big .robbers-woo .auth-orb svg {
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+.auth-dark ._5big .robbers-woo .auth-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 90, 140, 0.4), rgba(255, 90, 140, 0.08) 70%);
+    animation: auth-ripple 3.2s ease-out infinite;
+}
+
+.auth-dark ._5big .robbers-woo .auth-ring.r2 {
+    animation-delay: 1.6s;
+}
+
+/* ---- heading ---- */
+.auth-dark ._5big .robbers-woo h2 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    text-align: center;
+    color: var(--text);
+}
+
+.auth-dark ._5big .robbers-woo h2 .auth-accent {
+    background: linear-gradient(100deg, #ff8a5c 0%, #ff4f7d 55%, #a874f5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.auth-dark ._5big .robbers-woo .auth-sub {
+    margin: 0 0 20px;
+    font-size: 14.5px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-soft);
+}
+
+/* ---- fields ---- */
+.auth-dark ._5big .robbers-woo .auth-field {
+    margin: 0 0 14px;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+.auth-dark ._5big .robbers-woo .auth-field label {
+    display: block;
+    margin: 0 0 7px 2px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--text-soft);
+}
+
+.auth-dark ._5big .robbers-woo .auth-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 0;
+    padding: 0 14px;
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.auth-dark ._5big .robbers-woo .auth-input:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.auth-dark ._5big .robbers-woo .auth-input:focus-within {
+    border-color: rgba(255, 110, 160, 0.95);
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 0 0 4px rgba(255, 77, 141, 0.14), 0 8px 24px rgba(255, 77, 141, 0.14);
+}
+
+/* gradient underline that sweeps in on focus */
+.auth-dark ._5big .robbers-woo .auth-input::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: -1.5px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #ff8a5c, #ff4f7d, #a874f5);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease);
+}
+
+.auth-dark ._5big .robbers-woo .auth-input:focus-within::after {
+    transform: scaleX(1);
+}
+
+.auth-dark ._5big .robbers-woo .auth-input .auth-ic {
+    flex: none;
+    color: var(--muted);
+    transition: color 0.3s;
+}
+
+.auth-dark ._5big .robbers-woo .auth-input:focus-within .auth-ic {
+    color: var(--pink);
+}
+
+.auth-dark ._5big .robbers-woo .auth-input input,
+.auth-dark ._5big .robbers-woo .auth-input input:focus {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    padding: 13px 0;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 16px; /* 16px stops iOS zooming into the field */
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: var(--text);
+    caret-color: var(--pink);
+}
+
+.auth-dark ._5big .robbers-woo .auth-input.password-wrapper input {
+    padding-right: 0 !important; /* beats the shared `.password-wrapper input` rule */
+}
+
+.auth-dark ._5big .robbers-woo .auth-input input::placeholder {
+    color: var(--muted);
+    font-weight: 500;
+    opacity: 1;
+}
+
+.auth-dark ._5big .robbers-woo .auth-input input::selection {
+    background: rgba(255, 77, 141, 0.4);
+}
+
+/* stop Chrome painting a light autofill background over the glass */
+.auth-dark ._5big .robbers-woo .auth-input input:-webkit-autofill,
+.auth-dark ._5big .robbers-woo .auth-input input:-webkit-autofill:hover,
+.auth-dark ._5big .robbers-woo .auth-input input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text);
+    caret-color: var(--pink);
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+/* show / hide password */
+.auth-dark ._5big .robbers-woo .password-toggle {
+    position: static;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    margin: 0 -6px 0 0;
+    border-radius: 50%;
+    font-size: inherit;
+    text-transform: none;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.25s, background 0.25s;
+}
+
+.auth-dark ._5big .robbers-woo .password-toggle:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.auth-dark ._5big .robbers-woo .password-toggle:focus-visible,
+.auth-dark ._5big .robbers-woo div.forgot-password-btn:focus-visible,
+.auth-dark ._5big .robbers-woo .auth-alt a:focus-visible,
+.auth-dark ._5big .robbers-woo button.auth-btn:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 3px;
+}
+
+/* ---- forgot password ---- */
+.auth-dark ._5big .robbers-woo .forgot-password-row {
+    display: flex;
+    justify-content: flex-end;
+    margin: -2px 0 0;
+}
+
+.auth-dark ._5big .robbers-woo div.forgot-password-btn {
+    width: fit-content;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-soft);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: color 0.25s;
+}
+
+.auth-dark ._5big .robbers-woo div.forgot-password-btn:hover {
+    color: var(--coral);
+}
+
+/* ---- error ---- */
+.auth-dark ._5big .robbers-woo .auth-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 14px 0 0;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 90, 90, 0.32);
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: left;
+    color: #ff9a9a;
+    background: rgba(255, 90, 90, 0.1);
+    animation: auth-shake 0.45s both;
+}
+
+.auth-dark ._5big .robbers-woo .auth-error svg {
+    flex: none;
+    margin-top: 1px;
+}
+
+/* ---- primary button ---- */
+.auth-dark ._5big .robbers-woo button.auth-btn {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 50px;
+    margin: 18px 0 0;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 15.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #fff;
+    background: linear-gradient(100deg, #ff8a5c, #ff4f7d);
+    box-shadow: 0 12px 26px rgba(255, 90, 110, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: transform 0.3s var(--ease), box-shadow 0.3s;
+}
+
+.auth-dark ._5big .robbers-woo button.auth-btn svg {
+    transition: transform 0.35s var(--ease);
+}
+
+.auth-dark ._5big .robbers-woo button.auth-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    animation: auth-sheen 4.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.auth-dark ._5big .robbers-woo button.auth-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px rgba(255, 80, 110, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.auth-dark ._5big .robbers-woo button.auth-btn:hover:not(:disabled) svg {
+    transform: translateX(4px);
+}
+
+.auth-dark ._5big .robbers-woo button.auth-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+/* loading: hide label + arrow, show a spinner */
+.auth-dark ._5big .robbers-woo button.auth-btn.loading {
+    color: transparent;
+    cursor: not-allowed;
+    filter: saturate(0.85);
+    transform: none;
+}
+
+.auth-dark ._5big .robbers-woo button.auth-btn.loading::before {
+    display: none;
+}
+
+.auth-dark ._5big .robbers-woo button.auth-btn.loading::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: auth-spin 0.8s linear infinite;
+}
+
+/* ---- sign-up line ---- */
+.auth-dark ._5big .robbers-woo .auth-alt {
+    margin: 20px 0 0;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-soft);
+}
+
+.auth-dark ._5big .robbers-woo .auth-alt a {
+    font-weight: 700;
+    color: var(--coral);
+    border-radius: 4px;
+    transition: color 0.25s;
+}
+
+.auth-dark ._5big .robbers-woo .auth-alt a:hover {
+    color: var(--pink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ---- small screens ---- */
+@media (max-width: 480px) {
+    ._3bqk.auth-dark ._0giz {
+        padding: 0 18px;
+    }
+
+    .auth-dark ._5big {
+        padding: 4px 14px 28px;
+    }
+
+    .auth-dark ._5big .robbers-woo {
+        padding: 24px 20px 22px;
+        border-radius: 22px;
+    }
+
+    .auth-dark ._5big .robbers-woo h2 {
+        font-size: 25px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-dark *,
+    .auth-dark *::before,
+    .auth-dark *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}
+
+
+/* =====================================================================
+   REGISTER PAGE additions (dark glass theme)
+   Everything here is wrapped in `._3bqk.auth-dark`, so it only applies
+   inside the auth wrapper and can't leak into any other page.
+   Reuses the card / field / button / error styles from the section above.
+   ===================================================================== */
+
+@keyframes auth-fade-in {
+    from { opacity: 0; transform: translateY(-3px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes auth-pop {
+    from { opacity: 0; transform: scale(0.5); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes auth-turn {
+    to { transform: rotate(360deg); }
+}
+
+/* ---- label row: label on the left, live username status on the right
+        (sits in the label row so it never changes the card height) ---- */
+._3bqk.auth-dark ._5big .robbers-woo .auth-field-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 18px;
+    margin: 0 0 7px;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-field-head label {
+    flex: none;
+    margin: 0 0 0 2px;
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-status-slot {
+    min-width: 0;
+    text-align: right;
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-status {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.3;
+    animation: auth-fade-in 0.3s var(--ease) both;
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-status.ok  { color: #4ee0b0; }
+._3bqk.auth-dark ._5big .robbers-woo .auth-status.bad { color: #ff8b8b; }
+
+/* last field before the button: the button brings its own top margin */
+._3bqk.auth-dark ._5big .robbers-woo .auth-field.auth-field--last {
+    margin-bottom: 6px;
+}
+
+/* ---- username field states ---- */
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-ok,
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-ok:hover {
+    border-color: rgba(34, 197, 139, 0.65);
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-ok:focus-within {
+    border-color: rgba(60, 220, 170, 0.95);
+    box-shadow: 0 0 0 4px rgba(34, 197, 139, 0.14), 0 8px 24px rgba(34, 197, 139, 0.12);
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-ok::after {
+    background: linear-gradient(90deg, #22c58b, #14a8c9);
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-error,
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-error:hover {
+    border-color: rgba(255, 90, 90, 0.7);
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-error:focus-within {
+    border-color: rgba(255, 110, 110, 0.95);
+    box-shadow: 0 0 0 4px rgba(255, 90, 90, 0.14), 0 8px 24px rgba(255, 90, 90, 0.12);
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-error::after {
+    background: #ff5a5a;
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-ok .auth-ic,
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-ok:focus-within .auth-ic {
+    color: #4ee0b0;
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-error .auth-ic,
+._3bqk.auth-dark ._5big .robbers-woo .auth-input.is-error:focus-within .auth-ic {
+    color: #ff7b7b;
+}
+
+/* trailing status icon + "checking" spinner inside the username field */
+._3bqk.auth-dark ._5big .robbers-woo .auth-input .auth-state-ic {
+    flex: none;
+    animation: auth-pop 0.35s var(--ease) both;
+}
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-input .auth-state-ic.ok  { color: #4ee0b0; }
+._3bqk.auth-dark ._5big .robbers-woo .auth-input .auth-state-ic.bad { color: #ff7b7b; }
+
+._3bqk.auth-dark ._5big .robbers-woo .auth-input .auth-mini-spin {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    border-top-color: var(--pink);
+    border-radius: 50%;
+    animation: auth-turn 0.7s linear infinite;
+}
+
+/* ---- short windows (laptops with browser chrome): tighten the card so
+        the whole form fits without scrolling. Applies to Login and Register. ---- */
+@media (max-height: 740px) {
+    ._3bqk.auth-dark ._5big {
+        padding-top: 0;
+        padding-bottom: 20px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo {
+        padding-top: 22px;
+        padding-bottom: 20px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo .auth-orb-wrap {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 2px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo .auth-orb {
+        width: 38px;
+        height: 38px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo .auth-orb svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo h2 {
+        font-size: 25px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo .auth-sub {
+        margin-bottom: 14px;
+        font-size: 14px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo .auth-field {
+        margin-bottom: 10px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo .auth-field.auth-field--last {
+        margin-bottom: 4px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo .auth-input input,
+    ._3bqk.auth-dark ._5big .robbers-woo .auth-input input:focus {
+        padding-top: 11px;
+        padding-bottom: 11px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo button.auth-btn {
+        height: 48px;
+        margin-top: 14px;
+    }
+
+    ._3bqk.auth-dark ._5big .robbers-woo .auth-alt {
+        margin-top: 14px;
+        padding-top: 14px;
+    }
+}
