@@ -2173,3 +2173,46 @@
         margin-bottom: 38px;
     }
 }
+
+/* =========================================================
+   Footer note pinned to the bottom of the screen, even when the content above it is short
+   (page = full-height column; main grows to fill it; the footer's auto top margin pushes it down)
+   ========================================================= */
+._3ujz.page {
+    display: flex;
+    flex-direction: column;
+}
+
+._3ujz .header,
+._3ujz .main {
+    width: 100%; /* auto side margins would otherwise shrink them inside a flex column */
+}
+
+._3ujz .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+._3ujz .hero-group {
+    width: 100%;
+}
+
+._3ujz .foot {
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+/* =========================================================
+   No window scroll when the content is short.
+   The page now IS the viewport (fixed, full-screen) and scrolls internally only if its content is taller.
+   This also removes any extra height that body margins or outer wrappers added on top of the old `min-height: 100vh`.
+   ========================================================= */
+._3ujz.page {
+    position: fixed;
+    inset: 0;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}

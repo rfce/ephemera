@@ -72,6 +72,16 @@ const createMessage = async (req, res) => {
         })
     }
 
+    // No previous e-mails composed, add this e-mail to boxes presence
+    if (r.boxes === undefined || r.boxes === false) {
+        await Recipient.findOneAndUpdate({ 
+            author: author._id, 
+            address: recipient.trim() 
+        }, { 
+            boxes: true 
+        })
+    }
+
     const track = await Track.create({ seen: false })
 
     const eas = fives.at(Math.floor(Math.random() * fives.length)) + "-" + threeies.at(Math.floor(Math.random() * threeies.length))
@@ -124,11 +134,29 @@ const discardMessage = async (req, res) => {
 
     await Track.deleteOne({ author: author._id, _id: tid })
 
+    const message = await Message.findOne({ author: author._id, eas, tid })
+
     await Message.deleteOne({
         author: author._id,
         eas,
         tid
     })
+
+    // If there is no existing message - we don't need to fetch the e-mails
+    // So revert the recipient boxes field to false
+    const remainingCount = await Message.countDocuments({
+        author: author._id,
+        recipient: message.recipient
+    })
+
+    if (remainingCount === 0) {
+        await Recipient.findOneAndUpdate({ 
+            _id: message.recipient,
+            author: author._id
+        }, {
+            boxes: false
+        })
+    }
 
     res.json({
         success: true,

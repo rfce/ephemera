@@ -200,7 +200,8 @@ export default function Dashboard() {
 
     /* ---------- Previous emails ---------- */
     const [messages, setMessages] = useState([]);
-    const [messagesLoading, setMessagesLoading] = useState(() => !!getStoredRecipient());
+    // stays false until the recipient lookup says this recipient has e-mails ("boxes"), so no skeleton is shown before that
+    const [messagesLoading, setMessagesLoading] = useState(false);
     const [creating, setCreating] = useState(false);
 
     /* ---------- UI ---------- */
@@ -444,7 +445,10 @@ export default function Dashboard() {
         };
     }, [draft, editing, active]);
 
-    // Load previous emails for the active recipient (POST /Message/fetch-messages)
+    // Load previous emails for the active recipient.
+    // 1) POST /Message/fetch-recipient tells us whether this recipient has any drafts/sent e-mails ("boxes").
+    // 2) Only when boxes === true do we show the skeletons and POST /Message/fetch-messages.
+    //    When boxes is false/undefined the "Previous emails" section never appears at all.
     useEffect(() => {
         // new recipient -> back to page 1 and replay the slide-in
         clearTimeout(animTimer.current);
@@ -454,15 +458,25 @@ export default function Dashboard() {
         setPhase("in");
         setFadeIn(false); // skeletons swipe in first
         setNonce((n) => n + 1);
+        setMessages([]); // never show the previous recipient's e-mails
+        setMessagesLoading(false);
 
-        if (!active) {
-            setMessages([]);
-            setMessagesLoading(false);
-            return;
-        }
+        if (!active) return;
 
         let cancelled = false;
         const load = async () => {
+            let hasBoxes = false;
+            try {
+                const { data } = await axios.post("/Message/fetch-recipient", { recipient: active });
+                const match = data.success
+                    ? (data.recipients || []).find((r) => String(r.address).toLowerCase() === active.toLowerCase())
+                    : null;
+                hasBoxes = match?.boxes === true;
+            } catch {
+                if (!cancelled) flash("Couldn't load previous emails", ERROR_TOAST_MS);
+            }
+            if (cancelled || !hasBoxes) return;
+
             setMessagesLoading(true);
             const started = Date.now();
             let result = [];
@@ -880,7 +894,8 @@ export default function Dashboard() {
                             </span>
                         </button>
 
-                        {/* Previous */}
+                        {/* Previous: only rendered while loading or when there is something to show */}
+                        {(messagesLoading || messages.length > 0) && (
                         <section className="previous">
                             <div className="previous-head">
                                 {/* The count is absolutely positioned beside the title, so it can fade in
@@ -919,12 +934,6 @@ export default function Dashboard() {
                                             </div>
                                         </article>
                                     ))
-                                ) : pageCards.length === 0 ? (
-                                    <div className="cards-empty">
-                                        {active
-                                            ? "No emails to this person yet. Compose your first one above."
-                                            : "Add a recipient to see your previous emails."}
-                                    </div>
                                 ) : (
                                     pageCards.map((m, i) => {
                                         const opens = m.tid?.unix?.length || 0;
@@ -1035,6 +1044,7 @@ export default function Dashboard() {
                                 </nav>
                             )}
                         </section>
+                        )}
                     </>
                 )}
 
