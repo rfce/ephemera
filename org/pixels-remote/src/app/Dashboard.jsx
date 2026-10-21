@@ -34,6 +34,16 @@ const getStoredRecipient = () => {
     }
 };
 
+/* All recipients that have a chip. Kept in localStorage ("recipients", a JSON array) so they survive a refresh. */
+const getStoredRecipients = () => {
+    try {
+        const list = JSON.parse(localStorage.getItem("recipients") || "[]");
+        return Array.isArray(list) ? list.filter((x) => typeof x === "string" && x) : [];
+    } catch {
+        return [];
+    }
+};
+
 /* ---------- JWT (no library needed) ----------
    A JWT is three base64url parts: header.payload.signature. The payload is plain JSON,
    so we can read it with atob. This only DISPLAYS the name; it does not verify the
@@ -162,8 +172,11 @@ export default function Dashboard() {
     /* ---------- Recipient ---------- */
     // The recipient lives in localStorage ("recipient"), exactly like AddRecipient / AliasPick.
     const [emails, setEmails] = useState(() => {
+        const list = getStoredRecipients();
         const r = getStoredRecipient();
-        return r ? [r] : [];
+        // make sure the active recipient always has a chip (e.g. first load after this was introduced)
+        if (r && !list.some((x) => x.toLowerCase() === r.toLowerCase())) list.push(r);
+        return list;
     });
     const [active, setActive] = useState(getStoredRecipient);
     const [swap, setSwap] = useState(0);
@@ -247,6 +260,13 @@ export default function Dashboard() {
         },
         []
     );
+
+    // Persist the chips whenever they change
+    useEffect(() => {
+        try {
+            localStorage.setItem("recipients", JSON.stringify(emails));
+        } catch { /* storage unavailable */ }
+    }, [emails]);
 
     // Focus and select the text as soon as edit mode opens
     useEffect(() => {
