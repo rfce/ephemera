@@ -19,6 +19,7 @@ const SLOTS = [
 const PAGE_SIZE = 3;
 const OUT_MS = 320; // slide-out duration (+ stagger)
 const LOCK_MS = 800; // time before another page switch is allowed
+const MIN_SKELETON_MS = 900; // skeletons stay at least this long so their swipe-in (~0.85s) can finish
 const FETCH_DEBOUNCE_MS = 300; // wait after typing before asking the server for suggestions
 const MAX_SUGGESTIONS = 8;
 const ERROR_TOAST_MS = 5000;
@@ -194,6 +195,9 @@ export default function Dashboard() {
     const [phase, setPhase] = useState("in"); // "in" | "out"
     const [busy, setBusy] = useState(false);
     const [nonce, setNonce] = useState(0); // forces cards to remount + replay the slide-in
+    // true right after a fetch finishes: the real cards fade in where the skeletons were.
+    // Reset to false for page switches, so those keep the slide animation.
+    const [fadeIn, setFadeIn] = useState(false);
     const animTimer = useRef(null);
     const lockTimer = useRef(null);
 
@@ -298,6 +302,7 @@ export default function Dashboard() {
         setBusy(false);
         setPage(0);
         setPhase("in");
+        setFadeIn(false); // skeletons swipe in first
         setNonce((n) => n + 1);
 
         if (!active) {
@@ -309,17 +314,26 @@ export default function Dashboard() {
         let cancelled = false;
         const load = async () => {
             setMessagesLoading(true);
+            const started = Date.now();
+            let result = [];
+            let failed = false;
             try {
                 const { data } = await axios.post("/Message/fetch-messages", { recipient: active });
-                if (!cancelled) setMessages(data.success ? data.messages || [] : []);
+                result = data.success ? data.messages || [] : [];
             } catch {
-                if (!cancelled) {
-                    setMessages([]);
-                    flash("Couldn't load previous emails", ERROR_TOAST_MS);
-                }
-            } finally {
-                if (!cancelled) setMessagesLoading(false);
+                failed = true;
             }
+
+            // A fast response would swap the skeletons out while they are still mid-swipe, which reads as
+            // a sudden pop. Keep them on screen until their swipe-in has finished.
+            const wait = MIN_SKELETON_MS - (Date.now() - started);
+            if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait));
+            if (cancelled) return;
+
+            setMessages(result);
+            if (failed) flash("Couldn't load previous emails", ERROR_TOAST_MS);
+            setFadeIn(true); // real cards fade in place of the skeletons
+            setMessagesLoading(false);
         };
         load();
 
@@ -481,6 +495,7 @@ export default function Dashboard() {
     const goTo = (p) => {
         if (busy || p === safePage || p < 0 || p >= totalPages) return;
         setDir(p > safePage ? 1 : -1);
+        setFadeIn(false); // page switches keep the slide animation
         setBusy(true);
         setPhase("out");
         clearTimeout(animTimer.current);
@@ -714,15 +729,19 @@ export default function Dashboard() {
                         {/* Previous */}
                         <section className="previous">
                             <div className="previous-head">
-                                <h3 className="previous-title">Previous emails to this person</h3>
-                                {!messagesLoading && messages.length > 0 && (
-                                    <span className="previous-count">{messages.length} total</span>
-                                )}
+                                {/* The count is absolutely positioned beside the title, so it can fade in
+                                    without changing the header's height or moving the title. */}
+                                <h3 className="previous-title">
+                                    Previous emails to this person
+                                    {!messagesLoading && messages.length > 0 && (
+                                        <span className="previous-count">{messages.length} total</span>
+                                    )}
+                                </h3>
                             </div>
 
                             <div
                                 key={`${safePage}-${nonce}`}
-                                className={`cards ${phase === "out" ? "is-out" : "is-in"}`}
+                                className={`cards ${phase === "out" ? "is-out" : "is-in"} ${fadeIn ? "cards--fade" : ""}`}
                                 style={{ "--dir": dir }}
                                 aria-live="polite"
                                 aria-busy={messagesLoading}
