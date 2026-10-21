@@ -2086,3 +2086,90 @@
     animation: none !important;
   }
 }
+
+/* =========================================================
+   LANDING (no recipient yet): faint warping grid + a light running around the input card
+   Scoped to .main--empty / .scatter, so the recipient screen is untouched and the hero-group
+   still glides to the top exactly as before.
+   ========================================================= */
+@property --ang {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+._3ujz .scatter {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.7s var(--ease), visibility 0s 0.7s;
+}
+
+._3ujz .scatter--on {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1.2s var(--ease), visibility 0s;
+}
+
+/* the canvas is the whole backdrop; it is kept a little fainter in the middle so the text stays calm */
+._3ujz .warp-grid {
+    display: block;
+    width: 100%;
+    height: 100%;
+    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, rgba(0, 0, 0, 0.55) 0%, #000 100%);
+    mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, rgba(0, 0, 0, 0.55) 0%, #000 100%);
+}
+
+/* the input card gets a slow light running around its edge while it waits for the first address */
+._3ujz .recipient {
+    position: relative;
+}
+
+._3ujz .recipient::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 23px;
+    padding: 1px;
+    background: conic-gradient(from var(--ang), transparent 0 62%, rgba(255, 138, 92, 0.9) 78%, rgba(168, 116, 245, 0.9) 90%, transparent 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s var(--ease);
+}
+
+._3ujz .main--empty .recipient::before {
+    opacity: 1;
+    animation: spinAng 7s linear infinite;
+}
+
+@keyframes spinAng {
+    to {
+        --ang: 360deg;
+    }
+}
+
+/* landing screen only: slightly larger prompt above the input (the recipient screen keeps 13px) */
+._3ujz .main--empty .recipient-label {
+    font-size: 15.5px;
+    letter-spacing: 0.005em;
+    margin-bottom: 8px; /* extra space above the input, on top of the 4px flex gap */
+}
+
+/* landing screen only: more room between the greeting and the input card (was 30px) */
+._3ujz .main--empty .greeting {
+    margin-bottom: 52px;
+}
+
+@media (max-width: 720px) {
+    ._3ujz .main--empty .greeting {
+        margin-bottom: 38px;
+    }
+}

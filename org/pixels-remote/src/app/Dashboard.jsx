@@ -16,6 +16,12 @@ const SLOTS = [
     { icon: "people" },
 ];
 
+/* ---------- Landing-page backdrop: a faint grid that warps around the cursor ---------- */
+const GRID_STEP = 44; // px between grid lines
+const GRID_SIGMA = 150; // radius (px) of the warped area around the cursor
+const GRID_PULL = 0.3; // how strongly lines bulge away from the cursor
+const GRID_SHIFT = 10; // px the whole grid drifts with the pointer (the parallax part)
+
 const PAGE_SIZE = 3;
 const OUT_MS = 320; // slide-out duration (+ stagger)
 const LOCK_MS = 800; // time before another page switch is allowed
@@ -219,6 +225,8 @@ export default function Dashboard() {
     const groupRef = useRef(null);
     const flipFrom = useRef(null); // group's top edge (px) captured just before the hero collapses
 
+    const gridRef = useRef(null);
+
     // FLIP: after the layout switches from "centred hero" to "top of page", start the group at its
     // old position and glide it to the new one.
     useLayoutEffect(() => {
@@ -260,6 +268,124 @@ export default function Dashboard() {
         },
         []
     );
+
+    // Warping grid (canvas). Only runs on the landing screen; draws a static grid if motion is reduced.
+    useEffect(() => {
+        if (hasRecipient) return;
+        const canvas = gridRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        let w = 0;
+        let h = 0;
+        let raf = 0;
+        let ready = false;
+        const m = { x: 0, y: 0, tx: 0, ty: 0, s: 0, ts: 0 }; // eased pointer, target pointer, effect strength
+
+        // where a grid point ends up: bulged away from the cursor, plus a small whole-grid drift
+        const warp = (x, y) => {
+            const dx = x - m.x;
+            const dy = y - m.y;
+            const f = m.s * Math.exp(-(dx * dx + dy * dy) / (2 * GRID_SIGMA * GRID_SIGMA));
+            const ox = -((m.x / w) - 0.5) * 2 * GRID_SHIFT;
+            const oy = -((m.y / h) - 0.5) * 2 * GRID_SHIFT;
+            return [x + dx * GRID_PULL * f + ox, y + dy * GRID_PULL * f + oy, f];
+        };
+
+        const draw = () => {
+            ctx.clearRect(0, 0, w, h);
+            const seg = 10;
+
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "rgba(255,255,255,0.055)";
+            ctx.beginPath();
+            for (let x = -GRID_STEP; x <= w + GRID_STEP; x += GRID_STEP) {
+                for (let y = -GRID_STEP; y <= h + GRID_STEP; y += seg) {
+                    const [px, py] = warp(x, y);
+                    if (y === -GRID_STEP) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+            }
+            for (let y = -GRID_STEP; y <= h + GRID_STEP; y += GRID_STEP) {
+                for (let x = -GRID_STEP; x <= w + GRID_STEP; x += seg) {
+                    const [px, py] = warp(x, y);
+                    if (x === -GRID_STEP) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+            }
+            ctx.stroke();
+
+            // intersections light up softly near the cursor
+            if (m.s > 0.01) {
+                for (let x = -GRID_STEP; x <= w + GRID_STEP; x += GRID_STEP) {
+                    for (let y = -GRID_STEP; y <= h + GRID_STEP; y += GRID_STEP) {
+                        const [px, py, f] = warp(x, y);
+                        if (f < 0.05) continue;
+                        ctx.fillStyle = `rgba(255,120,170,${(0.7 * f).toFixed(3)})`;
+                        ctx.beginPath();
+                        ctx.arc(px, py, 1 + 1.6 * f, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+            }
+        };
+
+        const tick = () => {
+            m.x += (m.tx - m.x) * 0.12;
+            m.y += (m.ty - m.y) * 0.12;
+            m.s += (m.ts - m.s) * 0.1;
+            draw();
+            const settled = Math.abs(m.tx - m.x) < 0.2 && Math.abs(m.ty - m.y) < 0.2 && Math.abs(m.ts - m.s) < 0.003;
+            raf = settled ? 0 : requestAnimationFrame(tick);
+        };
+        const kick = () => {
+            if (!raf) raf = requestAnimationFrame(tick);
+        };
+
+        const resize = () => {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const r = canvas.getBoundingClientRect();
+            w = r.width;
+            h = r.height;
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            if (!ready) {
+                m.x = m.tx = w / 2;
+                m.y = m.ty = h / 2;
+                ready = true;
+            }
+            draw();
+        };
+
+        const onMove = (e) => {
+            if (e.pointerType === "touch") return;
+            const r = canvas.getBoundingClientRect();
+            m.tx = e.clientX - r.left;
+            m.ty = e.clientY - r.top;
+            m.ts = 1;
+            kick();
+        };
+        const onLeave = () => {
+            m.ts = 0;
+            kick();
+        };
+
+        const ro = new ResizeObserver(resize);
+        ro.observe(canvas);
+        if (!reduce) {
+            window.addEventListener("pointermove", onMove);
+            document.addEventListener("mouseleave", onLeave);
+        }
+
+        return () => {
+            ro.disconnect();
+            cancelAnimationFrame(raf);
+            window.removeEventListener("pointermove", onMove);
+            document.removeEventListener("mouseleave", onLeave);
+        };
+    }, [hasRecipient]);
 
     // Persist the chips whenever they change
     useEffect(() => {
@@ -545,6 +671,11 @@ export default function Dashboard() {
 
     return (
         <div className="_3ujz page">
+            {/* Landing backdrop: faint warping grid, fades away once there is a recipient */}
+            <div className={`scatter ${hasRecipient ? "" : "scatter--on"}`} aria-hidden="true">
+                <canvas ref={gridRef} className="warp-grid" />
+            </div>
+
             {/* Header */}
             <header className="header">
                 <a
