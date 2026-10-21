@@ -30,7 +30,14 @@ const createRecipient = async (req, res) => {
     // Add unique recepients
     const created = await Recipient.findOneAndUpdate(
         { author: author._id, address: recipient.trim() },
-        { $setOnInsert: { author: author._id, address: recipient.trim() } },
+        {
+            $set: {
+                visited: new Date()
+            },
+            $setOnInsert: {
+                author: author._id, address: recipient.trim()
+            }
+        },
         {
             new: true,
             upsert: true
@@ -116,7 +123,7 @@ const discardMessage = async (req, res) => {
     }
 
     await Track.deleteOne({ author: author._id, _id: tid })
-    
+
     await Message.deleteOne({
         author: author._id,
         eas,
@@ -129,24 +136,35 @@ const discardMessage = async (req, res) => {
     })
 }
 
+// If recipient is empty, we send every recipient sorted recent first
 const fetchRecipients = async (req, res) => {
     const { recipient } = req.body
 
-    if (typeof recipient !== 'string' || recipient.trim() === '') {
+    const author = req.user
+
+    if (recipient === undefined || recipient === null || recipient.trim() === '') {
+        const recipients = await Recipient.find({ author: author._id }).sort({ visited: -1 }).limit(3)
+
         return res.json({
-            success: false,
-            message: "Recipient is required"
+            success: true,
+            message: "List of most frequent recepients",
+            recipients
         })
     }
 
-    const author = req.user
+    if (typeof recipient !== 'string') {
+        return res.json({
+            success: false,
+            message: "Recipient must be a string"
+        })
+    }
 
     const escaped = escapeRegex(recipient)
 
     const recipients = await Recipient.find({
         author: author._id,
         address: { $regex: `${escaped}`, $options: "i" }
-    })
+    }).sort({ visited: -1 }).limit(5)
 
     res.json({
         success: true,

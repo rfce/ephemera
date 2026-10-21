@@ -412,11 +412,15 @@ export default function Dashboard() {
     useEffect(() => {
         if (!editing) return;
         const query = draft.trim();
-        if (!query) {
+
+        // Empty field on the landing screen (no recipient yet): ask for the most recent recipients by sending
+        // `recipient: undefined`, and show them as suggestions right away. Anywhere else an empty field has no suggestions.
+        const wantRecent = !query && !active;
+        if (!query && !wantRecent) {
             setSuggestions([]);
             return;
         }
-        if (skipFetch.current) {
+        if (query && skipFetch.current) {
             skipFetch.current = false;
             return;
         }
@@ -424,7 +428,7 @@ export default function Dashboard() {
         let cancelled = false; // ignore stale responses
         const timer = setTimeout(async () => {
             try {
-                const { data } = await axios.post("/Message/fetch-recipient", { recipient: query });
+                const { data } = await axios.post("/Message/fetch-recipient", { recipient: query || undefined });
                 if (!cancelled && data.success) {
                     setSuggestions((data.recipients || []).slice(0, MAX_SUGGESTIONS));
                     setSelectedIndex(0);
@@ -432,13 +436,13 @@ export default function Dashboard() {
             } catch {
                 if (!cancelled) setSuggestions([]);
             }
-        }, FETCH_DEBOUNCE_MS);
+        }, wantRecent ? 0 : FETCH_DEBOUNCE_MS); // no need to debounce the initial "recent" lookup
 
         return () => {
             cancelled = true;
             clearTimeout(timer);
         };
-    }, [draft, editing]);
+    }, [draft, editing, active]);
 
     // Load previous emails for the active recipient (POST /Message/fetch-messages)
     useEffect(() => {

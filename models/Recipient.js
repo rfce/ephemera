@@ -12,7 +12,8 @@ const recipientSchema = Schema(
         address: {
             type: String,
             required: true
-        }
+        },
+        visited: Date
     },
     {
         timestamps : true
