@@ -417,7 +417,6 @@ export default function Dashboard() {
 
             setEmails((prev) => [...prev, value]);
             selectEmail(value); // stores it in localStorage and loads its previous emails
-            flash("Recipient saved ✓");
         } catch {
             flash("Something went wrong. Please try again.", ERROR_TOAST_MS);
         } finally {
