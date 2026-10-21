@@ -28,6 +28,7 @@ const LOCK_MS = 800; // time before another page switch is allowed
 const MIN_SKELETON_MS = 900; // skeletons stay at least this long so their swipe-in (~0.85s) can finish
 const FETCH_DEBOUNCE_MS = 300; // wait after typing before asking the server for suggestions
 const MAX_SUGGESTIONS = 8;
+const MAX_RECIPIENT_CHIPS = 3; // pills kept under "Sending to"; the oldest one is dropped when a new one is added
 const ERROR_TOAST_MS = 5000;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -48,6 +49,17 @@ const getStoredRecipients = () => {
     } catch {
         return [];
     }
+};
+
+/* Keep only the newest MAX_RECIPIENT_CHIPS pills (the list is oldest -> newest). `keep` (the active one) is never dropped. */
+const capRecipients = (list, keep) => {
+    const next = [...list];
+    while (next.length > MAX_RECIPIENT_CHIPS) {
+        const i = next.findIndex((x) => x !== keep);
+        if (i === -1) break;
+        next.splice(i, 1);
+    }
+    return next;
 };
 
 /* ---------- JWT (no library needed) ----------
@@ -182,7 +194,7 @@ export default function Dashboard() {
         const r = getStoredRecipient();
         // make sure the active recipient always has a chip (e.g. first load after this was introduced)
         if (r && !list.some((x) => x.toLowerCase() === r.toLowerCase())) list.push(r);
-        return list;
+        return capRecipients(list, r); // also trims a list saved before the limit existed
     });
     const [active, setActive] = useState(getStoredRecipient);
     const [swap, setSwap] = useState(0);
@@ -579,7 +591,7 @@ export default function Dashboard() {
                 return;
             }
 
-            setEmails((prev) => [...prev, value]);
+            setEmails((prev) => capRecipients([...prev, value], value)); // oldest pill drops off past the limit
             selectEmail(value); // stores it in localStorage and loads its previous emails
         } catch {
             flash("Something went wrong. Please try again.", ERROR_TOAST_MS);
